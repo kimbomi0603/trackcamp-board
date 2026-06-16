@@ -108,18 +108,17 @@ try{if(sessionStorage.getItem('tc_ok')==='1')document.getElementById('gate').sty
 <header>
   <h1>🚜 트랙터캠프 — 모두의 민주당 만들기 프로젝트</h1>
   <p style="font-weight:700;opacity:1">"밭을 갈아엎어 이롭게 하듯, 민주당을 갈아엎어 모두의 민주당을 만듭니다"</p>
-  <p>당대표 출마 전략회의 · 역대 전당대회 일정 비교 · 8.17 전당대회 준비 타임라인 (기준일: 2026.6.11)</p>
+  <p>당대표 출마 전략회의 · 역대 전당대회 일정 비교 · 8.17 전당대회 준비 타임라인 (기준일: 2026.6.16)</p>
   <div class="dday" id="dday"></div>
 </header>
 
 <nav>
-  <button class="on" data-t="month">월간 캘린더</button>
-  <button data-t="week">주간 캘린더</button>
+  <button class="on" data-t="month">월간·주간 캘린더</button>
+  <button data-t="sns">📣 SNS 메시지·회의안건</button>
   <button data-t="plan">출마 준비 플랜</button>
   <button data-t="fund">후원회·비용</button>
-  <button data-t="ops">캠프 상황실</button>
+  <button data-t="ops">캠프 상황실 <small style="opacity:.55;font-weight:600">· 준비중</small></button>
   <button data-t="cmp">역대 일정 비교</button>
-  <button data-t="sns">📣 SNS 메시지·회의안건</button>
 </nav>
 
 <!-- ===== SNS 메시지 플랜 ===== -->
@@ -134,9 +133,9 @@ try{if(sessionStorage.getItem('tc_ok')==='1')document.getElementById('gate').sty
       ㆍ⚠️ <b>당헌·당규상 '당원권 정지'가 후보 자격·등록에 미치는 효과와 효력 시점을 즉시 확인</b>(법률·당무 검토 1순위).
     </div>
     <ol class="agenda">
-      <li><b>메시지 출격 순서·시기 확정</b> — 아래 '메시지 타임라인'(1~7차) 승인. 주제·발행일 최종 조율.</li>
+      <li><b>메시지 출격 순서·시기 확정</b> — 아래 '메시지 타임라인'(1~9차) 승인. 주제·발행일 최종 조율.</li>
       <li><b>당대표 출마선언 D-day 결정 (시급)</b> — ⚠️ 문금주 의원실 당원권 정지 징계 추진 중, <b>징계 전 선언 필수</b>. 위 긴급 박스·아래 결정 박스 참고.</li>
-      <li><b>3차(선관위) 글 — 오늘 발행 시급</b> ★ — 여론조사·통계 수치 팩트체크만 끝내고 <b>오늘 중 출고</b>.</li>
+      <li><b>3차(정청래 중앙위 규탄) 오늘 긴급 게시</b> ★ + <b>4차(선관위)</b> 오늘/내일 — 사실관계·수치 확인 후 출고.</li>
       <li><b>시기별 준비물 체크리스트 점검</b> — 김보미.COM 오픈, 알메달렌 영상 장비, 출마선언문, 후원회 등록.</li>
       <li><b>업무분장 확정</b> — 캠프지원군 6인(박동완·이왕재·이득규·김혜민·김희원·윤여진) 역할 배정 + 회계책임자 선임.</li>
     </ol>
@@ -145,7 +144,7 @@ try{if(sessionStorage.getItem('tc_ok')==='1')document.getElementById('gate').sty
       ㆍ<b>최우선 — 징계 의결 전 선제 선언</b>: 당원권 정지가 임박하면 빌드업을 압축하고 출국 전(6.19) 또는 즉시 선언.<br>
       ㆍ가안 6.28(귀국 직후): 알메달렌 모멘텀은 최고조이나 <b>징계가 그 전에 의결되면 불가</b>.<br>
       ㆍ대안 7.6 후보등록 직전: 가장 늦음 — 징계 리스크 최대.<br>
-      → <b>회의에서 징계 일정부터 확인하고 선언일 택일.</b> 확정 후 앞 메시지(3~6차)를 역산 배치.
+      → <b>회의에서 징계 일정부터 확인하고 선언일 택일.</b> 확정 후 앞 메시지(3~8차)를 역산 배치.
     </div>
   </div>
 
@@ -168,7 +167,7 @@ try{if(sessionStorage.getItem('tc_ok')==='1')document.getElementById('gate').sty
 
   <div class="card">
     <h2>메시지 타임라인 — 회차별 '무슨 메시지인가'</h2>
-    <p class="note" style="color:var(--red);font-weight:700;background:#ffe3e3;border:1px solid #f0a8c4;border-radius:8px;padding:8px 10px">🚨 출마선언 시급: 문금주 의원실이 당원권 정지 징계를 추진 중 — <b>징계 의결 전에 7차(출마선언)를 마쳐야 함.</b> 징계 임박 시 발행일 가안을 앞당기고 빌드업(3~6차)을 압축하세요.</p>
+    <p class="note" style="color:var(--red);font-weight:700;background:#ffe3e3;border:1px solid #f0a8c4;border-radius:8px;padding:8px 10px">🚨 출마선언 시급: 문금주 의원실이 당원권 정지 징계를 추진 중 — <b>징계 의결 전에 9차(출마선언)를 마쳐야 함.</b> 징계 임박 시 발행일 가안을 앞당기고 빌드업(3~6차)을 압축하세요.</p>
 
     <h3 style="color:var(--blue)">✅ 발행 완료 (1–2차)</h3>
     <div class="msg sent">
@@ -179,39 +178,49 @@ try{if(sessionStorage.getItem('tc_ok')==='1')document.getElementById('gate').sty
     <div class="msg sent">
       <div class="mh"><span class="no">2차</span><span class="dt">6.16 (오늘·업로드 완료)</span></div>
       <div class="ti">“정 대표는 대통령에 맞서지 말고, 사퇴하십시오” <span class="badge b-sent">발행완료</span></div>
-      <div class="de">공격을 정면돌파하며 사퇴 재촉구. 출마선언으로 이어질 명분을 굳히는 글. <span class="kw kw2">#계파청산</span><span class="kw kw1">#당원이주인</span></div>
+      <div class="de">공격을 정면돌파하며 사퇴를 재촉구. 출마선언으로 이어질 명분을 굳히는 글. <span class="kw kw2">#계파청산</span><span class="kw kw1">#당원이주인</span></div>
     </div>
 
-    <h3 style="color:#6b21a8">📣 앞으로 나갈 메시지 (3차–7차) — 핵심</h3>
+    <h3 style="color:#6b21a8">📣 앞으로 나갈 메시지 (3차–9차) — 핵심</h3>
     <div class="msg rev">
-      <div class="mh"><span class="no">3차</span><span class="dt" style="color:var(--red)">★ 오늘(6.16) 발행 시급</span></div>
-      <div class="ti">〈'부정'이 아니라 '부실'입니다 — 선관위, 해체를 자초했습니다〉 <span class="badge b-rev">검토→오늘 출고</span></div>
-      <div class="de"><b style="color:var(--red)">🚨 오늘 중 발행 목표 — 아래 팩트체크만 끝내고 바로 출고.</b><br>6·3 지선 부실 관리(투표용지 동남)·참정권 침해를 정면 비판. '부정선거' 음모론(국민의힘·극우)과 선긋고 책임은 선관위로 명확히. 선관위 재설계·개헌까지 대안 제시. 중도·2030 공정 정서 공략. <span class="kw kw3">#깨끗한정치</span><span class="kw kw4">#청년미래정치</span><br><small style="color:var(--mut)">형식: 텍스트(현장 사진) · ⚠️ 여론조사·통계 수치 팩트체크 후 발행 · CTA 한 줄 추가 권장</small></div>
+      <div class="mh"><span class="no">3차</span><span class="dt" style="color:var(--red)">★ 오늘(6.16) 긴급 게시</span></div>
+      <div class="ti">〈정청래 대표, 당에서 '대통령 놀이' 하십니까?〉 <span class="badge b-rev">오늘 긴급 게시</span></div>
+      <div class="de"><b style="color:var(--red)">🚨 오늘 6차 중앙위 직격 — 긴급 대응글, 오늘 게시.</b><br>같은 회의에서 ①지선 '감산 면제' 특례 ②8·17 전대 '룰 변경(준비위·선출방식 시한 예외)' 특례가 동시 통과 — 사면권·선거룰·공천기준을 대표 1인이 쥔 <b>'대통령 놀이'</b>로 규탄.<br>'승리 기여자만 신청받아 최고위가 골라 사면'하는 방식 = 구제가 아니라 <b>'입틀막' 길들이기</b>로 지적. <b>본인 사례</b>(청년·여성 15% 감산 vs 상대 전과 5범 무감산 → 근소차 낙선)를 불공정의 증거로 제시. 결선투표 도입 만지작 보도까지 엮어 '선수가 심판이자 규칙 작성자'라고 비판.<br><b>요구 4가지:</b> ①감산 조건없는 전원 원상복구 ②책임자 공개사과 ③룰은 중립기구가 공정하게(연임용 룰개정 중단) ④청년·여성 차별 공천시스템 개혁. <span class="kw kw3">#공정·깨끗한정치</span><span class="kw kw2">#계파청산</span><span class="kw kw4">#청년미래정치</span><br><b style="color:var(--red)">⚠️ 발행 전 사실관계 확인: 6차 중앙위 의결 내용(감산 면제·전대 룰 예외)·결선투표 보도 출처 확정. 징계 협박 관련 표현 수위 점검.</b><br><small style="color:var(--mut)">형식: 텍스트(꺾쇠 제목) · CTA: 공정 요구 4가지 공유</small></div>
+    </div>
+    <div class="msg rev">
+      <div class="mh"><span class="no">4차</span><span class="dt" style="color:var(--red)">오늘/내일(6.16~17) 발행</span></div>
+      <div class="ti">〈'부정'이 아니라 '부실'입니다 — 선관위, 해체를 자초했습니다〉 <span class="badge b-rev">검토→출고</span></div>
+      <div class="de">6·3 지선 부실 관리(투표용지 동남)·참정권 침해를 정면 비판. '부정선거' 음모론(국민의힘·극우)과 선긋고 책임은 선관위로 명확히. 선관위 재설계·개헌까지 대안 제시. 중도·2030 공정 정서 공략. 3차(정청래 규탄)와 묶어 '공정' 프레임을 연타. <span class="kw kw3">#깨끗한정치</span><span class="kw kw4">#청년미래정치</span><br><small style="color:var(--mut)">형식: 텍스트(현장 사진) · ⚠️ 여론조사·통계 수치 팩트체크 후 발행 · CTA 한 줄 추가 권장</small></div>
     </div>
     <div class="msg">
-      <div class="mh"><span class="no">4차</span><span class="dt">6.19 가안 · 출국 전</span></div>
-      <div class="ti">민주당도 똑같이 개혁 대상 — “정당 예산부터 투명하게” <span class="badge b-plan">예정</span></div>
-      <div class="de">3차의 칼끝을 자기 진영으로. <b>선관위만 개혁 대상이 아니라 민주당도 똑같다</b>는 자기비판. 핵심 펀치 = <b>정당 재정 투명성</b> — 정당이 공시·공고에 예산을 제대로 공개하지 않는 점을 지적하고 투명 공개를 요구. 신뢰 기반: <b>재정주권시민행동 공동대표</b>로 직접 만든 재정 공개 플랫폼을 함께 공개하며 '재정운동' 근황을 전함 — '비판만 하는 사람'이 아니라 '자기부터 투명하게 만든 후보'임을 증명.
+      <div class="mh"><span class="no">5차</span><span class="dt">6.18 가안 · 출국 전</span></div>
+      <div class="ti">김보미 근황 보고 — “이렇게 준비해왔습니다” <span class="badge b-plan">예정</span></div>
+      <div class="de">신뢰 기반 메시지. <b>재정주권시민행동 공동대표</b>로서 직접 만든 재정 공개 플랫폼을 함께 공개하며 '재정운동' 근황을 전함.
         <div style="background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px;margin:8px 0;font-size:.85rem">
           ■ <b>모두의 봄, 나라살림 돋보기 (대한민국 재정 365)</b><br><a href="https://www.김보미.com/" target="_blank">https://www.김보미.com/</a> — 재정주권시민행동의 나라살림·국가재정 데이터 분석 플랫폼<br><br>
           ■ <b>전라남도 강진군 군민재정 시스템</b><br><a href="https://www.김보미365.com/" target="_blank">https://www.김보미365.com/</a> — 강진군 재정 현황을 군민이 쉽게 확인하는 재정 공개 시스템
         </div>
-        <span class="kw kw3">#깨끗한정치</span><span class="kw kw2">#계파청산</span><br><small style="color:var(--mut)">형식: 텍스트+플랫폼 링크 2종 · CTA: 두 사이트 방문·공유</small></div>
+        <span class="kw kw3">#깨끗한정치</span><span class="kw kw4">#청년미래정치</span><br><small style="color:var(--mut)">형식: 텍스트+활동 사진+플랫폼 링크 2종 · CTA: 두 사이트 방문·공유</small></div>
     </div>
     <div class="msg">
-      <div class="mh"><span class="no">5차</span><span class="dt">6.21 가안 · 알메달렌 도착</span></div>
+      <div class="mh"><span class="no">6차</span><span class="dt">6.19 가안 · 출국 전</span></div>
+      <div class="ti">민주당도 똑같이 개혁 대상 — “정당 예산부터 투명하게” <span class="badge b-plan">예정</span></div>
+      <div class="de">5차 근황(재정운동)을 발판으로 칼끝을 자기 진영으로. <b>선관위만 개혁 대상이 아니라 민주당도 똑같다</b>는 자기비판. 핵심 펀치 = <b>정당 재정 투명성</b> — 정당이 공시·공고에 예산을 제대로 공개하지 않는 점을 지적하고 투명 공개를 요구. 재정 공개 플랫폼을 직접 만든 사람으로서 '자기부터 투명한 후보'의 정당성으로 밀어붙임. <span class="kw kw3">#깨끗한정치</span><span class="kw kw2">#계파청산</span><br><small style="color:var(--mut)">형식: 텍스트 · CTA: 정당 예산 공개 촉구 공유</small></div>
+    </div>
+    <div class="msg">
+      <div class="mh"><span class="no">7차</span><span class="dt">6.21 가안 · 알메달렌 도착</span></div>
       <div class="ti">알메달렌 도착 근황 — “누구나 무대에 오르는 정치, 세계 민주주의의 광장에서” <span class="badge b-plan">예정</span></div>
-      <div class="de"><b>1968년 올로프 팔메의 '트럭 위 연설'</b>에서 시작된 알메달렌처럼 — 누구나 무대에 오르고 누구와도 토론하는 정치, 그 비전을 <b>세계 민주주의의 광장 알메달렌에서 선언</b>한다. 비스뷔 도착 소식과 함께 다음 6차 연설(정당민주주의와 청년정치)을 예고하는 글. <span class="kw kw4">#청년미래정치</span><span class="kw kw1">#당원이주인</span><br><small style="color:var(--mut)">형식: 현장 사진+짧은 영상 · CTA: 6차 연설 예고·공유</small></div>
+      <div class="de"><b>1968년 올로프 팔메의 '트럭 위 연설'</b>에서 시작된 알메달렌처럼 — 누구나 무대에 오르고 누구와도 토론하는 정치, 그 비전을 <b>세계 민주주의의 광장 알메달렌에서 선언</b>한다. 비스뷔 도착 소식과 함께 다음(8차) 연설(정당민주주의와 청년정치)을 예고하는 글. <span class="kw kw4">#청년미래정치</span><span class="kw kw1">#당원이주인</span><br><small style="color:var(--mut)">형식: 현장 사진+짧은 영상 · CTA: 8차 연설 예고·공유</small></div>
     </div>
     <div class="msg">
-      <div class="mh"><span class="no">6차</span><span class="dt">6.24 가안 · 알메달렌 연설</span></div>
+      <div class="mh"><span class="no">8차</span><span class="dt">6.24 가안 · 알메달렌 연설</span></div>
       <div class="ti">알메달렌 연설 — “정당민주주의와 청년정치” <span class="badge b-plan">예정</span></div>
       <div class="de">연설 주제 <b>정당민주주의와 청년정치</b>(연설문 작성 완료). 팔메의 트럭 연설→'누구나 무대에 오르는 정치', 공천=문(門), 100% 국민경선·청년여성 배심원제. 국제 무대 메시지를 그대로 당원에게 전달 — 출마선언의 사전 정지작업. <span class="kw kw1">#당원이주인</span><span class="kw kw4">#청년미래정치</span><br><small style="color:var(--mut)">형식: 연설 영상(자막)+핵심 발췌 · CTA: 공유·출마선언 예고</small></div>
     </div>
     <div class="msg" style="border-left-color:var(--red);background:#fff5f8">
-      <div class="mh"><span class="no" style="color:var(--red)">7차</span><span class="dt">6.28 가안 · 귀국 직후</span></div>
+      <div class="mh"><span class="no" style="color:var(--red)">9차</span><span class="dt">6.28 가안 · 귀국 직후</span></div>
       <div class="ti">★ 당대표 출마선언 — “모두의 민주당을 만들겠습니다” <span class="badge b-star">하이라이트</span></div>
-      <div class="de">1–6차로 쌓은 명분·신뢰·비전을 한 데 모은 출사표. "위에서 아래로의 정치를 아래에서 위로", "집권여당의 책임은 권력 관리가 아니라 민주주의 확장", "누구나 목소리 낼 수 있는 대한민국". 5대 키워드 모두 담아 캠페인 개시 + 후원(구걸캠페인) 티저 연결. <span class="kw kw1">#당원이주인</span><span class="kw kw2">#계파청산</span><span class="kw kw3">#깨끗한정치</span><span class="kw kw4">#청년미래정치</span><span class="kw kw5">#현장민생</span><br><b style="color:var(--red)">⚠️ 시급: 당원권 정지 징계 전에 선언 필수 — 징계 임박 시 6.28보다 앞당김(출국 전·즉시).</b><br><small style="color:var(--mut)">형식: 출마선언문 전문+기자회견 영상 · CTA: 후원·지지선언 동참</small></div>
+      <div class="de">1–8차로 쌓은 명분·신뢰·비전을 한 데 모은 출사표. "위에서 아래로의 정치를 아래에서 위로", "집권여당의 책임은 권력 관리가 아니라 민주주의 확장", "누구나 목소리 낼 수 있는 대한민국". 5대 키워드 모두 담아 캠페인 개시 + 후원(구걸캠페인) 티저 연결. <span class="kw kw1">#당원이주인</span><span class="kw kw2">#계파청산</span><span class="kw kw3">#깨끗한정치</span><span class="kw kw4">#청년미래정치</span><span class="kw kw5">#현장민생</span><br><b style="color:var(--red)">⚠️ 시급: 당원권 정지 징계 전에 선언 필수 — 징계 임박 시 6.28보다 앞당김(출국 전·즉시).</b><br><small style="color:var(--mut)">형식: 출마선언문 전문+기자회견 영상 · CTA: 후원·지지선언 동참</small></div>
     </div>
 
     <h3 style="color:var(--mut)">📅 출마선언 이후 레이스 (요약 · 추후 상세화)</h3>
@@ -423,7 +432,8 @@ try{if(sessionStorage.getItem('tc_ok')==='1')document.getElementById('gate').sty
 <!-- ===== 캠프 상황실 ===== -->
 <section id="ops">
   <div class="card">
-    <h2>🚜 트랙터캠프 상황실 <span id="opsClock" style="font-size:.85rem;color:var(--mut);font-weight:400"></span></h2>
+    <h2>🚜 트랙터캠프 상황실 <span style="font-size:.78rem;color:var(--mut);font-weight:700;background:#eef1fa;border:1px solid var(--line);border-radius:99px;padding:2px 10px;vertical-align:middle">⚙️ 아직 미가동중 · 준비중</span> <span id="opsClock" style="font-size:.85rem;color:var(--mut);font-weight:400"></span></h2>
+    <p class="note" style="margin:-4px 0 10px">※ 캠프 상황실은 아직 가동 전입니다. 실시간 공유·업무보드는 캠프 구성 후 정식 오픈 예정입니다.</p>
     <div id="opsDday" style="font-size:1.05rem;font-weight:800;color:var(--red);margin-bottom:12px"></div>
     <div style="background:#eef1fa;border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:14px">
       <b style="font-size:.9rem">🔗 실시간 공유</b> <span id="syncStatus" style="font-size:.8rem;font-weight:700">⚪ 로컬 모드 (기기별 저장)</span>
@@ -478,10 +488,6 @@ try{if(sessionStorage.getItem('tc_ok')==='1')document.getElementById('gate').sty
     </div>
     <div class="mgrid" id="mGrid"></div>
   </div>
-</section>
-
-<!-- ===== 주간 ===== -->
-<section id="week">
   <div class="card">
     <h2>주간 캘린더</h2>
     <div class="cal-head">
@@ -507,15 +513,17 @@ try{if(sessionStorage.getItem('tc_ok')==='1')document.getElementById('gate').sty
 </div>
 
 <script>
-const TODAY = new Date(2026,5,11); // 문서 기준일
+const TODAY = new Date(2026,5,16); // 오늘(기준일)
 const EVENTS = [
  {d:'2026-06-04', t:'[FB 1차] 지선 참패·정청래 사퇴 첫 주장', k:'fb'},
  {d:'2026-06-16', t:'[FB 2차] “정 대표, 대통령에 맞서지 말고 사퇴하십시오”', k:'fb'},
- {d:'2026-06-16', t:'[FB 3차·오늘 발행 시급] ‘부정 아닌 부실’ 선관위 질타·해체·개헌', k:'fb'},
- {d:'2026-06-19', t:'[FB 4차] 민주당도 개혁 대상 — 정당 재정 투명성·김보미.COM', k:'fb'},
- {d:'2026-06-21', t:'[FB 5차] 알메달렌 도착 — 누구나 무대에 오르는 정치 선언', k:'fb'},
- {d:'2026-06-24', t:'[FB 6차] 알메달렌 연설 — 정당민주주의와 청년정치', k:'fb'},
- {d:'2026-06-28', t:'[FB 7차] ★ 당대표 출마선언', k:'fb'},
+ {d:'2026-06-16', t:'[FB 3차·오늘 긴급] 정청래 ‘대통령 놀이’ 규탄 — 중앙위 감산사면·룰변경', k:'fb'},
+ {d:'2026-06-17', t:'[FB 4차·오늘/내일] ‘부정 아닌 부실’ 선관위 질타·해체·개헌', k:'fb'},
+ {d:'2026-06-18', t:'[FB 5차] 김보미 근황보고 — 재정 공개 플랫폼·재정운동', k:'fb'},
+ {d:'2026-06-19', t:'[FB 6차] 민주당도 개혁 대상 — 정당 예산부터 투명하게', k:'fb'},
+ {d:'2026-06-21', t:'[FB 7차] 알메달렌 도착 — 누구나 무대에 오르는 정치 선언', k:'fb'},
+ {d:'2026-06-24', t:'[FB 8차] 알메달렌 연설 — 정당민주주의와 청년정치', k:'fb'},
+ {d:'2026-06-28', t:'[FB 9차] ★ 당대표 출마선언', k:'fb'},
  {d:'2026-06-08', t:'최고위, 전대 8.17 개최 공감대', k:'done'},
  {d:'2026-06-09', t:'최고위 의결: 전당대회 8.17 확정', k:'done'},
  {d:'2026-06-10', t:'당무위: 준비기한 면제 당헌 부칙', k:'done'},
@@ -564,8 +572,8 @@ const DOW=['일','월','화','수','목','금','토'];
 
 // D-day
 const conv=new Date(2026,7,17), dd=Math.round((conv-TODAY)/864e5);
-const decl=new Date(2026,5,16), dd2=Math.round((decl-TODAY)/864e5);
-document.getElementById('dday').textContent='🚨 6.16 출마선언(가안)까지 D-'+dd2+' · 8.17 전당대회까지 D-'+dd;
+const decl=new Date(2026,5,28), dd2=Math.round((decl-TODAY)/864e5);
+document.getElementById('dday').textContent='🚨 출마선언 가안(6.28)까지 D-'+dd2+' · 8.17 전당대회까지 D-'+dd+' · 3차 메시지 오늘 발행';
 
 // tabs
 document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
