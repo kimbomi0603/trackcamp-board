@@ -176,7 +176,7 @@ try{if(sessionStorage.getItem('tc_ok')==='1')document.getElementById('gate').sty
   <div class="card">
     <h2>📣 페이스북 메시지 순차 발행 기획안</h2>
     <p style="font-size:.9rem">'밭을 갈아엎듯 민주당을 갈아엎는다'는 트랙터캠프 서사. <b>책임론(사퇴) → 공정·제도개혁(선관위) → 자기진영 개혁(민주당 재정 투명성) → 비전(알메달렌) → 출마선언</b> 순으로 쌓아, 출마선언을 귀국 직후 모멘텀 최고조에 터뜨립니다.</p>
-    <p class="note">※ 1~6차 발행 완료(3차 = 6.16 정청래 중앙위 규탄), 7차(알메달렌) 준비 중. 출마선언일 6.28(일) 확정. 발행일은 알메달렌 일정에 맞춰 조정하세요.</p>
+    <p class="note">※ 1~3차 발행 완료(3차 = 6.16 정청래 중앙위 규탄), 4차 검토 중 · 5차부터 예정. 출마선언일 6.28(일) 확정. 발행일은 알메달렌 일정에 맞춰 조정하세요.</p>
   </div>
 
   <div class="card">
@@ -239,12 +239,12 @@ try{if(sessionStorage.getItem('tc_ok')==='1')document.getElementById('gate').sty
 
     <h3 style="color:#6b21a8">📣 앞으로 나갈 메시지 (4차–9차) — 핵심</h3>
     <div class="msg rev">
-      <div class="mh"><span class="no">4차</span><span class="dt">6.16~17 발행완료</span></div>
+      <div class="mh"><span class="no">4차</span><span class="dt">6.16~17 작성·검토 중</span></div>
       <div class="ti">〈'부정'이 아니라 '부실'입니다 — 선관위, 해체를 자초했습니다〉 <span class="badge b-rev">검토→출고</span></div>
       <div class="de">6·3 지선 부실 관리(투표용지 동남)·참정권 침해를 정면 비판. '부정선거' 음모론(국민의힘·극우)과 선긋고 책임은 선관위로 명확히. 선관위 재설계·개헌까지 대안 제시. 중도·2030 공정 정서 공략. 3차(정청래 규탄)와 묶어 '공정' 프레임을 연타. <span class="kw kw3">#깨끗한정치</span><span class="kw kw4">#청년미래정치</span><br><small style="color:var(--mut)">형식: 텍스트(현장 사진) · ⚠️ 여론조사·통계 수치 팩트체크 후 발행 · CTA 한 줄 추가 권장</small></div>
     </div>
     <div class="msg">
-      <div class="mh"><span class="no">5차</span><span class="dt">6.18 발행완료 · 출국 전</span></div>
+      <div class="mh"><span class="no">5차</span><span class="dt">6.18 가안 · 출국 전</span></div>
       <div class="ti">김보미 근황 보고 — “이렇게 준비해왔습니다” <span class="badge b-plan">예정</span></div>
       <div class="de">신뢰 기반 메시지. <b>재정주권시민행동 공동대표</b>로서 직접 만든 재정 공개 플랫폼을 함께 공개하며 '재정운동' 근황을 전함.
         <div style="background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px;margin:8px 0;font-size:.85rem">
@@ -254,7 +254,7 @@ try{if(sessionStorage.getItem('tc_ok')==='1')document.getElementById('gate').sty
         <span class="kw kw3">#깨끗한정치</span><span class="kw kw4">#청년미래정치</span><br><small style="color:var(--mut)">형식: 텍스트+활동 사진+플랫폼 링크 2종 · CTA: 두 사이트 방문·공유</small></div>
     </div>
     <div class="msg">
-      <div class="mh"><span class="no">6차</span><span class="dt">6.19 발행완료 · 출국 전</span></div>
+      <div class="mh"><span class="no">6차</span><span class="dt">6.19 가안 · 출국 전</span></div>
       <div class="ti">민주당도 똑같이 개혁 대상 — “정당 예산부터 투명하게” <span class="badge b-plan">예정</span></div>
       <div class="de">5차 근황(재정운동)을 발판으로 칼끝을 자기 진영으로. <b>선관위만 개혁 대상이 아니라 민주당도 똑같다</b>는 자기비판. 핵심 펀치 = <b>정당 재정 투명성</b> — 정당이 공시·공고에 예산을 제대로 공개하지 않는 점을 지적하고 투명 공개를 요구. 재정 공개 플랫폼을 직접 만든 사람으로서 '자기부터 투명한 후보'의 정당성으로 밀어붙임. <span class="kw kw3">#깨끗한정치</span><span class="kw kw2">#계파청산</span><br><small style="color:var(--mut)">형식: 텍스트 · CTA: 정당 예산 공개 촉구 공유</small></div>
     </div>
@@ -626,7 +626,7 @@ const DOW=['일','월','화','수','목','금','토'];
 // D-day
 const conv=new Date(2026,7,17), dd=Math.round((conv-TODAY)/864e5);
 const decl=new Date(2026,5,28), dd2=Math.round((decl-TODAY)/864e5);
-document.getElementById('dday').textContent='🚨 출마선언(6.28 10시·민주당 중앙당사)까지 D-'+dd2+' · 8.17 전당대회까지 D-'+dd+' · 페이스북 6차까지 발행 완료';
+document.getElementById('dday').textContent='🚨 출마선언(6.28 10시·민주당 중앙당사)까지 D-'+dd2+' · 8.17 전당대회까지 D-'+dd+' · 페이스북 3차까지 발행 완료';
 
 // tabs
 document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
