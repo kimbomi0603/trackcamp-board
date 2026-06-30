@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🚜 트랙터캠프 · 모두의 민주당 만들기 프로젝트</title>
+<title>🚜 더불어캠프 · 모두의 민주당 만들기 프로젝트</title>
 <style>
   :root{
     --blue:#152484; --blue-l:#3a4fb5; --sky:#00a0e2; --green:#00aa7b;
@@ -88,7 +88,7 @@
 <body>
 <div id="gate" style="position:fixed;inset:0;background:linear-gradient(135deg,#152484,#3a4fb5);z-index:99999;display:flex;align-items:center;justify-content:center;flex-direction:column;color:#fff;font-family:'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif">
   <div style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);border-radius:16px;padding:32px 28px;max-width:340px;width:90%;text-align:center">
-    <div style="font-size:1.3rem;font-weight:800;margin-bottom:6px">🚜 트랙터캠프</div>
+    <div style="font-size:1.3rem;font-weight:800;margin-bottom:6px">🚜 더불어캠프</div>
     <div style="opacity:.85;font-size:.9rem;margin-bottom:18px">캠프 내부 전용 — 접속 비밀번호를 입력하세요</div>
     <input id="gatePw" type="password" inputmode="numeric" placeholder="비밀번호" onkeydown="if(event.key==='Enter')gateCheck()" style="width:100%;padding:12px;border:none;border-radius:10px;font-size:1rem;text-align:center;margin-bottom:10px;box-sizing:border-box">
     <button onclick="gateCheck()" style="width:100%;padding:12px;border:none;border-radius:10px;background:#00a0e2;color:#fff;font-weight:800;font-size:1rem;cursor:pointer">입장</button>
@@ -106,11 +106,21 @@ try{if(localStorage.getItem('tc_ok')==='1')document.getElementById('gate').style
 <div class="wrap">
 
 <header>
-  <h1>🚜 트랙터캠프 — 모두의 민주당 만들기 프로젝트</h1>
-  <p style="font-weight:700;opacity:1">"밭을 갈아엎어 이롭게 하듯, 민주당을 갈아엎어 모두의 민주당을 만듭니다"</p>
-  <p>당대표 출마 전략회의 · 역대 전당대회 일정 비교 · 8.17 전당대회 준비 타임라인 (기준일: 2026.6.20)</p>
+  <h1>🚜 더불어캠프 — 모두의 민주당 만들기 프로젝트</h1>
+  <p style="font-weight:700;opacity:1">"모두의 민주당 · 바꾸지 않으면, 바뀌지 않습니다"</p>
+  <p>당대표 출마 전략회의 · 역대 전당대회 일정 비교 · 8.17 전당대회 준비 타임라인 (기준일: 2026.6.30)</p>
   <div class="dday" id="dday"></div>
 </header>
+<div style="max-width:980px;margin:14px auto;padding:14px 18px;background:#fff7e6;border:1px solid #f0c66b;border-radius:12px;font-size:.92rem;line-height:1.75">
+  <b>📌 확정 핵심일정 <span style="color:#888;font-weight:600">· 기준 2026.6.30</span></b><br>
+  · <b>출마선언</b> — 7.2(목) · 더불어캠프 홈페이지·SNS 공개<br>
+  · <b>당대표·최고위원 후보 등록</b> — 7.16~17<br>
+  · <b>예비경선</b> — 7.21<br>
+  · <b>지역 순회경선</b> — 8.1 충청 · 8.2 부울경 · 8.8 제주·인천 · 8.9 강원·TK · 8.15 호남 · 8.16 수도권<br>
+  · <b>정기전당대회(본대회)</b> — 8.17 · 대전 컨벤션센터<br>
+  · <b>후원모금 개시(최단)</b> — 7.16 후보등록 즉시 후원회 등록신청 → 선관위 등록 완료 직후 모금 개시(빠르면 7.16~17)<br>
+  <span style="color:#a15;font-size:.85rem">※ 후원회는 후보자 지위 취득 후 14일 내 선관위 등록, 등록 후 모금 가능(정치자금법). 정확한 개시 시점은 관할 선관위에 '당대표경선후보자 지위 인정 시점' 확인 권장.</span>
+</div>
 
 <nav>
   <button class="on" data-t="month">월간·주간 캘린더</button>
@@ -175,7 +185,7 @@ try{if(localStorage.getItem('tc_ok')==='1')document.getElementById('gate').style
 
   <div class="card">
     <h2>📣 페이스북 메시지 순차 발행 기획안</h2>
-    <p style="font-size:.9rem">'밭을 갈아엎듯 민주당을 갈아엎는다'는 트랙터캠프 서사. <b>책임론(사퇴) → 공정·제도개혁(선관위) → 자기진영 개혁(민주당 재정 투명성) → 비전(알메달렌) → 출마선언</b> 순으로 쌓아, 출마선언을 귀국 직후 모멘텀 최고조에 터뜨립니다.</p>
+    <p style="font-size:.9rem">'밭을 갈아엎듯 민주당을 갈아엎는다'는 더불어캠프 서사. <b>책임론(사퇴) → 공정·제도개혁(선관위) → 자기진영 개혁(민주당 재정 투명성) → 비전(알메달렌) → 출마선언</b> 순으로 쌓아, 출마선언을 귀국 직후 모멘텀 최고조에 터뜨립니다.</p>
     <p class="note">※ 1~5차 발행 완료(6.4·6.16·6.17·6.18·6.20), 6차부터 예정. 출마선언일 6.28(일) 확정. 발행일은 알메달렌 일정에 맞춰 조정하세요.</p>
   </div>
 
@@ -198,7 +208,7 @@ try{if(localStorage.getItem('tc_ok')==='1')document.getElementById('gate').style
     <div class="msg sent">
       <div class="mh"><span class="no">1차</span><span class="dt">6.4 (지선 다음날)</span></div>
       <div class="ti">지선 참패, 정청래 사퇴 첫 주장 <span class="badge b-sent">발행완료</span></div>
-      <div class="de">밤샘 끝에 가장 먼저 책임론을 꺼낸 글. 누구도 '졌다'고 말 못 할 때 던진 첫 포문 — 트랙터캠프 서사의 출발점. <span class="kw kw4">#청년미래정치</span><span class="kw kw5">#현장민생</span></div>
+      <div class="de">밤샘 끝에 가장 먼저 책임론을 꺼낸 글. 누구도 '졌다'고 말 못 할 때 던진 첫 포문 — 더불어캠프 서사의 출발점. <span class="kw kw4">#청년미래정치</span><span class="kw kw5">#현장민생</span></div>
     </div>
     <div class="msg sent">
       <div class="mh"><span class="no">2차</span><span class="dt">6.16 (업로드 완료)</span></div>
@@ -281,8 +291,8 @@ try{if(localStorage.getItem('tc_ok')==='1')document.getElementById('gate').style
       <tbody>
         <tr><td>6.30</td><td>후원 개시 — “첫 번째 김보미가 되어주세요” (10만원 구걸캠페인 오픈)</td><td>#깨끗한정치</td></tr>
         <tr><td>7.2~7.6</td><td>5대 공약 패키지 순차 발표 (키워드별 1건씩)</td><td>#당원이주인 외</td></tr>
-        <tr><td>7.8</td><td>후보등록 인증 — “오늘 등록했습니다” + 후원 1차 마일스톤</td><td>#현장민생</td></tr>
-        <tr><td>7.18~8.16</td><td>권역별 순회경선 메시지 (호남 결집·영남 확장·수도권 수권)</td><td>권역 맞춤</td></tr>
+        <tr><td>7.16~17</td><td>후보등록 인증 — “오늘 등록했습니다” + 후원 1차 마일스톤</td><td>#현장민생</td></tr>
+        <tr><td>8.1~8.16</td><td>권역별 순회경선 메시지 (호남 결집·영남 확장·수도권 수권)</td><td>권역 맞춤</td></tr>
         <tr><td>8.16~8.17</td><td>본대회 D-1 투표독려 + 정견발표 · 수락/승복 양안</td><td>#당원이주인</td></tr>
       </tbody>
     </table>
@@ -327,11 +337,11 @@ try{if(localStorage.getItem('tc_ok')==='1')document.getElementById('gate').style
         <tr><th>전대일 확정</th><td>6.22 (8.28로 확정)</td><td>6월 중순 (8.18로 확정)</td><td>6월 초 (8.2로 확정)<br><small>이재명 대표 사퇴에 따른 보궐</small></td><td><span class="tag t-done">확정</span>6.9 최고위 의결 (8.17)<br>6.10 당무위 당헌 부칙 신설</td></tr>
         <tr><th>전준위·선관위 구성</th><td>7월 초</td><td>6월 하순</td><td>6월 중순</td><td><span class="tag t-exp">예상</span>6월 3주차 중앙위 후 구성</td></tr>
         <tr><th>출마선언 러시</th><td>7월 초~중순</td><td>7월 초 (이재명 7.10)</td><td>6월 중순 (정청래 6.16)</td><td><span class="tag t-exp">예상</span>6월 중순~7월 초<br><small>정청래(연임)·김민석·송영길 등 거론 · 본인 6.28 확정 선언</small></td></tr>
-        <tr><th>후보 등록</th><td>7.17~18<br><small>당대표 8인 등록</small></td><td>7.9~10<br><small>당대표 3인 등록</small></td><td>7월 둘째 주<br><small>정청래·박찬대 2인 등록</small></td><td><span class="tag t-exp">예상</span>7월 둘째 주 (7.8~10경)</td></tr>
-        <tr><th>예비경선(컷오프)</th><td>7.28<br><small>8인 → 3인 (이재명·박용진·강훈식)</small></td><td>당대표 미실시(3인)<br><small>최고위원 예비경선 7.14</small></td><td>미실시 (2인 맞대결)</td><td><span class="tag t-exp">예상</span>등록 후 약 1주 내<br><small>당대표 후보 4인 이상 시 실시</small></td></tr>
-        <tr><th>순회경선 시작</th><td>8.6 강원·대구경북</td><td>7.20 제주·인천</td><td>7.19 충청</td><td><span class="tag t-exp">예상</span>7월 셋째 주말(7.18~19)부터</td></tr>
-        <tr><th>순회경선 일정</th><td>8.6~8.27 주말 전국 순회<br><small>합동연설회+권리당원 투표</small></td><td>7.20~8.17 주말 순회<br><small>제주·인천→강원·TK→부울경→충청→호남→수도권→8.17 서울</small></td><td>5개 권역 압축 순회<br><small>충청 7.19→영남 7.20→호남 7.26→경기·인천 7.27→서울·강원·제주 8.2</small></td><td><span class="tag t-exp">예상</span>권역별 순회 경선<br><small>주말마다 합동연설회+투표 (7월 중순~8월 중순)</small></td></tr>
-        <tr><th>본대회(선출)</th><td>8.28 KSPO돔</td><td>8.18 KSPO돔</td><td>8.2 킨텍스</td><td><span class="tag t-conf">확정</span>8.17(월)</td></tr>
+        <tr><th>후보 등록</th><td>7.17~18<br><small>당대표 8인 등록</small></td><td>7.9~10<br><small>당대표 3인 등록</small></td><td>7월 둘째 주<br><small>정청래·박찬대 2인 등록</small></td><td><span class="tag t-conf">확정</span>7.16~17</td></tr>
+        <tr><th>예비경선(컷오프)</th><td>7.28<br><small>8인 → 3인 (이재명·박용진·강훈식)</small></td><td>당대표 미실시(3인)<br><small>최고위원 예비경선 7.14</small></td><td>미실시 (2인 맞대결)</td><td><span class="tag t-conf">확정</span>7.21<br><small>당대표 후보 4인 이상 시 실시</small></td></tr>
+        <tr><th>순회경선 시작</th><td>8.6 강원·대구경북</td><td>7.20 제주·인천</td><td>7.19 충청</td><td><span class="tag t-conf">확정</span>8.1(충청)부터</td></tr>
+        <tr><th>순회경선 일정</th><td>8.6~8.27 주말 전국 순회<br><small>합동연설회+권리당원 투표</small></td><td>7.20~8.17 주말 순회<br><small>제주·인천→강원·TK→부울경→충청→호남→수도권→8.17 서울</small></td><td>5개 권역 압축 순회<br><small>충청 7.19→영남 7.20→호남 7.26→경기·인천 7.27→서울·강원·제주 8.2</small></td><td><span class="tag t-conf">확정</span>권역별 순회경선 (8.1~8.16, 6개 권역)<br><small>주말마다 합동연설회+투표 (7월 중순~8월 중순)</small></td></tr>
+        <tr><th>본대회(선출)</th><td>8.28 KSPO돔</td><td>8.18 KSPO돔</td><td>8.2 킨텍스</td><td><span class="tag t-conf">확정</span>8.17(월)<br><small>대전 컨벤션센터</small></td></tr>
         <tr><th>결과</th><td>이재명 77.77% 당선</td><td>이재명 85.40% 연임</td><td>정청래 61.74% 당선<br><small>(박찬대 38.26%)</small></td><td>—</td></tr>
         <tr><th>등록→본대회 기간</th><td>약 6주</td><td>약 5.5주</td><td>약 3.5주</td><td>약 5~6주 예상</td></tr>
       </tbody>
@@ -343,7 +353,7 @@ try{if(localStorage.getItem('tc_ok')==='1')document.getElementById('gate').style
 <!-- ===== 플랜 ===== -->
 <section id="plan">
   <div class="card">
-    <h2>🚜 트랙터캠프 동지단 (7인)</h2>
+    <h2>🚜 더불어캠프 동지단 (7인)</h2>
     <table>
       <thead><tr><th>동지</th><th>담당</th></tr></thead>
       <tbody>
@@ -439,7 +449,7 @@ try{if(localStorage.getItem('tc_ok')==='1')document.getElementById('gate').style
         <tr><td>숙박·교통·식사·물품</td><td>전국 순회 수백만~수천만</td><td>395만</td></tr>
       </tbody>
     </table>
-    <p class="note">비교: 민주당 최고위원 후보 "아껴도 5,000만" / 국민의힘 2024 당대표 후보들 1.5억~2.51억 지출. 김지수는 선거비용 전액을 후원금(10만원 세액공제 소액후원)으로 충당 — 트랙터캠프 구걸 캠페인의 실증 선례.</p>
+    <p class="note">비교: 민주당 최고위원 후보 "아껴도 5,000만" / 국민의힘 2024 당대표 후보들 1.5억~2.51억 지출. 김지수는 선거비용 전액을 후원금(10만원 세액공제 소액후원)으로 충당 — 더불어캠프 구걸 캠페인의 실증 선례.</p>
   </div>
   <div class="card">
     <h2>후원회 기획안 — 설립·모금 타임라인</h2>
@@ -484,7 +494,7 @@ try{if(localStorage.getItem('tc_ok')==='1')document.getElementById('gate').style
 <!-- ===== 캠프 상황실 ===== -->
 <section id="ops">
   <div class="card">
-    <h2>🚜 트랙터캠프 상황실 <span style="font-size:.78rem;color:var(--mut);font-weight:700;background:#eef1fa;border:1px solid var(--line);border-radius:99px;padding:2px 10px;vertical-align:middle">⚙️ 아직 미가동중 · 준비중</span> <span id="opsClock" style="font-size:.85rem;color:var(--mut);font-weight:400"></span></h2>
+    <h2>🚜 더불어캠프 상황실 <span style="font-size:.78rem;color:var(--mut);font-weight:700;background:#eef1fa;border:1px solid var(--line);border-radius:99px;padding:2px 10px;vertical-align:middle">⚙️ 아직 미가동중 · 준비중</span> <span id="opsClock" style="font-size:.85rem;color:var(--mut);font-weight:400"></span></h2>
     <p class="note" style="margin:-4px 0 10px">※ 캠프 상황실은 아직 가동 전입니다. 실시간 공유·업무보드는 캠프 구성 후 정식 오픈 예정입니다.</p>
     <div id="opsDday" style="font-size:1.05rem;font-weight:800;color:var(--red);margin-bottom:12px"></div>
     <div style="background:#eef1fa;border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:14px">
@@ -538,7 +548,7 @@ try{if(localStorage.getItem('tc_ok')==='1')document.getElementById('gate').style
     <div class="cal-head">
       <button onclick="mvMonth(-1)">◀ 이전</button><b id="mTitle"></b><button onclick="mvMonth(1)">다음 ▶</button>
     </div>
-    <div class="mgrid" id="mGrid"></div>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start"><div class="mgrid" id="mGrid" style="flex:1 1 320px;min-width:300px"></div><div class="mgrid" id="mGrid2" style="flex:1 1 320px;min-width:300px"></div></div>
   </div>
   <div class="card">
     <h2>주간 캘린더</h2>
@@ -565,7 +575,7 @@ try{if(localStorage.getItem('tc_ok')==='1')document.getElementById('gate').style
 </div>
 
 <script>
-const TODAY = new Date(2026,5,20); // 오늘(기준일)
+const TODAY = new Date(2026,5,30); // 오늘(기준일)
 const EVENTS = [
  {d:'2026-06-04', t:'[FB 1차] 지선 참패·정청래 사퇴 첫 주장', k:'fb'},
  {d:'2026-06-16', t:'[FB 2차] “정 대표, 대통령에 맞서지 말고 사퇴하십시오”', k:'fb'},
@@ -575,7 +585,7 @@ const EVENTS = [
  {d:'2026-06-20', t:'[FB 6차] 알메달렌 출발 — 세계 민주주의의 광장으로', k:'fb'},
  {d:'2026-06-21', t:'[FB 7차] 알메달렌 도착 — 누구나 무대에 오르는 정치 선언', k:'fb'},
  {d:'2026-06-24', t:'[FB 8차] 알메달렌 연설 — 정당민주주의와 청년정치', k:'fb'},
- {d:'2026-06-28', t:'[FB 9차] ★ 당대표 출마선언', k:'fb'},
+ {d:'2026-07-02', t:'[FB 9차] ★ 당대표 출마선언 + 더불어캠프 홈페이지·SNS 공개', k:'star'},
  {d:'2026-06-28', t:'[참석] 6.3 지방선거 청년 당선자 워크숍 & 청년정책광장 (14:00~, 곤지암리조트)', k:'conf'},
  {d:'2026-06-29', t:'[참석] 청년정책광장 (~12:00, 곤지암리조트)', k:'conf'},
  {d:'2026-06-08', t:'최고위, 전대 8.17 개최 공감대', k:'done'},
@@ -603,22 +613,22 @@ const EVENTS = [
  {d:'2026-06-27', t:'🛬 인천 도착 · 귀국', k:'alme'},
  {d:'2026-06-28', t:'[플랜] 알메달렌 영상 편집·공개 — 캠페인 2주차 점화', k:'exp'},
  {d:'2026-07-02', t:'[플랜] 핵심 공약 패키지 발표', k:'exp'},
- {d:'2026-07-06', t:'[플랜] 등록 서류·기탁금 최종 점검', k:'exp'},
- {d:'2026-07-08', t:'후보 등록 (예상, 1~2일) + 기탁금 납부', k:'exp'},
- {d:'2026-07-09', t:'후보 등록 마감 (예상)', k:'exp'},
- {d:'2026-07-13', t:'예비경선·컷오프 (예상, 당대표 4인 이상 시)', k:'exp'},
- {d:'2026-07-15', t:'[플랜] 합동연설문·TV토론 리허설', k:'exp'},
- {d:'2026-07-18', t:'권역 순회경선 ① 시작 (예상)', k:'exp'},
- {d:'2026-07-19', t:'권역 순회경선 ① 합동연설회+투표 (예상)', k:'exp'},
- {d:'2026-07-25', t:'권역 순회경선 ② (예상)', k:'exp'},
- {d:'2026-07-26', t:'권역 순회경선 ② (예상)', k:'exp'},
- {d:'2026-08-01', t:'권역 순회경선 ③ (예상)', k:'exp'},
- {d:'2026-08-02', t:'권역 순회경선 ③ (예상)', k:'exp'},
- {d:'2026-08-08', t:'권역 순회경선 ④ (예상)', k:'exp'},
- {d:'2026-08-09', t:'권역 순회경선 ④ (예상)', k:'exp'},
- {d:'2026-08-15', t:'권역 순회경선 ⑤ 수도권·서울 (예상)', k:'exp'},
+ {d:'2026-07-15', t:'[플랜] 등록 서류·기탁금 최종 점검 (D-1)', k:'exp'},
+ {d:'2026-07-16', t:'★ 당대표·최고위원 후보 등록 1일차 + 기탁금 납부 (확정)', k:'conf'},
+ {d:'2026-07-17', t:'후보 등록 마감 (확정)', k:'conf'},
+ {d:'2026-07-21', t:'예비경선 (확정)', k:'conf'},
+ {d:'2026-07-23', t:'[플랜] 합동연설문·TV토론 리허설', k:'exp'},
+ {d:'2026-08-01', t:'순회경선 ① 충남·충북·대전·세종 (확정)', k:'conf'},
+ {d:'2026-08-02', t:'순회경선 ② 울산·부산·경남 (확정)', k:'conf'},
+ {d:'2026-08-08', t:'순회경선 ③ 제주·인천 (확정)', k:'conf'},
+ {d:'2026-08-09', t:'순회경선 ④ 강원·대구·경북 (확정)', k:'conf'},
+ {d:'2026-08-15', t:'순회경선 ⑤ 전북·전남·광주 (확정)', k:'conf'},
+ {d:'2026-08-16', t:'순회경선 ⑥ 경기·서울 (확정)', k:'conf'},
+ {d:'2026-07-16', t:'[후원회] 후보등록 즉시 후원회 등록신청 (모금 준비)', k:'conf'},
+ {d:'2026-07-17', t:'[후원회] 선관위 등록 완료 시 모금 개시 (최단)', k:'conf'},
+ {d:'2026-08-14', t:'[플랜] 호남 경선 D-1 · 본대회 정견발표 준비', k:'exp'},
  {d:'2026-08-16', t:'[플랜] 본대회 정견발표 최종 리허설', k:'exp'},
- {d:'2026-08-17', t:'★ 전당대회 본대회 — 당대표·최고위원 선출 (확정)', k:'conf'}
+ {d:'2026-08-17', t:'★ 정기전당대회 — 당대표·최고위원 선출 · 대전 컨벤션센터 (확정)', k:'conf'}
 ];
 const fmt=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
 const evOf=ds=>EVENTS.filter(e=>e.d===ds);
@@ -626,8 +636,8 @@ const DOW=['일','월','화','수','목','금','토'];
 
 // D-day
 const conv=new Date(2026,7,17), dd=Math.round((conv-TODAY)/864e5);
-const decl=new Date(2026,5,28), dd2=Math.round((decl-TODAY)/864e5);
-document.getElementById('dday').textContent='🚨 출마선언(6.28 10시·민주당 중앙당사)까지 D-'+dd2+' · 8.17 전당대회까지 D-'+dd+' · 페이스북 5차까지 발행 완료';
+const decl=new Date(2026,6,2), dd2=Math.round((decl-TODAY)/864e5);
+document.getElementById('dday').textContent='🚨 출마선언(7.2 목)까지 D-'+dd2+' · 8.17 전당대회까지 D-'+dd+' · 페이스북 8차까지 발행 완료';
 
 // tabs
 document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
@@ -640,17 +650,22 @@ document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
 let mY=2026,mM=5; // June
 function mvMonth(n){mM+=n;if(mM<0){mM=11;mY--}if(mM>11){mM=0;mY++}drawMonth()}
 function drawMonth(){
-  document.getElementById('mTitle').textContent=mY+'년 '+(mM+1)+'월';
-  const g=document.getElementById('mGrid');g.innerHTML='';
+  const y2=mM===11?mY+1:mY, m2=(mM+1)%12;
+  document.getElementById('mTitle').textContent=mY+'년 '+(mM+1)+'월  ·  '+y2+'년 '+(m2+1)+'월';
+  _drawMonthGrid('mGrid',mY,mM);
+  _drawMonthGrid('mGrid2',y2,m2);
+}
+function _drawMonthGrid(gid,y,m){
+  const g=document.getElementById(gid);g.innerHTML='';
   DOW.forEach(d=>{const e=document.createElement('div');e.className='dow';e.textContent=d;g.appendChild(e)});
-  const first=new Date(mY,mM,1);
-  let start=new Date(first); start.setDate(1-first.getDay()); // 일요일 시작
+  const first=new Date(y,m,1);
+  let start=new Date(first); start.setDate(1-first.getDay());
   for(let i=0;i<42;i++){
     const d=new Date(start);d.setDate(start.getDate()+i);
-    if(i===35&&d.getMonth()!==mM)break;
+    if(i===35&&d.getMonth()!==m)break;
     const cell=document.createElement('div');
     const wd=d.getDay();
-    cell.className='day'+(d.getMonth()!==mM?' out':'')+(wd===0?' sun':wd===6?' sat':'')+(fmt(d)===fmt(TODAY)?' today':'');
+    cell.className='day'+(d.getMonth()!==m?' out':'')+(wd===0?' sun':wd===6?' sat':'')+(fmt(d)===fmt(TODAY)?' today':'');
     cell.innerHTML='<div class="dnum">'+d.getDate()+'</div>';
     evOf(fmt(d)).forEach(e=>{const v=document.createElement('div');v.className='ev '+e.k;v.textContent=e.t;cell.appendChild(v)});
     g.appendChild(cell);
@@ -679,7 +694,7 @@ function drawWeek(){
 }
 drawWeek();
 
-// ===== 트랙터캠프 상황실 (실시간 공유) =====
+// ===== 더불어캠프 상황실 (실시간 공유) =====
 function lsGet(k,d){try{const v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}}
 function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
@@ -795,8 +810,8 @@ noteEl.oninput=()=>{STATE.note=noteEl.value;save()};
 function tick(){
   const n=new Date();
   document.getElementById('opsClock').textContent=' · '+n.getFullYear()+'.'+(n.getMonth()+1)+'.'+n.getDate()+' '+String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0');
-  const d1=Math.ceil((new Date(2026,5,28)-n)/864e5), d2=Math.ceil((new Date(2026,7,17)-n)/864e5);
-  document.getElementById('opsDday').textContent='🚨 출마선언(6.28 10시·민주당 중앙당사) '+(d1>0?'D-'+d1:'D-Day 경과')+' · 전당대회(8.17) D-'+d2;
+  const d1=Math.ceil((new Date(2026,6,2)-n)/864e5), d2=Math.ceil((new Date(2026,7,17)-n)/864e5);
+  document.getElementById('opsDday').textContent='🚨 출마선언(7.2 목) '+(d1>0?'D-'+d1:'D-Day 경과')+' · 전당대회(8.17) D-'+d2;
 }
 tick();setInterval(tick,30000);
 renderAll();
