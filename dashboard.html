@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌸 더불어캠프 · 전략 대시보드</title>
+<style>
+  :root{
+    --blue:#152484; --blue-l:#3a4fb5; --sky:#00a0e2; --green:#00aa7b;
+    --amber:#e8a200; --red:#d6336c; --bg:#f4f6fb; --card:#fff;
+    --ink:#1d2433; --mut:#6b7486; --line:#e2e6ef;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+  .wrap{max-width:1080px;margin:0 auto;padding:24px 16px 60px}
+  header{background:linear-gradient(135deg,var(--blue),var(--blue-l));color:#fff;border-radius:16px;padding:28px 28px 24px;margin-bottom:20px}
+  header h1{font-size:1.45rem;margin-bottom:6px}
+  header p{opacity:.88;font-size:.92rem}
+  .dday{display:inline-block;margin-top:12px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.35);border-radius:99px;padding:6px 16px;font-weight:700}
+  nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+  nav button{flex:1;min-width:130px;padding:11px 8px;border:1px solid var(--line);background:#fff;border-radius:10px;font-size:.92rem;font-weight:700;color:var(--mut);cursor:pointer}
+  nav button.on{background:var(--blue);color:#fff;border-color:var(--blue)}
+  section{display:none}section.on{display:block}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:16px}
+  .card h2{font-size:1.12rem;color:var(--blue);margin-bottom:12px}
+  .card h3{font-size:1rem;margin:16px 0 8px}
+  table{width:100%;border-collapse:collapse;font-size:.87rem}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}
+  thead th{background:var(--blue);color:#fff;text-align:center;white-space:nowrap}
+  tbody th{background:#eef1fa;color:var(--blue);white-space:nowrap}
+  .note{font-size:.82rem;color:var(--mut);margin-top:10px}
+  .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:10px 0}
+  .kpi .k{background:#f8f9fd;border:1px solid var(--line);border-radius:10px;padding:12px;text-align:center}
+  .kpi .k b{display:block;font-size:1.25rem;color:var(--blue)}
+  .kpi .k span{font-size:.78rem;color:var(--mut)}
+  .tag{display:inline-block;font-size:.74rem;font-weight:700;border-radius:6px;padding:2px 8px;margin:2px 4px 2px 0}
+  .t-g{background:#e0f3ea;color:#00714f}.t-a{background:#fdf3d8;color:#9a6c00}.t-r{background:#fbe2ec;color:var(--red)}.t-b{background:#e8ebfa;color:var(--blue)}
+  .box{border-left:4px solid var(--blue);background:#f8f9fd;border-radius:8px;padding:13px 15px;margin:10px 0;font-size:.9rem}
+  .box.warn{border-left-color:var(--red);background:#fff5f8}
+  .box.good{border-left-color:var(--green);background:#f2fbf7}
+  ul.tight{margin-left:18px;font-size:.9rem}
+  ul.tight li{margin-bottom:6px}
+  a{color:var(--sky)}
+  .bar{height:12px;background:#e9ecf4;border-radius:6px;overflow:hidden;margin:3px 0 8px}
+  .bar>div{height:100%;background:linear-gradient(90deg,var(--blue),var(--sky))}
+  #gate{position:fixed;inset:0;background:var(--blue);display:flex;align-items:center;justify-content:center;z-index:99}
+  #gate .g{background:#fff;border-radius:16px;padding:34px;text-align:center;max-width:340px;width:90%}
+  #gate input{width:100%;padding:12px;border:1px solid var(--line);border-radius:8px;font-size:1rem;text-align:center;margin:14px 0}
+  #gate button{width:100%;padding:12px;background:var(--blue);color:#fff;border:none;border-radius:8px;font-weight:700;font-size:1rem;cursor:pointer}
+</style>
+</head>
+<body>
+<div id="gate"><div class="g">
+  <div style="font-size:1.3rem;font-weight:800;margin-bottom:6px">🌸 전략 대시보드</div>
+  <p style="color:var(--mut);font-size:.88rem">캠프 내부 전용 — 접속 비밀번호를 입력하세요</p>
+  <input id="pw" type="password" placeholder="비밀번호" onkeydown="if(event.key==='Enter')chk()">
+  <button onclick="chk()">입장</button>
+</div></div>
+
+<div class="wrap">
+<header>
+  <h1>🌸 김보미 당대표 후보 만들기 — 온라인캠프 전략 대시보드</h1>
+  <p>"모두의 민주당 · 바꾸지 않으면, 바뀌지 않습니다"</p>
+  <p>페이스북 4년(2022~현재) 분석 · 언론보도 분석 · 전당대회 판세 기반 전략기획 (기준 2026.7.2)</p>
+  <div class="dday" id="dday"></div>
+</header>
+
+<nav>
+  <button class="on" data-t="s1">전략 개요</button>
+  <button data-t="s2">후보 자산·서사</button>
+  <button data-t="s3">SNS 채널 진단</button>
+  <button data-t="s4">언론·판세</button>
+  <button data-t="s5">콘텐츠 플랜</button>
+  <button data-t="s6">리스크 관리</button>
+</nav>
+
+<!-- ===== 1. 전략 개요 ===== -->
+<section id="s1" class="on">
+  <div class="card">
+    <h2>🎯 핵심 포지셔닝 — "유일한 대비축"</h2>
+    <div class="box good"><b>정청래(연임)·김민석(총리)·송영길(전 대표) 3파전 = 모두 5060 남성, 이미 네거티브 진흙탕.</b><br>
+    김보미 = <b>30대(1989년생) · 여성 · 지방(호남 풀뿌리) · 재정 전문가</b> — 판 전체에서 유일한 대비축. 이기는 싸움이 아니라 <b>'담론을 남기고 세력을 만드는 완주'</b>가 1차 목표. 낮은 인지도는 약점이 아니라 "새 인물" 서사의 전제.</div>
+    <h3>3대 전략 기둥</h3>
+    <ul class="tight">
+      <li><b>① 공정 — 감산·이중잣대를 '나의 억울함'이 아닌 '공천 시스템 개혁' 의제로 승화.</b> 강진 본선 참패(무소속 강진원 58.5% vs 민주당 41.5%)가 "불공정 공천은 텃밭도 잃는다"는 실증 논거.</li>
+      <li><b>② 청년·세대교체 — 알메달렌 서사와 연결.</b> 스웨덴 8개 정당 당대표 평균 40대, 26세 당대표. "나이가 어려서가 아니라 무대가 없어서" — 청년에게 무대를 여는 정당 개혁.</li>
+      <li><b>③ 투명 재정 — 실물 증거 보유.</b> 나라살림 돋보기(김보미.com)·강진군민재정(김보미365.com) = 말이 아닌 만들어 본 사람. 예산 108억 삭감·의정비 7년 기탁 이력과 한 묶음.</li>
+    </ul>
+    <h3>당면 캠페인 (이번 주)</h3>
+    <table>
+      <thead><tr><th>날짜</th><th>액션</th><th>목표</th></tr></thead>
+      <tbody>
+        <tr><td><b>7.2(목) 오늘</b></td><td>★ 출사표 페이스북 + 김보미.com 공개 + 보도자료</td><td>출마의지 공식화 · 첫 보도 만들기</td></tr>
+        <tr><td>7.3(금)</td><td>순천 청년정책관 준비위(10:30) 첫 행보 · 홈페이지 오픈</td><td>'청년·현장' 이미지 사진 1세트</td></tr>
+        <tr><td>7.4(토)</td><td>서울의소리 14:00 → 뉴탐사 21:00(광주)</td><td>친민주 유튜브 층 인지도 · 쇼츠 소스 확보</td></tr>
+        <tr><td>7.6~7</td><td>당원존 예약 · 낭독 연습</td><td>기자회견 완성도</td></tr>
+        <tr><td><b>7.8(수)</b></td><td>★ 출마선언 기자회견 — 국회 당원존</td><td>전국 단위 첫 기사화</td></tr>
+      </tbody>
+    </table>
+    <p class="note">전체 일정·업무분장은 <a href="./index.html">더불어캠프 보드</a> 참고.</p>
+  </div>
+  <div class="card">
+    <h2>📌 KPI 목표 (8.17까지)</h2>
+    <div class="kpi">
+      <div class="k"><b>1만 명</b><span>후원 시민 (펀드→후원계좌)</span></div>
+      <div class="k"><b>3.9천→2만</b><span>페이스북 팔로워</span></div>
+      <div class="k"><b>주 3~4건</b><span>FB 오리지널 게시</span></div>
+      <div class="k"><b>전국지 5건+</b><span>단독·기획 보도</span></div>
+      <div class="k"><b>쇼츠 주 5개</b><span>유튜브 숏폼</span></div>
+      <div class="k"><b>컷오프 통과</b><span>7.21 예비경선</span></div>
+    </div>
+    <p class="note">※ 수치는 캠프 합의로 조정. 핵심은 '후원자 수 = 지지 조직화'라는 단일 북극성 지표.</p>
+  </div>
+</section>
+
+<!-- ===== 2. 후보 자산·서사 ===== -->
+<section id="s2">
+  <div class="card">
+    <h2>💎 언론이 이미 써 놓은 서사 — 재소환만 하면 된다</h2>
+    <p style="font-size:.9rem">새 서사를 만들 필요가 없다. 아래 기사들이 '기득권에 핍박받는 청년 개혁가' 스토리를 이미 검증해 놓았다. 출사표·보도자료·인터뷰에서 근거 자료로 재소환할 것.</p>
+    <table>
+      <thead><tr><th>서사 단계</th><th>사실 (보도 근거)</th><th>활용</th></tr></thead>
+      <tbody>
+        <tr><th>개척</th><td>28세 비례로 군의원 입성(2018) → 재선 → <b>전국 최연소·강진 최초 여성 의장</b>(2022, 만장일치)</td><td>"무대만 열리면 증명한다"</td></tr>
+        <tr><th>실력</th><td>2023 본예산 <b>108억 삭감</b>(역대 최대) · 육아수당 조례 후 출생아 93→154명 · 의정비 7년 전액 기탁</td><td>재정·민생 실적</td></tr>
+        <tr><th>수난</th><td>불신임 결의안(철회)·표적 감사·관용차 수색·약 100건 허위보도 — 주간경향 "34세 최연소 의장은 왜 표적이 됐나"(2024.5)</td><td>기득권 견제의 증거</td></tr>
+        <tr><th>승리</th><td>허위보도 손배 <b>승소</b>(2024.11) · 고소 불송치(2025.11) — "저의 고통을 쥐어짠 작은 승리"</td><td>정면돌파·법적 결백</td></tr>
+        <tr><th>불공정</th><td>2026 군수 경선: 6년 전 제명 이력에 15% 감산 vs 168억 전과 후보 무감산(더리포트 2026.2) → 경선 탈락</td><td>공천 시스템 개혁 의제</td></tr>
+        <tr><th>실증</th><td>본선: 무소속 강진원 58.5% 당선, 민주당 41.5% 참패(뉴스1) — "불공정 공천이 텃밭을 잃게 했다"</td><td>"내가 옳았다"의 결과 증명</td></tr>
+        <tr><th>비전</th><td>알메달렌 광장 연설(6월, 정진호 의원 동행) · 더민주전국혁신회의 첫 청년 상임대표(2024.12)</td><td>세계 표준의 정당민주주의</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <h2>🧰 실물 자산</h2>
+    <ul class="tight">
+      <li><b>재정 플랫폼 2종</b> — <a href="https://www.김보미.com/" target="_blank">나라살림 돋보기</a> · <a href="https://www.김보미365.com/" target="_blank">강진군민재정</a>. <span class="tag t-r">주의</span> 언론 노출 사실상 전무 → 출사표 국면에서 "당 재정 투명화 공약의 실물 증거"로 첫 공개하면 뉴스가치 높음.</li>
+      <li><b>알메달렌 콘텐츠</b> — 연설 사진 14장+에세이 확보. 언론 보도 0건 → 사진·연설문 직접 배포해야 기사화됨.</li>
+      <li><b>조직</b> — 더민주전국혁신회의(친명 최대 조직) 청년 상임대표 네트워크 · 참좋은지방정부위 상임위원 · 전남 청년 정치인 그룹(전남광주 통합 청년결정정부.kr).</li>
+      <li><b>후원 인프라</b> — 2025 '강진군 제1호 김보미 후원회' 운영 경험 → 소액 다수 모금 실전 경험 보유.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== 3. SNS 채널 진단 ===== -->
+<section id="s3">
+  <div class="card">
+    <h2>📱 페이스북 채널 구조 진단 (2026.7.2 실사)</h2>
+    <table>
+      <thead><tr><th>계정</th><th>상태</th><th>진단</th></tr></thead>
+      <tbody>
+        <tr><th>본계정 '김보미'<br>(개인·인증✓)</th><td>2022.2~ 138건. 최근 1년 54건(월 4.5건). 6.4 정청래 사퇴 요구 등 차수 메시지 게시처</td><td><span class="tag t-g">주력</span>당원·지지자 대상 메시지 발신 축</td></tr>
+        <tr><th>'김보미(강진시대)'<br>(공식·팔로워 3.9천)</th><td>지방선거용 신설. 4.26~6.28 두 달 공백 후 6.29 알메달렌 에세이(좋아요 17)·7.1 사진 재공유만</td><td><span class="tag t-a">전환 중</span>전당대회용 전환·게시물 이관 진행 필요(2차 회의 결정)</td></tr>
+      </tbody>
+    </table>
+    <div class="box warn"><b>⚠️ 채널 이원화 리스크:</b> 출사표(오늘)부터는 "어느 계정이 공식인가"가 혼란 포인트. 인증 배지 적용 3종(페북·X·인스타)과 함께 <b>공식 발신 채널 1개를 고정</b>하고 나머지는 재공유 역할로 정리할 것.</div>
+  </div>
+  <div class="card">
+    <h2>📊 반응 데이터가 말하는 것 (최근 게시물 분석)</h2>
+    <table>
+      <thead><tr><th>게시물</th><th>반응</th><th>교훈</th></tr></thead>
+      <tbody>
+        <tr><td>4.8 경선 낙선 소회 "여정은 지금부터"</td><td><b>좋아요 105 · 댓글 20</b> (최고)</td><td>인간적 서사·정면돌파가 최강</td></tr>
+        <tr><td>4.11 승복·민형배 지지 선언</td><td>80 · 15</td><td>품격 있는 승복 = 호감 자산</td></tr>
+        <tr><td>4.25 차영수 공천 철회 긴급 성명</td><td>63 · 14 · <b>공유 10 (최다 확산)</b></td><td>갈등·비판 이슈가 도달을 만든다</td></tr>
+        <tr><td>3.31 공약 인포그래픽(약속 ㊱)</td><td>48 · 2</td><td>정책 단독으론 확산 한계</td></tr>
+        <tr><td>6.29 알메달렌 에세이 (00:26 게시)</td><td><b>17 · 2 (저조)</b></td><td>장문+심야 게시의 실패 — 핵심 메시지가 묻힘</td></tr>
+      </tbody>
+    </table>
+    <h3>운영 수칙 (데이터 기반)</h3>
+    <ul class="tight">
+      <li><b>게시 시간</b>: 저녁 18~22시 또는 오전 8~10시. <b>심야(자정) 게시 금지</b> — 6.29 에세이가 반응 1/6로 묻힌 직접 원인.</li>
+      <li><b>포맷</b>: 사람 얼굴이 보이는 사진 + 3~5문단. 장문 에세이는 ①핵심 카드뉴스 3장 ②전문 링크로 이원화.</li>
+      <li><b>서사 비율</b>: 인간 서사 4 : 비판·이슈 3 : 정책 2 : 일상 1. (반응 상위가 전부 '사람 이야기'였음)</li>
+      <li><b>재게시</b>: 알메달렌 에세이는 자산이 아깝다 — 카드뉴스로 재가공해 저녁 시간대 재발행 권장.</li>
+      <li><b>쇼츠 연계</b>: 7.4 서울의소리·뉴탐사 영상 → 60초 쇼츠 주 5개, 페북 릴스 동시 업로드(김희원).</li>
+      <li><b>부캐 운용</b>(이득규): '시니컬한 비평가'는 후보 계정과 톤 분리 유지 — 후보는 품격, 부캐는 풍자. 동일 문구 복붙 금지(여론조작 시비 방지).</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== 4. 언론·판세 ===== -->
+<section id="s4">
+  <div class="card">
+    <h2>🗞️ 8.17 전당대회 판세 (7.2 기준)</h2>
+    <ul class="tight">
+      <li><b>구도</b>: 정청래(사퇴 후 연임 도전 선언 6.24) · 김민석(국무총리) · 송영길(전 대표) 3파전 전망 (파이낸셜뉴스 6.9). 송영길-정청래 네거티브 공방 이미 점화(주간경향 6.29).</li>
+      <li><b>일정</b>: 후보등록 7.16~17 → 예비경선(4인 이상 시) 7.21 → 순회경선 8.1~8.16 → 본대회 8.17 대전. 선출 당대표는 2028.4 총선 공천권 행사.</li>
+      <li><b>여론</b>: 민주당 40%대 우위(갤럽 41%·NBS 42%) — 단, 일부 조사 역전(에브리리서치 36.1 vs 41.5). "텃밭 강진 참패 = 당 전체 위기의 전조" 경고 메시지가 데이터로 성립.</li>
+      <li><b>김보미 당대표 출마 보도</b>: 현재 0건 → 오늘 출사표가 첫 기사화 기회. 보도자료에 '전국 최연소 의장·감산 이중잣대·강진 참패' 3요소를 리드로.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h2>📚 보도 자산 라이브러리 (출사표·인터뷰 인용용)</h2>
+    <table>
+      <thead><tr><th>주제</th><th>기사</th></tr></thead>
+      <tbody>
+        <tr><th>표적 견제</th><td>주간경향 2024.5.27 "34세 최연소 의장은 왜 표적이 됐나" · 뉴스핌 2024.1.12 불신임안 · 쿠키뉴스 2024.1.16 철회</td></tr>
+        <tr><th>법적 승리</th><td>에너지경제 2024.11.29 허위보도 손배 승소(약 100건)</td></tr>
+        <tr><th>감산 이중잣대</th><td>더리포트 2026.2.19 "168억 전과 무감산 vs 제명 이력 15% 감산" · 이투데이 정밀심사 반발</td></tr>
+        <tr><th>강진 참패</th><td>뉴스1 2026.6 "민주당 작대기만 꽂아도 당선된다더니" (강진원 58.5% vs 차영수 41.5%) · 뉴탐사 "35년 당원은 작별"</td></tr>
+        <tr><th>전국 활동</th><td>쿠키뉴스 2024.12.24 혁신회의 첫 청년 상임대표 · 베타뉴스 2025.10.30 참좋은지방정부위 상임위원</td></tr>
+        <tr><th>세대교체 담론</th><td>주간경향 2026.6.30 "응원봉은 되는데 의사봉은 안 된다?" · 경향 2026.6.29 지방의원 수의계약 기획</td></tr>
+      </tbody>
+    </table>
+    <p class="note">※ 링크·전문은 캠프 문서함의 언론분석 리포트 참조. 인용 시 매체·날짜 명기.</p>
+  </div>
+</section>
+
+<!-- ===== 5. 콘텐츠 플랜 ===== -->
+<section id="s5">
+  <div class="card">
+    <h2>🗓️ 국면별 메시지 로드맵 (7.2 → 8.17)</h2>
+    <table>
+      <thead><tr><th>국면</th><th>기간</th><th>핵심 메시지</th><th>콘텐츠</th></tr></thead>
+      <tbody>
+        <tr><th>① 등판</th><td>7.2~7.8</td><td>"모두의 민주당" 출사표 → 출마선언</td><td>출사표 전문+카드뉴스 · 순천 현장 사진 · 서울의소리/뉴탐사 쇼츠 · 7.8 기자회견 생중계</td></tr>
+        <tr><th>② 명분전</th><td>7.9~7.15</td><td>공정 공천(감산 이중잣대)·재정 투명 공약 — 하루 1공약(30여 개, 박동완)</td><td>공약 카드 시리즈 · 재정 플랫폼 시연 영상 · 알메달렌 에세이 재가공</td></tr>
+        <tr><th>③ 등록·컷오프</th><td>7.16~7.21</td><td>"오늘 등록했습니다" + 후원 마일스톤 · 예비경선 통과 호소</td><td>등록 인증 · 후원 게이지 공개 · 중앙위원 대상 정견 요약</td></tr>
+        <tr><th>④ 순회경선</th><td>8.1~8.16</td><td>권역 맞춤: 호남 결집(강진의 딸)·영남 확장·수도권 수권</td><td>합동연설 하이라이트 쇼츠 · 지역 현안 1일 1현장</td></tr>
+        <tr><th>⑤ 본대회</th><td>8.17</td><td>정견발표 — "위에서 아래로의 정치를 아래에서 위로"</td><td>피날레 영상 · 수락/승복 양안</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <h2>💸 후원 캠페인 — "첫 번째 김보미가 되어주세요"</h2>
+    <ul class="tight">
+      <li><b>구조</b>: 펀드 선모금 → 후원계좌 전환(2차 회의 결정) · 목표 스토리 "시민 1만 명" · 단위 10만/5만/1만/100만(이왕재).</li>
+      <li><b>세일즈 포인트</b>: "10만원까지 전액 세액공제 — 사실상 0원으로 한 표". 후원 순번 부여(N호 김보미) + SNS 인증 릴레이.</li>
+      <li><b>준수</b>: 모금·지출 전건 회계책임자 경유(선임 시급!) · 정치자금법상 후원회 등록 후 모금 · 자세한 한도는 보드 '후원회·비용' 탭.</li>
+    </ul>
+    <div class="box">📈 <b>게이지 시각화</b>: 예비 기탁금 목표 = 김보미 200명(청년감면 시) · 최대 800명 · 한도 1,500명 — 보드 상황실 카운터와 연동해 매일 공개.</div>
+  </div>
+</section>
+
+<!-- ===== 6. 리스크 관리 ===== -->
+<section id="s6">
+  <div class="card">
+    <h2>🛡️ 리스크 레지스터</h2>
+    <table>
+      <thead><tr><th>리스크</th><th>수준</th><th>대응</th></tr></thead>
+      <tbody>
+        <tr><td><b>감산·제명 이력 재론</b> — 후보 검증에서 15% 감산 논리 재등장 가능</td><td><span class="tag t-r">높음</span></td><td>'5년 소멸' 반박 논리 + 허위보도 승소 판결문을 선제 공개 자료화(법률 검토 1순위)</td></tr>
+        <tr><td><b>컷오프(7.21) 탈락</b> — 중앙위원 투표 기반 취약</td><td><span class="tag t-r">높음</span></td><td>혁신회의·참좋은지방정부위 네트워크 총동원 · 의원·중앙위원 접촉 리스트 즉시 작성</td></tr>
+        <tr><td><b>'친명 대리전' 프레임에 흡수</b> — 혁신회의 이력이 독자성 희석</td><td><span class="tag t-a">중간</span></td><td>"계파가 아니라 세대·시스템" 선긋기 메시지 상시 탑재</td></tr>
+        <tr><td><b>뉴탐사(7.4) 발언 리스크</b> — 친명 성향 매체, 고정 패널 제안 거절 상태</td><td><span class="tag t-a">중간</span></td><td>홍보용 인터뷰로 한정 · 계파 질문엔 '시스템 개혁' 프레임으로 우회(2차 회의 결정 준수)</td></tr>
+        <tr><td><b>기탁금 자금</b> — 최대 8,000만(청년감면 시 절반) 7월 중순까지</td><td><span class="tag t-a">중간</span></td><td>펀드 선모금 조기 개시 · 회계책임자 선임 후 후원회 등록 즉시</td></tr>
+        <tr><td><b>부캐 운영 노출</b> — 댓글 여론 관리가 '여론조작' 시비로 비화</td><td><span class="tag t-a">중간</span></td><td>풍자 콘텐츠로 한정, 조직적 댓글 반복 금지 · 후보 계정과 완전 분리</td></tr>
+        <tr><td><b>채널 공백 재발</b> — 4.26~6.28식 두 달 침묵</td><td><span class="tag t-b">관리</span></td><td>주간 콘텐츠 캘린더 고정(주 3~4건) · 김희원 총괄</td></tr>
+      </tbody>
+    </table>
+    <p class="note">※ 본 대시보드는 캠프 내부 전략 자료입니다. 외부 공유 금지.</p>
+  </div>
+</section>
+
+</div>
+<script>
+function chk(){
+  if(document.getElementById('pw').value==='0817'){document.getElementById('gate').style.display='none';localStorage.setItem('dash_ok','1')}
+  else alert('비밀번호가 올바르지 않습니다.');
+}
+if(localStorage.getItem('dash_ok')==='1')document.getElementById('gate').style.display='none';
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('nav button').forEach(x=>x.classList.remove('on'));
+  document.querySelectorAll('section').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');document.getElementById(b.dataset.t).classList.add('on');
+});
+const n=new Date();
+const dd=Math.ceil((new Date(2026,7,17)-n)/864e5), dr=Math.ceil((new Date(2026,6,8)-n)/864e5), de=Math.ceil((new Date(2026,6,16)-n)/864e5);
+document.getElementById('dday').textContent='8.17 전당대회 D-'+dd+' · 출마선언 기자회견(7.8) D-'+dr+' · 후보등록(7.16) D-'+de;
+</script>
+</body>
+</html>
