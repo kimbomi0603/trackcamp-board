@@ -47,13 +47,15 @@
   .mgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
   .mgrid .dow{text-align:center;font-size:.8rem;font-weight:800;color:var(--mut);padding:5px 0}
   .mgrid .dow:first-child{color:var(--red)} .mgrid .dow:nth-child(7){color:var(--sky)}
-  .mgrid .day{min-height:98px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:4px;font-size:.72rem;cursor:pointer;overflow:hidden}
+  .mgrid .day{min-height:124px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:5px;font-size:.76rem;cursor:pointer;overflow:hidden}
   .mgrid .day:hover{border-color:var(--blue-l);box-shadow:0 1px 6px rgba(21,36,132,.2)}
   .mgrid .day.out{background:#f7f8fb;opacity:.45}
   .mgrid .day.today{outline:2px solid var(--red);outline-offset:-2px}
   .mgrid .dnum{font-weight:700;font-size:.8rem;margin-bottom:2px}
   .sun .dnum{color:var(--red)} .sat .dnum{color:var(--sky)}
-  .ev{display:block;border-radius:5px;padding:2px 5px;margin-bottom:2px;line-height:1.35;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ev{display:block;border-radius:5px;padding:2px 6px;margin-bottom:3px;line-height:1.4;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .fbi{display:inline-block;width:14px;height:14px;border-radius:50%;background:#1877f2;color:#fff;text-align:center;font-weight:900;font-size:.68rem;line-height:14px;margin-right:4px;font-family:Arial,sans-serif;vertical-align:-1px}
+  .evkw{display:block;font-size:.7rem;opacity:.85;font-weight:700;white-space:normal;margin-top:1px}
   .ev.conf{background:#dceafd;color:var(--blue)}
   .ev.exp{background:#fdf3d8;color:#9a6c00;border:1px dashed #e3c25e}
   .ev.done{background:#e6e9f5;color:#4a5170}
@@ -102,7 +104,7 @@
   .agenda li:before{counter-increment:ag;content:counter(ag);position:absolute;left:8px;top:8px;width:22px;height:22px;background:var(--blue);color:#fff;border-radius:50%;text-align:center;font-weight:800;font-size:.8rem;line-height:22px}
   .wgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
   .wgrid .ev{white-space:normal}
-  .wday{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px;min-height:150px;font-size:.78rem}
+  .wday{background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px;min-height:175px;font-size:.83rem}
   .wday.today{outline:2px solid var(--red)}
   .wday .h{font-weight:800;margin-bottom:6px;border-bottom:1px solid var(--line);padding-bottom:4px}
   .legend{display:flex;gap:14px;font-size:.8rem;margin:8px 0 14px;color:var(--mut);flex-wrap:wrap}
@@ -145,18 +147,8 @@ try{if(sessionStorage.getItem('tc_ok')==='1')document.getElementById('gate').sty
   <p style="font-weight:700;opacity:1">"밭을 갈아엎어 이롭게 하듯, 민주당을 갈아엎어 모두의 민주당을 만듭니다"</p>
   <p>당대표 출마 전략회의 · 역대 전당대회 일정 비교 · 8.17 전당대회 준비 타임라인 <span id="todayTxt"></span></p>
   <div class="dday" id="dday"></div>
-</header>
-
-<nav>
-  <button class="on" data-t="brief">🏛️ 전준위·언론 브리핑</button>
-  <button data-t="month">📅 월간·주간 캘린더</button>
-  <button data-t="sns">📣 SNS 메시지·회의안건</button>
-  <button data-t="plan">출마 준비 플랜</button>
-  <button data-t="fund">후원회·비용</button>
-  <button data-t="ops">캠프 상황실 <small style="opacity:.55;font-weight:600">· 준비중</small></button>
-  <button data-t="cmp">역대 일정 비교</button>
-</nav>
-<!-- ===== 전준위·언론 브리핑 (기본 첫 화면) ===== -->
+  <button onclick="try{navigator.clipboard.writeText(location.origin+location.pathname);this.textContent='✅ 복사 완료 — 동지단에게 붙여넣기!'}catch(e){}" style="display:inline-block;margin:12px 0 0 8px;background:rgba(255,255,255,.25);border:1px solid rgba(255,255,255,.45);color:#fff;border-radius:99px;padding:6px 16px;font-weight:700;cursor:pointer;font-size:.85rem">🔗 페이지 주소 복사 (동지단 공유용)</button>
+  <button onclick="try{navigator.clipboard.writeText(location.origin+location.pathname);this.textContent='✅ 복사 완료 — 동지단에게 붙여넣기!'}catch(e){}"<!-- ===== 전준위·언론 브리핑 (기본 첫 화면) ===== -->
 <section id="brief" class="on">
 
   <div class="card" style="border:2px solid var(--blue)">
@@ -698,28 +690,19 @@ function dowOf(ds){const p=ds.split('-');return DOW[new Date(+p[0],+p[1]-1,+p[2]
 // 9차(출마선언)는 7.3 SNS 출사표 '민주당을 살려야 합니다' 발행으로 완료 처리
 const FB_SENT=[1,2,3,9];
 const FB=[
- {n:1,d:'2026-06-04',t:'지선 참패·정청래 사퇴 첫 주장'},
- {n:2,d:'2026-06-16',t:'"정 대표, 대통령에 맞서지 말고 사퇴하십시오"'},
- {n:3,d:'2026-06-16',t:'일인정당 규탄 — 중앙위 감산사면·룰변경'},
- {n:4,d:'2026-06-17',t:"'부정 아닌 부실' 선관위 질타·해체·개헌"},
- {n:5,d:'2026-06-18',t:'근황보고 — 재정 공개 플랫폼·재정운동'},
- {n:6,d:'2026-06-19',t:'민주당도 개혁 대상 — 정당 예산 투명하게'},
- {n:7,d:'2026-06-21',t:'알메달렌 도착 — 누구나 무대에 오르는 정치'},
- {n:8,d:'2026-06-24',t:'알메달렌 연설 — 정당민주주의와 청년정치'},
- {n:9,d:'2026-07-03',t:'★ 당대표 출마선언 — 출사표 「민주당을 살려야 합니다」 (7.3 SNS 발행)'}
+ {n:1,d:'2026-06-04',t:'지선 참패·정청래 사퇴 첫 주장',kw:'#청년미래정치 #현장민생'},
+ {n:2,d:'2026-06-16',t:'"정 대표, 대통령에 맞서지 말고 사퇴하십시오"',kw:'#계파청산 #당원이주인'},
+ {n:3,d:'2026-06-16',t:'일인정당 규탄 — 중앙위 감산사면·룰변경',kw:'#깨끗한정치 #계파청산'},
+ {n:4,d:'2026-06-17',t:"'부정 아닌 부실' 선관위 질타·해체·개헌",kw:'#깨끗한정치 #청년미래정치'},
+ {n:5,d:'2026-06-18',t:'근황보고 — 재정 공개 플랫폼·재정운동',kw:'#깨끗한정치 #청년미래정치'},
+ {n:6,d:'2026-06-19',t:'민주당도 개혁 대상 — 정당 예산 투명하게',kw:'#깨끗한정치 #계파청산'},
+ {n:7,d:'2026-06-21',t:'알메달렌 도착 — 누구나 무대에 오르는 정치',kw:'#청년미래정치 #당원이주인'},
+ {n:8,d:'2026-06-24',t:'알메달렌 연설 — 정당민주주의와 청년정치',kw:'#당원이주인 #청년미래정치'},
+ {n:9,d:'2026-07-03',t:'★ 출마선언 「민주당을 살려야 합니다」 (7.3 SNS 발행)',kw:'5대 키워드 전체'}
 ];
 
 // ===== 일정 데이터 =====
 const EVENTS=[
- {d:'2026-06-04', t:'[FB 1차] 지선 참패·정청래 사퇴 첫 주장', k:'fb'},
- {d:'2026-06-16', t:'[FB 2차] "정 대표, 대통령에 맞서지 말고 사퇴하십시오"', k:'fb'},
- {d:'2026-06-16', t:'[FB 3차] 정청래 일인정당 규탄 — 중앙위 감산사면·룰변경', k:'fb'},
- {d:'2026-06-17', t:'[FB 4차] 부정 아닌 부실 — 선관위 질타·해체·개헌', k:'fb'},
- {d:'2026-06-18', t:'[FB 5차] 김보미 근황보고 — 재정 공개 플랫폼·재정운동', k:'fb'},
- {d:'2026-06-19', t:'[FB 6차] 민주당도 개혁 대상 — 정당 예산부터 투명하게', k:'fb'},
- {d:'2026-06-21', t:'[FB 7차] 알메달렌 도착 — 누구나 무대에 오르는 정치 선언', k:'fb'},
- {d:'2026-06-24', t:'[FB 8차] 알메달렌 연설 — 정당민주주의와 청년정치', k:'fb'},
- {d:'2026-07-03', t:'[FB 9차] ★ 출마선언 출사표 「민주당을 살려야 합니다」 SNS 발행', k:'fb'},
  {d:'2026-07-03', t:'★ 김보미 당대표 출마 공식 선언 (만 36세 평당원·전 강진군의회 의장)', k:'star'},
  {d:'2026-06-30', t:'전준위 1차 회의 — 8.17 대전컨벤션센터 확정 · 등록 7.16~17 · 예비경선 7.29', k:'conf'},
  {d:'2026-07-06', t:'김민석 전 총리, 광주서 당대표 출마 선언 ("이기는 민주당 복원")', k:'done'},
@@ -767,7 +750,17 @@ const EVENTS=[
  {d:'2026-08-16', t:'[플랜] 본대회 정견발표 최종 리허설', k:'exp'},
  {d:'2026-08-17', t:'★ 전당대회 본대회 — 당대표·최고위원 선출 (대전컨벤션센터·확정)', k:'conf'}
 ];
+// FB 메시지를 캘린더 일정으로 자동 반영 (차수·키워드 포함)
+FB.forEach(f=>EVENTS.push({d:f.d,t:f.t,k:'fb',fb:f.n,kw:f.kw}));
 const evOf=ds=>EVENTS.filter(e=>e.d===ds);
+// 일정 표기 헬퍼 — FB는 f아이콘 + n차 + 제목 (+키워드)
+function evHtml(e,full){
+  let h='';
+  if(e.k==='fb')h+='<span class="fbi">f</span><b>'+e.fb+'차</b> · ';
+  h+=esc(e.t);
+  if(full&&e.kw)h+='<span class="evkw">'+esc(e.kw)+'</span>';
+  return h;
+}
 const KIND={conf:['확정','#dceafd','#152484'],exp:['예상','#fdf3d8','#9a6c00'],done:['완료','#e6e9f5','#4a5170'],alme:['알메달렌','#e0f3ea','#00714f'],star:['핵심','#fbe2ec','#d6336c'],fb:['FB메시지','#ece4fb','#6b21a8']};
 const DOT={conf:'#152484',exp:'#e8a200',done:'#8a93b8',alme:'#00aa7b',star:'#d6336c',fb:'#8b3fd6'};
 
@@ -883,7 +876,7 @@ function openFb(n){
   const f=FB.find(x=>x.n===n); if(!f)return;
   const sent=FB_SENT.indexOf(n)>=0;
   document.getElementById('mdTitle').textContent='📣 FB '+n+'차 — '+mdLabel(f.d)+' ('+dowOf(f.d)+')'+(sent?' · ✅ 발행완료':' · 대기');
-  document.getElementById('mdBody').innerHTML='<p style="font-weight:800;margin-bottom:6px">'+esc(f.t)+'</p><p style="font-size:.88rem;line-height:1.7">'+esc(FB_DETAIL[n]||'')+'</p>'
+  document.getElementById('mdBody').innerHTML='<p style="font-weight:800;margin-bottom:4px"><span class="fbi">f</span>'+esc(f.t)+'</p><p style="font-size:.8rem;font-weight:800;color:#6b21a8;margin-bottom:8px">'+esc(f.kw||'')+'</p><p style="font-size:.88rem;line-height:1.7">'+esc(FB_DETAIL[n]||'')+'</p>'
     +'<button onclick="gotoFbMsg('+n+')" style="margin-top:12px;border:none;background:var(--blue);color:#fff;border-radius:8px;padding:9px 16px;font-weight:700;cursor:pointer">📄 SNS 탭에서 기획 원문 보기</button>';
   document.getElementById('mbg').classList.add('show');
 }
@@ -929,6 +922,7 @@ function fbBoardHtml(){
       +'<span style="font-size:.68rem;font-weight:800;border-radius:5px;padding:1px 6px;background:'+st[1]+';color:'+st[2]+'">'+st[0]+'</span></div>'
       +'<div style="font-size:.74rem;color:var(--mut);font-weight:700">'+mdLabel(f.d)+' ('+dowOf(f.d)+')</div>'
       +'<div style="font-size:.78rem;line-height:1.4;margin-top:2px">'+esc(f.t)+'</div>'
+      +'<div style="font-size:.7rem;color:#6b21a8;font-weight:800;margin-top:2px">'+esc(f.kw||'')+'</div>'
       +'<div style="font-size:.7rem;color:var(--blue);font-weight:700;margin-top:4px">상세 보기 ▸</div></div>';
   }).join('');
   return '<div style="font-size:.9rem;font-weight:700;margin-bottom:10px">발행 완료 <b style="color:#00714f">'+sentN+'건</b> · 대기 '+(FB.length-sentN)+'건 <span style="color:var(--mut);font-weight:600">— 진행률 '+pct+'%</span>'
@@ -948,7 +942,7 @@ var fbSns=document.getElementById('fbBoardSns'); if(fbSns)fbSns.innerHTML=fbBoar
     const n=Math.round((dt-TODAY)/864e5);
     const k=KIND[e.k]||KIND.exp;
     return '<div class="up" style="cursor:pointer" onclick="openDay(\''+e.d+'\')"><span class="dd">'+(n===0?'오늘':'D-'+n)+'</span><span class="d8">'+mdLabel(e.d)+' ('+dowOf(e.d)+')</span>'
-      +'<span class="kbadge" style="background:'+k[1]+';color:'+k[2]+'">'+k[0]+'</span><span>'+esc(e.t)+'</span></div>';
+      +'<span class="kbadge" style="background:'+k[1]+';color:'+k[2]+'">'+k[0]+'</span><span>'+evHtml(e,true)+'</span></div>';
   }).join('');
 })();
 
@@ -960,7 +954,7 @@ function openDay(ds){
   let h=fbN?'<p style="font-size:.85rem;font-weight:800;color:#6b21a8;margin-bottom:8px">📣 이날 페이스북 메시지 '+fbN+'건</p>':'';
   h+=evs.length?evs.map(e=>{
     const k=KIND[e.k]||KIND.exp;
-    return '<div class="ev '+e.k+(ds<TODAY_S?' past':'')+'"><span class="kbadge" style="background:rgba(255,255,255,.6);color:'+k[2]+';margin-right:6px">'+k[0]+'</span>'+esc(e.t)+'</div>';
+    return '<div class="ev '+e.k+(ds<TODAY_S?' past':'')+'"'+(e.k==='fb'?' style="cursor:pointer" onclick="openFb('+e.fb+')"':'')+'><span class="kbadge" style="background:rgba(255,255,255,.6);color:'+k[2]+';margin-right:6px">'+k[0]+'</span>'+evHtml(e,true)+(e.k==='fb'?' <small style="opacity:.7">▸ 상세</small>':'')+'</div>';
   }).join(''):'<p class="note">등록된 일정이 없습니다.</p>';
   document.getElementById('mdBody').innerHTML=h;
   document.getElementById('mbg').classList.add('show');
@@ -987,8 +981,8 @@ function drawMonth(){
     const dn=document.createElement('div');dn.className='dnum';dn.textContent=cur.getDate();
     if(fbN){const fb=document.createElement('span');fb.className='fbn';fb.textContent='📣'+fbN;dn.appendChild(fb)}
     cell.appendChild(dn);
-    evs.slice(0,3).forEach(e=>{const v=document.createElement('div');v.className='ev '+e.k+(isPast?' past':'');v.textContent=e.t;v.title=e.t;cell.appendChild(v)});
-    if(evs.length>3){const m=document.createElement('div');m.className='more';m.textContent='+ '+(evs.length-3)+'개 더보기';cell.appendChild(m)}
+    evs.slice(0,4).forEach(e=>{const v=document.createElement('div');v.className='ev '+e.k+(isPast?' past':'');v.innerHTML=evHtml(e,false);v.title=(e.k==='fb'?e.fb+'차 · ':'')+e.t;cell.appendChild(v)});
+    if(evs.length>4){const m=document.createElement('div');m.className='more';m.textContent='+ '+(evs.length-4)+'개 더보기';cell.appendChild(m)}
     if(evs.length){const dr=document.createElement('div');dr.className='dots';evs.slice(0,8).forEach(e=>{const i=document.createElement('i');i.style.background=DOT[e.k]||'#999';dr.appendChild(i)});cell.appendChild(dr)}
     cell.onclick=()=>openDay(ds);
     g.appendChild(cell);
@@ -1001,7 +995,7 @@ function drawMonth(){
   document.getElementById('mList').innerHTML=rows.length?rows.map(e=>{
     const k=KIND[e.k]||KIND.exp;
     return '<div class="row'+(e.d<TODAY_S?' past':'')+'" style="cursor:pointer" onclick="openDay(\''+e.d+'\')"><span class="d8">'+mdLabel(e.d)+' ('+dowOf(e.d)+')</span>'
-      +'<span class="kbadge" style="background:'+k[1]+';color:'+k[2]+'">'+k[0]+'</span><span>'+esc(e.t)+'</span></div>';
+      +'<span class="kbadge" style="background:'+k[1]+';color:'+k[2]+'">'+k[0]+'</span><span>'+evHtml(e,true)+'</span></div>';
   }).join(''):'<p class="note">이 달에는 등록된 일정이 없습니다.</p>';
 }
 drawMonth();
@@ -1023,7 +1017,7 @@ function drawWeek(){
     const fbN=evs.filter(e=>e.k==='fb').length;
     if(fbN){const f=document.createElement('div');f.style.cssText='font-size:.72rem;font-weight:800;color:#6b21a8;margin-bottom:4px';f.textContent='📣 FB 메시지 '+fbN+'건';c.appendChild(f)}
     if(evs.length===0){const p=document.createElement('div');p.style.color='var(--mut)';p.textContent='—';c.appendChild(p)}
-    evs.forEach(e=>{const v=document.createElement('div');v.className='ev '+e.k+(isPast?' past':'');v.textContent=e.t;c.appendChild(v)});
+    evs.forEach(e=>{const v=document.createElement('div');v.className='ev '+e.k+(isPast?' past':'');v.style.whiteSpace='normal';v.innerHTML=evHtml(e,true);if(e.k==='fb'){v.style.cursor='pointer';v.onclick=()=>openFb(e.fb)}c.appendChild(v)});
     g.appendChild(c);
   }
 }
@@ -1153,6 +1147,7 @@ tick();setInterval(tick,1000);
 renderAll();
 if(DB){setStatus('⏳ 연결 중…');pull();}
 setInterval(pull,8000);
+// build 2026-07-07-2
 </script>
 </body>
 </html>
