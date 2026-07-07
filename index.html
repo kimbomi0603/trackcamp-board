@@ -164,16 +164,11 @@ try{if(localStorage.getItem('tc_ok')==='1')document.getElementById('gate').style
 </header>
 
 <div style="max-width:980px;margin:14px auto;padding:14px 18px;background:#fff7e6;border:1px solid #f0c66b;border-radius:12px;font-size:.92rem;line-height:1.75">
-  <b>📌 확정 핵심일정 <span style="color:#888;font-weight:600">· 기준 <span id="boxToday"></span></span></b><br>
-  · <b>출사표 발표</b> — 7.2(목) ✅ 완료 · 페이스북 게시 + 김보미.com 홈페이지 공개 + 보도자료 배포<br>
-  · <b>★ 출마선언 기자회견</b> — <b style="color:var(--red)">7.8(수) · 국회 당원존</b> (7.6 예약 · 7.6~7 낭독 연습)<br>
-  · <b>현장·방송</b> — 7.3(금) 순천 청년정책관 준비위 ✅ · 7.4(토) 서울의소리·뉴탐사 ✅<br>
-  · <b>당대표·최고위원 후보 등록</b> — 7.16(목)~17(금) <small style="color:#888">(전준위 공고 확정)</small><br>
-  · <b>예비경선(컷오프)</b> — <b style="color:var(--red)">7.21(화) 확정</b> — 등록 마감 후 단 4일<br>
-  · <b>지역 순회경선(확정)</b> — 8.1 충남·충북·대전·세종 → 8.2 울산·부산·경남 → 8.8 제주·인천 → 8.9 강원·대구·경북 → 8.15 전북·광주·전남 → 8.16 경기·서울<br>
-  · <b>정기전당대회(본대회)</b> — 8.17(월) · 대전컨벤션센터<br>
+  <b>📌 확정 핵심일정 <span style="color:#888;font-weight:600">· 기준 <span id="boxToday"></span> · 지난 일정은 자동으로 아래 접힘</span></b><br>
+  <div id="keyList"></div>
   · <b>경선 룰(확정)</b> — 선거인단 대의원·권리당원 70%(사상 첫 <b>1인 1표제</b>) + 국민여론조사 30% · 당대표 당선인 결정은 <b>선호투표제</b>(7.7 전준위 확정)<br>
   · <b>후원모금 개시(최단)</b> — 7.16 후보등록 즉시 후원회 등록신청 → 선관위 등록 완료 직후 모금 개시(빠르면 7.16~17)<br>
+  <div id="keyDone"></div>
   <span style="color:#a15;font-size:.85rem">※ 후원회는 후보자 지위 취득 후 14일 내 선관위 등록, 등록 후 모금 가능(정치자금법). 정확한 개시 시점은 관할 선관위에 '당대표경선후보자 지위 인정 시점' 확인 권장.</span>
 </div>
 
@@ -1304,6 +1299,33 @@ function gotoFbMsg(n){
   if(el){setTimeout(function(){el.scrollIntoView({behavior:'smooth',block:'center'});el.style.boxShadow='0 0 0 3px var(--sky)';setTimeout(function(){el.style.boxShadow=''},2500)},60)}
 }
 
+// ===== 확정 핵심일정 (지난 일정 자동 접힘) =====
+const KEY=[
+ {d:'2026-07-02',t:'<b>출사표 발표</b> — 페이스북 게시 + 김보미.com 공개 + 보도자료 배포'},
+ {d:'2026-07-03',t:'순천 청년정책관 준비위 첫 현장행보 · 홈페이지 정식 오픈'},
+ {d:'2026-07-04',t:'서울의소리(14시)·뉴탐사(21시) 인터뷰'},
+ {d:'2026-07-06',t:'당원존 예약 · 출사표 낭독 연습(~7.7)'},
+ {d:'2026-07-08',t:'<b style="color:var(--red)">★ 출마선언 기자회견 — 국회 당원존</b>',star:1},
+ {d:'2026-07-16',t:'<b>당대표·최고위원 후보 등록</b> 시작(~17일) + 기탁금 납부 + 후원회 등록신청'},
+ {d:'2026-07-21',t:'<b style="color:var(--red)">★ 예비경선(컷오프)</b> — 등록 마감 후 단 4일',star:1},
+ {d:'2026-08-01',t:'<b>순회경선 시작</b> — 충남·충북·대전·세종 (→ 8.2 부울경 → 8.8 제주·인천 → 8.9 강원·TK → 8.15 호남 → 8.16 경기·서울)'},
+ {d:'2026-08-17',t:'<b style="color:var(--red)">★ 정기전당대회 본대회 — 대전컨벤션센터</b>',star:1}
+];
+(function(){
+  const list=document.getElementById('keyList'), done=document.getElementById('keyDone');
+  if(!list)return;
+  const up=KEY.filter(k=>k.d>=TODAY_S), past=KEY.filter(k=>k.d<TODAY_S);
+  list.innerHTML=up.map(k=>{
+    const p=k.d.split('-'), dt=new Date(+p[0],+p[1]-1,+p[2]);
+    const n=Math.round((dt-TODAY)/864e5);
+    return '· <b style="color:'+(n<=3?'var(--red)':'#555')+'">'+(n===0?'오늘':'D-'+n)+'</b> · '+mdLabel(k.d)+'('+dowOf(k.d)+') — '+k.t;
+  }).join('<br>')+(up.length?'<br>':'');
+  if(done&&past.length){
+    done.innerHTML='<details style="margin-top:6px"><summary style="cursor:pointer;font-weight:700;color:#888">✅ 완료된 일정 '+past.length+'건 펼치기</summary><div style="color:#888;font-size:.86rem;line-height:1.8;margin-top:4px">'
+      +past.map(k=>'✅ '+mdLabel(k.d)+'('+dowOf(k.d)+') — '+k.t).join('<br>')+'</div></details>';
+  }
+})();
+
 // ===== 헤더 D-day (자동 계산) =====
 (function(){
   const tTxt=TODAY.getFullYear()+'.'+(TODAY.getMonth()+1)+'.'+TODAY.getDate()+' '+DOW[TODAY.getDay()];
@@ -1567,30 +1589,3 @@ setInterval(pull,8000);
 </script>
 </body>
 </html>
-
-<script>
-/* 봄콜(김보미비서) 공유 일정 연동 — 2026-07-08 */
-(function(){
-var API='https://kimbomi-secretary.onrender.com/api/schedules_shared';
-function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
-function ymd(s){var m=String(s||'').match(/(\d{4})[-./](\d{1,2})[-./](\d{1,2})/);return m?(m[1]+'-'+('0'+m[2]).slice(-2)+'-'+('0'+m[3]).slice(-2)):'';}
-function render(items){
-var sec=document.getElementById('month')||document.body;
-var card=document.createElement('div');card.className='card';card.id='bomcallSync';
-var now=new Date();var t0=new Date(now.getFullYear(),now.getMonth(),now.getDate());
-var rows=items.map(function(it){return {d:ymd(it.date),time:it.time||'',title:it.title||'',memo:it.memo||''};}).filter(function(r){return r.d;});
-rows.sort(function(a,b){return a.d<b.d?-1:1;});
-var up=rows.filter(function(r){return new Date(r.d+'T23:59:59')>=t0;}).slice(0,30);
-var h='<h2>📡 봄콜 공유 일정 <span style="font-size:.78rem;color:var(--mut);font-weight:600">김보미비서(봄콜) 일정과 실시간 동기화</span></h2>';
-if(!up.length){h+='<p class="note">다가오는 공유 일정이 없습니다. 봄콜에서 일정을 등록하면 여기 표시됩니다.</p>';}
-h+=up.map(function(r){var dd=Math.round((new Date(r.d)-t0)/864e5);var tag=dd===0?'오늘':'D-'+dd;return '<div class="up"><span class="d8">'+esc(r.d)+(r.time?' '+esc(r.time):'')+'</span><span class="dd">'+tag+'</span><span style="flex:1"><b>'+esc(r.title)+'</b>'+(r.memo?' <small>— '+esc(r.memo)+'</small>':'')+'</span></div>';}).join('');
-card.innerHTML=h;
-sec.insertBefore(card,sec.firstChild);
-}
-function load(){
-fetch(API+'?k=0817').then(function(r){return r.json();}).then(function(j){if(j&&j.items)render(j.items);}).catch(function(e){});
-}
-if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',load);}else{load();}
-})();
-</script>
-</script>
