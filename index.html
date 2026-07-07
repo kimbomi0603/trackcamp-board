@@ -186,7 +186,7 @@ try{if(localStorage.getItem('tc_ok')==='1')document.getElementById('gate').style
   <button data-t="ops">캠프 상황실 <small style="opacity:.55;font-weight:600">· 준비중</small></button>
   <button data-t="cmp">역대 일정 비교</button>
   <button data-t="strat">📊 전략 참고</button>
-  <button data-t="report">📱 디지털 진단</button>
+  <button data-t="report">📚 자료실</button>
 </nav>
 <!-- ===== 전준위·언론 브리핑 (기본 첫 화면) ===== -->
 <section id="brief" class="on">
@@ -238,6 +238,12 @@ try{if(localStorage.getItem('tc_ok')==='1')document.getElementById('gate').style
   <div class="card">
     <h2>🗳️ 당대표 출마자 현황 <span style="font-size:.78rem;color:var(--mut);font-weight:600">카드를 클릭하면 상세 정보</span></h2>
     <div id="leaderCards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px"></div>
+  </div>
+
+  <div class="card" style="border-left:4px solid var(--blue)">
+    <h2>📜 당대표 후보 출마선언문 <span style="font-size:.78rem;color:var(--mut);font-weight:600">클릭하면 요약 + 전문</span></h2>
+    <div id="mfstList"></div>
+    <p class="note">※ 김보미 출사표는 전문 게재(김보미.com 원문). 타 후보 선언문은 요약·핵심 발언과 원문 기사 링크로 제공 — 선언이 나오는 대로 MFST 배열에 채워 넣으면 됩니다.</p>
   </div>
 
   <div class="card">
@@ -852,15 +858,27 @@ try{if(localStorage.getItem('tc_ok')==='1')document.getElementById('gate').style
     <div id="cheerList"></div>
   </div>
 </section>
-<!-- ===== 디지털 채널 진단 보고서 ===== -->
+<!-- ===== 캠프 자료실 ===== -->
 <section id="report">
   <div class="card">
+    <h2>📚 캠프 자료실 <span style="font-size:.78rem;color:var(--mut);font-weight:600">내부 문서 아카이브 · 새 문서는 저장소에 파일 추가 후 이 목록에 연결</span></h2>
+    <div class="up" style="cursor:pointer" onclick="document.getElementById('doc1').scrollIntoView({behavior:'smooth'})"><span class="kbadge" style="background:#dceafd;color:#152484">보고서</span><span style="flex:1"><b>김보미 디지털 채널 통합 진단·개선 보고서</b> — 아래에서 바로 보기 ▾</span></div>
+    <div class="up" style="cursor:pointer" onclick="document.getElementById('doc2').scrollIntoView({behavior:'smooth'})"><span class="kbadge" style="background:#e0f3ea;color:#00714f">설명자료</span><span style="flex:1"><b>3대 메가프로젝트 쉬운 설명 (증보완성판)</b> — 아래에서 바로 보기 ▾</span></div>
+  </div>
+  <div class="card" id="doc1">
     <h2>📱 김보미 디지털 채널 통합 진단·개선 보고서 <span style="font-size:.78rem;color:var(--mut);font-weight:600">캠프 내부 자료 · 외부 공유 금지</span></h2>
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
       <a href="./digital_report.html" target="_blank" style="display:inline-block;background:var(--blue);color:#fff;text-decoration:none;border-radius:8px;padding:9px 18px;font-weight:800;font-size:.9rem">🔎 새 창에서 크게 보기 ↗</a>
     </div>
-    <iframe src="./digital_report.html" style="width:100%;height:78vh;border:1px solid var(--line);border-radius:10px;background:#fff" title="김보미 디지털 채널 통합 진단·개선 보고서" loading="lazy"></iframe>
-    <p class="note">※ 보고서가 갱신되면 저장소의 <b>digital_report.html</b> 파일만 교체하면 이 탭에 자동 반영됩니다. 아래 프레임이 안 보이면 위 '새 창에서 크게 보기'를 이용하세요.</p>
+    <iframe src="./digital_report.html" style="width:100%;height:75vh;border:1px solid var(--line);border-radius:10px;background:#fff" title="김보미 디지털 채널 통합 진단·개선 보고서" loading="lazy"></iframe>
+  </div>
+  <div class="card" id="doc2">
+    <h2>🏗️ 3대 메가프로젝트 쉬운 설명 (증보완성판) <span style="font-size:.78rem;color:var(--mut);font-weight:600">정책 설명자료</span></h2>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
+      <a href="./mega_project.html" target="_blank" style="display:inline-block;background:var(--blue);color:#fff;text-decoration:none;border-radius:8px;padding:9px 18px;font-weight:800;font-size:.9rem">🔎 새 창에서 크게 보기 ↗</a>
+    </div>
+    <iframe src="./mega_project.html" style="width:100%;height:75vh;border:1px solid var(--line);border-radius:10px;background:#fff" title="3대 메가프로젝트 쉬운 설명" loading="lazy"></iframe>
+    <p class="note">※ 문서가 갱신되면 저장소의 <b>digital_report.html / mega_project.html</b> 파일만 교체하면 자동 반영됩니다.</p>
   </div>
 </section>
 <!-- ===== 월간·주간 캘린더 ===== -->
@@ -1091,6 +1109,126 @@ const BOMI=[
  {d:'2022-07-10',src:'서울신문',rep:'확인 필요',title:'만 32세 김보미 강진군의장…전국 최연소 기초의회 의장 영예',url:'https://www.seoul.co.kr/news/newsView.php?id=20220710500041',note:'최연소 의장 — 프로필 근거 기사'}
 ];
 
+
+// ===== 출마선언문 (요약 + 전문/링크) =====
+const MFST=[
+ {name:'김보미',star:1,st:'✅ 7.2 출사표 발행 · 7.8 기자회견',title:'「민주당을 살려야 합니다」',
+  sum:"민주당을 '민주주의·공정·청년·미래·세대교체가 사라진 5무(無) 정당'으로 진단. 알메달렌식 토론 정치, 진짜 1인 1표(실명·거주 인증), 경선 데이터 전면 공개(타 후보 공통공약 제안), 청년 결정권, 686 기득권의 아름다운 퇴장을 제시. \"저는 약한 계란입니다. 그래도 끝까지 두드려, 결국 금을 내겠습니다.\"",
+  url:'https://www.김보미.com/manifesto.html',urlLabel:'김보미.com 원문 ↗',
+  full:`존경하는 국민 여러분. 사랑하는 더불어민주당 당원 동지 여러분. 정치 13년, 의정 활동 8년. 만 서른여섯 평당원 김보미입니다.
+
+저는 오늘 감히 선언합니다. 공정을 잃은 민주당은 청년을 잃었고, 청년을 잃은 민주당에 미래는 없습니다. 김보미가 시작하겠습니다. 민주당을 떠난 청년과 미래를 돌려세우기 위해, 정말 뽑고 싶은 민주당을 만들기 위해, 당대표에 출마합니다.
+
+오늘부터 회초리 높이 들고 기득권을 후려치겠습니다. 당대표를 하겠다는 정청래, 송영길, 김민석 모두 여전히 과거를 붙들고 싸우고 있습니다. 빈소에 왔니 안 왔니, 배신을 했니 안 했니 — 세계 10대 경제 강국 대한민국 집권 여당의 당대표 경쟁이 족보 캐기 수준입니다.
+
+더 이상 지체할 수 없습니다. 국민의 회초리, 제가 대신 사정없이 내려치겠습니다. 지금 하지 않으면 민주당에도, 대한민국에도 미래가 없기 때문입니다. 그리고 이재명 대통령도 고립될 것이기 때문입니다.
+
+【시대 상황과 당의 현재】
+대한민국은 지금, 아니 온 세계가 대격변의 세월을 살고 있습니다. 인공지능과 기후 위기와 지방소멸이 삼각 해일로 뭉쳐 가정과 일자리와 국토를 통째로 삼키고 있습니다. 휩쓸려 흔적 없이 사라질 것인가? 올라타고 살아남아 더 빨리 앞서갈 것인가? 절체절명의 시간이 광속으로 흐르고 있습니다.
+
+이 낡은 정치 아래 청년들의 삶을 보십시오. '평생직장'이라는 단어는 폐기된 지 오래고, 언제 잘릴지 모르는 비정규직과 플랫폼 노동의 굴레 속에서 하루하루를 간신히 '버텨내고' 있습니다. 평생을 모아도 닿을 수 없는 미친 집값에 좌절하고, 전 재산을 털어 구한 전셋집은 사기꾼의 표적이 되어 피눈물을 흘립니다.
+
+연애도, 결혼도, 출산도 사치가 된 세대. 청년들은 "이번 생은 망했다"며 자조합니다. 과거로 돌아가 다시 시작하고 싶다는 '회귀물' 웹소설만이 텅 빈 마음을 위로하는 것이 우리 현실입니다. 남은 것은 분노뿐입니다.
+
+이 거대한 변화를 희망으로 만들 주체가 누구입니까? AI가 삼킬 청년 일자리를, 반도체와 재생에너지와 용수 걱정을 도대체 누가 책임지고 해야 합니까? 바로 이재명 정권을 만든 민주당이 해야 하는 것 아닙니까?
+
+그런데 지금 민주당은 무엇을 하고 있습니까? 흥신소 직원처럼 누가 누구 편인지 과거를 캐고, 똘똘 뭉쳐도 극우 내란 정당 쳐내기 힘겨운 판에 친문, 친명 갈라치며 분열만 부추기고 있습니다. 국가 미래와 균형 성장에 획기적 전기가 될 3대 메가 프로젝트가 발표되자, 기껏 한다는 소리가 '우리 전북은?' 수준입니다.
+
+민주당이 총체적 난국을 넘어 총체적 망조로 가고 있습니다. 누가 차기 당대표를 할 것인가는 요란한데, 뭣이 문제인지는 침묵하고 있습니다. 저 김보미가 하겠습니다. 제가 뭣이 문제인지 목청껏 떠들겠습니다. 제가 민주당이 잃어버린 것이 무엇인지 국민과 당원 여러분께 분명히 찾아드리겠습니다.
+
+【민주주의가 없는 민주당】
+얼마 전 저는 스웨덴 알메달렌에 다녀왔습니다. 그곳에서는 당대표도 시민도, 장관도 대학생도, 노동조합도 기업도 거리낌 없이 격식 없이 토론합니다. 누가 높은 사람인지 따지지 않습니다. 잔디밭이든 주차장이든 술집이든 어디든 모두 토론장입니다. 누가 어느 편인지 따지지 않습니다. 대신 누가 더 좋은 정책이 있는지 토론합니다.
+
+민주주의는 상대를 이기는 기술이 아닙니다. 더 나은 답을 찾는 과정입니다. 그런데 우리 민주당은 과연 어떻습니까? 민주당에는 민주주의가 없습니다. 정책보다 계파가 앞장서서 행진하고 있습니다. 생각이 달라도 참아야 출세를 합니다. 다른 소리를 하면 '내부 총질'이라는 손가락질이 돌아옵니다. 경선을 하면서 토론은 하지 않으니 줄서기 귀재들만 키웁니다.
+
+원래 민주당은 이런 정당이 아니었습니다. 김대중 대통령은 민주주의를 위해 감옥에 갔고, 노무현 대통령은 원칙을 위해 기득권과 싸웠습니다. 문재인 대통령은 '나라다운 나라'를 만들고자 했습니다. 그런데 지금 민주당에는 민주주의가 없습니다. 민주주의가 없는 민주당이 대한민국의 민주주의를 지킬 수는 없습니다.
+
+저 김보미가 민주당의 민주주의부터 살리겠습니다. 당원이 자유롭게 토론하고, 청년이 망설임 없이 다른 의견을 마음껏 말하는 정당을 만들겠습니다. 그 동네 유권자가 맞는지조차 검증하지 않는 1인 1표, 커피 한 잔 값에 권리당원 투표권을 파는 1인 1표. 이것은 기득권 방패막이 1인 1표, 686이 886까지 해 먹기 위한 1인 1표일 뿐입니다.
+
+저 김보미가 이 가짜 1인 1표를 진짜 1인 1표로 완전히 새로 바꾸겠습니다. 선거 때만 동원되는 들러리 당원 주권이 아니라, 정책을 만들고 행정에 참여하고 정치를 함께 하는 진짜 당원 주권을 만들겠습니다.
+
+【공정이 없는 민주당】
+2030 청년들이 민주당을 떠나고 있습니다. 왜 그러냐 물으면 '내로남불', '공정이 없다'는 답이 돌아옵니다. 민주당에 공정이 실종되고 있습니다.
+
+저는 민주당의 심장 호남에서 13년을 헌신했습니다. 그런 저에게 당은, 증거도 소명 기회도 없었던 억울한 징계를 핑계로 감산을 매겼습니다. 반면 전과 5범 경쟁 후보는 감산 하나 없었습니다. 제가 줄기차게 요구한 후보 토론회는 단 한 번도 열리지 않았습니다. 결국 저는 떨어졌지만, 공천받은 민주당 후보는 무소속에게 참패했습니다. 불공정이 부른 참사입니다.
+
+민주당은 경선 결과를 공개하지 않습니다. 선거인 수, 투표자 수 모두 공개하지 않습니다. 저는 제가 몇 표를 얻었는지 아직도 모릅니다. 선거에 출마해 놓고 몇 표를 얻었는지도 모른다? 전 세계에 이런 선거를 하는 정당이 민주당 말고 또 있습니까? 자기가 출마한 선거 결과도 모르는데 당원 주권? 이건 그냥 사기에 불과할 뿐입니다.
+
+민주당의 경선 규칙은 매우 복잡합니다. 규정이 너무 많아 규정이 없는 것과 같습니다. 국회의원과 당 지도부가 마음만 먹으면 누군가는 떨어뜨리고 누군가는 키울 수 있도록 규정을 수시로 고칩니다. 이것이 공정하다고 생각할 출마자가 얼마나 되겠습니까?
+
+투표용지 부족으로 참정권을 박탈당한 송파 투표소 사건에 청년들이 분노하고 있습니다. 청년들은 선거 결과를 뒤집자고 말하는 것이 아닙니다. 누가 이겼고 누가 졌는지를 따지는 것도 아닙니다. 왜 과정의 공정이 무너졌는지 따지고 있는 것입니다. 여기에 민주당이 어떤 답을 했습니까? 아무도 그 어떤 답도 하지 않았습니다.
+
+청년들은 정치 자체를 싫어하는 것이 아닙니다. 공정하지 않은 정치를 싫어하는 것입니다. 청년의 급격한 보수화가 걱정되십니까? 그렇다면 기득권을 지키려는 낡은 정치를 버리십시오. 청년의 보수화는 민주당의 기득권 정치가 뿌린 씨앗입니다.
+
+공정이 무엇입니까? 공정은 민주당이 반드시 지켜야 할 최소한의 원칙입니다. 토론으로 검증받고, 정책으로 경쟁하고, 결과는 투명하게 공개하고, 결과에 승복하는 것입니다. 경선 규칙, 전면 혁신하겠습니다. 가산점 제도, 완전히 바꾸겠습니다. 경선 결과, 낱낱이 공개하겠습니다. 1,000원 당비와 휴대폰으로 줄 세워 뽑는 동원 경선이 아니라 실력으로, 토론으로, 정책으로 뽑는 공정 경선을 정착시키겠습니다.
+
+【청년이 없는 민주당】
+김대중 대통령이 32세 김민석 의원을 영입했습니다. 그때 30대 국회의원들이 청년 정치를 주도했습니다. 이후 그 전통은 사라졌고, 청년들은 그냥 들러리로 전락했습니다.
+
+민주당은 어느새 늙고 낡은 정당이 되었습니다. 다선 의원 비율이 국민의힘보다 월등히 많습니다. 시대는 젊은 의원을 요구하는데, 시대에 뒤진 낡은 사고로 무장한 늙은 국회의원만 수두룩한 정당이 되었습니다. 당 사무처도 마찬가지입니다. 2030을 우리와 다른 인종이라 부르는 5060이 당 사무처를 장악하고 있습니다.
+
+민주당에 청년이 사라졌습니다. 선거가 되면 청년을 앞줄에 세워 사진을 찍고, 선거가 끝나면 다시 돌려보내는 일을 반복했습니다. 그래 놓고 청년들이 민주당을 떠난다고 걱정합니다. 하지만 청년이 민주당을 떠난 것이 아닙니다. 민주당이 먼저 청년을 떠난 것입니다.
+
+청년에게 들러리를 요구하고 권한을 주지 않은 민주당, 헌신만 요구하고 줄 서서 기다리기만을 요구했던 민주당. 이런 민주당으로 미래로 갈 수는 없습니다. 김보미가 나서겠습니다. 당을 젊게 만들겠습니다. 청년이 돌아오는 민주당을 만들겠습니다.
+
+【미래가 없는 민주당】
+민주당엔 미래도 없습니다. 민주, 공정, 청년이 사라진 당에 미래가 있을 턱이 없습니다. AI, 로봇, 반도체, 재생에너지, 양자, 우주항공에 바이오까지 대한민국의 운명을 가를 산업들이 하루가 다르게 성장하고 있습니다. 하지만 민주당은 아직도 검찰개혁에, 보완 수사권에 목매고 있습니다. 미래를 설계해야 할 정당이 과거에 복수하고 있습니다.
+
+언제 적 검찰개혁입니까? 노무현 대통령 때 시작했습니다. 24년이 지나도 완성하지 못했습니다. 분명 작년 추석 전에 끝낸다고 했습니다. 강성 지지층만 보고 자기 기득권만 챙기는 데 검찰개혁을 이용한 것은 아닙니까? 공천받는 데 유리하니까 줄기차게 외치는 건 아닙니까? 진짜 할 마음이 있기는 있는 겁니까?
+
+내란 청산은 어떻습니까? 해산은커녕, 이번 지방선거를 딛고 내란 세력은 되살아났습니다. 대통령은 일하는데 민주당은 싸우고 있습니다. 대통령은 남부권 AI·반도체 벨트를 만들고 있습니다. 대통령은 RE100을 위한 에너지와 물을 준비하고 있습니다. 그런데 민주당은 무엇을 하고 있습니까?
+
+전당대회가 시작되자마자 누군가는 '전북은 없다'고 말하고, 누군가는 계파를 갈라치고, 누군가는 검찰개혁만 이야기합니다. 대통령은 미래를 이야기하는데 민주당은 과거만 이야기하는 것입니다. 여당은 대통령의 국정철학을 실천하는 정당입니다. 그런데 대통령의 발목을 잡는 정당이 되고 있습니다.
+
+저는 검찰과 경찰이 서로 견제하는 제도를 만들겠습니다. 정치검찰은 물론, 경찰 독주도 절대 허용하지 않는 제도를 만들겠습니다. 과거에 매달려 미래를 포기하는 어리석은 정당이 되지 않도록 하겠습니다. 과거에 빚진 것이 없는 저만이 우리 민주당을 미래로 이끌어 갈 수 있습니다. 민주당을 세계에서 가장 앞서가는 미래 정당으로 바꾸겠습니다.
+
+【교체가 없는 민주당】
+386은 그때 청년이었습니다. 그리고 대한민국 민주주의를 만들었습니다. 대한민국은 그 역사에 깊이 감사하고 있습니다. 하지만 지금 686은 그냥 기득권일 뿐입니다. 내가 아니면 안 된다는 정신에 투철한 꼰대일 뿐입니다. 민주화 옥살이 어깨 뽕은 이제 내려놓아야 합니다. 그것이 이 나라 정치를 40년, 50년 독점해야 할 훈장이 될 수는 없습니다.
+
+1980년대 학생운동을 했던 세대가 1990년대 국회의원이 되었고, 2000년대 장관이 되었고, 2010년대 당대표가 되었고, 2020년대에도 여전히 민주당을 움직이고 있습니다. AI 3대 강국에 진입해야 할 대한민국을 화염병과 짱돌 들고 싸우던 세대가 아직도 이끌고 있습니다.
+
+이제 멋진 이별을 할 때가 되었습니다. 대한민국을 다음 세대에게 넘겨주는 아름다운 퇴장을 준비할 때가 되었습니다. 저는 세대 전쟁을 하지 않겠습니다. 그러나 세대교체는 반드시 이루겠습니다. 민주당은 특정 세대의 정당이 아니라 대한민국 모든 세대의 정당이 되어야 하기 때문입니다.
+
+정부가 뛰는데 당이 제자리걸음을 해서는 안 됩니다. 민주당은 정부를 뒷받침하는 조직이 아니라, 정부보다 한발 앞서 미래를 연구하는 정당이 되어야 합니다. 저는 대통령을 가장 잘 돕는 당대표가 되겠습니다. 그러나 잘못된 것은 당당하게 이야기하는 책임 있는 당대표도 되겠습니다.
+
+민주당에는 김대중 대통령이 말한 민주주의가 사라졌고, 노무현 대통령이 말한 원칙이 사라졌으며, 이재명 대통령이 말하는 실용과 미래마저 사라지려 하고 있습니다. 다시 살려내겠습니다. 그리고 그 위에 새로운 공정과 성장이라는 가치를 더하겠습니다. 민주와 원칙을 찾아 실용과 미래로 달려가는 민주당, 저 김보미가 반드시 만들겠습니다.
+
+【계란으로 바위 치기】
+저는 약한 계란입니다. 나이 많은 기득권은 강한 바위입니다. 그래도 저는 도전할 생각입니다. 노무현 대통령도, 김대중 대통령도, 이재명 대통령도 처음에는 모두 계란이었습니다. 계란은 생명을 품고 있습니다. 끝까지 바위를 두드려 결국 금을 내겠습니다. 그리고 민주당을 다시 민주당답게 만들겠습니다.
+
+당대표에 출마하려는 분들께 묻겠습니다. 후보님의 핵심 가치는 무엇입니까? 후보님이 그리는 민주당은 어떤 모습입니까? 만들고자 하는 대한민국은 어떤 나라입니까? 이걸 가지고 경쟁합시다.
+
+존경하는 국민 여러분, 당원 동지 여러분. 여러분이 생각하는 민주당의 핵심 가치는 무엇입니까? 여러분이 그리는 민주당은 어떤 모습입니까? 김보미.com에 들어오셔서 여러분의 생각을 나눠 주십시오. 여러분의 생각을 모아 더불어 함께 나아가겠습니다.
+
+민주주의가 있는 민주당, 공정이 살아 있는 민주당, 청년이 돌아오는 민주당, 미래를 준비하는 민주당을 만들어 이재명 정부의 성공을 이끌겠습니다. 부족하지만 두렵지 않습니다. 기득권은 커 보일 뿐, 당원과 국민의 열망을 이길 수 없습니다. 권력은 강하지만 민심은 더 강하다는 것을 믿고 도전하겠습니다. 국민과 당원과 함께, 민주당을 다시 국민의 품으로 돌려드리겠습니다. 저 김보미가 시작하겠습니다.
+
+【입틀막】
+윤석열 정권은 국민의 입을 틀어막았습니다. 입을 막고 사지를 들어 끌어냈습니다. 국민은 그 오만한 정권을 심판했습니다.
+
+그런데 지금 민주당 기득권이 청년에게 말합니다. 가만히 있어라, 줄을 똑바로 서라, 나서면 다친다. 그렇게 또 청년의 입을 틀어막고 있습니다. 입틀막 정권을 심판한 민주당이 청년의 입을 틀어막아서야 되겠습니까.
+
+이제 가만있지 않겠습니다. 많은 청년과 당원들의 응원을 바랍니다. 우리 손을 잡고 같이 판을 뒤집어 봅시다. 민주당을 살려봅시다! 감사합니다.`},
+ {name:'김민석',st:'✅ 7.6 광주→서울 선언',title:'"이기는 민주당 복원" (선언 요지)',
+  sum:"7.6 광주(국립5·18민주묘지 참배)에서 출마 선언. 핵심: '이기는 민주당 복원' — 당정일치로 이재명 정부를 뒷받침하고, '자기정치의 폐해가 당정협력을 혼선에 빠뜨렸다'며 정청래 전 대표를 직격. '당 대표 두 번 할 필요 없다'며 연임론 견제. DJ가 영입한 32세 최연소 의원 출신으로 '통합·연대·확장' 대통합 노선을 표방.",
+  url:'https://www.ohmynews.com/NWS_Web/View/at_pg.aspx?CNTN_CD=A0003249037',urlLabel:'오마이뉴스 선언 보도 원문 ↗',full:null},
+ {name:'송영길',st:'⏳ 7.8 당원존 선언 예정',title:'(선언 후 게재)',
+  sum:"7.8(수) 중앙당사 당원존에서 출마 선언 예정. 예고 보도 기준: 이재명 대통령의 '당원 주권 정당' 노선 계승을 전면에 내세울 전망 — 우리 '진짜 1인 1표' 공약과 겹치는 지점, 차별화 포인트(실명·거주 인증, 데이터 공개) 준비 필요. 선언문이 나오면 요약·링크를 여기에 갱신하세요.",
+  url:'https://www.hankookilbo.com/news/article/A2026070710230001074',urlLabel:'한국일보 예고 보도 ↗',full:null},
+ {name:'정청래',st:'⏳ 미선언 (7월 둘째 주 예상)',title:'(선언 전)',
+  sum:"주자 중 마지막 선언 예상. 호남·봉하마을 방문 등 당심 행보를 선행 중이며 연임 도전이 확실시. 선언 시 예상 프레임: 개혁 완수·강성 당원 결집. 선언문이 나오면 요약·링크를 여기에 갱신하세요.",
+  url:'https://www.fnnews.com/news/202606211602303032',urlLabel:'파이낸셜뉴스 동향 보도 ↗',full:null}
+];
+function openMfst(i){
+  const m=MFST[i];
+  document.getElementById('mdTitle').textContent='📜 '+m.name+' 출마선언문';
+  document.getElementById('mdBody').innerHTML=
+    '<p style="font-size:.82rem;font-weight:800;color:var(--sky);margin-bottom:6px">'+esc(m.st)+' · '+esc(m.title)+'</p>'
+    +'<div style="background:#f7f8fc;border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:.88rem;line-height:1.7;margin-bottom:10px"><b>요약</b> — '+esc(m.sum)+'</div>'
+    +(m.full?'<details open style="margin-top:6px"><summary style="cursor:pointer;font-weight:800;color:var(--blue)">📄 전문 보기 (접기/펼치기)</summary><div style="white-space:pre-line;font-size:.87rem;line-height:1.85;margin-top:8px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px">'+esc(m.full)+'</div></details>':'')
+    +'<a href="'+m.url+'" target="_blank" style="display:inline-block;margin-top:12px;background:var(--blue);color:#fff;text-decoration:none;border-radius:8px;padding:9px 16px;font-weight:700;font-size:.88rem">'+esc(m.urlLabel)+'</a>';
+  document.getElementById('mbg').classList.add('show');
+}
+
 // ===== 브리핑 렌더링 =====
 function renderBrief(){
   document.getElementById('jpwList').innerHTML=JPW.slice().sort((a,b)=>a.d<b.d?1:-1).map(x=>
@@ -1103,6 +1241,12 @@ function renderBrief(){
     +'<div style="font-size:.8rem;font-weight:700;color:var(--sky);line-height:1.45">'+esc(c.decl)+'</div>'
     +(c.hist?'<div style="font-size:.74rem;color:#6b21a8;font-weight:700;margin-top:4px;line-height:1.4">🗳️ '+esc(c.hist)+'</div>':'')
     +'<div style="font-size:.72rem;color:var(--blue);font-weight:700;margin-top:6px">자세히 보기 ▸</div></div>').join('');
+  var mEl=document.getElementById('mfstList');
+  if(mEl)mEl.innerHTML=MFST.map((m,i)=>
+    '<div class="up" style="cursor:pointer" onclick="openMfst('+i+')">'
+    +'<span class="d8" style="flex:0 0 76px;color:'+(m.star?'var(--red)':'var(--blue)')+'">'+(m.star?'⭐ ':'')+esc(m.name)+'</span>'
+    +'<span class="kbadge" style="background:'+(m.full?'#e0f3ea':'#fdf3d8')+';color:'+(m.full?'#00714f':'#9a6c00')+'">'+(m.full?'전문 게재':'요약·링크')+'</span>'
+    +'<span style="flex:1"><b>'+esc(m.title)+'</b> · '+esc(m.st)+' <span style="color:var(--blue);font-weight:700">보기 ▸</span></span></div>').join('');
   document.getElementById('maxRows').innerHTML=MAXCOMM.map(m=>'<tr><td><b>'+esc(m.name)+'</b></td><td>'+esc(m.role)+'</td><td>'+esc(m.st)+'</td><td>'+esc(m.note)+'</td></tr>').join('');
   renderQuotes('전체');
   document.getElementById('newsList').innerHTML=NEWS.slice().sort((a,b)=>a.d<b.d?1:-1).map(n=>
