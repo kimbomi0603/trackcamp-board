@@ -186,6 +186,7 @@ try{if(localStorage.getItem('tc_ok')==='1')document.getElementById('gate').style
   <button data-t="ops">캠프 상황실 <small style="opacity:.55;font-weight:600">· 준비중</small></button>
   <button data-t="cmp">역대 일정 비교</button>
   <button data-t="strat">📊 전략 참고</button>
+  <button data-t="report">📱 디지털 진단</button>
 </nav>
 <!-- ===== 전준위·언론 브리핑 (기본 첫 화면) ===== -->
 <section id="brief" class="on">
@@ -849,6 +850,17 @@ try{if(localStorage.getItem('tc_ok')==='1')document.getElementById('gate').style
       <button onclick="addCheer()" style="border:none;background:var(--red);color:#fff;border-radius:8px;padding:8px 16px;font-weight:700;cursor:pointer">남기기</button>
     </div>
     <div id="cheerList"></div>
+  </div>
+</section>
+<!-- ===== 디지털 채널 진단 보고서 ===== -->
+<section id="report">
+  <div class="card">
+    <h2>📱 김보미 디지털 채널 통합 진단·개선 보고서 <span style="font-size:.78rem;color:var(--mut);font-weight:600">캠프 내부 자료 · 외부 공유 금지</span></h2>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
+      <a href="./digital_report.html" target="_blank" style="display:inline-block;background:var(--blue);color:#fff;text-decoration:none;border-radius:8px;padding:9px 18px;font-weight:800;font-size:.9rem">🔎 새 창에서 크게 보기 ↗</a>
+    </div>
+    <iframe src="./digital_report.html" style="width:100%;height:78vh;border:1px solid var(--line);border-radius:10px;background:#fff" title="김보미 디지털 채널 통합 진단·개선 보고서" loading="lazy"></iframe>
+    <p class="note">※ 보고서가 갱신되면 저장소의 <b>digital_report.html</b> 파일만 교체하면 이 탭에 자동 반영됩니다. 아래 프레임이 안 보이면 위 '새 창에서 크게 보기'를 이용하세요.</p>
   </div>
 </section>
 <!-- ===== 월간·주간 캘린더 ===== -->
