@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2030 분석 보고서 — 현실·목소리·트렌드·정치·대안 총망라</title>
+<style>
+  :root{
+    --bg:#f7f7f5; --card:#ffffff; --ink:#1a1a1a; --sub:#555; --line:#e4e2dd;
+    --accent:#c2410c; --accent2:#0f766e; --blue:#1d4ed8; --red:#dc2626;
+    --quote-bg:#fbf6ef; --tag:#eef2ff;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif; background:var(--bg); color:var(--ink); line-height:1.75; font-size:16px;}
+  .wrap{max-width:960px; margin:0 auto; padding:24px 20px 80px;}
+  header.hero{background:#191919; color:#f5f2ec; border-radius:16px; padding:48px 40px; margin-bottom:36px;}
+  header.hero h1{font-size:2.1rem; letter-spacing:-0.5px; line-height:1.3;}
+  header.hero .sub{color:#c9c4ba; margin-top:14px; font-size:1.02rem;}
+  header.hero .meta{margin-top:22px; font-size:.85rem; color:#8f8a80;}
+  .kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:28px 0 8px;}
+  .kpi{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px 16px;}
+  .kpi .num{font-size:1.55rem; font-weight:800; color:var(--accent); letter-spacing:-0.5px;}
+  .kpi .lbl{font-size:.85rem; color:var(--sub); margin-top:4px;}
+  .kpi .src{font-size:.72rem; color:#999; margin-top:6px;}
+  section{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:36px 34px; margin:26px 0;}
+  h2{font-size:1.45rem; letter-spacing:-0.4px; padding-bottom:12px; border-bottom:2px solid var(--ink); margin-bottom:22px;}
+  h2 .no{color:var(--accent); margin-right:8px;}
+  h3{font-size:1.08rem; margin:26px 0 10px; color:var(--ink);}
+  h3::before{content:"■ "; color:var(--accent); font-size:.8em;}
+  p{margin:10px 0;}
+  .lead{font-size:1.02rem; color:#333;}
+  table{width:100%; border-collapse:collapse; margin:14px 0 8px; font-size:.9rem;}
+  th{background:#f1efe9; text-align:left; padding:9px 10px; border:1px solid var(--line); font-weight:700;}
+  td{padding:8px 10px; border:1px solid var(--line); vertical-align:top;}
+  tr:nth-child(even) td{background:#fbfaf8;}
+  .quote{background:var(--quote-bg); border-left:4px solid var(--accent); border-radius:0 10px 10px 0; padding:14px 18px; margin:12px 0; font-size:.95rem;}
+  .quote .who{display:block; margin-top:8px; font-size:.78rem; color:#8a6d4e;}
+  .quote .who a{color:#8a6d4e;}
+  .voice-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+  @media (max-width:720px){.voice-grid{grid-template-columns:1fr;}}
+  .commcard{border:1px solid var(--line); border-radius:12px; padding:16px 18px; background:#fdfcfa;}
+  .commcard h4{font-size:.98rem; margin-bottom:8px;}
+  .commcard h4 .site{display:inline-block; background:var(--tag); color:var(--blue); font-size:.72rem; padding:2px 8px; border-radius:20px; margin-right:6px; vertical-align:middle;}
+  .commcard h4 .ok{background:#dcfce7; color:#15803d;}
+  .commcard h4 .via{background:#fef3c7; color:#92400e;}
+  .commcard p{font-size:.88rem; color:#333;}
+  .commcard .src{font-size:.75rem; color:#999; margin-top:8px;}
+  .commcard .src a{color:#777;}
+  .bar-chart{margin:16px 0;}
+  .bar-row{display:flex; align-items:center; margin:7px 0; font-size:.85rem;}
+  .bar-label{width:150px; flex-shrink:0; text-align:right; padding-right:10px; color:#444;}
+  .bar-track{flex:1; background:#f0eee9; border-radius:4px; height:22px; position:relative; overflow:hidden;}
+  .bar-fill{height:100%; border-radius:4px; display:flex; align-items:center; justify-content:flex-end; padding-right:7px; color:#fff; font-size:.75rem; font-weight:700; min-width:34px;}
+  .b-dem{background:var(--blue);} .b-ppp{background:var(--red);} .b-etc{background:#6b7280;}
+  .b-a{background:var(--accent);} .b-t{background:var(--accent2);}
+  .chart-note{font-size:.75rem; color:#999; margin-top:6px;}
+  .callout{background:#f0fdf4; border:1px solid #bbf7d0; border-radius:12px; padding:16px 20px; margin:16px 0; font-size:.93rem;}
+  .callout.warn{background:#fff7ed; border-color:#fed7aa;}
+  .callout.gray{background:#f8fafc; border-color:#e2e8f0;}
+  .srcline{font-size:.78rem; color:#999;}
+  .srcline a, td a, .chart-note a{color:#7c6f5f;}
+  a{color:var(--accent2);}
+  ul.tight{padding-left:22px; margin:8px 0;}
+  ul.tight li{margin:6px 0; font-size:.94rem;}
+  ol.srcs{padding-left:24px;}
+  ol.srcs li{margin:5px 0; font-size:.82rem; color:#555; word-break:break-all;}
+  .pill{display:inline-block; font-size:.72rem; background:#eee; border-radius:20px; padding:2px 9px; margin:0 4px 4px 0; color:#555;}
+  footer{margin-top:30px; font-size:.78rem; color:#999; text-align:center;}
+  .flow{display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:14px 0; font-size:.88rem;}
+  .flow .step{background:#191919; color:#f5f2ec; border-radius:8px; padding:8px 14px;}
+  .flow .arr{color:var(--accent); font-weight:800;}
+  .timeline{border-left:3px solid var(--accent2); margin:14px 0 14px 8px; padding-left:22px;}
+  .tl-item{margin:0 0 16px;}
+  .tl-item .date{font-weight:800; color:var(--accent2); font-size:.85rem;}
+  .tl-item p{margin:3px 0; font-size:.92rem;}
+  .quote.crit{background:#fef2f2; border-left-color:#dc2626;}
+  .quote.crit .who{color:#a05252;}
+  .pill.red{background:#fee2e2; color:#b91c1c;}
+
+  /* --- 클릭형 아코디언 --- */
+  details.sec > summary{cursor:pointer; list-style:none; outline:none; position:relative;}
+  details.sec > summary::-webkit-details-marker{display:none;}
+  details.sec > summary h2{margin-bottom:0; transition:color .15s;}
+  details.sec > summary:hover h2{color:var(--accent);}
+  details.sec > summary .hint{display:inline-flex; align-items:center; gap:6px; font-size:.78rem; color:#999; margin-top:8px;}
+  details.sec > summary .arrow{display:inline-block; transition:transform .2s; color:var(--accent); font-size:.7rem;}
+  details.sec[open] > summary .arrow{transform:rotate(180deg);}
+  details.sec[open] > summary .hint .txt::after{content:" 접기";}
+  .sec-body{margin-top:18px; animation:fadeIn .25s ease;}
+  @keyframes fadeIn{from{opacity:0; transform:translateY(-4px);} to{opacity:1; transform:none;}}
+  /* --- 목차 --- */
+  nav.toc{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:22px 24px; margin:0 0 6px;}
+  nav.toc .toc-title{font-weight:800; font-size:.95rem; margin-bottom:12px;}
+  nav.toc .toc-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:7px;}
+  nav.toc a{display:flex; align-items:center; gap:8px; text-decoration:none; color:var(--ink); font-size:.85rem; padding:8px 12px; border:1px solid var(--line); border-radius:9px; background:#fdfcfa; transition:all .15s;}
+  nav.toc a:hover{border-color:var(--accent); color:var(--accent); background:#fff;}
+  nav.toc a .n{font-weight:800; color:var(--accent); font-size:.75rem; min-width:20px;}
+  .toc-btns{margin-top:12px; display:flex; gap:8px;}
+  .toc-btns button{cursor:pointer; border:1px solid var(--line); background:#f1efe9; border-radius:20px; padding:5px 14px; font-size:.78rem; font-family:inherit; color:#444;}
+  .toc-btns button:hover{border-color:var(--accent); color:var(--accent);}
+  .part-divider{margin:34px 0 6px; font-size:.85rem; font-weight:800; color:#8a8478; letter-spacing:1px; text-transform:uppercase; display:flex; align-items:center; gap:12px;}
+  .part-divider::after{content:""; flex:1; height:1px; background:var(--line);}
+  a[target="_blank"]{text-decoration-line:underline; text-decoration-style:dotted; text-underline-offset:3px;}
+  .top-link{position:fixed; right:18px; bottom:18px; background:#191919; color:#fff; border-radius:50%; width:44px; height:44px; display:flex; align-items:center; justify-content:center; text-decoration:none!important; font-size:1.1rem; opacity:.75; z-index:50;}
+  .top-link:hover{opacity:1;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero" id="top">
+  <h1>2030 분석 보고서<br><span style="font-size:1.15rem; font-weight:500; color:#d9d4ca;">현실 · 진짜 목소리 · 신조어와 트렌드 · 정치 지형 · 정부 정책 · 대안 총망라</span></h1>
+  <p class="sub">공식 통계(국가데이터처·한국은행·보건복지부)와 여론조사, 커뮤니티(디시인사이드·에펨코리아·블라인드·보배드림·여성시대·네이트판·인스티즈·클리앙·더쿠)·SNS(유튜브·X·인스타그램·스레드·카카오톡 오픈채팅)에서 수집한 청년들의 실제 글·댓글, 최신 신조어·유행 트렌드, 2030 정당 지지율, 정부 청년정책과 민주당의 청년 관련 발언까지 하나의 문서로 교차 분석했다. 모든 수치와 인용에 출처를 병기했다.</p>
+  <p class="meta">작성일 2026년 7월 8일 · 조사 방법: 웹 검색 + 커뮤니티 직접 접속 수집(클리앙·인스티즈·보배드림·82쿡 성공, 디시·더쿠·네이트판·코인판은 접속 차단으로 언론 인용분 활용) + 언론 보도·연구 보고서 교차 검증</p>
+</header>
+
+<div class="kpis">
+  <div class="kpi"><div class="num">71.7만 명</div><div class="lbl">20~30대 '쉬었음' 인구 — 2003년 통계 작성 이래 최대</div><div class="src">국가데이터처 2025 연간 고용동향 (서울신문 보도)</div></div>
+  <div class="kpi"><div class="num">-43%</div><div class="lbl">대기업 정규직 신입 공고 감소 (2025.1~11, 전년 대비)</div><div class="src">캐치 분석 · 매경이코노미</div></div>
+  <div class="kpi"><div class="num">1억 218만원</div><div class="lbl">30대 1인당 평균 은행대출 — 사상 첫 1억 돌파</div><div class="src">한국은행 · 이코노미스트</div></div>
+  <div class="kpi"><div class="num">74.7%</div><div class="lbl">전세사기 피해자 중 2030 비율 (2만 442명)</div><div class="src">국토교통부 · 노컷뉴스</div></div>
+  <div class="kpi"><div class="num">3억 6,173만원</div><div class="lbl">평균 결혼자금 (4년 새 +1.4억)</div><div class="src">듀오 2025 결혼비용 보고서</div></div>
+  <div class="kpi"><div class="num">약 54만 명</div><div class="lbl">고립·은둔 청년 추정 (청년의 5.2%)</div><div class="src">2024 청년의 삶 실태조사 · 보사연</div></div>
+  <div class="kpi"><div class="num">+127%</div><div class="lbl">20대 우울증 환자 증가율 (2017→2021)</div><div class="src">건강보험심사평가원</div></div>
+  <div class="kpi"><div class="num">48%</div><div class="lbl">18~29세 무당층 비율 — 전 연령 최고</div><div class="src">NBS 전국지표조사 2026</div></div>
+</div>
+
+<nav class="toc">
+  <div class="toc-title">목차 — 항목을 클릭하면 해당 섹션이 펼쳐집니다 · 본문 속 밑줄 링크는 모두 출처 원문(새 창)으로 연결됩니다</div>
+  <div class="toc-grid">
+    <a href="#jobs"><span class="n">01</span>일자리 · 취업난</a>
+    <a href="#housing"><span class="n">02</span>집과 빚</a>
+    <a href="#marriage"><span class="n">03</span>결혼 · 출산</a>
+    <a href="#mental"><span class="n">04</span>고립 · 정신건강</a>
+    <a href="#community"><span class="n">05</span>커뮤니티 스캔</a>
+    <a href="#sns"><span class="n">06</span>SNS · 빅데이터</a>
+    <a href="#trends"><span class="n">07</span>신조어 · 트렌드</a>
+    <a href="#politics"><span class="n">08</span>정치 지형 · 지지율</a>
+    <a href="#gov-policy"><span class="n">09</span>정부 청년정책</a>
+    <a href="#minjoo"><span class="n">10</span>민주당 발표 · 발언</a>
+    <a href="#alternatives"><span class="n">11</span>대안</a>
+    <a href="#conclusion"><span class="n">12</span>종합 결론</a>
+    <a href="#sources"><span class="n">13</span>전체 출처</a>
+  </div>
+  <div class="toc-btns">
+    <button onclick="document.querySelectorAll('details.sec').forEach(d=>d.open=true)">모두 펼치기</button>
+    <button onclick="document.querySelectorAll('details.sec').forEach(d=>d.open=false)">모두 접기</button>
+  </div>
+</nav>
+
+<div class="part-divider">PART 1 · 현실 — 통계와 목소리</div>
+<!-- ============ 1. 취업 ============ -->
+<section id="jobs">
+<details class="sec"><summary><h2><span class="no">01</span>일자리 — "문이 닫힌 세대"</h2><span class="hint"><span class="arrow">▼</span><span class="txt">클릭해서 상세 내용 보기</span></span></summary><div class="sec-body">
+<p class="lead">2030 위기의 상류(上流)에는 일자리가 있다. 취업 실패가 소득 격차를 낳고, 소득 격차가 주거·부채·결혼 포기·은둔으로 이어지는 연쇄가 통계로 확인된다.</p>
+
+<h3>핵심 통계</h3>
+<table>
+<tr><th style="width:44%">지표</th><th>수치</th><th style="width:30%">출처</th></tr>
+<tr><td>20~30대 '쉬었음' 인구 (2025년)</td><td><b>71만 7천 명</b> — 통계 작성(2003) 이래 최대. 청년 인구의 5.8%</td><td><a href="https://www.seoul.co.kr/news/economy/2026/01/14/20260114500261" target="_blank" rel="noopener">서울신문·국가데이터처</a></td></tr>
+<tr><td>20대 취업자 증감 (2025년 연간)</td><td><b>-17만 명</b> (60세 이상은 +34만 5천 명)</td><td>국가데이터처 2025 연간 고용동향</td></tr>
+<tr><td>청년(15~29세) 고용률 (2026.1)</td><td>43.6% (-1.2%p), 실업률 6.8% (+0.8%p) — 19개월 연속 고용률 하락 후에도 부진 지속</td><td><a href="https://www.korea.kr/briefing/policyBriefingView.do?newsId=156744174" target="_blank" rel="noopener">정책브리핑</a>·<a href="https://www.youthdaily.co.kr/news/article.html?no=220677" target="_blank" rel="noopener">청년일보</a></td></tr>
+<tr><td>첫 취업 평균 소요기간</td><td><b>11.3개월</b>, 1년 이상 걸린 비율 31.4% (2025.5 기준)</td><td><a href="https://mods.go.kr/board.es?act=view&bid=210&list_no=437676&mid=a10301010000" target="_blank" rel="noopener">국가데이터처 청년층 부가조사</a></td></tr>
+<tr><td>졸업 후 미취업 청년</td><td>졸업생 417만 명 중 121만 명 미취업, 그중 57만 명은 구직 1년 초과. 취업 준비 기간 평균 1.5년(2018)→약 3년</td><td><a href="https://www.hankookilbo.com/News/Read/A2025121611540003908" target="_blank" rel="noopener">한국일보</a></td></tr>
+<tr><td>대기업 신입 공고 (2025.1~11)</td><td>2,145건, 전년(3,741건) 대비 <b>-43%</b>. 고용24 모집공고는 2년 새 -35%</td><td><a href="https://v.daum.net/v/20260106210303455" target="_blank" rel="noopener">매경이코노미</a>·한국일보</td></tr>
+<tr><td>경력 우대 기업 비율</td><td><b>97.4%</b> (신입만 채용 2.6%)</td><td><a href="https://zdnet.co.kr/view/?no=20260120091209" target="_blank" rel="noopener">대한상의·ZDNet</a></td></tr>
+<tr><td>취업 지연의 생애 비용</td><td>첫 취업 지연 시 생애 총 취업기간 -2년, <b>생애총소득 -13%</b>. 구직기간 1년 길어지면 실질임금 -6.7%</td><td><a href="https://www.bok.or.kr/portal/bbs/P0002353/view.do?menuNo=200433&nttId=10089620" target="_blank" rel="noopener">한국은행 BOK이슈노트</a></td></tr>
+<tr><td>대·중소기업 임금 격차 (2024)</td><td>대기업 월 716만원 vs 중소기업 351만원 (절반 미만). 중소→대기업 이동률 5~6%</td><td><a href="https://www.fnnews.com/news/202606281100596113" target="_blank" rel="noopener">파이낸셜뉴스</a>·<a href="https://www.etoday.co.kr/news/view/2546597" target="_blank" rel="noopener">이투데이</a></td></tr>
+<tr><td>'쉬었음' 청년의 경제적 비용</td><td>2019~2023년 누적 <b>44조 4,991억원</b></td><td>한경협 의뢰 연구·매경이코노미</td></tr>
+</table>
+
+<div class="callout warn"><b>통계 착시 주의</b> — 2025년 실업률 4.1%는 25년 만의 최고이지만, 15세 이상 고용률은 '역대 최고'로 발표됐다. 인구 감소(분모 축소)와 청년의 구직 포기('쉬었음' 전환으로 실업자 집계에서 제외)가 만든 착시라는 분석이 지배적이다. 진짜 위기 신호는 청년 경제활동참가율 46.8%(5년 만의 최저, 처음으로 60대 이상보다 낮아짐)와 쉬었음 70만+이다. <span class="srcline">출처: <a href="https://www.seoul.co.kr/news/economy/2026/01/14/20260114500261" target="_blank" rel="noopener">서울신문</a>, <a href="https://v.daum.net/v/20260106210303455" target="_blank" rel="noopener">매경이코노미</a></span></div>
+
+<h3>청년들의 목소리</h3>
+<div class="quote">"대학 나와서 취직하면 행복해 보이는 삶을 살 수 있다는 사회모델이 깨짐. 10년 일해도 1억 모으기 힘들고, 1~2억 모아봤자 결혼은 꿈도 못 꾸고 집도 사기 힘듦. … 4년제 대학 나와서 대기업 사무직 다니지 않으면 사람 취급을 안 해주는 나라. 월 200~300 받고 다닌다? 쪽팔려서 말도 잘 안 함. 근데 대기업 사무직 갈 수 있는 건 상위 10%나 될까."
+<span class="who">— 더쿠 발(發) 「2030이 구직 안 하는 이유」 (클리앙 재게시, 조회 3.6만) · <a href="https://www.clien.net/service/board/park/19018622" target="_blank" rel="noopener">clien.net</a></span></div>
+<div class="quote">"이력서 200개를 넣고 최종 면접에서 떨어지면 그 공백기는 '쉬었음'으로 분류된다. 잠시라도 멈추면 도태되는 세상에서 생존을 위해 발버둥 치고 있는데, 국가는 이를 '그냥 쉬었다'고 퉁쳐버린다." / "죽을까 하다가 잠시 쉬었을 뿐인데 게으른 백수 취급을 받네요."
+<span class="who">— '쉬었음 청년' 관련 유튜브 영상 댓글 · <a href="https://www.etoday.co.kr/news/view/2581950" target="_blank" rel="noopener">이투데이 인용 보도</a></span></div>
+<div class="quote">"회사를 다녀도 돈이 든다. 하루 식비·교통비 2만원씩 쓰고 월 200만원 벌어서는 택도 없다. 그냥 집에서 쉬면서 아껴 쓰는 게 낫다." / "10년·20년이 지나도 월급은 200만원이에요. 그럴 바엔 차라리 마음 편하게 아르바이트나 하자는 생각이 든다." / "아무리 노력해도 저렇게 (부유하게) 살 수 없다는 생각이 사람을 무기력하게 만든다."
+<span class="who">— 고용노동부×대학내일 '쉬었음 청년 200명' 심층조사 응답 · <a href="https://v.daum.net/v/20250902050313681" target="_blank" rel="noopener">중앙일보</a></span></div>
+<div class="quote">"재학 중에는 혹시나 가점이 될까 싶어 내내 토익·토익스피킹과 '금융 3종' 시험에 매달렸다. … 졸업으로 바로 구직자 신분이 되는 것이 불안해 다들 졸업을 유예하는 분위기다."
+<span class="who">— 졸업유예 1년째 서영일 씨(27) · <a href="https://v.daum.net/v/20260106210303455" target="_blank" rel="noopener">매경이코노미</a></span></div>
+<div class="quote">"지방은 아직도 초봉 2천 중반… 대기업 신입 초봉 5천 이상에 복지 빵빵한 걸 자연스럽게 접하니 상대적 박탈감이 커졌다. 손해 보고 일할 바엔 부모님과 살며 백수로 지내겠다는 생각도 이해 못할 바 아니다."
+<span class="who">— 클리앙 댓글 · <a href="https://www.clien.net/service/board/park/19018622" target="_blank" rel="noopener">clien.net</a></span></div>
+<div class="quote">"나도 취준 셤… 이제 더는 공부를 뭔가 인생 걸린 합불을 위해선 하지 않아도 된다는 게 너무 좋았어." / "9수만에 서울중등영어임용합격" / "없어. 로또 1등 되면 기쁠 듯."
+<span class="who">— 인스티즈 「내가 가장 기뻤던 '합격'은」 댓글 105개 중 (조회 3.6만, 2026.7.7, 직접 수집) · <a href="https://www.instiz.net/pt/7878724" target="_blank" rel="noopener">instiz.net</a></span></div>
+
+<p>Z세대 342명 설문(매경이코노미·캐치)에서 구직 의욕 상실 원인 1위는 <b>"반복된 탈락으로 인한 심리적 소진"(63%)</b>이었고, 88%가 "청년 채용이 줄었다"고, 92%가 "요구 스펙이 높아졌다"고 체감했다. 한국고용정보원 조사에서는 1년 이상 쉰 청년의 <b>77.2%가 "쉬었음 상태가 불안하다"</b>고 답했다 — '쉬는 것'조차 편히 쉬는 게 아니라는 뜻이다. <span class="srcline">(<a href="https://v.daum.net/v/20260106210303455" target="_blank" rel="noopener">매경이코노미</a>, <a href="https://www.khan.co.kr/article/202606032348015/" target="_blank" rel="noopener">경향신문</a>)</span></p>
+</div></details></section>
+
+<!-- ============ 2. 주거·부채 ============ -->
+<section id="housing">
+<details class="sec"><summary><h2><span class="no">02</span>집과 빚 — "월급으론 영원히 못 산다"</h2><span class="hint"><span class="arrow">▼</span><span class="txt">클릭해서 상세 내용 보기</span></span></summary><div class="sec-body">
+<p class="lead">서울 집값은 연소득의 10~14배. 근로소득만으로 자산 형성이 불가능하다는 확신이 '영끌'과 '빚투', 그리고 코인·해외선물 같은 고위험 투자로 청년을 밀어냈다.</p>
+
+<h3>핵심 통계</h3>
+<table>
+<tr><th style="width:44%">지표</th><th>수치</th><th style="width:30%">출처</th></tr>
+<tr><td>청년가구 주거비 부담(RIR)</td><td><b>18.9%</b> (일반가구 17.0%). 임대료·대출 상환 부담 체감 80.8%. 청년 임차가구 월세 비중 71.1%</td><td><a href="http://www.molit.go.kr/USR/NEWS/m_71/dtl.jsp?lcmspage=1&id=95080763" target="_blank" rel="noopener">국토부 2024 주거실태조사</a></td></tr>
+<tr><td>서울 PIR (연소득 대비 집값)</td><td>주거실태조사 기준 <b>13.9배</b> / KB 기준 10.6배(2025.3Q) — "한 푼도 안 쓰고 11~14년"</td><td><a href="https://www.hankyung.com/article/202602189158i" target="_blank" rel="noopener">한국경제</a>·<a href="https://data.kbland.kr/kbstats/pir" target="_blank" rel="noopener">KB부동산</a></td></tr>
+<tr><td>전세사기 피해</td><td>인정 피해 3만 400건, 피해자의 <b>74.7%(2만 442명)가 2030</b>. 보증금 3억 이하가 97%</td><td><a href="https://www.nocutnews.co.kr/news/6360826" target="_blank" rel="noopener">노컷뉴스·국토부</a></td></tr>
+<tr><td>30대 1인당 은행대출</td><td><b>1억 218만원</b> — 2013년 통계 작성 이래 최고, 사상 첫 1억 돌파</td><td><a href="https://economist.co.kr/article/view/ecn202604210063" target="_blank" rel="noopener">한국은행·이코노미스트</a></td></tr>
+<tr><td>금융부채 고위험가구 중 2030</td><td>34.9% (2020년 22.6%에서 급증)</td><td>한국은행 금융안정보고서</td></tr>
+<tr><td>개인회생 중 39세 이하</td><td><b>41.8%</b> (2024 개시결정 기준). 평균 채무 20대 6,407만원·30대 8,999만원, 월수입은 223만~236만원</td><td><a href="https://slb.scourt.go.kr/rel/information/statistics/stat_file03.pdf" target="_blank" rel="noopener">서울회생법원 통계</a></td></tr>
+<tr><td>29세 이하 개인사업자 연체율</td><td>1.29% — 전 연령 최고·통계 작성 이래 최고</td><td><a href="https://www.economicsignal.co.kr/news/articleView.html?idxno=523" target="_blank" rel="noopener">경제시그널</a></td></tr>
+<tr><td>빚투 손실 (2026.3 급락장)</td><td>20대 신용융자 계좌 -17.8% vs 미사용 -6.7% — 소액(1천만 미만) 20대는 손실 격차 3.2배</td><td><a href="https://www.sedaily.com/article/20022439" target="_blank" rel="noopener">서울경제</a></td></tr>
+<tr><td>30대 서울 아파트 매수 비중</td><td>2025년 1~5월 <b>40.9%</b>(역대 최고), 4월 45.9%. 주식·코인 처분 자금 7,211억원으로 전 연령 1위</td><td><a href="https://www.sedaily.com/article/20063900" target="_blank" rel="noopener">서울경제</a>·<a href="https://www.ajunews.com/view/20260611110817263" target="_blank" rel="noopener">아주경제</a></td></tr>
+<tr><td>자산 양극화</td><td>순자산·소득 모두 하위 20% 가구 중 2030 비중 7.9%(2020)→<b>15.2%(2025)</b>, 5년 새 2배</td><td><a href="https://www.newspim.com/news/view/20260703000418" target="_blank" rel="noopener">뉴스핌</a></td></tr>
+</table>
+
+<h3>청년들의 목소리</h3>
+<div class="quote">"적금으로 돈을 모으면 뭐합니까. 남들은 주식으로 2~3배를 불렸다고 하는데… 나만 앉아서 거지가 되는 것 같았다."
+<span class="who">— 적금 1억을 해약해 주식에 넣은 30대 직장인 · <a href="https://economist.co.kr/article/view/ecn202604210063" target="_blank" rel="noopener">이코노미스트</a></span></div>
+<div class="quote">"서울 집은 꿈도 못 꾸죠. 월급 300만원에서 월세·생활비 빼면 200 남아요." / "지금 아니면 평생 못 산다."
+<span class="who">— 20대 공무원·30대 생애최초 매수자 · <a href="https://www.hankyung.com/article/202602189158i" target="_blank" rel="noopener">한국경제</a>, <a href="https://www.newsis.com/view/NISX20260615_0003669643" target="_blank" rel="noopener">뉴시스</a></span></div>
+<div class="quote">"2030들은 이미 서울 아파트 살 생각 없다고ㅋㅋ" — 블라인드 발 글이 에펨코리아 포텐(베스트)에 오르며 확산. "직장은 안정적인 수익을 주는 곳일 뿐, 그 수익으로 주식투자 해서 아파트 종잣돈 모으는 게 목표"라는 댓글 정서가 대표적.
+<span class="who">— <a href="https://www.fmkorea.com/best/8585274948" target="_blank" rel="noopener">에펨코리아</a>, <a href="https://www.teamblind.com/kr/post/2030%EB%93%A4%EC%9D%80-%EC%9D%B4%EB%AF%B8-%EC%84%9C%EC%9A%B8-%EC%95%84%ED%8C%8C%ED%8A%B8-%EC%82%B4-%EC%83%9D%EA%B0%81-%EC%97%86%EB%8B%A4%EA%B3%A0-up2l5k8f" target="_blank" rel="noopener">블라인드</a>, <a href="https://www.asiae.co.kr/article/2020120309035463005" target="_blank" rel="noopener">아시아경제('벼락거지')</a></span></div>
+<div class="quote">보증금 1억 2,500만원(대출 1억 + 부모에게 빌린 2,500만원)을 통째로 날린 27세 사회초년생. "이제야 전세사기의 악몽에서 벗어난 것 같다"며 2년 만에 피해금을 돌려받고 울먹인 동탄 피해자.
+<span class="who">— <a href="https://www.seoul.co.kr/news/newsView.php?id=20250612008001" target="_blank" rel="noopener">서울신문</a>, <a href="https://www.khan.co.kr/article/202508210600031" target="_blank" rel="noopener">경향신문</a></span></div>
+<div class="quote">폭락장마다 코인 커뮤니티에 등장하는 자조 밈 "코인별 한강모임", '한강' 언급 빈도로 시장 심리를 재는 <b>'비트코인 한강지수'</b>. 도박 중독 환자의 75%가 2030이라는 통계와 겹쳐 읽힌다.
+<span class="who">— <a href="https://coinpan.com/free/190547085" target="_blank" rel="noopener">코인판</a>, <a href="https://kilho.net/archives/various/2573" target="_blank" rel="noopener">길호넷</a>, <a href="https://www.ytn.co.kr/_ln/0101_202209112227484411" target="_blank" rel="noopener">YTN</a></span></div>
+
+<div class="callout"><b>'영끌'의 진화</b> — 2020~21년의 영끌이 '신용대출 최대화'였다면, 2026년의 영끌 공식은 <b>"주식·코인을 팔아 자기자본을 만들고 + 생애최초대출 70%"</b>다. 서울 중저가 아파트 지역 공인중개사는 "30대 매수자들은 대출 가능 금액부터 확인한 뒤 부족한 현금은 주식이나 코인을 정리해 맞춘다"고 전했다. <span class="srcline">(<a href="https://www.ajunews.com/view/20260611110817263" target="_blank" rel="noopener">아주경제</a>)</span></div>
+</div></details></section>
+
+<!-- ============ 3. 결혼·출산 ============ -->
+<section id="marriage">
+<details class="sec"><summary><h2><span class="no">03</span>결혼·출산 — "포기가 아니라 거부"</h2><span class="hint"><span class="arrow">▼</span><span class="txt">클릭해서 상세 내용 보기</span></span></summary><div class="sec-body">
+<p class="lead">혼인과 출산율은 저점에서 반등했지만, 미혼 청년의 결혼 의향은 오히려 줄고 있다. 모든 조사에서 이유 1위는 돈이며, 남녀의 포기 이유가 서로 다르다는 것이 데이터로 확인된다.</p>
+
+<h3>핵심 통계</h3>
+<table>
+<tr><th style="width:44%">지표</th><th>수치</th><th style="width:30%">출처</th></tr>
+<tr><td>혼인 건수</td><td>2025년 24만 건(+8.1%, 2년 연속 증가) — 그러나 10년 전(30만 5천 건)보다 여전히 8만 건 적음</td><td><a href="https://mods.go.kr/board.es?mid=a10301010000&bid=204&list_no=444103&act=view&mainXml=Y" target="_blank" rel="noopener">국가데이터처</a></td></tr>
+<tr><td>합계출산율</td><td>2025년 <b>0.80명</b>(2년 연속 반등) — 인구유지선 2.1명의 40% 수준, 자연감소 지속</td><td><a href="https://www.korea.kr/briefing/policyBriefingView.do?newsId=156745912" target="_blank" rel="noopener">정책브리핑</a></td></tr>
+<tr><td>미혼율</td><td>25~29세 <b>92.2%</b>, 30~34세 66.8% (남 74.7%·여 58.0%)</td><td><a href="https://www.newsis.com/view/NISX20251216_0003442538" target="_blank" rel="noopener">국가데이터처·뉴시스</a></td></tr>
+<tr><td>결혼 의향</td><td>미혼자 '의향 있음' 44% vs '없음' 41% (의향 2년 새 -8%p). 2026년 조사에선 미혼 여성 '없음' 47% &gt; '있음' 35%</td><td><a href="https://hrcopinion.co.kr/archives/33230" target="_blank" rel="noopener">한국리서치 2025</a>·<a href="https://hrcopinion.co.kr/archives/36560" target="_blank" rel="noopener">2026</a></td></tr>
+<tr><td>결혼 안 하는 이유 1위</td><td><b>"경제적 여유가 없어서" 45~48%</b> — 남성 54~58%가 경제 문제, 여성은 '적당한 상대 없음'(39%)·'필요성 못 느낌'(33%)·'가사·육아 쏠림'(33%)</td><td>한국리서치 (위와 동일)</td></tr>
+<tr><td>평균 결혼자금</td><td><b>3억 6,173만원</b> (2021년 2.2억 → 4년 새 +1.4억). 이 중 신혼집 3억 1,723만원</td><td><a href="https://www.newsis.com/view/NISX20250115_0003032798" target="_blank" rel="noopener">듀오·뉴시스</a></td></tr>
+<tr><td>연애 현황</td><td>20~49세 미혼 중 '연애 중' 37.5%. 연애 부담 이유: 시간·감정 소모 45.7%, <b>경제적 부담 42.8%</b></td><td><a href="https://v.daum.net/v/pD5bgJ2uH3" target="_blank" rel="noopener">다음뉴스</a></td></tr>
+<tr><td>결혼·출산 포기형</td><td>20대의 <b>50.4%</b>가 "미래 계획에 결혼·출산 없다"</td><td><a href="https://www.ibabynews.com/news/articleView.html?idxno=115887" target="_blank" rel="noopener">베이비뉴스</a></td></tr>
+<tr><td>딩크·무자녀</td><td>맞벌이 무자녀 초혼 신혼부부 <b>30.4%</b>(사상 첫 30% 돌파), 초혼 신혼부부의 48.8%가 무자녀</td><td><a href="https://www.nongmin.com/article/20251212500313" target="_blank" rel="noopener">농민신문</a></td></tr>
+<tr><td>출산 인식</td><td>'결혼하면 아이를 가져야 한다'에 미혼자 56% 비동의 — <b>20대 여성은 76% 비동의</b></td><td><a href="https://hrcopinion.co.kr/archives/33230" target="_blank" rel="noopener">한국리서치</a></td></tr>
+</table>
+
+<h3>블라인드 6만 건 빅데이터 — 결혼의 연관어는 '사랑'이 아니라 '돈'</h3>
+<div class="callout gray">한반도미래인구연구원이 직장인 커뮤니티 <b>블라인드의 결혼·출산 게시글 약 6만 건을 텍스트 분석</b>한 결과, 결혼 연관어는 '사랑'보다 <b>'돈'과 '집'</b>이 우세했고, 출산·육아 글에서는 '기쁨'보다 <b>'슬픔'과 '공포'</b>가 우세했다. <span class="srcline">(2025 인구보고서 · <a href="https://m.kukinews.com/article/view/kuk202507070165" target="_blank" rel="noopener">쿠키뉴스</a>)</span></div>
+
+<h3>청년들의 목소리</h3>
+<div class="quote">"결혼 얘기 나오면 먼저 계산부터 하게 돼요. 내 월급으로 가능한지부터요. … 결혼은 더 이상 개인의 선택이 아니라 계산이에요."
+<span class="who">— 서울 20대 직장인 · <a href="https://m.kukinews.com/article/view/kuk202507070165" target="_blank" rel="noopener">쿠키뉴스</a></span></div>
+<div class="quote">"결혼·출산, 포기가 아니라 거부예요."
+<span class="who">— <a href="https://www.edaily.co.kr/news/read?newsId=01400566625969984&mediaCodeNo=257" target="_blank" rel="noopener">이데일리 청년 인터뷰 기획</a></span></div>
+<div class="quote">"가난 때문에 결혼 포기하려구요" / "여자들이 결혼 기피하는 현실적인 이유 — 맞벌이에 출산으로 생활수준 하락, 시댁 스트레스, 출산 후 몸…" / "젊은 남자들 결혼 안 하는 이유 — 비용과 부양 부담"
+<span class="who">— 블라인드 게시글 · <a href="https://www.teamblind.com/kr/post/%EA%B0%80%EB%82%9C%EB%95%8C%EB%AC%B8%EC%97%90-%EA%B2%B0%ED%98%BC%ED%8F%AC%EA%B8%B0%ED%95%98%EB%A0%A4%EA%B5%AC%EC%9A%94-SZqNDuuf" target="_blank" rel="noopener">teamblind.com 1</a>·<a href="https://www.teamblind.com/kr/post/%EC%97%AC%EC%9E%90%EB%93%A4%EC%9D%B4-%EA%B2%B0%ED%98%BC-%EA%B8%B0%ED%94%BC%ED%95%98%EB%8A%94-%ED%98%84%EC%8B%A4%EC%A0%81%EC%9D%B8-%EC%9D%B4%EC%9C%A0-zgwnvVvv" target="_blank" rel="noopener">2</a>·<a href="https://www.teamblind.com/kr/post/%EC%A0%8A%EC%9D%80-%EB%82%A8%EC%9E%90%EB%93%A4-%EA%B2%B0%ED%98%BC-%EC%95%88%ED%95%98%EB%8A%94-%EC%9D%B4%EC%9C%A0-yyj7vcrG" target="_blank" rel="noopener">3</a></span></div>
+<div class="quote">"연애는 감정이 먼저고 결혼은 현실이 먼저인 경우가 많다. 같은 사람인데도 '연애할 땐 좋았는데 결혼은 고민된다'는 말이 나온다."
+<span class="who">— 스레드(Threads) 게시물 · <a href="https://www.threads.com/@wedding_yerang/post/DWfKnrok1-v" target="_blank" rel="noopener">threads.com</a></span></div>
+<div class="quote">"혼자서는 집을 못 사니 소득을 합치자" — 2026년 에펨코리아에서 화제가 된 <b>'생존결혼'</b> 담론. 2026년 1분기 혼인이 6.1% 늘어난 배경을 커뮤니티는 낭만이 아닌 '경제 전략'으로 해석했다.
+<span class="who">— <a href="https://www.fmkorea.com/best/9994928388" target="_blank" rel="noopener">에펨코리아</a>, <a href="https://www.hankyung.com/article/2026062212131" target="_blank" rel="noopener">한국경제</a></span></div>
+
+<h3>남녀 인식 격차 — 같은 포기, 다른 이유</h3>
+<ul class="tight">
+<li><b>남성</b>: "돈이 없어서 못 한다" — 결혼 기피 이유 1위 '비용 부담'(54~58%). 에펨코리아 등 남초 커뮤니티에서는 "세금·주택정책이 결혼을 벌주는 구조"라는 담론과 결혼 회의론이 확산. <span class="srcline">(<a href="https://hrcopinion.co.kr/archives/36560" target="_blank" rel="noopener">한국리서치</a>, <a href="https://www.fmkorea.com/best/9950447387" target="_blank" rel="noopener">에펨코리아</a>)</span></li>
+<li><b>여성</b>: "할 이유가 없다" — 가사·육아 쏠림(33%), 경력 단절(20%), 제도 자체에 대한 회의. 여성시대 등 여초 커뮤니티에서는 비혼 담론이 일상화됐고 '비혼식'(비혼 선언 후 축의금을 받는 행사)이 문화로 정착. <span class="srcline">(<a href="https://hrcopinion.co.kr/archives/36560" target="_blank" rel="noopener">한국리서치</a>, <a href="https://namu.wiki/w/%EB%B9%84%ED%98%BC%EC%8B%9D" target="_blank" rel="noopener">나무위키 '비혼식'</a>, <a href="https://m.cafe.daum.net/subdued20club/ReHf/4055840" target="_blank" rel="noopener">여성시대 달글</a>)</span></li>
+<li><b>젠더갈등의 효과</b>: 연세대 연구에 따르면 젠더갈등을 심각하게 인식할수록 결혼·출산 의향이 낮아지며 이 효과는 여성에게서 더 강하다. 2030의 75% 이상이 "젠더갈등 심각"이라 답했고, 18~29세의 25%는 '남녀갈등 심화'를 혼인 감소의 원인으로 직접 지목했다. <span class="srcline">(<a href="https://news.yonsei.ac.kr/kr/academia/detail?bbSeq=35778" target="_blank" rel="noopener">연세대</a>, <a href="https://hrcopinion.co.kr/archives/32695" target="_blank" rel="noopener">한국리서치 젠더인식조사</a>)</span></li>
+<li><b>기혼자의 사후 평가도 갈린다</b>: "다시 태어나면 결혼 안 한다" — 기혼 여성 38% vs 남성 15%. <span class="srcline">(<a href="https://hrcopinion.co.kr/archives/33230" target="_blank" rel="noopener">한국리서치</a>)</span></li>
+</ul>
+</div></details></section>
+
+<!-- ============ 4. 고립·정신건강 ============ -->
+<section id="mental">
+<details class="sec"><summary><h2><span class="no">04</span>고립·은둔과 마음의 위기</h2><span class="hint"><span class="arrow">▼</span><span class="txt">클릭해서 상세 내용 보기</span></span></summary><div class="sec-body">
+<p class="lead">취업 실패는 개인의 마음에서 끝나지 않는다. '쉬었음' 청년의 은둔 이행 확률은 17.8%로 전 유형 중 가장 높다 — 일자리 위기가 곧 고립 위기다.</p>
+
+<h3>핵심 통계</h3>
+<table>
+<tr><th style="width:44%">지표</th><th>수치</th><th style="width:30%">출처</th></tr>
+<tr><td>고립·은둔 청년 규모</td><td>약 <b>54만 명</b> 추정 (청년의 5.2%, 2022년 2.4%에서 2년 만에 배 이상). 이유 1위 '취업의 어려움' 32.8%</td><td><a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1007048862" target="_blank" rel="noopener">2024 청년의 삶 실태조사·SBS</a>, <a href="https://www.nocutnews.co.kr/news/6369759" target="_blank" rel="noopener">노컷뉴스</a></td></tr>
+<tr><td>고립·은둔의 사회적 비용</td><td>연 <b>5.3조~7.5조원</b> (1인당 약 2,200만원)</td><td><a href="https://www.fki.or.kr/fileOut/report/%EC%B2%AD%EB%85%84%20%EC%9D%80%EB%91%94%ED%99%94%EC%9D%98%20%EA%B2%B0%EC%A0%95%EC%9A%94%EC%9D%B8%20%EB%B0%8F%20%EC%82%AC%ED%9A%8C%EA%B2%BD%EC%A0%9C%EC%A0%81%20%EB%B9%84%EC%9A%A9%20%EC%B6%94%EC%A0%95%20%EB%B3%B4%EA%B3%A0%EC%84%9C.pdf" target="_blank" rel="noopener">보사연·한경협</a></td></tr>
+<tr><td>20대 우울증</td><td>2017→2021년 <b>+127.1%</b> (불안장애 +86.8%, 30대 우울증 +67.3%). 전체 우울증 환자 중 2030 비중 26%(2018)→36%(2023)</td><td><a href="https://www.medicaltimes.com/Main/News/NewsView.html?ID=1148087" target="_blank" rel="noopener">심평원·메디칼타임즈</a></td></tr>
+<tr><td>공황장애</td><td>연평균 증가율 <b>20대 24.5%로 전 연령 최고</b></td><td><a href="https://www.khan.co.kr/article/202304131254001" target="_blank" rel="noopener">경향신문</a></td></tr>
+<tr><td>번아웃</td><td>직장인 번아웃 경험 30대 75.3%, 20대 61.1%</td><td><a href="https://www.thefairnews.co.kr/news/articleView.html?idxno=28593" target="_blank" rel="noopener">잡코리아 설문·더페어</a></td></tr>
+<tr><td>자살률 (2024)</td><td>전체 인구 10만 명당 29.1명(2011년 이후 최고). 20대 21.7명·30대 27.1명 — OECD 최고 수준, 30대 증가율 +14.9%로 전 연령 1위</td><td><a href="https://www.mohw.go.kr/board.es?mid=a10503000000&bid=0027&list_no=1487496&act=view" target="_blank" rel="noopener">보건복지부</a></td></tr>
+<tr><td>응급실 자해·자살 시도</td><td>3만 5,170건 중 <b>20대 23.6%로 최다</b>, 특히 20대 여성 집중</td><td><a href="https://www.mdtoday.co.kr/news/view/1065577037993741" target="_blank" rel="noopener">메디컬투데이</a></td></tr>
+<tr><td>고립·은둔 청년의 자살 사고</td><td>4명 중 3명(약 75%)이 "죽음을 떠올린 적 있다". 개인회생 청년 10명 중 4명이 최근 1년 자살 충동 경험</td><td><a href="https://v.daum.net/v/20250718051200035" target="_blank" rel="noopener">노컷뉴스</a>, <a href="https://edaily.co.kr/News/Read?mediaCodeNo=257&newsId=01692486645477456" target="_blank" rel="noopener">이데일리</a></td></tr>
+</table>
+
+<h3>당사자의 목소리</h3>
+<div class="quote">"우리나라는 인생 경로가 정해져 있잖아요. 명문대를 나와 대기업에 들어가고, 좋은 배우자를 만나 가정을 이루는 것. 거기서 벗어나면 망한 인생이 될까 봐 두려웠고, 그래서 더 발버둥치며 살아온 것 같아요. … 회사에서 정상인인 척 연기를 하고 집에 오면 '젖은 수건'처럼 늘어져 있었어요. 방은 감정 상태와 비슷해요. 제 마음이 쓰레기장인걸요."
+<span class="who">— 임지선(33·가명), 전 고립청년 · <a href="https://www.nocutnews.co.kr/news/6369759" target="_blank" rel="noopener">CBS노컷뉴스</a></span></div>
+<div class="quote">"돈을 벌기 때문에 경제적 고립은 없지만, 힘든 일이 있거나 누군가의 도움이 필요할 땐 연락할 사람이 없는 정서적 고립 상태예요." (주변 반응은 "너는 직장이 있으니까, 적어도 집 밖에는 나오잖아?")
+<span class="who">— 김재용(33), 사회복지사·자칭 고립청년 · <a href="https://v.daum.net/v/20250718051200035" target="_blank" rel="noopener">CBS노컷뉴스</a></span></div>
+<div class="quote">"쓰레기로 뒤덮인 방에 살며, 인간 존엄성을 상실한 시간, 5년."
+<span class="who">— 유승규, 은둔 5년 경험 후 은둔청년 자립지원 '안무서운회사' 대표 · <a href="https://m.science.ytn.co.kr/program/view.php?s_mcd=1610&key=202506050952204067" target="_blank" rel="noopener">YTN사이언스</a></span></div>
+<div class="quote">"우울증 같은 거를 정신병자라고 생각하니까. 취직할 때도 지장이 있는 거라고 생각했어요." / "최대 3만 원씩 해도 한 달이면 십몇 만 원이잖아요. 알바 해봤자 60만 원 이렇게밖에 못 버는데…"
+<span class="who">— 정신과 진료를 망설인 청년들, 보건사회연구원 질적연구 · <a href="https://www.nocutnews.co.kr/news/6369759" target="_blank" rel="noopener">노컷뉴스 재인용</a></span></div>
+<div class="quote">"시도하고 도전하고 실패하고 상실감을 느껴요. 좌절을 반복하다 절망 상태로 가요. … 대학, 군대, 취업, 독립, 결혼… 뒤처졌을 때 눈치를 보고 루저 취급을 받아요. 다름을 인정하지 않는 분위기 때문에 주저앉는 거죠."
+<span class="who">— 김옥란 푸른고래리커버리센터장·박재영 청년재단 팀장 · <a href="https://v.daum.net/v/20250718051200035" target="_blank" rel="noopener">CBS노컷뉴스</a></span></div>
+
+<p class="srcline">※ 참고: 디시인사이드 '우울증 갤러리'에는 우울감을 호소하는 청년이 대거 유입됐고, 2024년 방송통신심의위원회 협의로 미성년자 글쓰기가 제한됐다 (<a href="https://v.daum.net/v/20241121084143722" target="_blank" rel="noopener">경향신문</a>). 이 주제는 민감한 영역이므로, 본인이나 주변이 어려움을 겪고 있다면 자살예방상담전화 109 등 전문 지원을 이용할 수 있다.</p>
+</div></details></section>
+
+<div class="part-divider">PART 2 · 진짜 목소리 — 커뮤니티 · SNS · 트렌드</div>
+<!-- ============ 5. 커뮤니티 스캔 ============ -->
+<section id="community">
+<details class="sec"><summary><h2><span class="no">05</span>커뮤니티 스캔 — 사이트별 '진짜 목소리'</h2><span class="hint"><span class="arrow">▼</span><span class="txt">클릭해서 상세 내용 보기</span></span></summary><div class="sec-body">
+<p class="lead">주요 커뮤니티에 직접 접속(2026.7.8)하거나, 접속이 차단된 곳은 해당 글을 인용·보도한 자료를 통해 수집했다. <span class="pill">직접수집 = 직접 접속 성공</span> <span class="pill">간접 = 언론·타 커뮤니티 경유</span></p>
+
+<div class="voice-grid">
+<div class="commcard"><h4><span class="site ok">클리앙 · 직접수집</span>30~40대 남초, IT 성향</h4>
+<p>「10대들에게 차마 하기 어려운 이야기」(2026.7.5, 조회 7,989): "지금의 10대는 견습기회도 없고, 전문가가 될 시간도 사라지는 암흑의 전환기에 정확히 끼어 있습니다. … AI 시대의 안전망(UBI)은 존엄한 삶이 아니라 관리되는 잉여에 가깝습니다." 반론 댓글 "뭔 현 젊은 세대가 가장 비참한 세대라고요? 언제나 변화에 적응하며 살아온 게 생물입니다"와 공존 — 세대 간 시각차가 그대로 드러남. 「쉬었음 청년에게 50만원을 주는군요」 등 정책 갑론을박도 활발.</p>
+<div class="src"><a href="https://www.clien.net/service/board/park/19221026" target="_blank" rel="noopener">원문 1</a> · <a href="https://www.clien.net/service/board/park/19172342" target="_blank" rel="noopener">원문 2</a> · <a href="https://www.clien.net/service/board/park/19018622" target="_blank" rel="noopener">원문 3(더쿠 재게시)</a></div></div>
+
+<div class="commcard"><h4><span class="site ok">인스티즈 · 직접수집</span>여초·아이돌 팬 중심 1020</h4>
+<p>「내가 가장 기뻤던 '합격'은」(2026.7.7, 조회 3.6만, 댓글 105) — 익명 댓글 대부분이 취업·공시·임용 합격담: "9수만에 서울중등영어임용합격", "2년 취준 끝 공기업 취업", "취업 근데 다시 취준생 됨.. ㅎㅎ", "삼성.. 3년 만에 때려쳤지만^^", "없어. 로또 1등 되면 기쁠 듯". 가장 기뻤던 기억조차 '시험 합격'에 몰려 있다는 것 자체가 수험사회의 단면. 「주5일 세후 1500 vs 주4일 세후 390」 같은 밸런스 게임도 인기.</p>
+<div class="src"><a href="https://www.instiz.net/pt/7878724" target="_blank" rel="noopener">원문</a> · <a href="https://www.instiz.net/pt/7878450" target="_blank" rel="noopener">밸런스 게임</a></div></div>
+
+<div class="commcard"><h4><span class="site ok">보배드림 · 직접수집</span>남초, 자동차·시사</h4>
+<p>베스트 게시판에서 27세 간호사 '태움' 사망 사건 글(조회 1.2만, 추천 162)에 청년 노동 현실 관련 여론 확인: "도대체 왜 괴롭히는 거지, 진짜 없어져야 할 문화"(추천 12). 청년 노동자를 비난한 댓글("그거 못 버틸 거면 간호사 왜 함??")은 반대 21개로 커뮤니티가 거부 — 청년 노동환경에 대한 공감대가 남초 커뮤니티에서도 확인된다. 시사 논쟁이 활발해 실시간 인기글이 타 커뮤니티로 중계되는 곳.</p>
+<div class="src"><a href="https://www.bobaedream.co.kr/view?code=best&No=1006592" target="_blank" rel="noopener">원문</a> · <a href="https://www.fmkorea.com/best/9909936071" target="_blank" rel="noopener">에펨코리아 중계</a></div></div>
+
+<div class="commcard"><h4><span class="site via">디시인사이드 · 간접</span>남초, 취업갤러리 등</h4>
+<p>취업갤러리에 "쉬었음 청년 보면 드는 생각", "대한민국 취업이 힘든 이유" 등 좌절 글 상시 화제. '쉬었음 청년' 뉴스에 "이런 일 할 바에 쉬는 게 낫다"는 자조와 "눈높이 문제"라는 반박이 충돌한 댓글 모음이 타 커뮤니티로 확산. 언론 분석에 따르면 디시 정치 갤러리 주 이용층이 2030(일부 갤러리 65~81%)이며, 경제적 불안과 박탈감이 과격 담론으로 이어진다는 지적. ※ 사이트 봇 차단으로 직접 접속 불가.</p>
+<div class="src"><a href="https://gall.dcinside.com/board/view/?id=employment&no=2297235" target="_blank" rel="noopener">글 URL</a> · <a href="https://www.fmkorea.com/8790179073" target="_blank" rel="noopener">댓글 모음(에펨 중계)</a> · <a href="https://news.nate.com/view/20250217n01826" target="_blank" rel="noopener">네이트뉴스 분석</a></div></div>
+
+<div class="commcard"><h4><span class="site via">에펨코리아 · 간접</span>남초, 2030 남성 최대</h4>
+<p>포텐(베스트)에 「결혼 예정인 청년들이 크게 분노한 부동산 근황」, 「2030 생존결혼 재테크 증가중」, 「취업을 포기했다는 디시인」, 「진짜 ㅈ된 거 같다는 요즘 취업시장」 등 청년 좌절 소재가 반복 등극. "내 집 사기 전엔 폭락, 사고 나면 폭등"이라는 이중 심리 자조 밈, 저출산 정책에 대한 "결혼을 벌주는 구조" 담론이 특징. ※ 외부 접근 차단으로 제목·중계로 확인.</p>
+<div class="src"><a href="https://www.fmkorea.com/best/9936943612" target="_blank" rel="noopener">포텐 1</a> · <a href="https://www.fmkorea.com/best/9994928388" target="_blank" rel="noopener">포텐 2</a> · <a href="https://www.fmkorea.com/best/8255542637" target="_blank" rel="noopener">포텐 3</a> · <a href="https://m.ruliweb.com/community/board/300143/read/73455827" target="_blank" rel="noopener">루리웹 유사글</a></div></div>
+
+<div class="commcard"><h4><span class="site via">블라인드 · 간접</span>직장인 익명</h4>
+<p>「요즘 2030이 진짜 결혼하기 어려운 이유」, 「가난 때문에 결혼 포기하려구요」, 「왜 자꾸 서류에서 탈락하는 걸까」 등 재직자조차 돈·집·탈락을 토로. 한반도미래인구연구원이 블라인드 글 6만 건을 분석해 '결혼=돈·집, 출산=슬픔·공포' 연관어 구조를 실증(§03 참조). "서류 탈락만 100번" 같은 취준 수기도 흔하다.</p>
+<div class="src"><a href="https://www.teamblind.com/kr/post/%EC%9A%94%EC%A6%98-2030%EC%9D%B4-%EC%A7%84%EC%A7%9C-%EA%B2%B0%ED%98%BC%ED%95%98%EA%B8%B0-%EC%96%B4%EB%A0%A4%EC%9A%B4-%EC%9D%B4%EC%9C%A0-0RussO0r" target="_blank" rel="noopener">원문</a> · <a href="https://m.kukinews.com/article/view/kuk202507070165" target="_blank" rel="noopener">6만 건 분석(쿠키뉴스)</a></div></div>
+
+<div class="commcard"><h4><span class="site via">여성시대(여시) · 간접</span>여초, 회원 약 72만</h4>
+<p>비혼·비출산 담론이 주류인 대형 여초 커뮤니티. 비혼 선언 달글이 일상화됐고, 비혼을 번복한 사례를 조롱하는 분위기가 남초 커뮤니티로 중계되며 논쟁이 되기도 했다. '비혼식' 문화(결혼 대신 비혼 선언 후 축의금 수령)가 여초를 중심으로 정착. ※ 다음카페 로그인 필요로 직접 수집 불가, 나무위키·중계글 기반이라 편향 가능성 유의.</p>
+<div class="src"><a href="https://m.cafe.daum.net/subdued20club/ReHf/4055840" target="_blank" rel="noopener">달글</a> · <a href="https://namu.wiki/w/%EC%97%AC%EC%84%B1%EC%8B%9C%EB%8C%80" target="_blank" rel="noopener">나무위키</a> · <a href="https://www.fmkorea.com/index.php?document_srl=6690796665&cpage=6" target="_blank" rel="noopener">중계글</a></div></div>
+
+<div class="commcard"><h4><span class="site via">네이트판·더쿠 · 간접</span>여초</h4>
+<p>결혼 '실비용' 공유 담론이 강함: 「구체적인 결혼식 비용 후기」(스드메 300~400만, 식대 2천만원대), 「동생 여친이 천만원 들고 온다는데」 등 — 결혼이 낭만이 아닌 가계부의 문제로 소비된다. 「누가 요즘 오마카세 먹어요?」처럼 욜로→요노 전환에 대한 반응도 활발. 더쿠 발 「2030이 구직 안 하는 이유」는 타 커뮤니티로 퍼지며 세대 담론의 대표 텍스트가 됐다. ※ 두 사이트 모두 직접 접속 차단.</p>
+<div class="src"><a href="https://theqoo.net/review/1036289281" target="_blank" rel="noopener">더쿠 1</a> · <a href="https://theqoo.net/square/3603180704" target="_blank" rel="noopener">더쿠 2</a> · <a href="https://theqoo.net/square/3338944660" target="_blank" rel="noopener">더쿠 3</a></div></div>
+
+<div class="commcard"><h4><span class="site via">코인판 · 간접</span>코인 투자 커뮤니티</h4>
+<p>폭락장마다 "코인별 한강모임" 같은 자조 글이 올라오고, '한강' 언급 빈도로 시장 심리를 재는 '비트코인 한강지수' 밈이 존재. 디시인사이드에는 해외선물 전용 갤러리까지 있다 — 근로소득 불신이 고위험 투기로 흐른 흔적. ※ 직접 접속 차단.</p>
+<div class="src"><a href="https://coinpan.com/free/190547085" target="_blank" rel="noopener">코인판 글</a> · <a href="https://kilho.net/archives/various/2573" target="_blank" rel="noopener">한강지수</a> · <a href="https://gall.dcinside.com/mini/board/lists/?id=future" target="_blank" rel="noopener">디시 해선갤</a></div></div>
+
+<div class="commcard"><h4><span class="site ok">82쿡 · 직접수집</span>여초, 3050 주부 중심</h4>
+<p>접속엔 성공했으나 수집 시점 인기글은 주식·정치 위주로 2030 직접 주제는 적었음. 중장년 재취업 고민 글("바리스타 자격증 땄지만 나이 있어서 취직 어렵고…")이 눈에 띄는데, 취업난이 청년만의 문제가 아니라 부모 세대의 걱정으로도 이어짐을 보여준다.</p>
+<div class="src"><a href="https://www.82cook.com/entiz/read.php?bn=15&num=4211361" target="_blank" rel="noopener">원문</a></div></div>
+</div>
+
+<div class="callout gray" style="margin-top:18px;"><b>수집 방법 고지</b> — 네이트판·더쿠·디시인사이드·코인판·에펨코리아는 봇 차단/로그인 요구로 직접 접속이 불가해, 해당 글을 전문 인용한 타 커뮤니티 재게시물과 언론 보도로 대체 수집했다. 커뮤니티 글은 삭제·수정될 수 있으며, 특정 커뮤니티 여론이 2030 전체를 대표하지 않는다(남초/여초 간 담론 차이가 크다).</div>
+</div></details></section>
+
+<!-- ============ 6. SNS·빅데이터 ============ -->
+<section id="sns">
+<details class="sec"><summary><h2><span class="no">06</span>SNS 스캔과 빅데이터 — 유행어로 읽는 세대 심리</h2><span class="hint"><span class="arrow">▼</span><span class="txt">클릭해서 상세 내용 보기</span></span></summary><div class="sec-body">
+<p class="lead">청년 세대의 유행어는 그 자체가 데이터다. '욜로·플렉스'에서 '갓생·요노·거지방'으로의 이동은 소비 여력과 미래 기대의 축소를 정확히 반영한다.</p>
+
+<h3>텍스트 빅데이터 분석 결과</h3>
+<ul class="tight">
+<li><b>블라인드 6만 건 분석</b> (한반도미래인구연구원): 결혼 연관어 '사랑' &lt; <b>'돈'·'집'</b>, 출산 연관어 '기쁨' &lt; <b>'슬픔'·'공포'</b>. <span class="srcline">(<a href="https://m.kukinews.com/article/view/kuk202507070165" target="_blank" rel="noopener">쿠키뉴스</a>)</span></li>
+<li><b>SNS 감성분석 논문</b> (안명숙, 『문화기술의 융합』 2023): MZ 관련 SNS 텍스트 긍정 72.1% vs 부정 27.9%. 기성세대의 부정감성은 '결혼 기피·취업난·빚투 걱정', MZ 본인의 부정감성은 '일반화에 대한 거부감', '기성세대보다 심한 경쟁', <b>'풍요로운 시대의 상대적 실패감'</b>. <span class="srcline">(<a href="https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE12199352" target="_blank" rel="noopener">DBpia</a>)</span></li>
+<li><b>'갓생' 언급량</b>: 2020년 27만 건 → 2022년 64만 건으로 급증, '욜로'·'플렉스'를 추월. 연관어 상위: 오운완·미라클모닝·카공. <span class="srcline">(<a href="https://opengov.seoul.go.kr/mediahub/27912473" target="_blank" rel="noopener">서울시 정보소통광장</a>)</span></li>
+<li><b>'이생망' 설문</b>: 20~34세 1,000명 중 41%가 "이번 생이 망했다고 생각한 적 있다", 그중 다수는 농담이 아니라 "앞으로도 나아질 것 같지 않다"는 의미로 사용. <span class="srcline">(<a href="https://www.khan.co.kr/article/201601032317475" target="_blank" rel="noopener">경향신문 '부들부들 청년', 2016 — 담론의 기원 자료</a>)</span></li>
+<li><b>소비 데이터</b>: 요노(YONO) 확산 근거로 2030 외식 결제 -9%, 간편식 +21% (카드 데이터). <span class="srcline">(<a href="https://www.hankyung.com/article/2024072846121" target="_blank" rel="noopener">한국경제</a>)</span></li>
+</ul>
+
+<h3>유행어·밈 사전 — 세대 심리의 연대기</h3>
+<table>
+<tr><th style="width:16%">유행어</th><th>의미와 데이터</th><th style="width:26%">출처</th></tr>
+<tr><td><b>거지방</b></td><td>카톡 오픈채팅에서 지출을 보고하면 서로 꾸짖으며 절약을 강제하는 방. 실제 대화: "물 500원" → "오후에 비 온다는데 좀 더 기다리시지 그랬어요", 6,600원 와플엔 "이럴 거면 당장 사치방으로 떠나라". 파생 앱 '거지맵'(8천원 이하 식당 지도)은 누적 이용자 131만 명. 이면에는 "나만 도태되고 있나"라는 불안.</td><td><a href="https://www.1conomynews.co.kr/news/articleView.html?idxno=23727" target="_blank" rel="noopener">1코노미뉴스(잠입취재)</a>, <a href="https://www.hankookilbo.com/news/article/A2026041008120001065" target="_blank" rel="noopener">한국일보</a>, <a href="https://www.ytn.co.kr/_ln/0103_202304171949457701" target="_blank" rel="noopener">YTN</a></td></tr>
+<tr><td><b>무지출 챌린지</b></td><td>하루 지출 0원을 가계부 앱 캡처로 인스타·X에 인증. 2022년 물가 급등기 확산, "오늘도 0원 성공".</td><td><a href="https://www.khan.co.kr/article/202207131602001" target="_blank" rel="noopener">경향신문</a>, <a href="https://namu.wiki/w/%EB%AC%B4%EC%A7%80%EC%B6%9C%20%EC%B1%8C%EB%A6%B0%EC%A7%80" target="_blank" rel="noopener">나무위키</a></td></tr>
+<tr><td><b>갓생</b></td><td>God+인생. 오운완·미라클모닝과 결합한 자기관리 인증 문화. "불안을 루틴으로 다스리는" 세대의 적응 전략이라는 해석과 "행복한가?"라는 자문이 공존.</td><td><a href="https://opengov.seoul.go.kr/mediahub/27912473" target="_blank" rel="noopener">서울시</a>, <a href="https://www.ohmynews.com/NWS_Web/View/at_pg.aspx?CNTN_CD=A0002911599" target="_blank" rel="noopener">오마이뉴스</a></td></tr>
+<tr><td><b>요노(YONO)</b></td><td>'You Only Need One' — 욜로의 정반대. 필요한 것 하나만 산다. "오마카세 대신 간편식, 택시보단 버스".</td><td><a href="https://www.hankyung.com/article/2024072846121" target="_blank" rel="noopener">한국경제</a>, <a href="https://kbthink.com/main/living-finance/consumption-life/mz-consumption/yono.html" target="_blank" rel="noopener">KB의 생각</a></td></tr>
+<tr><td><b>200따리/300따리</b></td><td>월급 200·300만원을 스스로 조롱하는 밈. "한 달을 고생해 번 돈은 '200따리'라며 조롱받고, 끝없이 높아지는 평균의 잣대 속에서 박탈감을 반복해서 느낀다."</td><td><a href="https://brunch.co.kr/@kook7581/69" target="_blank" rel="noopener">브런치</a></td></tr>
+<tr><td><b>쉬었음 밈</b></td><td>정부 통계 용어 '쉬었음'이 "나도 그냥 '쉬었음' 하련다"는 조롱 밈으로 전유됨. "차라리 백수라고 불리는 게 낫다. '쉬었음'은 존재 자체가 부정당하는 기분"이라는 반발.</td><td><a href="https://www.news1.kr/society/incident-accident/6025475" target="_blank" rel="noopener">뉴스1</a>, <a href="https://www.etoday.co.kr/news/view/2581950" target="_blank" rel="noopener">이투데이</a></td></tr>
+<tr><td><b>존버·이생망·N포</b></td><td>버티기(존버), 체념(이생망), 포기의 목록화(N포세대) — 2010년대 중반부터 이어진 자조 담론의 뿌리. 세대 명칭 계보: 88만원 세대 → 이태백 → N포 → 흙수저 → 영끌족.</td><td><a href="https://namu.wiki/w/N%ED%8F%AC%EC%84%B8%EB%8C%80" target="_blank" rel="noopener">나무위키</a>, <a href="https://www.munhwa.com/article/11566638" target="_blank" rel="noopener">문화일보</a></td></tr>
+<tr><td><b>탕후루 창업 잔혹사</b></td><td>쇼츠발 유행 창업의 함정: 2023년 150곳 개점 → 이듬해 620곳 폐업. "전재산 털어넣었는데 완전 망했어요." 유행은 '탕후루→요아정→두바이 초콜릿'으로 이동, 청년 자영업의 위험성을 상징.</td><td><a href="https://m.news.nate.com/view/20260203n01534" target="_blank" rel="noopener">네이트뉴스</a>, <a href="https://news.nate.com/view/20240630n17441" target="_blank" rel="noopener">네이트뉴스 2</a></td></tr>
+</table>
+
+<div class="callout"><b>유행어 타임라인이 말해주는 것</b> — 욜로·플렉스(2018~20, 소비로 과시) → 영끌·빚투(2020~21, 자산 추격) → 무지출·거지방·갓생(2022~23, 긴축과 자기관리) → 요노·생존결혼(2024~26, 축소 지향의 표준화). 소비 담론의 이동은 곧 "노력하면 따라잡을 수 있다"는 기대가 "이미 늦었으니 줄이고 버틴다"로 바뀐 과정이다.</div>
+</div></details></section>
+
+<!-- ============ 7. 신조어·트렌드 총정리 ============ -->
+<section id="trends">
+<details class="sec"><summary><h2><span class="no">07</span>신조어·유행 트렌드 총정리 (2024~2026)</h2><span class="hint"><span class="arrow">▼</span><span class="txt">클릭해서 상세 내용 보기</span></span></summary><div class="sec-body">
+<p class="lead">§06이 '생존 유행어'(돈·취업)였다면, 이 장은 지금 2030이 실제로 쓰는 최신 신조어와 소비·문화 트렌드 전체를 정리한다. 복수 매체에서 검증된 것만 수록했다.</p>
+
+<h3>최신 신조어 사전</h3>
+<table>
+<tr><th style="width:17%">단어</th><th>의미·유래</th><th style="width:22%">출처</th></tr>
+<tr><td><b>원영적 사고</b></td><td>초긍정 사고방식 — 나쁜 일도 결국 좋은 결과로 해석. 아이브 장원영의 브이로그("앞사람이 빵을 다 사가서 갓 나온 빵을 받았다, 완전 럭키")에서 2024년 밈화. '○○적 사고' 파생형 다수</td><td><a href="https://www.segye.com/newsView/20240604507386" target="_blank" rel="noopener">세계일보</a>, <a href="https://namu.wiki/w/%EC%9B%90%EC%98%81%EC%A0%81%20%EC%82%AC%EA%B3%A0" target="_blank" rel="noopener">나무위키</a></td></tr>
+<tr><td><b>럭키비키</b></td><td>"완전 행운이야" — Lucky + 장원영 영어 이름 Vicky. "완전 럭키비키잖아"가 관용구화</td><td><a href="https://modoopedia.kr/%EC%9B%90%EC%98%81%EC%A0%81-%EC%82%AC%EA%B3%A0-%EB%9C%BB/" target="_blank" rel="noopener">모두피디아</a></td></tr>
+<tr><td><b>텍스트힙</b></td><td>독서·기록이 '힙하다'는 인식. 숏폼 피로의 반작용 + 한강 노벨문학상(발표 6일 만에 100만 부)으로 폭발. 20대 종합 독서율 74.5%로 전 연령 최고</td><td><a href="https://kbthink.com/main/living-finance/consumption-life/mz-consumption/text-hip.html" target="_blank" rel="noopener">KB의 생각</a>, <a href="https://www.tossbank.com/articles/texthip" target="_blank" rel="noopener">토스뱅크</a></td></tr>
+<tr><td><b>저속노화</b></td><td>식습관 등으로 노화 속도를 늦추기(렌틸콩·잡곡밥 식단). 정희원 교수(서울아산병원)가 전파, 커뮤니티 모임 가입자 약 7만 명. '마라탕후루 세대'의 건강 반작용</td><td><a href="https://www.sisajournal.com/news/articleView.html?idxno=346834" target="_blank" rel="noopener">시사저널</a>, <a href="https://www.khan.co.kr/article/202502051539001" target="_blank" rel="noopener">경향신문</a></td></tr>
+<tr><td><b>도파민 디톡스</b></td><td>숏폼 등 즉각 자극을 의도적으로 끊는 운동. 디지털 디톡스 앱 설치 +64%(NHN데이터), 피처폰 회귀족 등장 — 숏폼='디지털 마약' 담론의 반작용</td><td><a href="https://mobile.newsis.com/view/NISX20250123_0003044035" target="_blank" rel="noopener">뉴시스</a></td></tr>
+<tr><td><b>테토/에겐</b></td><td>테스토스테론형(주도적)·에스트로겐형(섬세·공감형) 성격 구분 놀이. 2025년 SNS 대유행, "MBTI 다음 유행"</td><td><a href="https://news.nate.com/view/20250324n11838" target="_blank" rel="noopener">네이트뉴스</a>, <a href="https://namu.wiki/w/%ED%85%8C%ED%86%A0-%EC%97%90%EA%B2%90%20%EC%84%B1%EA%B2%A9%20%EC%9C%A0%ED%98%95" target="_blank" rel="noopener">나무위키</a></td></tr>
+<tr><td><b>추구미</b></td><td>추구+美. 내가 지향하는 이미지·스타일. 아이돌 팬덤어에서 패션·라이프스타일 전반으로 확장, '손민수하다'를 대체</td><td><a href="https://www.careet.net/1075" target="_blank" rel="noopener">캐릿</a>, <a href="https://m.sedaily.com/amparticle/13829931" target="_blank" rel="noopener">서울경제</a></td></tr>
+<tr><td><b>디토소비</b></td><td>"나도(ditto)" — 유명인·인플루언서의 소비를 그대로 따라 삼. 요아정·두바이초콜릿 등 디저트 유행의 엔진 (트렌드코리아 2024)</td><td><a href="https://news.tf.co.kr/read/life/2119673.htm" target="_blank" rel="noopener">더팩트</a></td></tr>
+<tr><td><b>요아정</b></td><td>'요거트 아이스크림의 정석'. 50여 가지 토핑 커스텀 + 인플루언서 레시피로 2024년 탕후루 대체 유행</td><td><a href="https://www.the-pr.co.kr/news/articleView.html?idxno=51715" target="_blank" rel="noopener">더피알</a></td></tr>
+<tr><td><b>마라탕후루</b></td><td>마라탕(식사)+탕후루(후식) 코스 — 1020 자극 식문화의 상징어. 이후 '저속노화'와 대비되는 말로 재소환</td><td><a href="https://www.khan.co.kr/article/202502051539001" target="_blank" rel="noopener">경향신문</a></td></tr>
+<tr><td><b>느좋</b></td><td>'느낌 좋다' — 감성적인 장소·사진·사람에 붙임(느좋카, 느좋남). 2024~25 인스타·X 확산</td><td><a href="https://www.asiaa.co.kr/news/articleView.html?idxno=223389" target="_blank" rel="noopener">아시아에이</a></td></tr>
+<tr><td><b>완내스</b></td><td>'완전 내 스타일' — 취향 저격당했을 때</td><td><a href="https://www.edaily.co.kr/News/Read?newsId=03050406635543648&mediaCodeNo=257" target="_blank" rel="noopener">이데일리</a></td></tr>
+<tr><td><b>아보하</b></td><td>'아주 보통의 하루' — 행복 과시 대신 무탈한 일상에 만족(트렌드코리아 2025). '소확행'의 다음 단계</td><td><a href="https://www.womennews.co.kr/news/articleView.html?idxno=252430" target="_blank" rel="noopener">여성신문</a></td></tr>
+<tr><td><b>무해력</b></td><td>작고 귀엽고 서툰, '해가 없는' 것의 힘(트렌드코리아 2025) — 푸바오·망그러진곰류 인기의 설명어</td><td><a href="https://openads.co.kr/content/contentDetail?contsId=14291" target="_blank" rel="noopener">오픈애즈</a></td></tr>
+<tr><td><b>키꾸/백꾸</b></td><td>키링 꾸미기·가방 꾸미기. 라부부 열풍과 함께 2025년 확산</td><td><a href="https://biz.heraldcorp.com/article/10584727" target="_blank" rel="noopener">헤럴드경제</a></td></tr>
+<tr><td><b>젠지 스테어</b></td><td>질문에 즉답하지 않고 무표정하게 응시하는 Z세대 특유의 태도 밈 (2025 글로벌 밈 유입)</td><td><a href="https://www.asiaa.co.kr/news/articleView.html?idxno=223389" target="_blank" rel="noopener">아시아에이</a></td></tr>
+<tr><td><b>"나 ○○인데~"</b></td><td>"나 카페 알바생인데~ 팔 아프니까 신메뉴 먹지 마~"식 자기소개 개그 — 2026년 상반기 숏폼 유행</td><td><a href="https://gogumafarm.kr/%EB%82%98-%EA%B3%A0%EA%B5%AC%EB%A7%88%ED%8C%9C%EC%9D%B8%EB%8D%B0-%EC%9A%94%EC%A6%98-%EB%9C%A8%EB%8A%94-%EB%B0%88-%EA%B0%80%EC%A0%B8%EC%99%94%EB%8B%A4-2026%EB%85%84-6%EC%9B%94-%EC%B5%9C%EC%8B%A0/" target="_blank" rel="noopener">고구마팜</a></td></tr>
+<tr><td>상용 정착어</td><td>점메추(점심 메뉴 추천), 꾸안꾸(꾸민 듯 안 꾸민 듯) — 신조어라기보다 '현역 상용어'. '뉴진스럽다'(2023)는 사용 빈도 급감한 한물간 유행어</td><td><a href="https://www.careet.net/1075" target="_blank" rel="noopener">캐릿</a></td></tr>
+</table>
+
+<h3>공식 트렌드 키워드 (연구기관·서적)</h3>
+<ul class="tight">
+<li><b>트렌드코리아 2026 'HORSE POWER'</b>: 휴먼인더루프(AI에 인간 개입), 필코노미('기분' 설계 소비), 제로클릭, 레디코어(자기주도 준비력), 픽셀라이프(작은 단위 소비·작은 성취), 프라이스 디코딩(가격 해부형 초합리 소비), 건강지능 HQ, 1.5가구, 근본이즘(AI 시대 '진짜' 찾기) 등. <span class="srcline">(<a href="https://www.ntoday.co.kr/news/articleView.html?idxno=119826" target="_blank" rel="noopener">투데이신문</a>)</span></li>
+<li><b>트렌드코리아 2025</b>: 옴니보어, 아보하, <b>토핑경제</b>(기성품에 내 취향 토핑 — 키링·다꾸·요아정을 관통), 무해력, 그라데이션K. <span class="srcline">(<a href="https://www.womennews.co.kr/news/articleView.html?idxno=252430" target="_blank" rel="noopener">여성신문</a>)</span></li>
+<li><b>대학내일20대연구소 'Z세대 트렌드 2026'</b>: 핵심축은 '시간과 감정' — 메타센싱(감정을 객관적으로 감지·관리), 리퀴드 콘텐츠(24시간 느슨하게 흐르는 콘텐츠), 적시소비(사라지기 전에 '지금' 사는 소비) 등 7키워드. 사례 900건·소셜 키워드 7,000개 분석 기반. <span class="srcline">(<a href="https://www.20slab.org/Archives/39003" target="_blank" rel="noopener">20slab</a>)</span></li>
+<li><b>캐릿 2025 결산</b>: 자기이해 도구(MBTI·퍼스널컬러·체형진단) 관심 Z세대 89%, <b>절약+가치소비 양극화</b> — 생활비는 아끼고 패션·여행엔 과감. <span class="srcline">(<a href="https://www.careet.net/1808" target="_blank" rel="noopener">캐릿</a>)</span></li>
+</ul>
+
+<h3>데이터로 본 소비 트렌드</h3>
+<table>
+<tr><th style="width:20%">트렌드</th><th>데이터</th><th style="width:20%">출처</th></tr>
+<tr><td><b>러닝·러닝코어</b></td><td>러닝 검색량 +82%, 러닝화 시장 1조원 돌파. 크림(KREAM) 러닝 카테고리 거래량 +171%, 러닝 볼캡 +1,205% — 운동을 넘어 패션·크루(소속감) 문화로</td><td><a href="https://www.pointdaily.co.kr/news/articleView.html?idxno=248890" target="_blank" rel="noopener">포인트데일리</a>, <a href="https://www.ktnews.com/news/articleView.html?idxno=142133" target="_blank" rel="noopener">한국섬유신문</a></td></tr>
+<tr><td><b>하이볼</b></td><td>CU 하이볼 매출 +553.7%(2023)→+315.2%(2024)→+190%대(2025). 반면 와인 -33% — 위스키 열풍의 '가성비 계승자'</td><td><a href="https://www.seoulfn.com/news/articleView.html?idxno=627791" target="_blank" rel="noopener">서울파이낸스</a></td></tr>
+<tr><td><b>다이소 뷰티</b></td><td>뷰티 매출 +85%(2023)→+144%(2024)→약 +70%(2025), 입점 브랜드 100개 — 2030의 '초저가 테스트베드'</td><td><a href="https://www.viva100.com/article/20260203500977" target="_blank" rel="noopener">브릿지경제</a></td></tr>
+<tr><td><b>소분·조각 소비</b></td><td>롯데마트 조각 수박 +111.3%, 커팅 과일 +63.4%. 1인 가구 750만 × 고물가의 결합 — '한입 소비'</td><td><a href="https://www.industrynews.co.kr/news/articleView.html?idxno=81174" target="_blank" rel="noopener">인더스트리뉴스</a></td></tr>
+<tr><td><b>라부부·키링</b></td><td>2.1만원 인형 리셀가 16.3만원(+676%), 크림 거래액 +7,711%(2025.6) — 블라인드박스 희소성 + 셀럽 효과 (토핑경제의 대표 사례)</td><td><a href="https://www.hankookilbo.com/News/Read/A2025063018140004733" target="_blank" rel="noopener">한국일보</a></td></tr>
+<tr><td><b>편의점 디저트·IP</b></td><td>흑백요리사 '밤 티라미수 컵' CU 250만 개 판매 — 편의점이 디저트 트렌드 최전선</td><td><a href="https://www.metroseoul.co.kr/article/20251216500449" target="_blank" rel="noopener">메트로서울</a></td></tr>
+<tr><td><b>팝업스토어</b></td><td>성수동이 서울 팝업 개최 1위 '팝업 성지', 팝업 전문 플랫폼까지 등장</td><td><a href="https://www.tinnews.co.kr/29438" target="_blank" rel="noopener">TIN뉴스</a></td></tr>
+<tr><td><b>팬덤 소비</b></td><td>K팝 굿즈 시장 약 2조원(2025), 팬덤 비즈니스 3조→5년 내 10조 전망. 코어 팬덤(30%)이 소비액의 64%</td><td><a href="https://www.payoneer.com/ko/resources/kpop-ecommerce/" target="_blank" rel="noopener">페이오니어</a>, <a href="https://www.m-joongang.com/news/articleView.html?idxno=401504" target="_blank" rel="noopener">월간중앙</a></td></tr>
+</table>
+
+<h3>문화 트렌드</h3>
+<ul class="tight">
+<li><b>숏폼 피로 → 아날로그 회귀</b>: 도파민 디톡스, 텍스트힙, 러닝 크루 — 자극(마라탕후루·숏폼)과 회복(저속노화·독서·운동)이 공존하는 이중 구조.</li>
+<li><b>'혼자' 문화의 정착</b>: 1인 가구 750만(전체의 30%+) 기반의 혼밥·혼술·혼영·혼행 세분화 — 비혼·개인주의 확산과 연동. <span class="srcline">(<a href="https://www.kyeonggi.com/article/20230926580104" target="_blank" rel="noopener">경기일보</a>)</span></li>
+<li><b>유형화 놀이</b>: MBTI → 퍼스널컬러 → 테토/에겐으로 이어지는 자기이해·구분 문화 (관심 Z세대 89%).</li>
+<li><b>AI 생활화</b>: 챗GPT 사주·연애상담·심리상담 유행, 지브리풍 AI 그림 열풍(2025 상반기) — 고민을 사람 대신 AI에 토로하는 문화. <span class="srcline">(<a href="https://aimatters.co.kr/news-report/ai-report/30800/" target="_blank" rel="noopener">AI매터스</a>, <a href="https://www.hankyung.com/article/202602191082g" target="_blank" rel="noopener">한국경제</a>)</span></li>
+<li><b>긍정 언어로 불안 대처</b>: 원영적 사고·럭키비키 같은 '초긍정 밈'은 저성장·불안 시대의 심리 방어기제라는 해석. <span class="srcline">(<a href="https://www.careet.net/1808" target="_blank" rel="noopener">캐릿</a>)</span></li>
+</ul>
+
+<div class="callout"><b>트렌드 종합 해석</b> — 2024~2026의 흐름은 두 개의 축으로 정리된다. ① <b>자극 ↔ 반작용</b>: 마라탕후루·숏폼·탕후루의 초자극 다음에 저속노화·도파민 디톡스·텍스트힙·러닝이 왔다. ② <b>절약 ↔ 과감</b>: 다이소·소분·거지방으로 생활비를 조이면서도 러닝코어·라부부·팬덤·팝업에는 아낌없이 쓴다. 두 축 모두 §01~04의 경제 현실(못 사는 집, 안 오르는 월급)과 연결된다 — 큰 소비(집·차·결혼)가 막히자 작은 단위의 통제감('픽셀라이프'·'토핑경제')과 심리 방어('원영적 사고'·'아보하')로 이동한 것이다.</div>
+</div></details></section>
+
+<div class="part-divider">PART 3 · 정치 — 지지율과 정책</div>
+<!-- ============ 8. 정치 지형 ============ -->
+<section id="politics">
+<details class="sec"><summary><h2><span class="no">08</span>2030 정치 지형 — 무당층 48%, 최대의 스윙보터</h2><span class="hint"><span class="arrow">▼</span><span class="txt">클릭해서 상세 내용 보기</span></span></summary><div class="sec-body">
+<p class="lead">2030은 어느 정당의 '집토끼'도 아니다. 4050(민주당 강세)·60대+(국민의힘 강세)와 달리 진영 충성도가 낮고, 이슈에 따라 크게 움직인다. 2026년 중반 현재 2030은 여당에서 대거 이탈한 상태다.</p>
+
+<h3>연령별 정당 지지율 비교 (리서치웰·뉴데일리, 2026.7.1~2, ARS)</h3>
+<div class="bar-chart">
+  <div class="bar-row"><div class="bar-label">18~29세</div><div class="bar-track"><div class="bar-fill b-dem" style="width:29.2%">민주 29.2%</div></div></div>
+  <div class="bar-row"><div class="bar-label"></div><div class="bar-track"><div class="bar-fill b-ppp" style="width:44.3%">국힘 44.3%</div></div></div>
+  <div class="bar-row"><div class="bar-label">30대</div><div class="bar-track"><div class="bar-fill b-dem" style="width:23.1%">민주 23.1%</div></div></div>
+  <div class="bar-row"><div class="bar-label"></div><div class="bar-track"><div class="bar-fill b-ppp" style="width:45.4%">국힘 45.4%</div></div></div>
+  <div class="bar-row"><div class="bar-label">40대</div><div class="bar-track"><div class="bar-fill b-dem" style="width:47.2%">민주 47.2%</div></div></div>
+  <div class="bar-row"><div class="bar-label"></div><div class="bar-track"><div class="bar-fill b-ppp" style="width:32.0%">국힘 32.0%</div></div></div>
+  <div class="bar-row"><div class="bar-label">50대</div><div class="bar-track"><div class="bar-fill b-dem" style="width:53.7%">민주 53.7%</div></div></div>
+  <div class="bar-row"><div class="bar-label"></div><div class="bar-track"><div class="bar-fill b-ppp" style="width:29.6%">국힘 29.6%</div></div></div>
+  <div class="bar-row"><div class="bar-label">60대</div><div class="bar-track"><div class="bar-fill b-dem" style="width:40.1%">민주 40.1%</div></div></div>
+  <div class="bar-row"><div class="bar-label"></div><div class="bar-track"><div class="bar-fill b-ppp" style="width:44.1%">국힘 44.1%</div></div></div>
+  <div class="bar-row"><div class="bar-label">70세 이상</div><div class="bar-track"><div class="bar-fill b-dem" style="width:31.4%">민주 31.4%</div></div></div>
+  <div class="bar-row"><div class="bar-label"></div><div class="bar-track"><div class="bar-fill b-ppp" style="width:50.5%">국힘 50.5%</div></div></div>
+  <p class="chart-note">2026년 중반 특징: 2030의 국민의힘 지지가 60대 이상과 비슷한 수준으로 상승 — 민주당은 4050에 편중. 출처: <a href="https://www.newdaily.co.kr/site/data/html/2026/07/03/2026070300082.html" target="_blank" rel="noopener">리서치웰/뉴데일리 (2026.7.1~2, 1,005명, ARS)</a></p>
+</div>
+
+<h3>조사기관별 비교 (2026년 6월 말~7월 초)</h3>
+<table>
+<tr><th>조사 (기관/방식)</th><th>민주당</th><th>국민의힘</th><th>개혁신당</th><th>무당층</th></tr>
+<tr><td>NBS 전국지표조사 (전화면접, 6.29~7.1)</td><td>42%</td><td>20%</td><td>2%</td><td><b>30%</b> (18~29세는 48%)</td></tr>
+<tr><td>한국갤럽 (전화면접, 6.9~11)</td><td>41%</td><td>29%</td><td>–</td><td>–</td></tr>
+<tr><td>리얼미터 (ARS, 7월 1주)</td><td>43.0%</td><td>40.3%</td><td>3.0%</td><td>6.5%</td></tr>
+<tr><td>리서치웰 (ARS, 7.1~2)</td><td>38.3%</td><td>40.6%</td><td>1.4%</td><td>13.8%</td></tr>
+</table>
+<div class="callout warn"><b>여론조사 해석 주의</b> — 전화면접(갤럽·NBS)과 ARS(리얼미터·리서치웰)의 국민의힘 지지율 격차가 최대 20%p에 달한다. 기관 간 수치를 직접 비교하지 말고 <b>같은 기관의 시계열 변화</b>로 읽어야 한다. 상세 내용은 중앙선거여론조사심의위원회(nesdc.go.kr) 등록 자료 기준. <span class="srcline">(<a href="http://nbsurvey.kr/" target="_blank" rel="noopener">NBS</a>, <a href="https://www.seoul.co.kr/news/politics/president/2026/07/06/20260706500009" target="_blank" rel="noopener">서울신문/리얼미터</a>)</span></div>
+
+<h3>20대 남녀의 극적인 표심 분화 — 2025 대선 출구조사 (방송3사)</h3>
+<div class="bar-chart">
+  <p style="font-size:.88rem; font-weight:700; margin-bottom:4px;">20대 남성</p>
+  <div class="bar-row"><div class="bar-label">이준석(개혁신당)</div><div class="bar-track"><div class="bar-fill b-etc" style="width:37.2%">37.2%</div></div></div>
+  <div class="bar-row"><div class="bar-label">김문수(국민의힘)</div><div class="bar-track"><div class="bar-fill b-ppp" style="width:36.9%">36.9%</div></div></div>
+  <div class="bar-row"><div class="bar-label">이재명(민주당)</div><div class="bar-track"><div class="bar-fill b-dem" style="width:24.0%">24.0%</div></div></div>
+  <p style="font-size:.88rem; font-weight:700; margin:12px 0 4px;">20대 여성</p>
+  <div class="bar-row"><div class="bar-label">이재명(민주당)</div><div class="bar-track"><div class="bar-fill b-dem" style="width:58.1%">58.1%</div></div></div>
+  <div class="bar-row"><div class="bar-label">김문수(국민의힘)</div><div class="bar-track"><div class="bar-fill b-ppp" style="width:25.3%">25.3%</div></div></div>
+  <div class="bar-row"><div class="bar-label">이준석(개혁신당)</div><div class="bar-track"><div class="bar-fill b-etc" style="width:10.3%">10.3%</div></div></div>
+  <p class="chart-note">20대 남성 1위가 거대 양당이 아닌 제3후보(이준석 37.2%)라는 점이 상징적 — 양당 모두에 대한 불신. 20대 남녀의 이재명 지지율 격차는 34.1%p. 출처: <a href="https://www.khan.co.kr/article/202506032056001" target="_blank" rel="noopener">경향신문</a>, <a href="https://www.hankookilbo.com/News/Read/A2025060321080003992" target="_blank" rel="noopener">한국일보</a></p>
+</div>
+
+<h3>시계열 — 2030 표심의 궤적</h3>
+<div class="flow">
+  <div class="step">2022 대선<br><small>이대남 윤석열 58.7%<br>이대녀 이재명 58.0%<br>젠더 대결 정점</small></div><span class="arr">→</span>
+  <div class="step">2024 총선<br><small>20대 남성 표 분산<br>(개혁신당 비례 16.7%)<br>20대 여성 민주 ~70%</small></div><span class="arr">→</span>
+  <div class="step">2025 대선<br><small>이재명 당선<br>20대 남성 1위는<br>이준석(37.2%)</small></div><span class="arr">→</span>
+  <div class="step">2026 상반기<br><small>지방선거 부실 논란 후<br>2030 여당 지지 급락<br>30대 민주 49.5→23.5%</small></div>
+</div>
+<ul class="tight">
+<li><b>2026년 급락의 구체 수치</b>: 리얼미터 기준 대통령 긍정평가 20대 51.3%(5월 3주) → <b>31.6%(6월 4주)</b>, 30대 47.9% → 33.8%. 30대 민주당 지지율은 3개월 만에 49.5% → 23.5%로 반토막. <span class="srcline">(<a href="https://www.sisajournal.com/news/articleView.html?idxno=378685" target="_blank" rel="noopener">시사저널</a>)</span></li>
+<li><b>부정선거론의 역전 현상</b>: '6·3 지방선거 부정선거 있었다' 응답이 18~29세 53%, 30대 48%로 고령층보다 높음 — 온라인 커뮤니티발 제도 불신이 청년층에서 더 강하게 확산. <span class="srcline">(<a href="https://www.khan.co.kr/article/202607021127001" target="_blank" rel="noopener">경향신문/NBS</a>)</span></li>
+<li><b>무당층 규모</b>: 2030 무당층은 한때 54%(역대 최대)를 기록했고, NBS 기준 현재도 18~29세의 48%. "1,336만 2030 표심이 사실상 대통령을 결정한다"는 평가. <span class="srcline">(<a href="https://www.mt.co.kr/politics/2025/05/26/2025052517530668124" target="_blank" rel="noopener">머니투데이</a>, <a href="http://nbsurvey.kr/" target="_blank" rel="noopener">NBS</a>)</span></li>
+</ul>
+
+<h3>왜 2030은 스윙보터가 됐나 — 전문가·당사자 분석</h3>
+<ul class="tight">
+<li>"2030은 어느 정당의 집토끼도 아니다. 민주당은 청년을 설득하기보다 '보수화됐다'고 규정·배제했고, 2030 남성의 군 문제·기회 부족과 2030 여성의 목소리 반영 모두에 실패했다." — 박성민 전 민주당 최고위원 <span class="srcline">(<a href="https://www.sisajournal.com/news/articleView.html?idxno=378685" target="_blank" rel="noopener">시사저널</a>)</span></li>
+<li>"2030은 정당 충성도가 낮고 이슈마다 입장이 달라 쏠림이 어렵다. 스윙보터화의 저변에는 무관심도 있다." — 박상병 정치평론가 / "싫으면 반대쪽으로 돌아서는 정치적 유연함이 특징." — 이동수 청년정치크루 대표 <span class="srcline">(<a href="https://www.imaeil.com/page/view/2025052117503853673" target="_blank" rel="noopener">매일신문</a>, <a href="https://www.khan.co.kr/article/202404281709001" target="_blank" rel="noopener">경향신문</a>)</span></li>
+<li>조국 사태 이후 <b>'공정'</b>이 2030의 핵심 판단 기준으로 자리 잡았고, 2026년 지방선거 부실 논란에 대한 여당의 소극 대응이 20대 이탈의 직접 트리거가 됐다는 당내 자성("2030 청년들의 엄청난 분노" — 이언주 의원). 민주당은 2026.7.1 '왜 2030은 민주당을 지지하지 않는가' 토론회를 열었다. <span class="srcline">(<a href="https://www.sisajournal.com/news/articleView.html?idxno=378685" target="_blank" rel="noopener">시사저널</a>)</span></li>
+<li><b>경제 문제와의 연결</b>: 검찰개혁 등 4050 당원 중심 의제에 매몰돼 일자리·주거 등 청년 의제를 놓쳤다는 비판이 당 내부에서 공개 분출 — 결국 §01~04의 민생 위기가 정치 이탈의 토대라는 해석. <span class="srcline">(시사저널, 위와 동일)</span></li>
+</ul>
+</div></details></section>
+
+<!-- ============ 9. 정부 청년정책 총정리 ============ -->
+<section id="gov-policy">
+<details class="sec"><summary><h2><span class="no">09</span>정부 청년정책 총정리</h2><span class="hint"><span class="arrow">▼</span><span class="txt">클릭해서 상세 내용 보기</span></span></summary><div class="sec-body">
+<p class="lead">현행 정부(국민주권정부)의 청년정책 전체를 체계·분야별로 모았다. 각 정책의 한계 평가는 §11 대안에서 다룬다.</p>
+
+<h3>정책 체계 (큰 틀)</h3>
+<div class="timeline">
+<div class="tl-item"><span class="date">2025.9.15~19</span><p>취임 후 첫 <b>'청년주간'</b> 지정. 9.19 마포 소극장에서 2030 토크콘서트(취임 후 첫 세대 특정 타운홀). <span class="srcline">(<a href="https://www.youthdaily.co.kr/news/article.html?no=196749" target="_blank" rel="noopener">청년일보</a>)</span></p></div>
+<div class="tl-item"><span class="date">2025.9.22</span><p><b>「국민주권정부 청년정책 추진방향」</b> 발표 (국무조정실·관계부처 합동) — 3대 분야 <b>139개 과제</b>: ① 일자리·자산형성 기회 보장(일자리에만 72개) ② 생애주기 기본생활 지원 ③ 실질적 정책참여 확대. <span class="srcline">(<a href="https://www.mt.co.kr/politics/2025/09/22/2025092217100047136" target="_blank" rel="noopener">머니투데이</a>, <a href="https://mohw.go.kr/board.es?act=view&bid=0027&list_no=1487464&mid=a10503000000" target="_blank" rel="noopener">보건복지부</a>)</span></p></div>
+<div class="tl-item"><span class="date">2025.12.26</span><p><b>「제2차 청년정책 기본계획(2026~2030)」</b> 확정 — 비전 "첫걸음부터 함께, 모든 청년이 만들어가는 미래", 5대 분야 <b>282개 과제</b>. 청년을 '복지 수혜자'가 아닌 '국정 파트너'로 규정. <span class="srcline">(<a href="https://www.korea.kr/briefing/policyBriefingView.do?newsId=156737004" target="_blank" rel="noopener">정책브리핑</a>, <a href="https://www.opm.go.kr/_res/opm/etc/opm_youth_plan2.pdf" target="_blank" rel="noopener">국무조정실 원문</a>)</span></p></div>
+<div class="tl-item"><span class="date">예산</span><p>중앙부처 청년정책 예산: 2021년 23조원 → 2025년 <b>28조원</b>. <span class="srcline">(<a href="https://www.ezyeconomy.com/news/articleView.html?idxno=229037" target="_blank" rel="noopener">이지경제</a>)</span></p></div>
+</div>
+
+<h3>분야별 주요 정책</h3>
+<table>
+<tr><th style="width:12%">분야</th><th style="width:26%">정책</th><th>핵심 내용</th></tr>
+<tr><td rowspan="6"><b>일자리</b></td><td>한국형 청년보장제(유스 개런티)</td><td>졸업 후 <b>4개월 이내 '골든타임'</b> 조기 개입으로 쉬었음 장기화 예방 (2025~, EU 모델) <span class="srcline">(<a href="https://news.nate.com/view/20250128n00822" target="_blank" rel="noopener">네이트뉴스</a>)</span></td></tr>
+<tr><td>국민취업지원제도 개편</td><td>청년 빈일자리 특화: 훈련수당 월 최대 20만원(6개월) + 취업성공수당 40만원 <span class="srcline">(<a href="https://www.moel.go.kr/common/downloadFile.do?file_seq=20250102225&bbs_seq=17460&bbs_id=12&file_ext=pdf" target="_blank" rel="noopener">고용노동부</a>)</span></td></tr>
+<tr><td>지역 취업 인센티브</td><td>비수도권 중소기업 취업 청년에 최대 2년 720만원 장기근속 인센티브 <span class="srcline">(<a href="https://housing-post.com/View.aspx?No=3906938" target="_blank" rel="noopener">하우징포스트</a>)</span></td></tr>
+<tr><td>청년추가고용장려금</td><td>청년 정규직 추가 채용 기업 1인당 연 최대 900만원 <span class="srcline">(<a href="https://eiec.kdi.re.kr/publish/naraView.do?cidx=11546" target="_blank" rel="noopener">KDI 나라경제</a>)</span></td></tr>
+<tr><td>생애 1회 구직급여 · 일터권리보장 기본법</td><td>고용보험 이력 없는 청년 구직급여 + 플랫폼·프리랜서 보호 입법, 24시간 AI 노무상담 <span class="srcline">(<a href="https://www.etnews.com/20250511000042" target="_blank" rel="noopener">전자신문</a>)</span></td></tr>
+<tr><td>대기업 채용 협조</td><td>대통령의 경력직 선호 공개 지적(2025.9 국무회의) → 8개 대기업 4.4만 명 채용 발표. 2026.2 총수 간담회 후 5.16만 명·270조 지방투자 <span class="srcline">(<a href="https://www.hankookilbo.com/news/article/A2025091614530003538" target="_blank" rel="noopener">한국일보</a>)</span></td></tr>
+<tr><td rowspan="4"><b>주거</b></td><td>청년월세 특별지원</td><td>월 최대 20만원×24개월. 2026년 계속사업 전환, 수혜 최대 8만 명 확대 검토 <span class="srcline">(<a href="https://www.bokjiro.go.kr/ssis-tbu/twataa/wlfareInfo/moveTWAT52011M.do?wlfareInfoId=WLF00004661" target="_blank" rel="noopener">복지로</a>)</span></td></tr>
+<tr><td>청년주택드림 청약·대출</td><td>19~34세 무주택자, 당첨 시 분양가 80%까지 최저 2.2%·최장 40년 <span class="srcline">(<a href="https://nhuf.molit.go.kr/FP/FP07/FP0701/FP07010301.jsp" target="_blank" rel="noopener">주택도시기금</a>)</span></td></tr>
+<tr><td>청년 공공주택</td><td>2030년까지 국공유지 활용 약 3만 가구 착공, 43만 명 주거비 지원, 상생형 공공기숙사</td></tr>
+<tr><td>전세사기 대책</td><td>특별법 개정(2026.4): 보증금 3분의 1 최소보장제 <span class="srcline">(<a href="https://peoplepower21.org/stablelife/2020859" target="_blank" rel="noopener">참여연대</a>)</span></td></tr>
+<tr><td rowspan="3"><b>자산·금융</b></td><td>청년미래적금 (2026.6.22 출시)</td><td>월 50만원×3년, 정부기여금 일반형 6%·우대형 12%, 만기 최대 약 2,255만원(최대 19% 적금 효과). 도약계좌의 '5년 만기' 비판을 반영해 3년으로 단축 <span class="srcline">(<a href="https://imnews.imbc.com/replay/2026/nwtoday/article/6832097_37012.html" target="_blank" rel="noopener">MBC</a>)</span></td></tr>
+<tr><td>국민연금 첫 보험료 지원 · 학자금 완화</td><td>첫 보험료 국가 지원, ICL 소득기준 완화·이자면제 확대 <span class="srcline">(<a href="https://www.etnews.com/20250511000042" target="_blank" rel="noopener">전자신문</a>)</span></td></tr>
+<tr><td>채무조정</td><td>신복위 청년 특례: 3년 이상 성실상환+1/2 상환 시 잔여채무 면책 <span class="srcline">(<a href="https://m.ccrs.or.kr/renewal/debt/program.do" target="_blank" rel="noopener">신용회복위원회</a>)</span></td></tr>
+<tr><td><b>결혼·출산</b></td><td>저출생 추세 반전 대책</td><td>신혼 전세대출 소득기준 →1억, 신생아 특례대출 소득요건 →2억(출산 가구 2.5억) <span class="srcline">(<a href="https://www.betterfuture.go.kr/front/notificationSpace/pressReleaseDetail.do?articleId=325" target="_blank" rel="noopener">저출산고령사회위</a>)</span></td></tr>
+<tr><td rowspan="3"><b>고립·정신건강</b></td><td>청년미래센터</td><td>고립·은둔 전담기관. 4개 시도 시범(연 13억) → 전국 단계적 확대 방침 <span class="srcline">(<a href="https://www.mohw.go.kr/board.es?mid=a10503000000&bid=0027&list_no=1479278&act=view" target="_blank" rel="noopener">복지부</a>)</span></td></tr>
+<tr><td>전국민 마음투자</td><td>심리상담 바우처 8회, 번아웃 회복 프로그램. 2027년까지 100만 명 목표</td></tr>
+<tr><td>청년 정신건강검진</td><td>2025년부터 20~34세 건강검진에 정신건강 검사 포함</td></tr>
+<tr><td><b>참여·기반</b></td><td>청년 라운드테이블 외</td><td>청년단체 정책 참여 제도화, 청년친화도시, 고립·은둔 공식 통계 신설, 가상자산 현물 ETF 추진 <span class="srcline">(<a href="https://industryjournal.co.kr/news/244495" target="_blank" rel="noopener">산업종합저널</a>)</span></td></tr>
+</table>
+</div></details></section>
+
+<!-- ============ 10. 민주당 ============ -->
+<section id="minjoo">
+<details class="sec"><summary><h2><span class="no">10</span>더불어민주당 — 청년 관련 발표·발언 정리</h2><span class="hint"><span class="arrow">▼</span><span class="txt">클릭해서 상세 내용 보기</span></span></summary><div class="sec-body">
+<p class="lead">집권당인 민주당의 청년 관련 공식 발표·주요 발언·논란을 시간순으로 정리했다. 특정 정당에 대한 평가가 아니라 보도·여론조사·당내 발언을 그대로 정리한 것이다.</p>
+
+<h3>공식 발표·공약·조직</h3>
+<div class="timeline">
+<div class="tl-item"><span class="date">2025.2.23</span><p><b>전국청년당원대회 발대식</b> — 모경종 전국청년위원장: "청년이 정치권에서 활용·동원의 대상이 아니라 세대의 희망을 품고 중심으로 나서야 한다." 17개 시·도당 + 254개 지역위 청년위 체계. <span class="srcline">(<a href="https://www.newspim.com/news/view/20250223000077" target="_blank" rel="noopener">뉴스핌</a>)</span></p></div>
+<div class="tl-item"><span class="date">2025.5</span><p><b>제21대 대선 이재명 후보 청년 공약</b> — "청년에게 기회와 희망이 있는 나라": 청년미래적금, 생애 1회 구직급여, 상생형 공공기숙사, 국민연금 첫 보험료 지원, 학자금 이자면제 확대, 가상자산 현물 ETF. <span class="srcline">(<a href="https://www.etnews.com/20250511000042" target="_blank" rel="noopener">전자신문</a>, <a href="https://policy.nec.go.kr/plc/commiment/UELPromisePopup.do?ocrCnvrSeqNo=11230&menuName=%EC%A0%9C21%EB%8C%80+%EB%8C%80%ED%86%B5%EB%A0%B9%EC%84%A0%EA%B1%B0" target="_blank" rel="noopener">중앙선관위</a>)</span></p></div>
+<div class="tl-item"><span class="date">2026.7.1</span><p><b>토론회 「왜 2030은 민주당을 지지하지 않는가」</b> (국회의원회관) — 6·3 지선 청년 이탈에 대한 공개 자성. 상세 발언 아래. <span class="srcline">(<a href="https://www.ohmynews.com/NWS_Web/View/at_pg.aspx?CNTN_CD=A0003247861" target="_blank" rel="noopener">오마이뉴스</a>)</span></p></div>
+<div class="tl-item"><span class="date">2026.7.7</span><p><b>청년 최고위원 8년 만에 부활</b> — 8.17 전당대회 앞두고 지도부 9명 중 청년 1명 이상 제도화. 청년 연령 기준 만 45세→39세 하향 의견도 개진. <span class="srcline">(<a href="https://www.hankookilbo.com/news/article/A2026070715310004426" target="_blank" rel="noopener">한국일보</a>, <a href="https://www.khan.co.kr/article/202607072131005" target="_blank" rel="noopener">경향신문</a>)</span></p></div>
+</div>
+
+<h3>주요 인사 발언 (직접 인용)</h3>
+<div class="quote">"전에는 다 좋은 자원을 뽑아서 교육 훈련을 시켜서 썼는데 요즘은… 경력직으로 뽑아버린다." — 기업의 경력직 선호 공개 지적, 신규 채용 확대 기업 지원 검토 지시.
+<span class="who">— 이재명 대통령, 국무회의 (2025.9.16) · <a href="https://www.hankookilbo.com/news/article/A2025091614530003538" target="_blank" rel="noopener">한국일보</a></span></div>
+<div class="quote">"청년은 대한민국의 미래다. 여러분이 마주한 현실적인 고민과 불안… 목소리를 직접 듣고 싶다." / "청년세대 어려움은 기성세대 잘못… 새 정부에서 기회를 만들 것."
+<span class="who">— 이재명 대통령, 2030 토크콘서트 (2025.9.19) · <a href="https://www.newdaily.co.kr/site/data/html/2025/09/19/2025091900286.html" target="_blank" rel="noopener">뉴데일리</a></span></div>
+<div class="quote">"청년 누구나 첫 출발의 기회를 보장받을 수 있도록 국가가 든든히 지원하겠다. 청년이 희망을 잃으면 장년은 여유를 잃고 노년은 빈곤해진다."
+<span class="who">— 이재명 대통령, 제6회 청년의 날 기념사 (2025.9.20) · <a href="https://biz.heraldcorp.com/article/10579784" target="_blank" rel="noopener">헤럴드경제</a></span></div>
+<div class="quote">"청년 정치인들이 지역에서 좋은 평가를 받는 것이 우리의 하나 된 목표." (청년 당선자 워크숍) / 지선 패배 후: "이 대통령 선거평가에 공감, 반성할 것은 반성하겠다."
+<span class="who">— 정청래 (전 당대표) (2026.6) · <a href="https://www.hankookilbo.com/news/article/A2026070715310004426" target="_blank" rel="noopener">한국일보</a>, <a href="https://v.daum.net/v/20260610194234477" target="_blank" rel="noopener">다음뉴스</a></span></div>
+<div class="quote">"2030 없이는 2030도 없다." (2030세대 지지 없이는 2030년 대선 승리도 없다)
+<span class="who">— 송영길, 당대표 출마선언 (2026.7) · <a href="https://www.newsis.com/view/NISX20260704_0003695922" target="_blank" rel="noopener">뉴시스</a></span></div>
+
+<h3>2026.7.1 토론회 「왜 2030은 민주당을 지지하지 않는가」 발언 상세</h3>
+<ul class="tight">
+<li><b>김형남</b> (전 서울시장 경선후보, 발제): "지선에서 2030이 가장 많이 선택한 것은 민주당도 국민의힘도 아닌, <b>투표장에 안 나가는 것</b>이었다." "당 지도부가 과거를 보고 있었던 건 아닌가."</li>
+<li><b>윤희웅</b> (오피니언즈 대표): "청년들 요구는 <b>주거 지원이 45.7%</b>로 가장 큰데 정책은 이에 못 미쳤다." "같은 '공정'을 놓고 청년은 기회 적합성으로, 민주당은 재분배로 완전히 다르게 봤다." "대학가는 더는 진보 텃밭이 아니다."</li>
+<li><b>안병진</b> (경희대 교수): "한 청년이 '국힘은 시대착오적이지만 적어도 위선적이지는 않다'고 한 걸 봤는데 <b>그게 이 사태의 본질</b>."</li>
+<li><b>배강훈</b> (밸리드 공동대표): "20대는 민주당이 '부자를 위한 극좌 정당'이라고까지 본다." "'기득권 정당' 프레임을 깨지 못하면 2028년 총선, 2030년 대선 해보기도 전에 질 것."</li>
+<li><b>남가희</b>: "2030은 민주당의 아들딸이 아니라 <b>엄연한 유권자</b>."</li>
+<li><b>한정애 의원</b>: "우리는 아니라고 하지만 기득권인데 여전히 부정하고 있는 것 같다. 그것을 인정하고 가야 한다."</li>
+</ul>
+<p class="srcline">출처: <a href="https://www.ohmynews.com/NWS_Web/View/at_pg.aspx?CNTN_CD=A0003247861" target="_blank" rel="noopener">오마이뉴스</a>, <a href="https://www.sisajournal.com/news/articleView.html?idxno=378423" target="_blank" rel="noopener">시사저널</a>, <a href="https://weekly.khan.co.kr/article/202607011422001/" target="_blank" rel="noopener">주간경향</a>, <a href="https://www.pressian.com/pages/articles/2026070117294462055" target="_blank" rel="noopener">프레시안</a>, <a href="https://www.hankyung.com/article/202607019765i" target="_blank" rel="noopener">한국경제</a></p>
+
+<h3>논란·비판 발언 <span class="pill red">청년 이탈 요인으로 지목</span></h3>
+<div class="quote crit">"사유는 없고 계산만 있다." "그들을 민주당으로 끌어들일 게 아니라 <b>말라 비틀어지게 만들어 고립시켜야 한다</b>." — 우파 성향 2030에 대한 발언(본인 측은 서부지법 폭동 가담·옹호 청년 한정 취지라 해명). 여야 비판 속 사퇴, 이재명 당시 대표가 "발언이 부적절했다"며 사의 수리. 디시인사이드 등 커뮤니티에서 강한 반발 확산.
+<span class="who">— 박구용 민주당 교육연수원장, 유튜브 '정치오락실' (2025.2) · <a href="https://v.daum.net/v/20250212070007189" target="_blank" rel="noopener">다음뉴스</a>, <a href="https://www.kmib.co.kr/article/view.asp?arcid=1739690741" target="_blank" rel="noopener">국민일보</a>, <a href="https://gall.dcinside.com/board/view/?id=drama_new3&no=18155909" target="_blank" rel="noopener">디시 반응</a></span></div>
+<div class="quote crit">'청년 보수화·극우몰이' 규정 논란 — 여권 인사들이 보수 지지 청년을 극우로 규정하는 데 대한 반발이 2030 이탈 요인으로 지목. 실제 2025 대선에서 20대 남성의 74.1%가 보수 진영 후보에 투표(2022년 58.7%에서 상승).
+<span class="who">— <a href="https://www.sisajournal.com/news/articleView.html?idxno=377468" target="_blank" rel="noopener">시사저널</a>, <a href="https://www.mindlenews.com/news/articleView.html?idxno=19352" target="_blank" rel="noopener">민들레뉴스</a></span></div>
+<div class="quote crit">"정청래 대표와 지도부가 직접… 2030 세대들과 연일 토론하면서 해법을 찾아야 했다. <b>2030 청년들의 엄청난 분노</b>가 있다." — 6·3 지선 30대 지지율 반토막, 서울 20대 남성 투표율 23.7%에 대한 당내 비판.
+<span class="who">— 이언주 의원 (2026.6) · <a href="https://www.sisajournal.com/news/articleView.html?idxno=378685" target="_blank" rel="noopener">시사저널</a></span></div>
+
+<div class="callout gray"><b>종합 평가</b> — ① 정책 공급(139개→282개 과제, 대통령 직접 소통·채용 압박)은 많았으나 2026 지방선거에서 2030 지지 급락으로 <b>표심 회복엔 실패</b>. ② 박구용 발언류의 '청년 규정·배제 언어'가 정책 효과를 상쇄했다는 것이 당 안팎의 공통 진단 — 청년의 요구(주거·일자리·기회의 공정)와 당의 의제(검찰개혁 등) 사이의 간극. ③ 대응은 청년 최고위원 부활 등 제도로 수렴 중이나, "기득권 프레임을 깨지 못하면 2028 총선·2030 대선이 위험하다"는 경고가 당내에서 공식 제기된 상태.</div>
+</div></details></section>
+
+<div class="part-divider">PART 4 · 대안과 결론</div>
+<!-- ============ 11. 대안 ============ -->
+<section id="alternatives">
+<details class="sec"><summary><h2><span class="no">11</span>대안 — 무엇이 실행 중이고, 무엇이 빠져 있나</h2><span class="hint"><span class="arrow">▼</span><span class="txt">클릭해서 상세 내용 보기</span></span></summary><div class="sec-body">
+<p class="lead">진단이 '취업 실패 → 소득·자산 격차 → 결혼 포기·은둔'의 연쇄라면, 대안도 상류(일자리)부터 풀어야 한다. 현행 정책과 그 한계, 전문가·당사자 제안, 해외 사례를 영역별로 정리했다.</p>
+
+<p class="srcline">※ 정책의 상세 내용은 §09 참조. 여기서는 영역별 <b>한계와 제안</b>에 집중한다.</p>
+
+<table>
+<tr><th style="width:12%">영역</th><th style="width:30%">현행 정책</th><th style="width:28%">한계</th><th>전문가·당사자 제안</th></tr>
+<tr><td><b>일자리</b></td><td>한국형 청년보장제(졸업 후 4개월 내 조기 개입, 2025~) · 국민취업지원제 개편, 빈일자리 특화(훈련수당 월 20만+성공수당 40만) · 비수도권 중소기업 취업 시 2년 720만원 인센티브 <span class="srcline">(<a href="https://news.nate.com/view/20250128n00822" target="_blank" rel="noopener">네이트뉴스</a>, <a href="https://www.moel.go.kr/common/downloadFile.do?file_seq=20250102225&bbs_seq=17460&bbs_id=12&file_ext=pdf" target="_blank" rel="noopener">고용노동부</a>)</span></td><td>경력직 선호·수시채용이라는 <b>채용 구조 자체는 미개입</b>. 청년들은 "단기 일자리 위주"라며 불신(설문 31%)</td><td>한국은행: <b>노동시장 이중구조 개선</b>이 근본 처방. KDI: 신입 일경험 기회 대폭 확충 — "초기 격차가 평생 격차가 된다"(구직 1년 지연 시 실질임금 -6.7%) <span class="srcline">(<a href="https://www.bok.or.kr/portal/bbs/P0002353/view.do?nttId=10095691&menuNo=200433" target="_blank" rel="noopener">한국은행</a>, <a href="https://www.kdi.re.kr/news/coverage_view.jsp?idx=10888" target="_blank" rel="noopener">KDI</a>)</span></td></tr>
+<tr><td><b>주거</b></td><td>청년월세지원 월 20만×24개월(2026년 계속사업화) · 청년주택드림 청약·대출(최저 2.2%, 분양가 80%) · 2030년까지 청년 공공주택 3만 가구 <span class="srcline">(<a href="https://www.bokjiro.go.kr/ssis-tbu/twataa/wlfareInfo/moveTWAT52011M.do?wlfareInfoId=WLF00004661" target="_blank" rel="noopener">복지로</a>, <a href="https://nhuf.molit.go.kr/FP/FP07/FP0701/FP07010301.jsp" target="_blank" rel="noopener">주택도시기금</a>)</span></td><td>부모 소득 기준 등 사각지대, 분양가 6억·85㎡ 이하 한정 — "희망고문" 비판 <span class="srcline">(<a href="https://www.bizhankook.com/bk/article/26666" target="_blank" rel="noopener">비즈한국</a>)</span></td><td>한국은행: 청년 주거비 부담 완화를 위한 <b>소형주택 공급 확대</b>. 전세사기특별법 개정(2026.4, 보증금 1/3 최소보장제)의 실효적 집행 <span class="srcline">(<a href="https://peoplepower21.org/stablelife/2020859" target="_blank" rel="noopener">참여연대</a>)</span></td></tr>
+<tr><td><b>자산·부채</b></td><td>청년도약계좌(5년 최대 4,200만) → <b>청년미래적금</b>(2026.6~, 3년, 최대 19% 적금 효과) · 신복위 채무조정, 학자금 이자지원 <span class="srcline">(<a href="https://imnews.imbc.com/replay/2026/nwtoday/article/6832097_37012.html" target="_blank" rel="noopener">MBC</a>, <a href="https://m.ccrs.or.kr/renewal/debt/program.do" target="_blank" rel="noopener">신용회복위원회</a>)</span></td><td>5년 만기가 이직·독립 잦은 2030에 비현실적(3년형은 목돈 절반) · 근로소득 불신이라는 심리 원인은 미해결</td><td>개인회생 청년(39세 이하 41.8%) 대상 금융·심리 통합 지원 — 서울금융복지상담센터 모델 확대 <span class="srcline">(<a href="https://edaily.co.kr/News/Read?mediaCodeNo=257&newsId=01692486645477456" target="_blank" rel="noopener">이데일리</a>)</span></td></tr>
+<tr><td><b>결혼·출산</b></td><td>저출생 반전 대책: 신혼 전세대출 소득기준 완화(→1억), 신생아 특례대출(출산 가구 2.5억까지) <span class="srcline">(<a href="https://www.betterfuture.go.kr/front/notificationSpace/pressReleaseDetail.do?articleId=325" target="_blank" rel="noopener">저출산고령사회위원회</a>)</span></td><td>저고위 부위원장이 예산당국을 "가장 높은 장벽"으로 공개 지목 · 신혼희망타운 축소로 1.3만 호 공급 취소 <span class="srcline">(<a href="https://www.kjob.news/news/500175" target="_blank" rel="noopener">전국인력신문</a>)</span></td><td>일본 데이터의 교훈: 30대 초 남성 결혼율 정규직 56% vs 비정규직 20% — <b>고용 안정 없이 결혼·출산 정책은 작동하지 않는다</b> <span class="srcline">(<a href="https://www.jk-daily.co.kr/news/articleView.html?idxno=34117" target="_blank" rel="noopener">재팬코리아데일리</a>)</span></td></tr>
+<tr><td><b>고립·정신건강</b></td><td>청년미래센터(4개 시도 시범 → 전국 확대 방침) · 전국민 마음투자(심리상담 바우처 8회) · 청년 정신건강검진 강화 <span class="srcline">(<a href="https://www.mohw.go.kr/board.es?mid=a10503000000&bid=0027&list_no=1479278&act=view" target="_blank" rel="noopener">복지부</a>)</span></td><td>시범 예산 연 13억원 — 54만 명 규모·수조원대 사회비용 대비 극히 미미</td><td>1인당 지원비용(342만원) &lt; 방치 시 손실(983만원) — <b>"지원은 비용이 아니라 투자"</b>라는 비용-편익 근거로 전국 확대·법제화 <span class="srcline">(<a href="https://eiec.kdi.re.kr/policy/domesticView.do?ac=0000203653" target="_blank" rel="noopener">KDI 경제정보센터</a>)</span></td></tr>
+</table>
+
+<h3>청년 당사자들이 말하는 대안</h3>
+<ul class="tight">
+<li><b>"지원금보다 구조"</b> — "구직난이 지원금으로 해결될 거라 생각하지 않는다." 30조원 청년예산에도 체감도·계층이동 인식은 개선되지 않았고 "출발선이 다르다"는 박탈감이 확대. <span class="srcline">(<a href="https://www.straightnews.co.kr/news/articleView.html?idxno=305223" target="_blank" rel="noopener">스트레이트뉴스</a>)</span></li>
+<li><b>공정성과 시스템 신뢰</b> — 청년들이 요구하는 것은 복지 확대보다 공정성·책임성·제도 정상화라는 분석. §07의 정치 이탈과 같은 뿌리. <span class="srcline">(<a href="https://www.etoday.co.kr/news/view/2593786" target="_blank" rel="noopener">이투데이</a>)</span></li>
+<li><b>직접지원 선호</b> — 청년정책 예산 중 청년 직접지원은 11.8%뿐(2019 분석). 전달체계를 거치지 않는 유동적 직접지원 선호. <span class="srcline">(<a href="https://channelpnu.pusan.ac.kr/news/articleView.html?idxno=10026" target="_blank" rel="noopener">채널PNU</a>)</span></li>
+<li><b>양질의 일자리·노동권</b> — 청년유니온: 초단기 임시직 확대(청년 취업자의 20%) 국면에서 프리랜서 계약 등 불안정노동 보호 요구. <span class="srcline">(<a href="https://youthunion.kr/" target="_blank" rel="noopener">청년유니온</a>, <a href="https://www.labortoday.co.kr/news/articleView.html?idxno=223383" target="_blank" rel="noopener">매일노동뉴스</a>)</span></li>
+<li><b>낙인 없는 언어</b> — "'쉬었음 청년'? 책임 떠넘기는 나쁜 말. 불안은 청년 탓이 아니다." 정부가 용어를 "잠시 숨을 고르는 청년"으로 바꾸려다 "단어만 바꾸는 눈속임"이라는 빈축을 산 사례는, 정책 이전에 관점의 전환이 필요함을 보여준다. <span class="srcline">(<a href="https://www.hankookilbo.com/news/article/A2025121921010004743" target="_blank" rel="noopener">한국일보</a>, <a href="https://v.daum.net/v/20260106210303455" target="_blank" rel="noopener">매경이코노미</a>)</span></li>
+</ul>
+
+<h3>해외 사례의 교훈</h3>
+<ul class="tight">
+<li><b>일본 취업빙하기 세대(로스제네)</b> — 1993~2004년 졸업 세대를 방치한 결과 35~44세 비정규 317만·니트 40만이 고착. 뒤늦은 3년 집중지원(정규직 채용 기업 보조금 최대 60만엔, 듀얼 직업훈련)에도 회복 제한적. 핵심 교훈: <b>"초기 진입 실패를 방치하면 세대 전체와 국가 성장잠재력을 잃는다 — 사후 대책보다 조기 개입."</b> 한국은행도 "3년 미취업 시 정규직 취업 확률 반감"을 들어 일본 경로 답습을 경고. <span class="srcline">(<a href="https://www.khan.co.kr/article/201905301353001" target="_blank" rel="noopener">경향신문</a>, <a href="https://www.kihasa.re.kr/gssr/v.30/%EA%B0%80%EC%9D%84/71/" target="_blank" rel="noopener">보사연 국제사회보장리뷰</a>)</span></li>
+<li><b>EU 청년보장제(Youth Guarantee)</b> — 실직·졸업 후 4개월 내 고용·교육·훈련 기회 보장(2013~). EU집행위는 청년실업 감소 기여로 평가하나 학계는 경기요인 효과 가능성도 지적. 한국형 유스개런티(2025~)는 "세심한 성과평가가 필요"하다는 지적. <span class="srcline">(<a href="https://www.nars.go.kr/report/view.do?brdSeq=41929&cmsCode=CM0043" target="_blank" rel="noopener">국회입법조사처</a>, <a href="https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE09357159" target="_blank" rel="noopener">한국유럽학회</a>)</span></li>
+</ul>
+</div></details></section>
+
+<!-- ============ 결론 ============ -->
+<section id="conclusion">
+<details class="sec"><summary><h2><span class="no">12</span>종합 — 데이터와 목소리가 가리키는 하나의 그림</h2><span class="hint"><span class="arrow">▼</span><span class="txt">클릭해서 상세 내용 보기</span></span></summary><div class="sec-body">
+<div class="flow">
+  <div class="step">채용 구조 전환<br><small>신입 공고 -43%<br>경력 우대 97.4%</small></div><span class="arr">→</span>
+  <div class="step">진입 실패·쉬었음<br><small>2030 쉬었음 71.7만<br>생애소득 -13%</small></div><span class="arr">→</span>
+  <div class="step">자산 격차·부채<br><small>30대 빚 1억 돌파<br>영끌·빚투·코인</small></div><span class="arr">→</span>
+  <div class="step">결혼·출산 거부<br><small>결혼=돈·집<br>출산=공포</small></div><span class="arr">→</span>
+  <div class="step">고립·정치 이탈<br><small>은둔 54만<br>무당층 48%</small></div>
+</div>
+<ul class="tight">
+<li><b>연쇄 구조</b>: 커뮤니티의 자조("월 200 받는 게 쪽팔린 나라")와 한국은행의 실증(첫 취업 지연 → 생애소득 -13%)은 같은 이야기를 하고 있다. 일자리 진입 실패가 모든 하류 문제의 상류다.</li>
+<li><b>포기의 성격 변화</b>: 'N포'는 더 이상 수동적 체념이 아니다. "포기가 아니라 거부"(이데일리 인터뷰), 비혼식, 요노, 생존결혼 — 청년들은 불리한 게임의 규칙 자체를 거절하는 방식으로 적응 중이다.</li>
+<li><b>남녀가 다른 이유로 같은 결론에 도달</b>: 남성은 "돈이 없어서", 여성은 "할 이유가 없어서" 결혼을 떠난다. 정치에서도 20대 남녀는 정반대로 투표한다. '2030'을 하나의 블록으로 다루는 정책·정치는 실패할 수밖에 없다.</li>
+<li><b>신뢰의 문제</b>: 청년들은 지원금이 아니라 "노력이 배신당하지 않는 구조"(공정한 채용, 안정된 주거, 낙인 없는 언어)를 요구한다. 무당층 48%는 무관심이 아니라, 어떤 진영도 이 요구에 답하지 않았다는 판정에 가깝다.</li>
+<li><b>시간이 없다</b>: 일본 로스제네의 교훈은 명확하다 — 지금 조기 개입하지 않으면 '쉬었음 71만'은 10년 뒤 '은둔 중년'과 국가적 부담으로 돌아온다. 방치 비용(1인당 983만원)이 지원 비용(342만원)의 3배라는 계산은 이미 나와 있다.</li>
+</ul>
+</div></details></section>
+
+<!-- ============ 출처 ============ -->
+<section id="sources">
+<details class="sec"><summary><h2><span class="no">13</span>전체 출처</h2><span class="hint"><span class="arrow">▼</span><span class="txt">클릭해서 상세 내용 보기</span></span></summary><div class="sec-body">
+<p class="srcline" style="margin-bottom:10px;">본문 각 수치·인용 옆에 개별 출처를 병기했으며, 아래는 주요 출처 일람이다. 커뮤니티 글은 삭제·수정 가능성이 있고, 여론조사는 중앙선거여론조사심의위원회 등록 자료 기준이다.</p>
+<h3>공식 통계·연구기관</h3>
+<ol class="srcs">
+<li>국가데이터처(옛 통계청) — 2025년 연간 고용동향 / 청년층 부가조사 / 혼인·이혼 통계 / 청년 삶의 질 2025 — mods.go.kr</li>
+<li>한국은행 — BOK이슈노트 「경력직 채용 증가와 청년 고용」, 「청년세대 노동시장 진입 지연과 주거비 부담의 생애영향 평가」, 금융안정보고서 — bok.or.kr</li>
+<li>국토교통부 — 2024년도 주거실태조사, 전세사기 피해 인정 현황 — molit.go.kr</li>
+<li>보건복지부 — 2024년 사망원인통계 관련 보도자료, 국민 정신건강 지식·태도 조사, 고립·은둔 청년 지원방안 — mohw.go.kr</li>
+<li>서울회생법원 — 2025년 상반기 개인회생사건 통계 — slb.scourt.go.kr</li>
+<li>국무조정실 — 제2차 청년정책 기본계획(2026~2030) — opm.go.kr</li>
+<li>건강보험심사평가원 — 우울증·불안장애 진료 현황 — hira.or.kr</li>
+<li>한국보건사회연구원·한경협 — 청년 은둔화의 결정요인 및 사회경제적 비용 추정 보고서</li>
+<li>KDI — 청년 고용 현안분석, 고립·은둔 청년 비용-편익 — kdi.re.kr / eiec.kdi.re.kr</li>
+<li>국회입법조사처 — EU의 청년정책 강화 동향과 시사점 — nars.go.kr</li>
+<li>한국리서치 — 2025·2026 결혼인식조사, 2025 젠더인식조사 — hrcopinion.co.kr</li>
+<li>한반도미래인구연구원 — 2025 인구보고서 (블라인드 6만 건 텍스트 분석)</li>
+<li>안명숙, 「MZ세대에 대한 대중감성 연구」, 문화기술의 융합 9(1), 2023 — dbpia.co.kr</li>
+<li>NBS 전국지표조사·한국갤럽·리얼미터·리서치웰 — 정당 지지율·국정평가 (nesdc.go.kr 등록 기준)</li>
+</ol>
+<h3>커뮤니티·SNS 원문</h3>
+<ol class="srcs">
+<li>클리앙 — clien.net/service/board/park/19221026, /19018622, /19172342, /19062410 (직접 수집)</li>
+<li>인스티즈 — instiz.net/pt/7878724, /7878450 (직접 수집)</li>
+<li>보배드림 — bobaedream.co.kr/view?code=best&No=1006592 (직접 수집)</li>
+<li>블라인드 — teamblind.com 게시글 다수 (본문 링크 참조)</li>
+<li>에펨코리아 — fmkorea.com/best/8585274948, /9936943612, /9994928388, /8255542637, /8790179073 외</li>
+<li>더쿠 — theqoo.net/square/2936357882, /1036289281, /3603180704, /3338944660</li>
+<li>여성시대 — m.cafe.daum.net/subdued20club (달글), 나무위키 '여성시대'·'비혼식'</li>
+<li>디시인사이드 — gall.dcinside.com 취업갤러리·해선갤러리</li>
+<li>코인판 — coinpan.com/free/190547085</li>
+<li>스레드 — threads.com/@wedding_yerang</li>
+<li>카카오톡 거지방 — 1코노미뉴스·YTN·뉴시스 잠입취재 인용</li>
+<li>유튜브 댓글 — 이투데이 인용 보도(2026.5.6, 2026.5.21) 경유</li>
+</ol>
+<h3>언론 보도 (주요)</h3>
+<ol class="srcs">
+<li>매경이코노미 스페셜리포트 「청년 고용 한파」 (daum.net/v/20260106210303455)</li>
+<li>서울신문 「쉬는 청년 70만명 돌파했는데 고용률은 역대 최고, 왜?」 (2026.1.14)</li>
+<li>한국일보 「거지방·거지맵 켜는 뉴 자린고비」 (2026.4.18) 외</li>
+<li>이투데이 「'쉬었음' 청년 밈 확산」 (2026.5.6)</li>
+<li>중앙일보 「쉬었음 청년 200명 심층조사」 (2025.9.2)</li>
+<li>CBS노컷뉴스 기획 「고독 死각지대, 고립청년」 (2025.7)</li>
+<li>쿠키뉴스 「결혼은 사치, 출산은 공포」 (2025.7.7)</li>
+<li>시사저널 「2030 지지율 분석」 (2026.7.3), 경향신문·뉴데일리·서울신문 여론조사 보도 (2026.7)</li>
+<li>경향신문·한국일보 2025 대선 출구조사 분석 (2025.6.3), SBS 2022 대선 출구조사</li>
+<li>아주경제 「영끌 공식의 변화」 (2026.6.11), 서울경제·이코노미스트·뉴스핌 외 본문 링크 참조</li>
+<li>오마이뉴스·시사저널·주간경향·프레시안·한국경제 — 2026.7.1 민주당 토론회 보도</li>
+<li>한국일보·경향신문 — 청년 최고위원 부활 (2026.7.7), 다음뉴스·국민일보 — 박구용 발언 논란 (2025.2)</li>
+<li>뉴데일리·헤럴드경제·청년일보 — 이재명 대통령 청년주간·청년의 날 발언 (2025.9)</li>
+</ol>
+<h3>정책·트렌드 자료</h3>
+<ol class="srcs">
+<li>국무조정실 「제2차 청년정책 기본계획(2026~2030)」 원문 PDF — opm.go.kr</li>
+<li>고용노동부 「2025년 청년고용 정책방향」, 복지로·주택도시기금·신용회복위원회·저출산고령사회위원회 각 제도 안내</li>
+<li>중앙선관위 정책·공약마당 — 제21대 대선 이재명 후보 공약목록</li>
+<li>트렌드코리아 2025·2026 (김난도 외), 대학내일20대연구소 「Z세대 트렌드 2026」, 캐릿 2025 결산</li>
+<li>세계일보·모두피디아·KB의 생각·토스뱅크·시사저널·뉴시스·캐릿·고구마팜 — 신조어 검증</li>
+<li>포인트데일리·서울파이낸스·브릿지경제·인더스트리뉴스·한국일보·메트로서울·페이오니어 — 소비 트렌드 데이터</li>
+</ol>
+</div></details></section>
+
+<footer>
+본 보고서는 공개된 통계·보도·커뮤니티 게시물을 수집·정리한 것으로, 커뮤니티·SNS 인용은 특정 집단의 목소리이며 세대 전체를 대표하지 않을 수 있다.<br>
+여론조사 수치는 조사기관·방식에 따라 차이가 크므로 본문의 '해석 주의'를 참고. 작성: 2026.7.8
+</footer>
+
+</div>
+
+<a href="#top" class="top-link" title="맨 위로">↑</a>
+<script>
+(function(){
+  function openTarget(){
+    var id = location.hash.replace('#','');
+    if(!id) return;
+    var sec = document.getElementById(id);
+    if(sec){ var d = sec.querySelector('details.sec'); if(d) d.open = true; sec.scrollIntoView({behavior:'smooth'}); }
+  }
+  document.querySelectorAll('nav.toc a').forEach(function(a){
+    a.addEventListener('click', function(){ setTimeout(openTarget, 30); });
+  });
+  window.addEventListener('hashchange', openTarget);
+  var first = document.querySelector('#jobs details.sec'); if(first) first.open = true;
+})();
+</script>
+</body>
+</html>

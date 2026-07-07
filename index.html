@@ -859,6 +859,7 @@ try{if(localStorage.getItem('tc_ok')==='1')document.getElementById('gate').style
     <h2>📚 캠프 자료실 <span style="font-size:.78rem;color:var(--mut);font-weight:600">내부 문서 아카이브 · 새 문서는 저장소에 파일 추가 후 이 목록에 연결</span></h2>
     <div class="up" style="cursor:pointer" onclick="document.getElementById('doc1').scrollIntoView({behavior:'smooth'})"><span class="kbadge" style="background:#dceafd;color:#152484">보고서</span><span style="flex:1"><b>김보미 SNS 채널 진단·개선 보고서</b> — 아래에서 바로 보기 ▾</span></div>
     <div class="up" style="cursor:pointer" onclick="document.getElementById('doc2').scrollIntoView({behavior:'smooth'})"><span class="kbadge" style="background:#e0f3ea;color:#00714f">설명자료</span><span style="flex:1"><b>3대 메가프로젝트 쉬운 설명 (증보완성판)</b> — 아래에서 바로 보기 ▾</span></div>
+    <div class="up" style="cursor:pointer" onclick="document.getElementById('doc3').scrollIntoView({behavior:'smooth'})"><span class="kbadge" style="background:#fbe2ec;color:#d6336c">분석</span><span style="flex:1"><b>2030 분석 보고서</b> — 아래에서 바로 보기 ▾</span></div>
   </div>
   <div class="card" id="doc1">
     <h2>📱 김보미 SNS 채널 진단·개선 보고서 <span style="font-size:.78rem;color:var(--mut);font-weight:600">캠프 내부 자료 · 외부 공유 금지</span></h2>
@@ -873,7 +874,14 @@ try{if(localStorage.getItem('tc_ok')==='1')document.getElementById('gate').style
       <a href="./mega_project.html" target="_blank" style="display:inline-block;background:var(--blue);color:#fff;text-decoration:none;border-radius:8px;padding:9px 18px;font-weight:800;font-size:.9rem">🔎 새 창에서 크게 보기 ↗</a>
     </div>
     <iframe src="./mega_project.html" style="width:100%;height:75vh;border:1px solid var(--line);border-radius:10px;background:#fff" title="3대 메가프로젝트 쉬운 설명" loading="lazy"></iframe>
-    <p class="note">※ 문서가 갱신되면 저장소의 <b>digital_report.html / mega_project.html</b> 파일만 교체하면 자동 반영됩니다.</p>
+  </div>
+  <div class="card" id="doc3">
+    <h2>🧑‍🤝‍🧑 2030 분석 보고서 <span style="font-size:.78rem;color:var(--mut);font-weight:600">유권자 분석 · 캠프 내부 자료</span></h2>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
+      <a href="./report_2030.html" target="_blank" style="display:inline-block;background:var(--blue);color:#fff;text-decoration:none;border-radius:8px;padding:9px 18px;font-weight:800;font-size:.9rem">🔎 새 창에서 크게 보기 ↗</a>
+    </div>
+    <iframe src="./report_2030.html" style="width:100%;height:75vh;border:1px solid var(--line);border-radius:10px;background:#fff" title="2030 분석 보고서" loading="lazy"></iframe>
+    <p class="note">※ 문서가 갱신되면 저장소의 <b>digital_report.html / mega_project.html / report_2030.html</b> 파일만 교체하면 자동 반영됩니다.</p>
   </div>
 </section>
 <!-- ===== 월간·주간 캘린더 ===== -->
@@ -1589,29 +1597,3 @@ setInterval(pull,8000);
 </script>
 </body>
 </html>
-<script>
-/* 봄콜(김보미비서) 공유 일정 연동 v2 — 2026-07-08 */
-(function(){
-var API='https://bomcall.onrender.com/api/schedules_shared';
-function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
-function ymd(s){var m=String(s||'').match(/(\d{4})[-./](\d{1,2})[-./](\d{1,2})/);return m?(m[1]+'-'+('0'+m[2]).slice(-2)+'-'+('0'+m[3]).slice(-2)):'';}
-function render(items){
-var sec=document.getElementById('month')||document.body;
-var card=document.createElement('div');card.className='card';card.id='bomcallSync';
-var now=new Date();var t0=new Date(now.getFullYear(),now.getMonth(),now.getDate());
-var rows=items.map(function(it){return {d:ymd(it.date),time:it.time||'',title:it.title||'',memo:it.memo||''};}).filter(function(r){return r.d;});
-rows.sort(function(a,b){return a.d<b.d?-1:1;});
-var up=rows.filter(function(r){return new Date(r.d+'T23:59:59')>=t0;}).slice(0,30);
-var h='<h2>📡 봄콜 공유 일정 <span style="font-size:.78rem;color:var(--mut);font-weight:600">김보미비서(봄콜) 일정과 실시간 동기화</span></h2>';
-if(!up.length){h+='<p class="note">다가오는 공유 일정이 없습니다. 봄콜에서 일정을 등록하면 여기 표시됩니다.</p>';}
-h+=up.map(function(r){var dd=Math.round((new Date(r.d)-t0)/864e5);var tag=dd===0?'오늘':'D-'+dd;return '<div class="up"><span class="d8">'+esc(r.d)+(r.time?' '+esc(r.time):'')+'</span><span class="dd">'+tag+'</span><span style="flex:1"><b>'+esc(r.title)+'</b>'+(r.memo?' <small>— '+esc(r.memo)+'</small>':'')+'</span></div>';}).join('');
-card.innerHTML=h;
-sec.insertBefore(card,sec.firstChild);
-}
-function load(){
-fetch(API+'?k=0817').then(function(r){return r.json();}).then(function(j){if(j&&j.items)render(j.items);}).catch(function(e){});
-}
-if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',load);}else{load();}
-})();
-</script>
-</script>
