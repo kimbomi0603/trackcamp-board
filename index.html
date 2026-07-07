@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🚜 더불어캠프 · 모두의 민주당 만들기 프로젝트</title>
+<title>🚜 더불어캠프 — 뽑고 싶은 민주당, 뽑고 싶은 김보미</title>
 <style>
   :root{
     --blue:#152484; --blue-l:#3a4fb5; --sky:#00a0e2; --green:#00aa7b;
@@ -129,7 +129,8 @@
 <body>
 <div id="gate" style="position:fixed;inset:0;background:linear-gradient(135deg,#152484,#3a4fb5);z-index:99999;display:flex;align-items:center;justify-content:center;flex-direction:column;color:#fff;font-family:'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif">
   <div style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);border-radius:16px;padding:32px 28px;max-width:340px;width:90%;text-align:center">
-    <div style="font-size:1.3rem;font-weight:800;margin-bottom:6px">🚜 더불어캠프</div>
+    <div style="font-size:1.3rem;font-weight:800;margin-bottom:4px">🚜 더불어캠프</div>
+    <div style="opacity:.9;font-size:.85rem;margin-bottom:6px">뽑고 싶은 민주당, 뽑고 싶은 김보미</div>
     <div style="opacity:.85;font-size:.9rem;margin-bottom:18px">캠프 내부 전용 — 접속 비밀번호를 입력하세요</div>
     <input id="gatePw" type="password" inputmode="numeric" placeholder="비밀번호" onkeydown="if(event.key==='Enter')gateCheck()" style="width:100%;padding:12px;border:none;border-radius:10px;font-size:1rem;text-align:center;margin-bottom:10px;box-sizing:border-box">
     <button onclick="gateCheck()" style="width:100%;padding:12px;border:none;border-radius:10px;background:#00a0e2;color:#fff;font-weight:800;font-size:1rem;cursor:pointer">입장</button>
@@ -147,8 +148,8 @@ try{if(localStorage.getItem('tc_ok')==='1')document.getElementById('gate').style
 <div class="wrap">
 
 <header>
-  <h1>🚜 더불어캠프 — 모두의 민주당 만들기 프로젝트</h1>
-  <p style="font-weight:700;opacity:1">"뽑고 싶은 민주당, 뽑고 싶은 김보미 — 바꾸지 않으면, 바뀌지 않습니다"</p>
+  <h1>🚜 더불어캠프 — 뽑고 싶은 민주당, 뽑고 싶은 김보미</h1>
+  <p style="font-weight:700;opacity:1">김보미 · 더불어민주당 당대표 후보 — "바꾸지 않으면, 바뀌지 않습니다"</p>
   <p>당대표 출마 전략회의 · 역대 전당대회 일정 비교 · 8.17 전당대회 준비 타임라인 <span id="todayTxt"></span></p>
   <div class="dday" id="dday"></div>
   <div class="hlinks">
@@ -179,7 +180,14 @@ try{if(localStorage.getItem('tc_ok')==='1')document.getElementById('gate').style
 <nav>
   <button class="on" data-t="brief">🏛️ 전준위·언론 브리핑</button>
   <button data-t="month">📅 월간·주간 캘린더</button>
-  <button data-t="sns">📣 SNS 메시지·회의안건</button><!-- ===== 전준위·언론 브리핑 (기본 첫 화면) ===== -->
+  <button data-t="sns">📣 SNS 메시지·회의안건</button>
+  <button data-t="plan">출마 준비 플랜</button>
+  <button data-t="fund">후원회·비용</button>
+  <button data-t="ops">캠프 상황실 <small style="opacity:.55;font-weight:600">· 준비중</small></button>
+  <button data-t="cmp">역대 일정 비교</button>
+  <button data-t="strat">📊 전략 참고</button>
+</nav>
+<!-- ===== 전준위·언론 브리핑 (기본 첫 화면) ===== -->
 <section id="brief" class="on">
 
   <div class="card" style="border:2px solid var(--blue)">
@@ -973,7 +981,7 @@ const KIND={conf:['확정','#dceafd','#152484'],exp:['예정','#fdf3d8','#9a6c00
 const DOT={conf:'#152484',exp:'#e8a200',done:'#8a93b8',alme:'#00aa7b',star:'#d6336c',fb:'#8b3fd6'};
 
 // ===== 전준위·언론 브리핑 데이터 (한 줄씩 추가하면 화면에 자동 반영·최신순 정렬) =====
-const BRIEF_UPDATED='2026.7.7(화) 언론보도 검토 기준 — 전준위 공고 일정 확정 반영';
+const BRIEF_UPDATED='2026.7.7(화) 언론보도 검토 기준 — 전준위 공고 확정 · 김보미 보도 아카이브 보강';
 const JPW=[
  {d:'2026-07-07',t:'★ 당대표 당선인 결정 방식 확정 — 결선투표제 아닌 선호투표제 도입',src:'파이낸셜뉴스',url:'https://www.fnnews.com/news/202607071356098849'},
  {d:'2026-07-02',t:'전준위 전체회의 — 예비경선 방식·선거인단 반영 비율·기탁금 규모·당선인 결정 방식 논의 (기탁금 공고 확인 필요)',src:'폴리뉴스',url:'https://www.polinews.co.kr/news/articleView.html?idxno=735687'},
@@ -1016,6 +1024,7 @@ const NEWS=[
  {d:'2026-07-06',src:'아주경제',title:'전당대회 출마 김민석···與 당권주자 레이스 시작',url:'https://www.ajunews.com/view/20260706153532087',tag:'당대표'},
  {d:'2026-07-06',src:'오마이뉴스',title:'김민석, 광주서 당대표 출마 선언 "이기는 민주당 복원"',url:'https://www.ohmynews.com/NWS_Web/View/at_pg.aspx?CNTN_CD=A0003249037',tag:'당대표'},
  {d:'2026-07-06',src:'뉴데일리',title:'김민석, 당대표 출마 선언…"자기정치 폐해" 정청래 직격',url:'https://www.newdaily.co.kr/site/data/html/2026/07/06/2026070600141.html',tag:'당대표'},
+ {d:'2026-07-05',src:'한국경제',title:'호남·검찰개혁·청년…민주 당권주자 3인 3색 정체성 경쟁',url:'https://www.hankyung.com/article/2026070564711',tag:'당대표'},
  {d:'2026-07-05',src:'경향신문',title:"'당대표 출마' 첫 스타트는 김민석…정청래·송영길도 이번주 출마 채비",url:'https://www.khan.co.kr/article/202607051747001/',tag:'당대표'},
  {d:'2026-07-04',src:'파이낸셜뉴스',title:"민주당 전대 레이스 본격화…당권·최고위원 경쟁 '후끈'",url:'https://www.fnnews.com/news/202607040600397069',tag:'종합'},
  {d:'2026-07-04',src:'뉴스핌',title:"'36살 민주당 평당원' 김보미, 당대표 도전 선언…청년 돌풍 변수 부상",url:'https://www.newspim.com/news/view/20260704000036',tag:'김보미'},
@@ -1031,6 +1040,14 @@ const BOMI=[
  {d:'2026-07-03',src:'SR타임스',rep:'확인 필요 (기사 바이라인 확인)',title:'김보미, 민주당 당대표 출마 선언…"공정 잃은 민주당, 청년도 미래도 없다"',url:'http://www.srtimes.kr/news/articleView.html?idxno=206748',note:'호남 지자체면 · 출마선언 인용 중심'},
  {d:'2026-03-21',src:'경향신문',rep:'확인 필요',title:'징계엔 엄격, 범죄엔 관대?…민주당 공천지침 이중잣대 논란',url:'https://www.khan.co.kr/article/202603210800001',note:'감산 이중잣대 — 공정 프레임 핵심 근거 기사'},
  {d:'2024-11-29',src:'에너지경제',rep:'확인 필요',title:'허위보도 손해배상 소송 승소 — 김보미 전 의장 가짜뉴스에 맞선 작은 승리',url:'https://m.ekn.kr/view.php?key=20241129027529049',note:'약 100건 허위보도 법적 승리 — 검증 대응 자료'},
+ {d:'2026-06-05',src:'뉴스1',rep:'확인 필요',title:'"민주당 작대기만 꽂아도 당선된다더니" — 강진 군수 본선 참패 보도',url:'https://search.naver.com/search.naver?where=news&query=%EA%B0%95%EC%A7%84%EA%B5%B0%EC%88%98%20%EB%AF%BC%EC%A3%BC%EB%8B%B9%20%EC%B0%B8%ED%8C%A8',note:'불공정 공천의 결과 실증 — 공정 프레임 근거 · 원문 URL 확인 필요'},
+ {d:'2026-02-19',src:'더리포트',rep:'확인 필요',title:'168억 전과 후보 무감산 vs 제명 이력 15% 감산 — 경선 감산 이중잣대',url:'https://search.naver.com/search.naver?where=news&query=%EA%B9%80%EB%B3%B4%EB%AF%B8%20%EA%B0%90%EC%82%B0%20%EB%8D%94%EB%A6%AC%ED%8F%AC%ED%8A%B8',note:'감산 이중잣대 최초 보도 · 원문 URL 확인 필요'},
+ {d:'2025-11-04',src:'아시아투데이',rep:'확인 필요',title:'김보미 강진군의원, 군민이 주인…강진군수 선거 출마 시사',url:'https://www.asiatoday.co.kr/kn/view.php?key=20251104010001868',note:'과거 보도 — 군수 출마 검토 시기'},
+ {d:'2025-10-30',src:'브릿지경제',rep:'확인 필요',title:'김보미 강진군의원, 지방선거 승리 위한 혁신의 출발선에 서다',url:'https://www.viva100.com/article/20251030501596',note:"과거 보도 — '참좋은지방정부위원회' 상임위원"},
+ {d:'2024-12-24',src:'쿠키뉴스',rep:'확인 필요',title:'더민주전국혁신회의 첫 청년 상임대표에 김보미',url:'https://search.naver.com/search.naver?where=news&query=%EA%B9%80%EB%B3%B4%EB%AF%B8%20%ED%98%81%EC%8B%A0%ED%9A%8C%EC%9D%98%20%EC%83%81%EC%9E%84%EB%8C%80%ED%91%9C',note:'전국 조직 리더십 근거 · 원문 URL 확인 필요'},
+ {d:'2024-05-27',src:'주간경향',rep:'확인 필요',title:'34세 최연소 의장은 왜 표적이 됐나',url:'https://search.naver.com/search.naver?where=news&query=%EC%A3%BC%EA%B0%84%EA%B2%BD%ED%96%A5%20%EA%B9%80%EB%B3%B4%EB%AF%B8%20%ED%91%9C%EC%A0%81',note:'표적 견제 심층 기획 — 수난 서사 핵심 · 원문 URL 확인 필요'},
+ {d:'2024-05-01',src:'한겨레',rep:'확인 필요',title:'당적 박탈·불신임·수사…34살 최연소 여성의장 청년정치 수난기',url:'https://www.hani.co.kr/arti/area/area_general/1141526.html',note:'전국지 수난 서사 — 게재일 원문 확인'},
+ {d:'2022-06-02',src:'뉴스워커',rep:'확인 필요',title:'김보미 당선인, 강진군의원 최다득표…재선 성공',url:'https://www.newsworker.co.kr/news/articleView.html?idxno=160661',note:'재선·통합 최다득표 — 프로필 근거 · 게재일 원문 확인'},
  {d:'2022-07-10',src:'서울신문',rep:'확인 필요',title:'만 32세 김보미 강진군의장…전국 최연소 기초의회 의장 영예',url:'https://www.seoul.co.kr/news/newsView.php?id=20220710500041',note:'최연소 의장 — 프로필 근거 기사'}
 ];
 
