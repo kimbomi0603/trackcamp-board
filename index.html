@@ -168,7 +168,7 @@ try{if(localStorage.getItem('tc_ok')==='1')document.getElementById('gate').style
 <div style="max-width:980px;margin:14px auto;padding:14px 18px;background:#fff7e6;border:1px solid #f0c66b;border-radius:12px;font-size:.92rem;line-height:1.75">
   <b>📌 확정 핵심일정 <span style="color:#888;font-weight:600">· 기준 <span id="boxToday"></span> · 지난 일정은 자동으로 아래 접힘</span></b><br>
   <div id="keyList"></div>
-  · <b>경선 룰(확정)</b> — 선거인단 대의원·권리당원 70%(사상 첫 <b>1인 1표제</b>) + 국민여론조사 30% · 당대표 당선인 결정은 <b>선호투표제</b>(7.7 전준위 확정)<br>
+  · <b>경선 룰(확정)</b> — 선거인단 대의원·권리당원 70%(사상 첫 <b>1인 1표제</b>) + 국민여론조사 30% · 당대표 당선인 결정 방식은 <b>선호투표제</b>(7.7 전준위 의결) — 단, <b style="color:#d6336c">최고위 의결 계류 중</b>: 7.10 심야·7.12 최고위 연속 결론 불발(당규 66조 개정안 상정), 7.15(수) 최고위 재논의 예정 <small>(7.13 기준 · 확정 아님)</small><br>
   · <b>후원모금 개시(최단)</b> — 7.16 후보등록 즉시 후원회 등록신청 → 선관위 등록 완료 직후 모금 개시(빠르면 7.16~17)<br>
   <div id="keyDone"></div>
   <span style="color:#a15;font-size:.85rem">※ 후원회는 후보자 지위 취득 후 14일 내 선관위 등록, 등록 후 모금 가능(정치자금법). 정확한 개시 시점은 관할 선관위에 '당대표경선후보자 지위 인정 시점' 확인 권장.</span>
@@ -859,12 +859,28 @@ try{if(localStorage.getItem('tc_ok')==='1')document.getElementById('gate').style
 <section id="report">
   <div class="card">
     <h2>📚 캠프 자료실 <span style="font-size:.78rem;color:var(--mut);font-weight:600">내부 문서 아카이브 · 새 문서는 저장소에 파일 추가 후 이 목록에 연결</span></h2>
-    <div class="up" style="cursor:pointer" onclick="document.getElementById('doc1').scrollIntoView({behavior:'smooth'})"><span class="kbadge" style="background:#dceafd;color:#152484">보고서</span><span style="flex:1"><b>김보미 SNS 채널 진단·개선 보고서</b> — 아래에서 바로 보기 ▾</span></div>
+    <div class="up" style="cursor:pointer" onclick="document.getElementById('doc0a').scrollIntoView({behavior:'smooth'})"><span class="kbadge" style="background:#fbe2ec;color:#d6336c">NEW 7.13</span><span style="flex:1"><b>🎤 유튜브 인터뷰 통합상황판</b> — 전준위 최신상황·이슈별 입장발언·후보 5인 비교·예상 Q&A·출처 교차검증 ▾</span></div>
+    <div class="up" style="cursor:pointer" onclick="document.getElementById('doc0b').scrollIntoView({behavior:'smooth'})"><span class="kbadge" style="background:#fbe2ec;color:#d6336c">NEW 7.13</span><span style="flex:1"><b>📺 방송·인터뷰 기록 대장</b> — 김성수TV·뉴탐사·서울의소리 등 출연/발언 기록 ▾</span></div>
+    <div class="up" style="cursor:pointer" onclick="document.getElementById('doc1').scrollIntoView({behavior:'smooth'})"><span class="kbadge" style="background:#dceafd;color:#152484">보고서</span><span style="flex:1"><b>김보미 디지털 총망라 개선보고서 V2</b> (SNS+커뮤니티 통합 · 7.13 개정) — 아래에서 바로 보기 ▾</span></div>
     <div class="up" style="cursor:pointer" onclick="document.getElementById('doc2').scrollIntoView({behavior:'smooth'})"><span class="kbadge" style="background:#e0f3ea;color:#00714f">설명자료</span><span style="flex:1"><b>3대 메가프로젝트 쉬운 설명 (증보완성판)</b> — 아래에서 바로 보기 ▾</span></div>
     <div class="up" style="cursor:pointer" onclick="document.getElementById('doc3').scrollIntoView({behavior:'smooth'})"><span class="kbadge" style="background:#fbe2ec;color:#d6336c">분석</span><span style="flex:1"><b>2030 분석 보고서</b> — 아래에서 바로 보기 ▾</span></div>
   </div>
+  <div class="card" id="doc0a">
+    <h2>🎤 유튜브 인터뷰 통합상황판 (2026.7.13) <span style="font-size:.78rem;color:var(--mut);font-weight:600">캠프 내부 자료 · 외부 공유 금지 · 배포 전 7.15 최고위 결과 반영 필수</span></h2>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
+      <a href="./interview_board.html" target="_blank" style="display:inline-block;background:var(--blue);color:#fff;text-decoration:none;border-radius:8px;padding:9px 18px;font-weight:800;font-size:.9rem">🔎 새 창에서 크게 보기 ↗</a>
+    </div>
+    <iframe src="./interview_board.html" style="width:100%;height:75vh;border:1px solid var(--line);border-radius:10px;background:#fff" title="유튜브 인터뷰 통합상황판" loading="lazy"></iframe>
+  </div>
+  <div class="card" id="doc0b">
+    <h2>📺 방송·인터뷰 기록 대장 (2026.7.13) <span style="font-size:.78rem;color:var(--mut);font-weight:600">출연·발언 기록 · 미확인 항목 공란 유지</span></h2>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
+      <a href="./broadcast_log.html" target="_blank" style="display:inline-block;background:var(--blue);color:#fff;text-decoration:none;border-radius:8px;padding:9px 18px;font-weight:800;font-size:.9rem">🔎 새 창에서 크게 보기 ↗</a>
+    </div>
+    <iframe src="./broadcast_log.html" style="width:100%;height:75vh;border:1px solid var(--line);border-radius:10px;background:#fff" title="방송·인터뷰 기록 대장" loading="lazy"></iframe>
+  </div>
   <div class="card" id="doc1">
-    <h2>📱 김보미 SNS 채널 진단·개선 보고서 <span style="font-size:.78rem;color:var(--mut);font-weight:600">캠프 내부 자료 · 외부 공유 금지</span></h2>
+    <h2>📱 김보미 디지털 총망라 개선보고서 V2 — SNS·커뮤니티 통합 (7.13 개정) <span style="font-size:.78rem;color:var(--mut);font-weight:600">캠프 내부 자료 · 외부 공유 금지</span></h2>
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
       <a href="./digital_report.html" target="_blank" style="display:inline-block;background:var(--blue);color:#fff;text-decoration:none;border-radius:8px;padding:9px 18px;font-weight:800;font-size:.9rem">🔎 새 창에서 크게 보기 ↗</a>
     </div>
@@ -883,7 +899,7 @@ try{if(localStorage.getItem('tc_ok')==='1')document.getElementById('gate').style
       <a href="./report_2030.html" target="_blank" style="display:inline-block;background:var(--blue);color:#fff;text-decoration:none;border-radius:8px;padding:9px 18px;font-weight:800;font-size:.9rem">🔎 새 창에서 크게 보기 ↗</a>
     </div>
     <iframe src="./report_2030.html" style="width:100%;height:75vh;border:1px solid var(--line);border-radius:10px;background:#fff" title="2030 분석 보고서" loading="lazy"></iframe>
-    <p class="note">※ 문서가 갱신되면 저장소의 <b>digital_report.html / mega_project.html / report_2030.html</b> 파일만 교체하면 자동 반영됩니다.</p>
+    <p class="note">※ 문서가 갱신되면 저장소의 <b>interview_board.html / broadcast_log.html / digital_report.html / mega_project.html / report_2030.html</b> 파일만 교체하면 자동 반영됩니다.</p>
   </div>
 </section>
 <!-- ===== 월간·주간 캘린더 ===== -->
