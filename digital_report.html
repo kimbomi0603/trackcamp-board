@@ -1,836 +1,156 @@
 <!DOCTYPE html>
-<html lang="ko"><head>
+<html lang="ko">
+<head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>김보미 디지털 채널 통합 진단·개선 보고서</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📱 김보미 디지털 총망라 개선보고서 V2 — SNS·커뮤니티 통합 (2026.7.13)</title>
 <style>
-  :root{
-    --blue:#152484; --blue2:#1d3fae; --sky:#eef2ff; --accent:#00a0e2;
-    --ink:#1a1d26; --sub:#5b6172; --line:#e3e6ef; --bg:#f7f8fc;
-    --good:#0d8a4f; --bad:#c62f2f; --warn:#b7791f;
-  }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif; color:var(--ink); background:var(--bg); line-height:1.75; font-size:15.5px;}
-  .wrap{max-width:980px; margin:0 auto; padding:0 24px 80px;}
-  header.hero{background:linear-gradient(135deg,var(--blue) 0%,var(--blue2) 60%,#2a55d0 100%); color:#fff; padding:60px 24px 56px; text-align:center;}
-  header.hero .tag{display:inline-block; background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.35); border-radius:99px; padding:4px 16px; font-size:13px; letter-spacing:.5px; margin-bottom:18px;}
-  header.hero h1{font-size:29px; line-height:1.4; font-weight:800;}
-  header.hero p{margin-top:14px; opacity:.92; font-size:14.5px;}
-  nav.toc{background:#fff; border:1px solid var(--line); border-radius:14px; padding:20px 26px; margin:-34px auto 40px; max-width:980px; box-shadow:0 8px 24px rgba(21,36,132,.08); position:relative;}
-  nav.toc b{display:block; margin-bottom:8px; color:var(--blue); font-size:14px;}
-  nav.toc a{display:inline-block; margin:3px 8px 3px 0; color:var(--ink); text-decoration:none; font-size:13.5px; background:var(--sky); border-radius:8px; padding:3px 11px;}
-  nav.toc a:hover{background:var(--blue); color:#fff;}
-  h2{font-size:22px; color:var(--blue); margin:56px 0 16px; padding-top:18px; border-top:3px solid var(--blue); font-weight:800;}
-  h2 .num{display:inline-block; background:var(--blue); color:#fff; border-radius:8px; font-size:14px; padding:1px 10px; margin-right:10px; vertical-align:3px;}
-  h3{font-size:17px; margin:28px 0 10px; color:#0f1b5e; font-weight:700;}
-  h4{font-size:15.5px; margin:18px 0 8px;}
-  p{margin:0 0 12px;}
-  .card{background:#fff; border:1px solid var(--line); border-radius:14px; padding:20px 24px; margin:14px 0;}
-  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
-  @media(max-width:760px){.grid2{grid-template-columns:1fr;}}
-  .diag{border-left:5px solid var(--bad);}
-  .fix{border-left:5px solid var(--good);}
-  .diag .lbl{color:var(--bad);} .fix .lbl{color:var(--good);}
-  .lbl{font-weight:800; font-size:12.5px; letter-spacing:1px; display:block; margin-bottom:8px;}
-  ul,ol{padding-left:22px; margin:0 0 12px;}
-  li{margin:5px 0;}
-  .copy{background:#0f1b3d; color:#e8ecff; border-radius:12px; padding:16px 20px; font-size:14px; line-height:1.8; margin:12px 0; white-space:pre-wrap;}
-  .copy::before{content:'📋 그대로 복사해 쓰는 문구'; display:block; font-size:11px; color:#8fa3ff; letter-spacing:1px; margin-bottom:9px; font-weight:700;}
-  .copy em{color:#7ee0a3; font-style:normal;}
-  table{width:100%; border-collapse:collapse; background:#fff; border-radius:12px; overflow:hidden; margin:12px 0; font-size:13.5px;}
-  th{background:var(--blue); color:#fff; padding:9px 12px; text-align:left; font-weight:700;}
-  td{padding:9px 12px; border-bottom:1px solid var(--line); vertical-align:top;}
-  tr:last-child td{border-bottom:none;}
-  .pill{display:inline-block; border-radius:99px; padding:1px 10px; font-size:12px; font-weight:700; margin-right:4px;}
-  .p-red{background:#fdeaea; color:var(--bad);} .p-grn{background:#e6f6ee; color:var(--good);} .p-yel{background:#fdf3e0; color:var(--warn);} .p-blu{background:var(--sky); color:var(--blue);}
-  .note{background:#fffbea; border:1px solid #f2e4b3; border-radius:10px; padding:12px 16px; font-size:13.5px; margin:12px 0;}
-  .seen{background:#f0f6ff; border:1px solid #c6d8f7; border-radius:10px; padding:12px 16px; font-size:13.5px; margin:12px 0;}
-  .seen::before{content:'👁 실제 화면에서 확인한 내용'; display:block; font-weight:800; color:var(--blue); font-size:12px; margin-bottom:6px; letter-spacing:.5px;}
-  .stat{display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px; margin:14px 0;}
-  .stat .s{background:#fff; border:1px solid var(--line); border-radius:12px; padding:12px; text-align:center;}
-  .stat .s b{display:block; font-size:20px; color:var(--blue);}
-  .stat .s span{font-size:12px; color:var(--sub);}
-  .chk li{list-style:none; margin:7px 0; padding-left:28px; position:relative;}
-  .chk li::before{content:'☐'; position:absolute; left:0; color:var(--blue); font-size:17px;}
-  details{background:#fff; border:1px solid var(--line); border-radius:12px; margin:10px 0; overflow:hidden;}
-  details summary{cursor:pointer; padding:14px 18px; font-weight:700; color:var(--blue); list-style:none; position:relative; font-size:15px; user-select:none;}
-  details summary::after{content:'▸ 클릭해서 펼치기'; position:absolute; right:18px; font-size:12px; color:var(--sub); font-weight:400;}
-  details[open] summary::after{content:'▾ 접기';}
-  details summary:hover{background:var(--sky);}
-  details .inner{padding:4px 20px 18px; border-top:1px dashed var(--line);}
-  footer{color:var(--sub); font-size:12.5px; text-align:center; margin-top:60px; border-top:1px solid var(--line); padding-top:20px;}
-  .small{font-size:13px; color:var(--sub);}
-  code{background:var(--sky); border-radius:6px; padding:1px 7px; font-size:13px; color:var(--blue); font-family:inherit; font-weight:600;}
-  .sz td:first-child{font-weight:700; white-space:nowrap;}
-  /* ===== 편집 모드 ===== */
-  #ebar{position:fixed; top:12px; right:12px; z-index:1000; display:flex; gap:8px; align-items:center;}
-  #ebar button{border:none; border-radius:99px; padding:9px 16px; font-size:13px; font-weight:700; cursor:pointer; box-shadow:0 4px 14px rgba(0,0,0,.18); font-family:inherit;}
-  #btnEdit{background:#fff; color:var(--blue); border:1.5px solid var(--blue);}
-  body.editing #btnEdit{background:var(--bad); color:#fff; border-color:var(--bad);}
-  #btnSave{background:var(--blue); color:#fff;}
-  #btnPrint{background:#fff; color:var(--ink); border:1.5px solid var(--line);}
-  #ehint{display:none; position:fixed; top:58px; right:12px; z-index:1000; background:#0f1b3d; color:#fff; font-size:12.5px; padding:10px 14px; border-radius:10px; max-width:290px; line-height:1.6;}
-  body.editing #ehint{display:block;}
-  body.editing h1, body.editing h2, body.editing h3, body.editing h4, body.editing p, body.editing ul, body.editing ol,
-  body.editing table, body.editing details, body.editing .card, body.editing .copy, body.editing .note, body.editing .seen,
-  body.editing .stat, body.editing li{position:relative; outline:1px dashed #b9c4f2; outline-offset:2px;}
-  .del-btn{display:none; position:absolute; top:-9px; right:-9px; width:22px; height:22px; border-radius:50%;
-    background:var(--bad); color:#fff; font-size:13px; line-height:22px; text-align:center; cursor:pointer;
-    z-index:60; font-weight:700; box-shadow:0 2px 6px rgba(0,0,0,.25); user-select:none;}
-  body.editing *:hover > .del-btn{display:block;}
-  @media print{#ebar,#ehint,.del-btn{display:none !important;} body{background:#fff;} details{border:none;} details>.inner{display:block;}}
+:root{--blue:#152484;--sky:#00A0E2;--yellow:#FFC107;--red:#D32F2F;--green:#2E7D32;--bg:#f4f6fb;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Pretendard','Malgun Gothic','Apple SD Gothic Neo',sans-serif;background:var(--bg);color:#1a1a2e;line-height:1.65;}
+header{background:linear-gradient(135deg,var(--blue),#1e3a8a 60%,var(--sky));color:#fff;padding:26px 20px;}
+header h1{font-size:1.35rem;}
+header .sub{opacity:.9;font-size:.85rem;margin-top:4px;}
+main{max-width:1020px;margin:0 auto;padding:20px 16px 70px;}
+h2{font-size:1.15rem;color:var(--blue);margin:22px 0 10px;border-left:5px solid var(--sky);padding-left:10px;}
+h3{font-size:1rem;color:#0f1a5c;margin:12px 0 6px;}
+.card{background:#fff;border-radius:12px;padding:16px 18px;margin-bottom:12px;border:1px solid #e3e8f5;box-shadow:0 1px 4px rgba(20,30,80,.08);}
+.badge{display:inline-block;font-size:.7rem;font-weight:700;border-radius:6px;padding:2px 7px;margin-left:6px;vertical-align:middle;}
+.b-ok{background:#e5f4e8;color:var(--green);}
+.b-bad{background:#fde3e3;color:var(--red);}
+.b-mid{background:#fff3d6;color:#9a6b00;}
+table{width:100%;border-collapse:collapse;font-size:.85rem;margin:10px 0;}
+th{background:var(--blue);color:#fff;padding:7px;text-align:left;font-size:.8rem;}
+td{border:1px solid #dde3f0;padding:7px;vertical-align:top;background:#fff;}
+tr:nth-child(even) td{background:#f8faff;}
+.warn{background:#fff2f2;border:1px solid #f3c1c1;border-radius:10px;padding:11px 13px;margin:10px 0;font-size:.88rem;}
+.warn b{color:var(--red);}
+.tip{background:#eefaf0;border:1px solid #bfe3c8;border-radius:10px;padding:11px 13px;margin:10px 0;font-size:.88rem;}
+.src{font-size:.77rem;color:#667;margin-top:6px;}
+ul,ol{padding-left:20px;}
+li{margin:4px 0;}
+details{background:#fff;border-radius:10px;margin:8px 0;border:1px solid #e3e8f5;}
+details>summary{cursor:pointer;padding:10px 14px;font-weight:700;font-size:.9rem;}
+details .body{padding:4px 16px 14px;font-size:.9rem;}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0;}
+.kpi .k{background:#fff;border:1px solid #e3e8f5;border-radius:12px;padding:12px;text-align:center;}
+.kpi .k .n{font-size:1.15rem;font-weight:900;color:var(--blue);}
+.kpi .k .l{font-size:.72rem;color:#667;}
+footer{text-align:center;color:#667;font-size:.78rem;padding:18px;}
 </style>
 </head>
-<body class="">
-
-<header class="hero">
-  <span class="tag">더불어민주당 2026 전당대회 · 당대표 후보</span>
-  <h1>김보미 디지털 채널 통합 진단·개선 보고서</h1>
-  <p>홈페이지 · 페이스북 · 인스타그램 · 유튜브 · X · 틱톡 · 블로그 + 네이버·다음·나무위키 인물검색<br>
-  작성 2026. 7. 7 | 근거: 실제 채널 화면 직접 확인 · 김보미.com 전체 · 페이스북 게시글 421건 분석 · 유튜브 184개 영상 목록 · 포털 검색 실사<br>
-  ⏰ 홈페이지 기준 <b>예비경선 컷오프 D-14 · 전당대회 8. 17</b> — 1주차 체크리스트가 곧 데드라인입니다</p>
+<body>
+<header>
+<h1>📱 김보미 디지털 총망라 개선보고서 V2 — SNS·홈페이지·커뮤니티 통합</h1>
+<div class="sub">캠프 내부 자료 · 외부 공유 금지 · 2026.7.13 작성 (7.7 진단보고서 V1의 전면 개정판 · 7.13 채널 재실사 반영) · 컷오프 D-8</div>
 </header>
+<main>
+<div class="warn"><b>V2 개정 요지:</b> ① 7.13 페이스북·김보미.com 재실사 결과 반영(팔로워·게시물·이행률) ② V1 최우선 권고 이행 점검 — <b>핵심 항목 미이행 확인</b> ③ 커뮤니티(디시·클리앙 등) 진단·전략 신규 추가 ④ 전준위 "멸칭·비방 강력 조치"(7.7) 이후 콘텐츠 수위 기준 재정립. 실사 불가 항목은 그대로 표기(추정치 기입 안 함).</div>
 
-<nav class="toc">
-  <b>목차 — 항목을 클릭하면 이동합니다</b>
-  <a href="#core">0. 브랜드 코어</a>
-  <a href="#summary">1. 진단 요약</a>
-  <a href="#size">2. 📐 디자인 사이즈 스펙 (시안 발주용)</a>
-  <a href="#web">3. 홈페이지</a>
-  <a href="#fb">4. 페이스북</a>
-  <a href="#ig">5. 인스타그램</a>
-  <a href="#yt">6. 유튜브</a>
-  <a href="#x">7. X</a>
-  <a href="#tt">8. 틱톡</a>
-  <a href="#blog">9. 블로그</a>
-  <a href="#people">10. 🔍 인물검색 (네이버·다음·나무위키·위키백과)</a>
-  <a href="#comm">11. 💬 댓글·소통 전략</a>
-  <a href="#viral">12. 🚀 바이럴·유입 극대화</a>
-  <a href="#ops">13. 통합 운영</a>
-  <a href="#todo">14. 실행 체크리스트</a>
-</nav>
-
-<div class="wrap">
-
-<div class="card" style="margin-top:0">
-  <b style="color:var(--blue); font-size:14px;">🔗 채널 바로가기 — 클릭하면 새 창으로 열립니다</b><br>
-  <a href="https://www.xn--4k0b53xuva.com/" target="_blank" rel="noopener" style="display:inline-block;margin:6px 8px 0 0;background:var(--blue);color:#fff;border-radius:8px;padding:5px 14px;text-decoration:none;font-size:13.5px;font-weight:700;">🏠 김보미.com</a>
-  <a href="https://www.facebook.com/kimbomi1989" target="_blank" rel="noopener" style="display:inline-block;margin:6px 8px 0 0;background:#1877f2;color:#fff;border-radius:8px;padding:5px 14px;text-decoration:none;font-size:13.5px;font-weight:700;">📘 페이스북</a>
-  <a href="https://www.instagram.com/kimbomi1989/" target="_blank" rel="noopener" style="display:inline-block;margin:6px 8px 0 0;background:#c13584;color:#fff;border-radius:8px;padding:5px 14px;text-decoration:none;font-size:13.5px;font-weight:700;">📷 인스타그램</a>
-  <a href="https://www.youtube.com/@kimbomi1989" target="_blank" rel="noopener" style="display:inline-block;margin:6px 8px 0 0;background:#ff0000;color:#fff;border-radius:8px;padding:5px 14px;text-decoration:none;font-size:13.5px;font-weight:700;">▶️ 유튜브</a>
-  <a href="https://blog.naver.com/kimbom1204" target="_blank" rel="noopener" style="display:inline-block;margin:6px 8px 0 0;background:#03c75a;color:#fff;border-radius:8px;padding:5px 14px;text-decoration:none;font-size:13.5px;font-weight:700;">✍️ 블로그</a>
-  <a href="https://search.naver.com/search.naver?query=%EA%B9%80%EB%B3%B4%EB%AF%B8%20%EA%B0%95%EC%A7%84" target="_blank" rel="noopener" style="display:inline-block;margin:6px 8px 0 0;background:#fff;color:#03c75a;border:1.5px solid #03c75a;border-radius:8px;padding:5px 14px;text-decoration:none;font-size:13.5px;font-weight:700;">🔍 네이버 인물검색</a>
-  <a href="https://search.daum.net/search?w=tot&amp;q=%EA%B9%80%EB%B3%B4%EB%AF%B8%20%EA%B0%95%EC%A7%84" target="_blank" rel="noopener" style="display:inline-block;margin:6px 8px 0 0;background:#fff;color:#3467d6;border:1.5px solid #3467d6;border-radius:8px;padding:5px 14px;text-decoration:none;font-size:13.5px;font-weight:700;">🔍 다음 검색</a>
-  <a href="https://namu.wiki/w/%EA%B9%80%EB%B3%B4%EB%AF%B8(%EC%A0%95%EC%B9%98%EC%9D%B8)" target="_blank" rel="noopener" style="display:inline-block;margin:6px 8px 0 0;background:#fff;color:#00a495;border:1.5px solid #00a495;border-radius:8px;padding:5px 14px;text-decoration:none;font-size:13.5px;font-weight:700;">🌳 나무위키 문서</a>
-  <span style="display:inline-block;margin:6px 8px 0 0;background:#f3f4f8;color:var(--sub);border-radius:8px;padding:5px 14px;font-size:13.5px;">🐦 X · 🎵 틱톡 — 개설 후 @kimbomi1989 로 추가</span>
-</div>
-
-<!-- ============ 0 ============ -->
-<h2 id="core"><span class="num">0</span>브랜드 코어 — 모든 채널이 공유할 단 하나의 기준</h2>
-<p>실제 화면을 전부 확인한 결과, 지금 온라인에는 <b>세 명의 다른 김보미</b>가 존재합니다. ① 홈페이지의 '당대표 후보 김보미'(주먹 든 파란 정장 사진, "뽑고 싶은 민주당") ② 유튜브·인스타의 '군수 후보 김보미'(안경 사진, "강진의 봄"·"모두의 봄", 김보미365.com) ③ 페이스북의 '반반 김보미'(프로필은 새 캠페인, 소개는 옛 슬로건, 커버는 아예 없음). <b>이번 주 안에 한 명으로 통일하는 것</b>이 모든 작업의 출발점입니다.</p>
-
+<h2>0. 브랜드 코어 (변경 없음 — 전 채널 통일 기준)</h2>
 <div class="card">
-  <table>
-    <tbody><tr><th style="width:160px">항목</th><th>확정안</th></tr>
-    <tr><td><b>메인 슬로건</b></td><td>뽑고 싶은 민주당, 뽑고 싶은 김보미.</td></tr>
-    <tr><td><b>서브 메시지</b></td><td>새로운 시대, 진짜 실력으로 경쟁하는 공정한 민주당</td></tr>
-    <tr><td><b>포지셔닝 한 줄</b></td><td>더불어민주당 당대표 후보 · 전국 최연소 기초의회 의장 출신 36세 청년 정치인</td></tr>
-    <tr><td><b>증명 숫자 4종</b></td><td>정치 13년 · 의정 8년 · 36세 · 전국 최연소 의장(만 32세)</td></tr>
-    <tr><td><b>시그니처 상징</b></td><td>🥚 계란(계란으로 바위치기) — 언론이 이미 인용 중("계란으로 기득권 바위 깬다" 프레시안 헤드라인 확인). 전 채널 공통 이모지·해시태그로 확장</td></tr>
-    <tr><td><b>컬러</b></td><td>민주당 블루 <code>#152484</code> + 스카이블루 <code>#00A0E2</code> + 계란 옐로 포인트</td></tr>
-    <tr><td><b>프로필 사진</b></td><td>홈페이지·페북에 쓰는 <b>파란 정장 캠페인 사진 1장으로 7개 채널 전부 통일</b>. 현재 유튜브·인스타는 안경 쓴 옛 사진 → 교체 필수</td></tr>
-    <tr><td><b>핸들</b></td><td><code>kimbomi1989</code> 전 채널 통일 (X·틱톡 신규 확보 포함)</td></tr>
-    <tr><td><b>허브 링크</b></td><td>모든 링크는 <b>김보미.com</b> 단일 수렴. 김보미365.com은 김보미.com으로 리다이렉트 설정</td></tr>
-    <tr><td><b>공통 해시태그</b></td><td>#김보미 #뽑고싶은민주당 #더불어민주당</td></tr>
-    <tr><td><b>톤앤매너</b></td><td>싸울 땐 검사처럼 정확하게(숫자·증거), 일상은 이웃처럼 따뜻하게</td></tr>
-  </tbody></table>
+<b>메인 슬로건</b> "뽑고 싶은 민주당, 뽑고 싶은 김보미." · <b>증명 숫자 4종</b> 정치 13년 / 의정 8년 / <b>만 36세</b> / 전국 최연소 의장(만 32세) · <b>시그니처</b> 🥚 계란 · <b>컬러</b> 민주당 블루 #152484 + 스카이 #00A0E2 + 계란 옐로 · <b>핸들</b> kimbomi1989 통일 · <b>허브</b> 김보미.com · <b>공통 해시태그</b> #김보미 #뽑고싶은민주당 #더불어민주당
 </div>
 
-<!-- ============ 1 ============ -->
-<h2 id="summary"><span class="num">1</span>한눈에 보는 진단 요약 <span class="small">(전 채널 실화면 확인 완료)</span></h2>
+<h2>1. 채널별 진단 — 7.7(V1) → 7.13(재실사) 변화</h2>
+<div class="card">
 <table>
-  <tbody><tr><th style="width:100px">채널</th><th>실측 현황</th><th>핵심 문제</th><th>처방</th></tr>
-  <tr><td><b>홈페이지</b><br><span class="pill p-grn">양호</span></td><td>당대표 캠페인 완비</td><td>유튜브 채널명 옛 표기, X·틱톡 부재</td><td>채널 섹션 갱신</td></tr>
-  <tr><td><b>페이스북</b><br><span class="pill p-red">시급</span></td><td>팔로워 7.5천 · 인증배지 ✓ · 고정글 OK</td><td><b>커버 사진 없음(빈 공간)</b>, 소개 옛 슬로건, 직장 "강진군의회 의원-현재" 오표기</td><td>커버 신규 제작, 소개·정보 교체</td></tr>
-  <tr><td><b>인스타그램</b><br><span class="pill p-red">시급</span></td><td>게시물 526 · 팔로워 1,678</td><td>이름란 "김보미 聖徒"(직함·검색어 0), 옛 사진·옛 바이오, <b>하이라이트 0개</b>, 그리드가 군수선거 콘텐츠</td><td>이름·바이오·사진 교체, 하이라이트 6종</td></tr>
-  <tr><td><b>유튜브</b><br><span class="pill p-red">시급</span></td><td>구독자 674 · 영상 184개</td><td>채널명·배너·링크(김보미365.com) 전부 군수 시점, <b>최근 3개월 업로드 0 = 당대표 콘텐츠 0</b>, 축사 클립 20여 개 낱개 도배, 의장연설 40개 비공개, 커뮤니티 탭 미활성</td><td>전면 리브랜딩 + 홈 6단 재설계</td></tr>
-  <tr><td><b>X</b><br><span class="pill p-blu">신규</span></td><td>계정 없음</td><td>기자·고관여층 실시간 접점 부재</td><td>@kimbomi1989 개설</td></tr>
-  <tr><td><b>틱톡</b><br><span class="pill p-blu">신규</span></td><td>계정 없음</td><td>2030 접점 부재</td><td>쇼츠 재활용 개설</td></tr>
-  <tr><td><b>블로그</b><br><span class="pill p-yel">보완</span></td><td>blog.naver.com/kimbom1204</td><td>핸들 불일치, 대문 시점 점검 필요</td><td>정책 아카이브로 역할 확정</td></tr>
-  <tr><td><b>인물검색</b><br><span class="pill p-red">시급</span></td><td>네이버 "전 기초의회의원"·2024.3 이후 미갱신·옛 사진 · 다음 인물정보 <b>없음</b> · 위키백과 문서 <b>없음</b> · 나무위키 7줄(현직 오표기)</td><td>검색 첫인상이 '전직 기초의원'에 멈춤</td><td>10장 절차대로 갱신·등록 + 사진 일괄 교체</td></tr>
-</tbody></table>
-
-<div class="stat">
-  <div class="s"><b>7,500</b><span>페북 팔로워 (주력)</span></div>
-  <div class="s"><b>1,678</b><span>인스타 팔로워</span></div>
-  <div class="s"><b>674</b><span>유튜브 구독자</span></div>
-  <div class="s"><b>184개</b><span>유튜브 영상</span></div>
-  <div class="s"><b>3개월</b><span>유튜브 업로드 공백</span></div>
-  <div class="s"><b>0개</b><span>인스타 하이라이트</span></div>
+<tr><th>채널</th><th>7.7 V1 진단</th><th>7.13 재실사</th><th>판정</th></tr>
+<tr><td><b>페이스북</b><br>kimbomi1989 (인증✓)</td><td>팔로워 7,500 · 커버 없음 · 소개 옛 슬로건 "모두의 봄" · 직장 "강진군의회 의원-현재" 오표기 · 게시글 421건(본인 138/공유 283)</td><td>팔로워 <b>7.6천(+약 100)</b> · 출마선언 풀영상 상단 고정(공감 81·공유 54) · 7.13 아침 선호투표제 게시(1시간 내 공감 36) · <b>소개 "모두의 봄"·직장 오표기 그대로</b></td><td><span class="badge b-bad">🔴 핵심 권고 미이행</span></td></tr>
+<tr><td><b>유튜브</b><br>@kimbomi1989</td><td>구독 674 · 최근 3개월 업로드 0 · 당대표 콘텐츠 0 · 의장연설 40개 비공개 · 채널명 "강진의 봄, 김보미TV"</td><td>출마선언 풀영상 「청년이 사랑하는 민주당을 위해」 업로드 확인(페북 고정글 링크) · 김보미.com 방명록에 "유튜브 채널 꼭 개설해 주세요"(7.12) = 채널 인지도 여전히 바닥</td><td><span class="badge b-mid">🟡 개선 시작</span></td></tr>
+<tr><td><b>김보미.com</b></td><td>오픈 직후</td><td>비전·공약 게시글 7.1~7.13 15건+ 꾸준 · 기사모음 자동 업데이트 작동 · 계란 게임 명예의전당 6명 · 이생망 4건 · 생각나누기 9건 — <b>기능은 완성, 참여 규모가 과제</b></td><td><span class="badge b-ok">🟢 정상 가동</span></td></tr>
+<tr><td><b>인스타그램</b><br>@kimbomi1989</td><td>게시물 526 · 팔로워 1,678 · 이름란 "김보미 聖徒" · 하이라이트 0</td><td>미재실사 — 이름란·하이라이트 정비 여부 확인 필요</td><td><span class="badge b-mid">🟡 확인 필요</span></td></tr>
+<tr><td><b>X(트위터)</b></td><td>계정 없음 → 신규 개설 권고</td><td>kimbomi891204 운영 중이라는 내부 브리핑(이왕재 소장 7.13) — <b>계정 URL·팔로워 외부 미검증</b></td><td><span class="badge b-mid">🟡 검증 필요</span></td></tr>
+<tr><td><b>블로그</b><br>blog.naver.com/kimbom1204</td><td>77건 · 최신글 2026.4.12 · 대문 2022~2024 정지</td><td>미재실사</td><td><span class="badge b-mid">🟡</span></td></tr>
+<tr><td><b>포털 인물정보</b></td><td>네이버 "전 기초의회의원"(2024.3 이후 미갱신) · 다음 없음 · 나무위키 7줄</td><td>김보미.com이 나무위키 링크 노출 중 — 본인참여 수정 접수 여부 확인 필요(컷오프 전 필수)</td><td><span class="badge b-mid">🟡</span></td></tr>
+</table>
+<div class="src">근거: 김보미_SNS_통합브랜딩_진단보고서·디지털채널_진단보고서(7.7) · facebook.com/kimbomi1989, 김보미.com 직접 확인(7.13)</div>
 </div>
 
-<!-- ============ 2 ============ -->
-<h2 id="size"><span class="num">2</span>📐 디자인 사이즈 스펙 — 디자이너 발주용</h2>
-<p>일괄 교체에 필요한 제작물 전체입니다. <b>공통 원칙:</b> 해상도 RGB / 72dpi 이상, 텍스트는 안전영역 안에만, 파일 포맷 JPG 또는 PNG(로고·문자 위주는 PNG), 프로필 사진은 원형 크롭을 고려해 얼굴을 정중앙 배치.</p>
+<div class="warn"><b>🚨 V1 최우선 권고 이행 점검 (7.13):</b> ① 페이스북 직장 임기 표기 수정 — <b>미이행</b>(허위경력 시비 리스크, 상대 캠프가 캡처하면 즉시 기사감) ② 소개란 슬로건 교체 — <b>미이행</b> ③ 인스타 이름란 — 미확인 ④ 유튜브 정비 — 부분 이행. <b>①②는 비용 0원·소요 10분. 오늘 중 처리.</b></div>
 
-<details open="">
-<summary>① 페이스북 — 제작물 3종</summary><div class="inner">
-<table class="sz">
-<tbody><tr><th style="width:190px">항목</th><th>사이즈(px)</th><th>주의사항</th></tr>
-<tr><td>프로필 사진</td><td><b>720 × 720</b> (최소 320×320)</td><td>원형 크롭 표시(데스크톱 176px). 공통 캠페인 사진 사용</td></tr>
-<tr><td>커버(배경) 사진</td><td><b>1640 × 624</b> 로 제작<br>(표시: PC 820×312 / 모바일 640×360)</td><td>⚠️ 현재 커버 없음 — 최우선 제작. PC는 상하, 모바일은 좌우가 잘리므로 <b>문구는 중앙 640×312 영역 안에만</b> 배치</td></tr>
-<tr><td>게시용 카드뉴스</td><td><b>1080 × 1080</b> (정방형)</td><td>인스타와 공용. 링크 공유 썸네일(OG)은 1200×630</td></tr>
-</tbody></table>
-</div></details>
-
-<details>
-<summary>② 인스타그램 — 제작물 4종</summary><div class="inner">
-<table class="sz">
-<tbody><tr><th style="width:190px">항목</th><th>사이즈(px)</th><th>주의사항</th></tr>
-<tr><td>프로필 사진</td><td><b>320 × 320</b> 이상 정방형 (720×720 권장)</td><td>원형 크롭. 공통 캠페인 사진</td></tr>
-<tr><td>피드 카드뉴스</td><td>정방형 <b>1080 × 1080</b> / 세로형 <b>1080 × 1350</b></td><td>세로형(4:5)이 피드 점유율·도달에 유리</td></tr>
-<tr><td>릴스·스토리</td><td><b>1080 × 1920</b> (9:16)</td><td>상단 250px·하단 310px은 UI에 가려짐 — 자막은 중앙 배치</td></tr>
-<tr><td>하이라이트 커버 6종</td><td><b>1080 × 1920</b> 제작, 중앙 원형만 노출</td><td>블루 배경 + 흰 아이콘 + 라벨(출사표/약속/증명/언론/계란/일상)</td></tr>
-</tbody></table>
-</div></details>
-
-<details>
-<summary>③ 유튜브 — 제작물 4종</summary><div class="inner">
-<table class="sz">
-<tbody><tr><th style="width:190px">항목</th><th>사이즈(px)</th><th>주의사항</th></tr>
-<tr><td>프로필 사진</td><td><b>800 × 800</b></td><td>표시는 98px 원형. 공통 캠페인 사진</td></tr>
-<tr><td>배너(채널 아트)</td><td><b>2048 × 1152</b> (6MB 이하)</td><td>⚠️ 기기별 크롭 극심 — <b>글자·로고는 중앙 안전영역 1235 × 338 안에만</b>. TV는 전체, 모바일은 중앙만 보임</td></tr>
-<tr><td>영상 썸네일 템플릿</td><td><b>1280 × 720</b> (2MB 이하)</td><td>규칙: 좌측 인물 반신 + 우측 카피 4~7자(최소 72pt급) + 하단 블루 바. 시리즈별 색상 코드</td></tr>
-<tr><td>쇼츠</td><td><b>1080 × 1920</b></td><td>세로. 첫 1초에 자막 훅</td></tr>
-</tbody></table>
-</div></details>
-
-<details>
-<summary>④ X — 제작물 3종</summary><div class="inner">
-<table class="sz">
-<tbody><tr><th style="width:190px">항목</th><th>사이즈(px)</th><th>주의사항</th></tr>
-<tr><td>프로필 사진</td><td><b>400 × 400</b></td><td>원형 크롭. 공통 캠페인 사진</td></tr>
-<tr><td>헤더</td><td><b>1500 × 500</b> (5MB 이하)</td><td>페북 커버와 동일 디자인 리사이즈. 좌측 하단은 프로필 사진에 가려짐 — 문구는 우측·중앙에</td></tr>
-<tr><td>포스트 이미지</td><td>단독 <b>1600 × 900</b> (16:9) / 링크 카드 <b>1200 × 628</b></td><td>카드뉴스 1080×1080도 무방(1:1 유지 표시)</td></tr>
-</tbody></table>
-</div></details>
-
-<details>
-<summary>⑤ 틱톡 — 제작물 2종</summary><div class="inner">
-<table class="sz">
-<tbody><tr><th style="width:190px">항목</th><th>사이즈(px)</th><th>주의사항</th></tr>
-<tr><td>프로필 사진</td><td><b>720 × 720</b> 권장 (최소 200×200)</td><td>원형 크롭. 공통 캠페인 사진</td></tr>
-<tr><td>영상</td><td><b>1080 × 1920</b> (9:16)</td><td>우측 아이콘 열·하단 캡션 영역 피해서 자막 배치</td></tr>
-</tbody></table>
-</div></details>
-
-<details>
-<summary>⑥ 네이버 블로그 + 공통 제작물</summary><div class="inner">
-<table class="sz">
-<tbody><tr><th style="width:190px">항목</th><th>사이즈(px)</th><th>주의사항</th></tr>
-<tr><td>블로그 프로필</td><td>정방형 <b>500 × 500</b> 이상</td><td>공통 캠페인 사진</td></tr>
-<tr><td>PC 타이틀(대문)</td><td><b>가로 966 고정 × 세로 50~600</b> (권장 400 내외)</td><td>관리 → 꾸미기 → 타이틀에서 직접 등록. 슬로건+김보미.com 표기</td></tr>
-<tr><td>모바일앱 커버</td><td>정방형 <b>1080 × 1080</b> 이상 제작 후 앱에서 크롭</td><td>앱 관리에서 별도 등록 (등록 화면의 가이드 크롭에 맞춤)</td></tr>
-<tr><td>OG 공유 이미지 (홈페이지)</td><td><b>1200 × 630</b></td><td>모든 채널에서 김보미.com 링크 공유 시 노출되는 얼굴</td></tr>
-<tr><td>카카오톡 채널 프로필 (11장 참고)</td><td><b>640 × 640</b></td><td>개설 시</td></tr>
-</tbody></table>
-</div></details>
-
-<details open="">
-<summary>⑦ 링크 미리보기(OG) 시안 — 필수 ★</summary><div class="inner">
-<p>카톡·페북·X에 <b>김보미.com 링크를 붙일 때마다 자동으로 뜨는 이미지</b>입니다. 경선 기간 가장 많이 노출되는 이미지이므로 반드시 별도 시안으로 제작합니다.</p>
-<table class="sz">
-<tbody><tr><th style="width:220px">용도</th><th>사이즈(px)</th><th>주의사항</th></tr>
-<tr><td>기본 OG 이미지<br>(페이스북·카카오톡 공용)</td><td><b>1200 × 630</b> (1.91:1)</td><td>김보미.com의 og:image로 등록. 카톡은 좌우 살짝 크롭될 수 있어 <b>텍스트는 중앙 80% 안</b>에</td></tr>
-<tr><td>X 링크 카드</td><td><b>1200 × 628</b></td><td>기본 OG와 동일 시안 사용 가능 (summary_large_image)</td></tr>
-<tr><td>블로그·뉴스레터용 대표 이미지</td><td><b>1200 × 630</b> 동일</td><td>글 첫 이미지 = 공유 미리보기가 되므로 매 글 첫 이미지에 통일 템플릿 사용</td></tr>
-</tbody></table>
-<div class="copy">[미리보기 시안 구성 — 디자이너 지시]
-좌: 캠페인 사진(상반신) / 우: 문구 3줄
-  뽑고 싶은 민주당, 뽑고 싶은 김보미.
-  더불어민주당 당대표 후보
-  김보미.com
-배경: 민주당 블루(#152484) → 스카이블루 그라데이션, 우하단 🥚 포인트
-※ 얼굴과 글자가 잘리지 않도록 중앙 80% 안전영역 준수</div>
-<p class="small">적용 후 검증: <a href="https://developers.facebook.com/tools/debug/" target="_blank" rel="noopener">페이스북 공유 디버거 ↗</a>와 <a href="https://developers.kakao.com/tool/debugger/sharing" target="_blank" rel="noopener">카카오 공유 디버거 ↗</a>에 김보미.com 입력 → 캐시 갱신 → 새 이미지가 뜨는지 확인.</p>
-</div></details>
-
-<p class="small">※ 요약 발주 문구: "동일 키비주얼(파란 정장 캠페인 사진 + 슬로건 '뽑고 싶은 민주당, 뽑고 싶은 김보미' + 김보미.com)로 ①페북 커버 1640×624 ②X 헤더 1500×500 ③유튜브 배너 2048×1152(텍스트는 중앙 1235×338) ④블로그 타이틀 966×400 ⑤카드뉴스 1080×1080 ⑥링크 미리보기 1200×630 6종 + 공통 프로필 720×720 1종 + 유튜브 썸네일 템플릿 1280×720 + 인스타 하이라이트 커버 6종을 제작해주세요. 인물정보(네이버·다음)용 프로필 사진도 동일 원본 사용."</p>
-
-<!-- ============ 3 ============ -->
-<h2 id="web"><span class="num">3</span>홈페이지 — <a href="https://www.xn--4k0b53xuva.com/" target="_blank" rel="noopener" style="color:var(--accent)">김보미.com ↗</a></h2>
-<div class="grid2">
-<div class="card diag"><span class="lbl">진단</span>
-<ul>
-<li><b>잘된 점:</b> 출사표→공약→성과→참여(계란 게임·이생망·제보)→채널 동선 완성. 당대표 브랜딩의 유일한 '정답지'.</li>
-<li>소통 채널 섹션의 유튜브 표기가 "강진의 봄, 김보미TV" — 리브랜딩 후 갱신 필요.</li>
-<li>X·틱톡 부재(개설 후 추가), 김보미365.com(유튜브·인스타에 아직 걸려있는 옛 도메인)의 리다이렉트 미확인.</li>
-</ul></div>
-<div class="card fix"><span class="lbl">개선</span>
-<ul>
-<li>유튜브 리브랜딩 즉시 채널명 표기 "김보미TV"로 수정.</li>
-<li><b>김보미365.com → 김보미.com 301 리다이렉트</b> 설정 (옛 링크 유입 회수).</li>
-<li>채널 섹션에 X·틱톡 추가 + 채널별 한 줄 설명 부여.</li>
-<li>히어로 하단 고정 바: "매주 월 출사표 브리핑 · 목 라이브 — 유튜브에서".</li>
-</ul></div>
-</div>
-<div class="copy">[소통 채널 섹션 — 채널별 한 줄 설명]
-▶ 유튜브 「김보미TV」 — 출사표 브리핑·현장 라이브·의정 아카이브
-▶ 페이스북 — 김보미의 생각을 가장 깊게, 가장 먼저 (장문 논평)
-▶ 인스타그램 — 현장의 하루, 사진과 릴스로 만나는 김보미
-▶ X — 실시간 한 줄 논평, 속보에 답하는 김보미
-▶ 틱톡 — 30초로 이해하는 정치, 계란 챌린지 🥚
-▶ 네이버 블로그 — 공약·정책 자료실 (아카이브)</div>
-
-<!-- ============ 4 ============ -->
-<h2 id="fb"><span class="num">4</span>페이스북 — <a href="https://www.facebook.com/kimbomi1989" target="_blank" rel="noopener" style="color:var(--accent)">facebook.com/kimbomi1989 ↗</a></h2>
-<div class="seen">팔로워 7.5천 · 팔로잉 217 · 인증배지 ✓ · <b>커버 사진 없음(회색 빈 공간에 "커버 사진 추가" 버튼 노출)</b> · 프로필 사진은 새 캠페인 이미지(양호) · 소개: "함께 만드는 변화, 모두의 봄 김보미 / 번호표 받고 줄 서지 않는, 원칙과 소신의 정치 / 모두의 민주당, 모두의 대한민국을 꿈꿉니다! / 13년째, 고군분투 혁신 중" · 직장: "강진군의회 의원 2018년 7월 - <b>현재</b> · 7년 11개월" · 링크: xn--4k0b53xuva.com(퓨니코드 노출)·youtube.com · 고정 게시물: 당대표 출마선언문(3일 전) ✓</div>
-
-<div class="grid2">
-<div class="card diag"><span class="lbl">진단</span>
-<ul>
-<li><b>커버 부재</b> = 방문자 첫 화면의 40%가 빈 회색. 인증배지·7.5천 팔로워라는 자산이 아까운 상태.</li>
-<li>소개가 옛 슬로건 "모두의 봄"에 고정 — 홈페이지·고정글과 메시지 충돌.</li>
-<li>직장 정보가 "강진군의회 의원 - 현재"로 오표기 → <b>허위 경력 시비 리스크</b>. 임기 종료 반영 필수.</li>
-<li>게시글 분석(421건): 본인글 138 vs 공유글 283(1:2), &lt;제목&gt; 형식 6건뿐, 2023년 연 7건 공백, 해시태그 1,203개 산발.</li>
-<li>강점: 평균 1,000자 장문 논평(대표 사퇴 요구문 등)은 언론 인용 가치가 높은 핵심 자산. 고정글 세팅은 이미 정답.</li>
-</ul></div>
-<div class="card fix"><span class="lbl">개선</span>
-<ul>
-<li>커버 1640×624 즉시 제작·등록 (2장 스펙).</li>
-<li>소개·상세정보 아래 문구로 교체. 직장은 "강진군의회 의원 2018.7–2026.6 (전) / 의장 2022–2024"로 수정.</li>
-<li>본인글에 &lt;제목&gt; 포맷 의무화, 공유는 주 2회 이하 + 본인 논평 3줄 첨부.</li>
-<li>해시태그 5개 이내(공통 3 + 상황 2).</li>
-<li>주간 리듬: 월(브리핑)·수(정책)·금(현장)·일(주간 정리).</li>
-</ul></div>
-</div>
-
-<details>
-<summary>페이스북 — 그대로 입력할 문구 전체 보기</summary><div class="inner">
-<div class="copy">[커버 사진 위 문구]
-메인:  뽑고 싶은 민주당, 뽑고 싶은 김보미.
-서브:  더불어민주당 당대표 후보 ㅣ 새로운 시대, 진짜 실력으로 경쟁하는 공정한 민주당
-하단:  정치 13년 · 의정 8년 · 전국 최연소 기초의회 의장  |  김보미.com
-
-[소개 (101자 제한)]
-더불어민주당 당대표 후보 김보미 🥚 전국 최연소 기초의회 의장 출신, 36세 청년 정치인. 뽑고 싶은 민주당, 뽑고 싶은 김보미 → 김보미.com
-
-[정보 탭 — 직장/학력 수정]
-직장 1: 더불어민주당 — 당대표 후보 (2026.7 ~ 현재)
-직장 2: 강진군의회 — 제8·9대 의원 (2018.7 ~ 2026.6) · 전반기 의장(2022~2024, 전국 최연소)
-웹사이트: https://김보미.com
-
-[긴 소개]
-새로운 시대, 진짜 실력으로 경쟁하는 공정한 민주당을 만들겠습니다. 정치 13년, 의정 8년. 전국 최연소 기초의회 의장(만 32세)으로 업무추진비 전면 공개, 108억 낭비예산 삭감, 전남 최초 육아양육수당 조례를 만들었습니다. 청년이 주도하는 전면적 세대교체로, 국민이 자랑스럽게 '뽑고 싶은' 민주당을 만들겠습니다.
-
-[게시글 표준 템플릿]
-&lt; 제목 — 핵심 주장 한 문장, 25자 이내 &gt;
-(1문단) 무슨 일이 — 사실
-(2~3문단) 왜 문제인가 — 숫자·증거
-(끝 문단) 김보미는 이렇게 하겠다 — 행동 선언
-▶ 전문·자료: 김보미.com
-#김보미 #뽑고싶은민주당 #더불어민주당</div>
-</div></details>
-
-<!-- ============ 5 ============ -->
-<h2 id="ig"><span class="num">5</span>인스타그램 — <a href="https://www.instagram.com/kimbomi1989/" target="_blank" rel="noopener" style="color:var(--accent)">@kimbomi1989 ↗</a></h2>
-<div class="seen">이름란: <b>"김보미 聖徒"</b> · 게시물 526 · 팔로워 1,678 · 팔로우 1,008 · 프로필 사진: 안경 쓴 옛 사진(회색 배경) · 바이오: "🌸 함께 만드는 변화, 모두의 봄 김보미 🌸 / 번호표 받고 줄 서지 않는, 원칙과 소신의 정치…" · <b>하이라이트 0개</b> · 최근 그리드: 연설 사진, 단체 사진, "김보미365.COM · 365일 군민 여러분과 함께합니다" 군수선거 카드</div>
-
-<div class="grid2">
-<div class="card diag"><span class="lbl">진단</span>
-<ul>
-<li>이름란 "김보미 聖徒"는 검색 최적화 0점 + 유권자에게 낯선 종교 표기 → '민주당', '당대표' 검색에 안 잡히고 첫인상에서 정치인 계정인지 모호.</li>
-<li>프로필 사진·바이오·그리드 모두 군수선거 시점 정지. 팔로워(1,678)보다 팔로우(1,008)가 많아 보이는 비율도 후보 계정으론 아쉬움.</li>
-<li>하이라이트가 하나도 없어 방문자가 30초 안에 '누구·무엇' 파악 불가.</li>
-<li>릴스 전략 부재 — 도달 알고리즘의 핵심 지렛대를 안 쓰는 중.</li>
-</ul></div>
-<div class="card fix"><span class="lbl">개선</span>
-<ul>
-<li>이름란 <b>"김보미 | 민주당 당대표 후보"</b>로 즉시 교체 (이름란은 검색 대상).</li>
-<li>프로필 사진 공통 캠페인 사진으로 교체, 바이오 아래 문구로 리셋.</li>
-<li>하이라이트 6종 신설(출사표·25개 약속·증명·언론·계란챌린지·보미로그).</li>
-<li>그리드 규칙: 인물 클로즈업 1 : 카드뉴스 1 : 현장 1 반복, 릴스 주 3회(쇼츠 공용).</li>
-<li>당대표 캠페인 첫 9개 게시물로 그리드 상단 3줄을 새 브랜딩으로 덮기.</li>
-</ul></div>
-</div>
-
-<details>
-<summary>인스타그램 — 그대로 입력할 문구 전체 보기</summary><div class="inner">
-<div class="copy">[이름]  김보미 | 민주당 당대표 후보
-[사용자명]  kimbomi1989 (유지)
-
-[바이오]
-뽑고 싶은 민주당, 뽑고 싶은 김보미 🥚
-전국 최연소 기초의회 의장 → 당대표 후보
-정치 13년 · 의정 8년 · 36세 청년
-📜 출사표·25개 약속·AI캠프 ⬇
-[링크]  https://김보미.com
-
-[하이라이트 6종]
-📜출사표 | ✅25개약속 | 📊증명 | 📰언론 | 🥚계란챌린지 | 🌱보미로그</div>
-</div></details>
-
-<!-- ============ 6 ============ -->
-<h2 id="yt"><span class="num">6</span>유튜브 — <a href="https://www.youtube.com/@kimbomi1989" target="_blank" rel="noopener" style="color:var(--accent)">@kimbomi1989 ↗</a> <span class="pill p-red" style="vertical-align:4px">전면 리브랜딩</span></h2>
-<div class="seen">채널명 "강진의 봄, 김보미TV" · 구독자 674 · 영상 184개 · 배너: "강진에서 시작되는 — 더불어 김보미TV 민주당 — 정직하고 바른정치"(군수 캠페인) · 프로필: 안경 쓴 옛 사진 · 링크 1순위: <b>김보미365.com</b>("김보미의 모든 것") · <b>최신 업로드 3개월 전</b>(군수 경선기) — 당대표 출마 영상 0개 · 최근 영상: 공천 기자회견·경선 해설·군수 출마선언 · 출판기념회 축사 클립 20여 개 낱개 업로드(조회수 26~1.6천) · 동일 기자회견 중복 업로드 2건 · 제목에 해시태그 범벅("민주당 #시스템공천? … #전남도당 #공심위 #강진군수") · 재생목록 9개 중 "제9대 전반기 의장 연설 40개"가 <b>비공개</b> · 재생목록명에 ❤️이모지·해시태그 혼입 · 커뮤니티(게시물) 탭 비활성 · Shorts 5개뿐이나 조회수 1.2천~2.9천으로 <b>롱폼 대비 최대 10배 성과</b></div>
-
-<div class="grid2">
-<div class="card diag"><span class="lbl">진단</span>
-<ul>
-<li>당대표 출마라는 가장 큰 뉴스가 <b>유튜브에 존재하지 않음</b>. 페북 고정글(출마선언)과 완전 단절.</li>
-<li>채널 전체(이름·배너·사진·링크·키워드·섹션)가 군수선거 프레임 → 알고리즘이 '강진 지역 채널'로 분류 지속.</li>
-<li>축사 클립 낱개 도배로 피드 오염 — 구독자 피로 + 채널 정체성 희석. 조회수 26회짜리 영상들이 첫인상.</li>
-<li>의장 연설 40개(최대 자산: '실력의 증거')가 비공개로 사장.</li>
-<li>Shorts가 압도적 효율인데 5개에서 중단.</li>
-</ul></div>
-<div class="card fix"><span class="lbl">개선</span>
-<ul>
-<li><b>48시간 내:</b> 출마선언 영상 업로드(페북 선언문 낭독 또는 기자회견) + 채널명 "김보미TV" + 배너·프로필·링크(김보미.com) 교체.</li>
-<li>축사 클립은 재생목록 「축사 모음」으로 묶고, 조회수 낮은 낱개는 목록에만 남기고 채널 홈에서 숨김.</li>
-<li>의장 연설 40개 <b>공개 전환</b> → 「증명의 기록」 재생목록으로 재맥락화.</li>
-<li>커뮤니티 탭 활성화 — 카드뉴스·투표로 영상 사이 접점 유지.</li>
-<li>제목 규칙: 28자 이내·해시태그는 설명란으로·중복 업로드 금지.</li>
-<li>주 2회 정규 편성(월 브리핑 5분 · 목 라이브) + 쇼츠 주 3회.</li>
-</ul></div>
-</div>
-
-<details>
-<summary>유튜브 — 채널 설정 문구 전체 (설명·키워드·배너) 보기</summary><div class="inner">
-<div class="copy">[채널명]  김보미TV
-[배너 문구 — 중앙 1235×338 안]
-뽑고 싶은 민주당, 뽑고 싶은 김보미.
-더불어민주당 당대표 후보 ㅣ 매주 월 브리핑 · 목 라이브 ㅣ 김보미.com
-
-[채널 설명]
-🥚 뽑고 싶은 민주당, 뽑고 싶은 김보미.
-
-더불어민주당 당대표 후보 김보미입니다.
-정치 13년, 의정 8년. 전국 최연소 기초의회 의장(만 32세)으로
-업무추진비 전면 공개, 108억 낭비예산 삭감,
-전남 최초 육아양육수당까지 — 실력으로 증명해 왔습니다.
-
-이제 새로운 시대의 민주당을 만듭니다.
-계파가 아닌 실력, 밀실이 아닌 유리상자,
-청년이 주도하는 전면적 세대교체.
-
-📺 월요일 「출사표 브리핑」 · 목요일 「보미 라이브」 · 쇼츠 상시
-📜 출사표·25개 약속·AI 챗봇 더불이 → https://김보미.com
-📩 kimbomi891204@gmail.com
-
-구독과 알림 설정은 청년 정치인을 위한
-가장 강력한 정치 후원입니다 💙
-
-[채널 키워드 — 전량 교체]
-김보미, 김보미TV, 더불어민주당, 민주당, 당대표, 당대표후보, 전당대회, 2026전당대회, 민주당혁신, 세대교체, 청년정치, 청년정치인, 최연소의장, 공천개혁, 경선개혁, 당원주권, 정치개혁, 뽑고싶은민주당, 계란으로바위치기, 김보미의장, 강진
-
-[링크 순서 교체]
-1. 김보미.com — 출사표·25개 약속·AI캠프
-2. 페이스북 / 3. 인스타그램 / 4. 블로그</div>
-
-<h4>홈 화면 6단 섹션 (위→아래)</h4>
+<h2>2. 성과 데이터로 본 콘텐츠 교훈 (실측 축적)</h2>
+<div class="card">
 <table>
-<tbody><tr><th style="width:36px">#</th><th style="width:230px">섹션</th><th>구성</th></tr>
-<tr><td>1</td><td>채널 예고편</td><td>60초 출사표 하이라이트 (비구독자용)</td></tr>
-<tr><td>2</td><td>🔥 당대표 출마 — 출사표와 약속</td><td>출마선언 풀영상 + 공약 해설 시리즈</td></tr>
-<tr><td>3</td><td>📺 출사표 브리핑 (매주 월)</td><td>정규 시리즈</td></tr>
-<tr><td>4</td><td>⚡ 쇼츠</td><td>최대 효율 포맷 — 홈 고정</td></tr>
-<tr><td>5</td><td>🔴 보미 라이브 다시보기</td><td>목요 라이브 아카이브</td></tr>
-<tr><td>6</td><td>📂 증명의 기록 (아카이브)</td><td>의장 연설(공개 전환)·의정활동·강진의 봄</td></tr>
-</tbody></table>
-
-<h4>재생목록 정비 (이모지·해시태그 제거, 7종)</h4>
-<p><code>출사표와 25개 약속</code> · <code>출사표 브리핑</code> · <code>보미 라이브</code> · <code>증명의 기록 — 의장 연설·의정활동</code> · <code>언론 속 김보미</code> · <code>축사와 응원</code> · <code>보미로그</code></p>
-
-<div class="copy">[영상 제목 규칙 — 28자 이내, 해시태그 금지(설명란으로)]
-브리핑:  민주당 ○○○, 이대로 괜찮습니까? | 출사표 브리핑 EP.1
-공약:  경선 결과, 전부 공개하겠습니다 — 유리상자 경선 [약속 ①]
-쇼츠:  경선 데이터 공개, 왜 못 합니까?
-
-[설명란 템플릿]
-(1~2줄 요약 — 검색 키워드 포함)
-⏱ 00:00 오프닝 / 00:45 …
-📜 출사표·공약 → https://김보미.com
-📌 페이스북·인스타 @kimbomi1989
-#김보미 #뽑고싶은민주당 #더불어민주당
-
-[고정 댓글]
-오늘 영상, 어디까지 공감하셨나요? 여러분의 생각이 공약이 됩니다 → 김보미.com '생각 나누기' 💙</div>
-</div></details>
-
-<!-- ============ 7 ============ -->
-<h2 id="x"><span class="num">7</span>X (구 트위터) — 신규 구축</h2>
-<div class="card diag"><span class="lbl">진단</span><p style="margin:0">본인 계정 없음(동명이인만 존재). 기자·정치 고관여층의 실시간 공간이 통째로 비어 있어, 페북 장문 논평이 언론에 인용될 1차 경로가 없습니다. 경선 기간 손실이 가장 큰 공백입니다.</p></div>
-<div class="card fix"><span class="lbl">개선 — 개설 설정값</span>
-<div class="copy">[핸들] @kimbomi1989   [이름] 김보미 | 민주당 당대표 후보
-[프로필] 공통 사진 400×400   [헤더] 커버 동일 디자인 1500×500
-
-[바이오]
-더불어민주당 당대표 후보 🥚 전국 최연소 기초의회 의장 출신 36세.
-뽑고 싶은 민주당, 뽑고 싶은 김보미.
-유리상자 경선 · 진짜 1인1표 · 청년 결정권
-[링크] 김보미.com
-
-[고정 스레드 1/6]
-지금 바꾸지 않으면, 미래세대에게 대한민국은 없습니다.
-저는 오늘부터 여기서, 매일, 실시간으로 답하겠습니다.
-더불어민주당 당대표 후보 김보미입니다. 🧵</div>
-<ul><li>운영: 하루 2~3회 (아침 이슈 논평 / 낮 팩트 카드 / 저녁 예고). 280자 안에 숫자 1 + 입장 1.</li><li>페북 장문 발행 시 핵심 3문장을 스레드로 변환 → 원문 링크.</li></ul></div>
-
-<!-- ============ 8 ============ -->
-<h2 id="tt"><span class="num">8</span>틱톡 — 신규 구축</h2>
-<div class="card fix"><span class="lbl">개설 설정값 + 운영</span>
-<div class="copy">[핸들] @kimbomi1989   [이름] 김보미 | 뽑고 싶은 민주당
-[바이오]
-36세 당대표 후보 🥚 계란으로 바위 깨는 중
-전국 최연소 의장 출신 | 30초 정치
-[링크] 김보미.com</div>
-<ul>
-<li>콘텐츠 3축: 「30초 정치」(공약 요약, 쇼츠·릴스 공용) / 「보미로그」(현장 15초) / 「🥚계란 챌린지」(게임·훈장 인증 참여형).</li>
-<li>첫 영상: "전국 최연소 의장이 당대표에 도전하는 이유" 45초.</li>
-<li>주의: 틱톡은 정치 광고 금지 → 오가닉 전용. 선거법상 표현은 캠프 법률 검토 병행.</li>
-</ul></div>
-
-<!-- ============ 9 ============ -->
-<h2 id="blog"><span class="num">9</span>네이버 블로그 — <a href="https://blog.naver.com/kimbom1204" target="_blank" rel="noopener" style="color:var(--accent)">blog.naver.com/kimbom1204 ↗</a></h2>
-<div class="seen">블로그명 "변화와 혁신의 봄" · 대문(타이틀): "내 삶을 바꾸는 정치, 더불어민주당 / 聽 마음을 다해 경청하겠습니다 / 우리 모두를 위한 일꾼, 김보미를 소개합니다" — 2022 지방선거 시절 디자인·옛 사진 · 소개글: 유튜브와 동일한 옛 문구("피땀눈물로 버티고… MZ정치인의 고군분투 생존일기") · 공지 5건이 전부 2022~2024(의장 시절) · 전체 글 77개 · <b>최신 글이 2026.4.12 민형배 후보 지지 글</b> — 당대표 출마 관련 글 0건 · 인기 태그: 김보미의장·강진군의회 등 옛 태그 · 우측에 유튜브·인스타·페북 배너 위젯(양호)</div>
-<div class="grid2">
-<div class="card diag"><span class="lbl">진단</span>
-<ul>
-<li>대문·프로필·공지·태그 전부 의장/지방선거 시점 정지. 네이버 검색으로 들어온 방문자에게 '멈춘 채널'로 보임.</li>
-<li>당대표 출마라는 최대 뉴스가 블로그에도 부재 — 페북 장문 자산이 검색엔진에 전혀 안 잡히는 구조.</li>
-<li>핸들(kimbom1204)이 통합 핸들과 불일치 — 변경 불가하므로 대문에서 통합 안내로 보완.</li>
-</ul></div>
-<div class="card fix"><span class="lbl">개선</span>
-<ul>
-<li>블로그명: <b>김보미 | 뽑고 싶은 민주당</b> / 소개글에 공통 포지셔닝 한 줄 + 김보미.com.</li>
-<li>PC 타이틀(966px)·모바일 커버·프로필 사진을 공통 키비주얼로 교체.</li>
-<li>공지 5건 전부 교체: ① 당대표 출마선언문 ② 25개 약속 ③ 김보미.com 안내 ④ 채널 통합 안내 ⑤ 언론보도 모음.</li>
-<li>카테고리 재편: 출사표·입장문 / 25개 약속 / 언론보도 / 의정 아카이브 / 보미로그.</li>
-<li>페북 장문 논평을 블로그에 동시 게재(검색 유입용) — 제목에 키워드(민주당 당대표, 전당대회 등) 포함.</li>
-</ul></div>
-</div>
-<details>
-<summary>블로그 — 그대로 입력할 문구 전체 보기</summary><div class="inner">
-<div class="copy">[블로그명]  김보미 | 뽑고 싶은 민주당
-[별명]  김보미
-[소개글]
-더불어민주당 당대표 후보 김보미입니다.
-전국 최연소 기초의회 의장 출신, 36세 청년 정치인.
-뽑고 싶은 민주당, 뽑고 싶은 김보미.
-정책·공약·입장문 전문을 이곳에 기록합니다.
-→ 공식 홈페이지 https://김보미.com
-
-[PC 타이틀(966px) 이미지 위 문구]
-뽑고 싶은 민주당, 뽑고 싶은 김보미.
-더불어민주당 당대표 후보 ㅣ 김보미.com
-
-[공지 5건 교체 — 제목]
-① [출마선언] 민주당을 살려야 합니다 — 당대표 출마선언문 전문
-② [25개 약속] 5대 분야 공약집 한눈에 보기
-③ [공식 홈페이지] 김보미.com — 출사표·AI챗봇 더불이·계란게임
-④ [채널 안내] 유튜브·페이스북·인스타·X·틱톡 @kimbomi1989
-⑤ [언론 속 김보미] 주요 보도 모음 (계속 업데이트)</div>
-</div></details>
-
-<!-- ============ 10 ============ -->
-<h2 id="people"><span class="num">10</span>🔍 인물검색·백과 관리 — 네이버 · 다음 · 나무위키 · 위키백과</h2>
-<p>이름을 검색했을 때 나오는 정보가 곧 '공식 프로필'입니다. 실사 결과 <b>4곳 모두 문제</b>가 있습니다. 각 항목을 클릭하면 현재 상태 → 목표 → 진행 절차가 단계별로 나옵니다.</p>
-
-<details>
-<summary>① 네이버 인물정보 — 등록됨·2년째 미갱신, 본인참여로 즉시 수정</summary><div class="inner">
-<div class="seen">등록 상태 확인(실사): 직함 <b>"전 기초의회의원"</b> · 출생 1989 전라남도 강진 · 학력 전남대학교 · 수상 2건(2021 지구촌 희망펜상 의정대상, 2019 무등의정대상 혁신비전부문) · 경력 <b>"2022.07. 제9대 강진군의회 의장" 1줄뿐</b> · 사이트: 블로그·유튜브·인스타·페북 (<b>김보미.com 없음</b>) · 프로필 사진: 옛 안경 사진 · 하단 표기 "본인 또는 대리인이 직접 관리하는 정보입니다. <b>본인참여 2024.03.06</b>"</div>
-<p><b>진단:</b> 본인참여 계정이 이미 있어 절차는 간단한데 <b>2024년 3월 이후 방치</b>. 검색 첫 화면이 "전직 기초의원"으로 각인되고, 당대표 출마·최연소 의장 타이틀·공식 홈페이지가 모두 빠져 있습니다. 사진도 옛 사진 — <b>공통 캠페인 사진으로 일괄 교체 대상 1순위</b>입니다.</p>
-<h4>수정 목표값</h4>
-<ul>
-<li>직함: "정치인" 또는 "정당인" (소속 더불어민주당)</li>
-<li>경력 보강: 더불어민주당 당대표 후보(2026.7~) / 제9대 강진군의회 전반기 의장(2022.7~2024, 전국 최연소) / 제8·9대 강진군의회 의원(2018.7~2026.6)</li>
-<li>사이트: <b>공식 홈페이지 김보미.com을 1순위로 추가</b> + 기존 4개 유지</li>
-<li>프로필 사진: 공통 캠페인 사진(720×720 원본)으로 교체</li>
-<li>수상 2건 유지 + 추가 수상 있으면 보강</li>
-</ul>
-<h4>진행 절차 (본인참여 — 이미 개설된 경로)</h4>
-<ol>
-<li>인물정보 박스 하단 <b>「인물정보 본인참여」</b> 클릭 → 2024년에 쓴 본인(또는 대리인) 계정으로 로그인 → 휴대폰 본인 인증.</li>
-<li>항목별 수정: 직함·경력·사이트·사진 위 목표값대로 입력. 대리인(캠프 실무자) 위임 관리도 가능.</li>
-<li>증빙 첨부: 당대표 출마 보도 URL(프레시안·쿠키뉴스 2026.7.4), 김보미.com, 선관위/정당 자료.</li>
-<li>처리 통상 수 일 — <b>컷오프(D-14) 전 반영되도록 오늘 접수</b>. 반려 시 해당 항목만 보완 재신청.</li>
-<li>✚ 함께: 네이버 서치어드바이저(<a href="https://searchadvisor.naver.com/" target="_blank" rel="noopener">searchadvisor.naver.com ↗</a>)에 김보미.com 등록 + 사이트맵 제출 → "김보미" 검색 시 공식 홈페이지 노출 확보.</li>
-</ol>
-</div></details>
-
-<details>
-<summary>② 다음(카카오) 인물정보 — 미등록 상태, 신규 등록</summary><div class="inner">
-<p><b>현재(실사):</b> 다음에서 "김보미 강진" 검색 시 <b>인물정보 박스가 아예 없음</b>. 뉴스만 노출.</p>
-<p><b>목표:</b> 네이버와 동일한 프로필 신규 등록.</p>
-<h4>진행 절차</h4>
-<ol>
-<li><b>Daum 마이프로필</b>(<a href="https://myprofile.daum.net/" target="_blank" rel="noopener">myprofile.daum.net ↗</a>) 접속 → 카카오 계정 로그인 → 본인 인증.</li>
-<li>"인물정보 등록 신청" → 이름·직업(정치인) 필수 + 소속·경력·학력·프로필 사진 입력. <span class="small">(이름·직업 외 추가 정보 1개 이상이면 등록 가능 — 카카오 고객센터 기준)</span></li>
-<li>증빙: 언론 보도 URL, 공식 홈페이지. 마이프로필로 등록하면 <b>편집 권한이 유지되어 이후 직접 갱신 가능</b> — 고객센터 문의보다 처리도 빠름.</li>
-<li>등록 후 카카오 검색·다음 검색 인물 박스 노출 확인.</li>
-</ol>
-</div></details>
-
-<details>
-<summary>③ 나무위키 — 3줄짜리 문서, 오류 수정 + 보강</summary><div class="inner">
-<p><b>현재(실사, 2026.7.6 판):</b> 「김보미(정치인)」 문서 존재하나 개요·생애 합쳐 <b>7줄</b>. 오류·누락:</p>
-<ul>
-<li>"강진군의회 의원<b>이다</b>" — 현재형 오류 (임기 2026.6 종료). 당대표 출마 미반영.</li>
-<li>전국 최연소 의장, 업무추진비 공개, 108억 삭감, 육아수당 조례, 군수 경선, 출판 등 핵심 이력 전무.</li>
-<li>"2020년 출당 → 2022년 복당"이 맥락 설명 없이 단독 기재 — 부정 프레임으로 읽힐 소지.</li>
-</ul>
-<h4>진행 절차 (⚠️ 반드시 규정 준수)</h4>
-<ol>
-<li>나무위키는 <b>이해당사자 편집 시비</b>가 흔한 곳 — 본인·캠프가 직접 편집하면 '문서 사유화'로 되돌려지고 논란이 될 수 있습니다. 원칙은 <b>객관 서술 + 출처 각주</b>.</li>
-<li>안전한 방법 A(권장): 사실관계 오류(현직 표기, 임기)만 <b>출처(언론 기사·선관위 자료) 링크와 함께</b> 수정. 편집 요약에 "임기 만료 반영, 출처: ○○기사" 명시.</li>
-<li>안전한 방법 B: 문서 하단 「토론」 기능으로 "당대표 출마 등 이력 갱신 필요, 출처 목록 첨부"를 발제해 제3자 편집을 유도.</li>
-<li>보강 시 문장은 평서·중립체로: 수상·성과도 "~했다(출처)" 형식. 홍보 문구(슬로건 등)는 금지 — 삭제 사유가 됩니다.</li>
-<li>출당·복당 항목은 삭제 시도 금지(편집 분쟁 유발). 대신 경위·복당 사실에 출처를 붙여 <b>맥락을 보완</b>.</li>
-</ol>
-</div></details>
-
-<details>
-<summary>④ 위키백과 — 문서 없음, 신규 생성 검토</summary><div class="inner">
-<p><b>현재(실사):</b> <a href="https://ko.wikipedia.org/wiki/%EA%B9%80%EB%B3%B4%EB%AF%B8" target="_blank" rel="noopener">한국어 위키백과 ↗</a>에 정치인 김보미 문서 없음 (동명이인 목록에도 미포함).</p>
-<h4>진행 절차</h4>
-<ol>
-<li>위키백과는 <b>저명성 기준</b>이 있음 — 전국 최연소 기초의회 의장 + 당대표 출마 + 다수 언론 보도로 충족 가능성이 높아진 시점.</li>
-<li>⚠️ <b>이해충돌(COI) 규정</b>: 본인·캠프의 직접 생성은 정책 위반 소지 → 「위키백과:문서 생성 요청」에 요청을 올리거나, 제3자 편집자가 만들도록 언론 보도가 축적되기를 기다리는 것이 정석.</li>
-<li>요청 시 제공할 자료: 독립 언론의 심층 보도(주간경향 "34세 최연소 의장은 왜 표적이 됐나" 등), 공식 경력, 선거 결과 링크.</li>
-<li>생성되면 동명이인 문서(김보미)에 "김보미(1989년 ~ )는 대한민국의 정치인이다" 항목 추가 요청.</li>
-</ol>
-</div></details>
-
-<details>
-<summary>⑤ 구글·기타 검색 노출 점검</summary><div class="inner">
-<ol>
-<li>구글 서치콘솔에 김보미.com 등록 → "김보미 민주당" 검색 시 홈페이지가 상단 노출되는지 확인.</li>
-<li>유튜브·인스타·페북 프로필의 정보가 통일되면 구글 지식패널 생성 확률 상승 — 패널 생성 후 "이 지식패널 소유권 주장"으로 관리권 확보.</li>
-<li>오픈와치 등 의정활동 공공데이터 사이트의 프로필도 확인(이미 존재 확인) — 링크를 홈페이지 '언론·자료' 섹션에 역연결하면 신뢰 신호.</li>
-</ol>
-</div></details>
-
-<!-- ============ 11 ============ -->
-<h2 id="comm"><span class="num">11</span>💬 댓글·소통 전략 — "답하는 후보"가 컨셉이 되게</h2>
-<p>실사 결과, 페이스북 게시물에 댓글이 수십 개씩(사퇴 요구문 61개 등) 달리는데 <b>후보 본인의 답글이 보이지 않습니다</b>. 유튜브도 고정 댓글·답글 운영 흔적이 없고 커뮤니티 탭은 꺼져 있습니다. '함께 공감하고 소통하는 정치'를 표방하면서 실제 소통 루프가 없는 것 — 콘텐츠보다 먼저 고칠 습관입니다.</p>
-
-<div class="card">
-<h3 style="margin-top:0">댓글 운영 원칙 (전 채널 공통)</h3>
-<ul>
-<li><b>골든타임 1시간:</b> 게시 후 1시간은 직접 답글 타임으로 고정. 초기 댓글 반응이 도달 알고리즘을 결정합니다.</li>
-<li><b>1일 10답글:</b> 채널 합산 최소 10개, 이름을 부르며("○○님, 좋은 지적입니다") 답변. 복사-붙여넣기 금지.</li>
-<li><b>비판 댓글 우선 응답:</b> 지지 댓글보다 합리적 비판에 먼저, 숫자와 근거로. 이것이 '유리상자' 브랜드의 실증.</li>
-<li><b>악성·허위는 논쟁 금지:</b> 사실관계만 1회 정정 후 종료. 명예훼손급은 캡처 보존 → 법률 대응 리스트.</li>
-<li><b>질문 → 콘텐츠 루프:</b> 가장 많이 받은 질문을 매주 목 라이브·쇼츠 소재로 ("댓글에서 물으신 것") — 답변받은 경험이 구독을 만듭니다.</li>
-<li><b>유튜브:</b> 모든 영상에 고정 댓글 + 하트·답글 적극 사용. 커뮤니티 탭 활성화(주 2회 카드·투표).</li>
-<li><b>인스타:</b> 스토리 질문 스티커 주 1회 "무엇이든 물어보세요" → 답변 스토리 → '계란상자' 하이라이트로 저장.</li>
-</ul>
+<tr><th>콘텐츠</th><th>반응</th><th>교훈</th></tr>
+<tr><td>4.8 경선 낙선 소회(페북)</td><td>공감 105·댓글 20 (역대 최고)</td><td>인간적 서사·정면돌파가 최강</td></tr>
+<tr><td>4.25 공천 철회 긴급 성명</td><td>공유 10 (역대 최다)</td><td>갈등·비판 이슈가 도달을 만든다</td></tr>
+<tr><td>6.29 알메달렌 에세이(00:26 게시)</td><td>공감 17 (저조)</td><td>장문+심야 게시 실패</td></tr>
+<tr><td>7.11 출마선언 풀영상(고정)</td><td>공감 81·공유 54</td><td>영상+고정 조합 유효 — 공유율 높음</td></tr>
+<tr><td>7.13 선호투표제 게시(아침)</td><td>1시간 내 공감 36</td><td>실시간 이슈 대응 글의 초기 속도 — 클립화 시급</td></tr>
+<tr><td>뉴탐사 라이브(35:57)</td><td>자체 영상 대비 압도적 조회</td><td><b>시사 유튜브 출연 &gt; 자체 제작</b></td></tr>
+</table>
+<b>운영 수칙(확정):</b> 게시 18~22시 또는 8~10시(심야 금지) · 얼굴 사진+3~5문단 · 장문은 카드뉴스 3장+링크 이원화 · 서사 4 : 이슈 3 : 정책 2 : 일상 1 · 쇼츠 15~35초 첫 1초 훅 · 업로드 점심 11:30~12:30/저녁 19~21시 고정.
 </div>
 
+<h2>3. 커뮤니티 진단·전략 (V2 신규)</h2>
 <div class="card">
-<h3 style="margin-top:0">추가 소통 채널 추천 (구축 우선순위 순)</h3>
+<h3>3-1. 실사 범위와 한계</h3>
+<p style="font-size:.9rem">2030 분석 보고서(7.8) 수집 당시 <b>직접 접근 성공: 클리앙·인스티즈·보배드림·82쿡</b> / <b>접근 차단: 디시인사이드·더쿠·네이트판·코인판</b>(언론 인용으로 대체). 본 보고서의 커뮤니티별 성향 평가는 공개 자료·언론 보도·통상적 커뮤니티 분석 기준이며, <b>김보미 관련 개별 게시물 존재 여부는 갤러리 내부 검색 미실시(차단)</b> — 담당자 수동 모니터링 항목으로 지정.</p>
+<h3>3-2. 커뮤니티 지형과 접근 우선순위</h3>
 <table>
-<tbody><tr><th style="width:170px">채널</th><th>역할</th><th>구축 방법</th></tr>
-<tr><td>🟡 <b>카카오톡 채널</b></td><td>지지자 직접 알림망 — 한국 정치인 소통의 표준. 공지·라이브 알림·자료 배포</td><td>카카오톡 채널 관리자센터에서 "김보미" 개설(프로필 640×640) → 홈페이지·전 SNS에 "카톡에서 김보미 추가" 버튼. 주 2회 발송(월 브리핑·목 라이브 알림)</td></tr>
-<tr><td>📩 <b>이메일 뉴스레터</b></td><td>주 1회 「보미레터」 — 주간 정리+다음 주 일정. 알고리즘 독립적 자산</td><td>스티비 등 활용, 홈페이지에 구독 폼. 일요일 '주간 정리' 글 재활용</td></tr>
-<tr><td>💬 <b>카카오 오픈채팅</b></td><td>청년 당원 커뮤니티 "계란방" — 챌린지·자원봉사 조직</td><td>운영자 2인 이상 지정, 참여 규칙 고정글</td></tr>
-<tr><td>🔴 <b>정례 라이브</b></td><td>목요 보미 라이브(유튜브) + 월 1회 인스타 라이브 동시송출</td><td>고정 시간대(목 20:00) — 시간이 브랜드가 됨</td></tr>
-<tr><td>🤖 <b>AI 챗봇 '더불이' 연계</b></td><td>이미 보유한 차별 자산 — SNS 댓글에서 "자세한 건 더불이에게" 유도</td><td>모든 채널 링크·고정 댓글에 김보미.com 챗봇 딥링크</td></tr>
-<tr><td>📞 <b>당원 전화·문자</b></td><td>경선 룰상 당원 투표 비중 큼 — 디지털 밖 어르신 당원용</td><td>주 1회 문자 브리핑(선거법상 문자 발송 규정 준수 필수 — 법률 검토)</td></tr>
-</tbody></table>
+<tr><th>커뮤니티</th><th>성향·특성</th><th>김보미 적합도</th><th>접근 방식</th></tr>
+<tr><td><b>디시인사이드</b> (정치·정당 갤러리)</td><td>익명·화력 강함·밈 문화. 이재명 갤러리 등 친민주 마이너 갤 활성. 반응 예측 불가, 조롱 문화 공존</td><td>중~상 (밈 확산력 최고)</td><td><b>공식 계정·캠프원 직접 게시 금지.</b> 클립·게임(계란으로 바위치기)·짤 등 '밈이 되기 쉬운 소재'를 X·유튜브에 공급 → 자발 유입 유도. 갤러리 반응 일 1회 모니터링(전담 1인)</td></tr>
+<tr><td><b>클리앙</b></td><td>3040 남성·민주당 지지 성향·긴 글 토론형. 뉴탐사·유튜버 평판 글 활발</td><td><b>상</b> (당원 밀도 높음)</td><td>출연 영상·정책 글이 자연 공유되기 좋은 형태(제목=질문형, 데이터 포함)로 제작. 지지자 자발 공유 유도</td></tr>
+<tr><td><b>보배드림</b></td><td>중도~보수 혼재·생활 이슈 민감·공정 이슈에 강한 반응</td><td>중 ('공정' 소재 한정)</td><td>15% 감산 vs 전과5범 무감산, 경선 데이터 공개 같은 <b>공정 스토리</b>만 통할 가능성. 정파 소재 금지</td></tr>
+<tr><td><b>82쿡·여성 커뮤니티</b></td><td>3050 여성·생활정치 관심·여성 정치인 서사 수용도 높음</td><td>상</td><td>육아양수당 조례(월 60만)·최연소 여성 의장 수난기(한겨레 보도) 서사 콘텐츠</td></tr>
+<tr><td><b>더쿠·인스티즈</b> (여초·2030)</td><td>비정치 커뮤니티나 화제성 정치 클립 확산 빠름. 차단으로 미실사</td><td>중~상</td><td>"만 36세 여성 평당원 vs 거대 기득권" 언더독 클립·쇼츠가 유입 경로. 직접 게시 불가/금지</td></tr>
+<tr><td><b>에펨코리아 등 남초 보수계</b></td><td>반민주 성향 우세</td><td>하</td><td><b>진입 시도 자체 비권장</b> — 조롱 소재화 위험. 모니터링만</td></tr>
+<tr><td><b>블라인드</b></td><td>직장인 익명. 2030 보고서에 블라인드 6만 건 분석(결혼=돈, 출산=공포) 활용 이력</td><td>중</td><td>직접 활동 불가(재직 인증). '노력이 배신당하지 않는 구조' 메시지가 언론 경유로 닿게</td></tr>
+<tr><td><b>네이버 카페·밴드(당원·지역)</b></td><td>강진·전남 당원 조직 실체. 호남 순회경선(8.15) 직결</td><td><b>최상</b></td><td>유일하게 <b>실명 직접 소통 허용</b> 채널 — 후보 본인 명의 인사글·라이브 공지. 지역 카페 리스트업 필요</td></tr>
+</table>
+<h3>3-3. 커뮤니티 3대 원칙 (법적·전략적 금지선)</h3>
+<div class="warn">
+<b>① 자작 시딩·매크로·댓글 알바 전면 금지</b> — 여론조작 프레임 + 공직선거법·업무방해 리스크. 캠프 관계자가 일반인 위장 게시 금지(V1 금지선 유지, '부캐' 계정 역시 커뮤니티 침투용 사용 금지 — 조직적 댓글 금지 원칙은 캠프 보드 리스크 레지스터와 동일).<br>
+<b>② 커뮤니티는 '도달의 결과'지 '작업의 대상'이 아니다</b> — 밈이 될 원본(쇼츠·게임·짤·어록)을 공식 채널에 공급하는 데 집중. 확산은 실명·자발 공유로만.<br>
+<b>③ 멸칭·조롱 콘텐츠 제작 금지</b> — 전준위 "멸칭·과도한 비방 강력 조치"(7.7 이학영 위원장) + 김보미 브랜드 원칙("개인 멸칭 없음, 구조 비판"). 정청래 표정 조롱류·'#융단폭격 #686기득권' 태그류는 커뮤니티 화력은 좋아도 <b>징계·역풍 리스크가 편익을 초과</b> — 사용 금지. 대체: "선수가 규칙을 만듭니까"(제도 비판) 프레임.
+</div>
+<h3>3-4. 커뮤니티 KPI</h3>
+<div class="kpi">
+<div class="k"><div class="n">주 1회</div><div class="l">커뮤니티 언급 모니터링 리포트(전담 1인)</div></div>
+<div class="k"><div class="n">3개+</div><div class="l">자발 확산 발생 커뮤니티 수(컷오프 전)</div></div>
+<div class="k"><div class="n">0건</div><div class="l">캠프발 위장 게시(절대 유지)</div></div>
+<div class="k"><div class="n">10개+</div><div class="l">호남 지역 카페·밴드 인사글(8.15 전)</div></div>
+</div>
 </div>
 
-<!-- ============ 12 ============ -->
-<h2 id="viral"><span class="num">12</span>🚀 바이럴·유입 극대화 전략</h2>
-<p>구독자 674명 채널도 쇼츠 하나로 수십만에 닿을 수 있는 게 지금 알고리즘입니다. 실사에서 확인했듯 이 채널은 <b>쇼츠가 롱폼보다 최대 10배 효율</b>이었고, "계란으로 기득권 바위 깬다"는 이미 언론 헤드라인이 된 바이럴 소재입니다. 아래 전술은 광고비 0원 기준입니다.</p>
-
+<h2>4. 바이럴·유입 극대화 (V1 §12 계승 + 수위 조정)</h2>
 <div class="card">
-<h3 style="margin-top:0">① 알고리즘을 타는 콘텐츠 공식 (쇼츠·릴스·틱톡)</h3>
 <ul>
-<li><b>첫 1초 훅:</b> 인사말 금지. 결론·도발 질문부터 — "경선 데이터, 왜 공개 못 합니까?" / "36살이 당대표가 되면 생기는 일". 3초 안에 이탈하면 노출이 죽습니다.</li>
-<li><b>길이 15~35초</b>, 큰 세로 자막(무음 시청 대비), 마지막 1초에 "다음 편 →" 예고로 완주율·연속시청 확보. <b>완주율이 조회수를 결정</b>합니다.</li>
-<li><b>시리즈화:</b> 「30초 정치」 EP.1~25 (25개 약속 = 25편 예약분). 시리즈는 한 편이 터지면 나머지가 같이 끌려 올라갑니다.</li>
-<li><b>업로드 시간 고정:</b> 점심 11:30~12:30, 저녁 19:00~21:00 (출퇴근·점심 스크롤 타임). 쇼츠·릴스·틱톡 3곳 동시 게시.</li>
-<li><b>대립 구도 제목:</b> "기득권 vs 계란", "밀실 vs 유리상자" — 공유를 부르는 건 정보가 아니라 <b>구도</b>입니다. 단, 인신공격 어휘는 금지(브랜드 톤 유지 + 선거법).</li>
+<li><b>쇼츠 공식:</b> 첫 1초 훅("경선 데이터, 왜 공개 못 합니까?" / "만 36세가 당대표가 되면 생기는 일") · 15~35초 · 시리즈화 「30초 정치」 EP.1~25(=25개 약속) · 대립구도 제목("밀실 vs 유리상자", "기득권 vs 계란").</li>
+<li><b>즉시 제작 3종(7.13 기준):</b> ① "사표 없는 투표 = 선호투표제" 30초 해설 ② "'김보미 컷오프' 중단하십시오" 15초 직캠 ③ KDLC 정견발표 정책 클립(15/30/60초) — <b>표정·조롱 편집 금지, 발언 중심.</b></li>
+<li><b>계란 챌린지:</b> 게임 점수 캡처+#계란챌린지 — 명예의전당 참여 6명 → 후보 본인 셀프 플레이 영상으로 시딩.</li>
+<li><b>뉴스재킹:</b> 속보 30분 내 X 한 줄 논평 + 페북 3문단(7.13 선호투표제 게시가 모범 사례 — 이 속도 유지).</li>
+<li><b>해시태그(수위 조정판):</b> 기본 #김보미 #뽑고싶은민주당 #민주당당대표 #민주당전당대회 #세대교체 / 이슈 #선호투표제 #유리상자경선 #진짜1인1표 / 참여 #계란챌린지 — <b>4~7개, 멸칭·공격성 태그 제외.</b></li>
+<li><b>성과 측정:</b> 주간 스프레드시트(게시물·해시태그·Impressions·ER·공유) — ER 3%+ 포스트의 공통점 도출, A/B 테스트(같은 클립, 다른 제목).</li>
+<li><b>외부 채널 업어타기:</b> 방송 출연이 최고 효율(§2) — 출연 후 24시간 내 클립 3종 + 방송기록 대장(broadcast_log.html) 갱신.</li>
 </ul>
 </div>
 
+<h2>5. 실행 체크리스트 (컷오프 D-8 역산)</h2>
 <div class="card">
-<h3 style="margin-top:0">② 🥚 계란 챌린지 — 보유한 최강 바이럴 자산 점화</h3>
-<ul>
-<li>홈페이지 '계란으로 바위치기' 게임 점수 캡처 + <b>#계란챌린지 #뽑고싶은민주당</b> 태그 게시 유도 → 본인 계정이 매일 3건 리그램/스토리 공유(선정 재미 부여).</li>
-<li>후보 본인이 게임 도전하는 쇼츠("당대표 후보가 자기 게임 깨는 데 걸린 시간") — 셀프 밈화가 가장 안전하고 강한 바이럴.</li>
-<li>'대한민국 수호 훈장' 인증을 프로필 사진 프레임처럼 쓰게 유도 — 지지 표식의 놀이화.</li>
-<li>틱톡 개설 첫 캠페인을 이 챌린지로 — 참여형 해시태그는 틱톡 알고리즘이 가장 밀어주는 형식.</li>
-</ul>
-</div>
-
-<div class="card">
-<h3 style="margin-top:0">③ 뉴스재킹 — 이슈에 30분 안에 올라타기</h3>
-<ul>
-<li>전당대회 관련 속보 발생 → <b>30분 내 X 한 줄 논평 + 페북 3문단</b>. 기사화되는 건 '가장 빨랐던 다른 목소리'입니다. (실사 확인: 사퇴 요구문이 이미 이 패턴으로 언론 인용됨)</li>
-<li>당일 저녁 쇼츠로 재가공: "오늘 ○○ 사태, 30초 정리".</li>
-<li>구도 설계: 다른 후보들이 싸울 때 '데이터로 말하는 청년' 포지션 고수 — 검색량이 몰릴 때 대비되는 콘텐츠가 유입을 흡수합니다.</li>
-</ul>
-</div>
-
-<div class="card">
-<h3 style="margin-top:0">④ 외부 채널 업어타기 (구독자 0명이어도 수십만 도달)</h3>
-<ul>
-<li><b>시사 유튜브 출연 우선:</b> 실사에서 뉴탐사 라이브(35:57)가 자체 영상보다 압도적 조회수 — 출연이 자체 제작보다 효율적. 정치 유튜브·팟캐스트 출연 리스트 만들어 주 1회 이상 노크.</li>
-<li>출연 시 <b>어깨걸이 멘트 준비:</b> "자세한 건 김보미닷컴에 계란 게임 하나 있는데요…" — 출연 트래픽을 자기 채널로 회수.</li>
-<li>언론사에 보도자료 낼 때 <b>10초 발언 클립(세로+가로)</b>을 함께 제공 — 방송·온라인 기사에 영상 인용 확률 상승.</li>
-<li>더민주청년혁신회의 등 우호 네트워크와 <b>발행 후 첫 1시간 상호 공유 서포터즈</b>(실명 자발 참여) 조직 — 초기 반응이 알고리즘 점화 스위치.</li>
-</ul>
-</div>
-
-<div class="card">
-<h3 style="margin-top:0">⑤ 검색 유입(SEO) — 터지지 않아도 꾸준히 들어오는 길</h3>
-<ul>
-<li>블로그·유튜브 제목에 검색어 조합: "민주당 당대표 후보", "2026 전당대회", "민주당 경선 일정" — 전당대회가 다가올수록 검색량 급증, 미리 글을 깔아두면 그 트래픽이 전부 유입.</li>
-<li>"전당대회 일정 총정리", "당대표 후보 공약 비교" 같은 <b>정보성 콘텐츠</b>를 블로그에 — 지지자 아닌 검색자를 첫 방문객으로.</li>
-<li>모든 영상 설명 첫 줄, 블로그 첫 문단에 핵심 검색어 배치 + 김보미.com 링크.</li>
-</ul>
-</div>
-
-<div class="card">
-<h3 style="margin-top:0">⑥ 공유를 부르는 장치 + ⚠️ 금지선</h3>
-<ul>
-<li>카드뉴스 마지막 장 고정 문구: "동의하시면 공유가 가장 큰 후원입니다 🥚".</li>
-<li>페북 7.5천 팔로워를 타 채널로 이관: 주 1회 "유튜브에서만 공개" 콘텐츠 예고 — 최대 자산(페북)으로 최약 채널(유튜브 674명) 펌프질.</li>
-<li>투표·질문형 게시물 주 2회(참여가 도달을 만듦): "여러분이 당대표라면 1호 개혁은?"</li>
-<li><b>⚠️ 금지선:</b> 커뮤니티 자작 시딩(우회 홍보), 매크로·품앗이 계정, 댓글 알바 — 적발 시 '여론조작 프레임'으로 역풍 + 선거법 리스크. 바이럴은 반드시 실명·자발 공유로만.</li>
-</ul>
-</div>
-
-<!-- ============ 13 ============ -->
-<h2 id="ops"><span class="num">13</span>통합 운영 체계 — 하나의 콘텐츠, 일곱 개의 출구</h2>
-<div class="card">
-<p style="text-align:center; font-size:14px; background:var(--sky); border-radius:10px; padding:13px;">
-<b>유튜브 롱폼/라이브</b>(원본) → ✂️ <b>쇼츠·릴스·틱톡</b>(30초×3) → ✍️ <b>페북+블로그</b>(장문) → ⚡ <b>X</b>(3문장 스레드) → 🟡 <b>카톡채널</b>(알림) → 🏠 <b>김보미.com</b>(아카이브)
-</p>
 <table>
-<tbody><tr><th style="width:56px">요일</th><th>콘텐츠</th><th>배포</th></tr>
-<tr><td>월</td><td>「출사표 브리핑」 5분</td><td>유튜브 → 쇼츠1 + 페북·블로그 논평 + X 스레드 + 카톡 알림</td></tr>
-<tr><td>수</td><td>25개 약속 카드뉴스</td><td>인스타·페북 + X 카드 + 틱톡 30초</td></tr>
-<tr><td>목</td><td>「보미 라이브」</td><td>유튜브 라이브(카톡 알림) → 쇼츠2 + 하이라이트</td></tr>
-<tr><td>금</td><td>보미로그</td><td>릴스·틱톡·스토리 + 페북 사진글</td></tr>
-<tr><td>일</td><td>주간 정리</td><td>페북·X + 보미레터(뉴스레터)</td></tr>
-</tbody></table>
+<tr><th>시점</th><th>할 일</th><th>비용</th></tr>
+<tr><td><b>오늘 7.13</b></td><td>🔴 페북 직장 임기·소개 슬로건 수정(10분) · 7.13 게시글 쇼츠 1편 · X 계정 검증·프로필 통일</td><td>0원</td></tr>
+<tr><td>7.14</td><td>KDLC 클립 3종 업로드 · 네이버 인물정보 본인참여 수정 접수 확인 · 인스타 이름란 교체</td><td>0원</td></tr>
+<tr><td><b>7.15(수)</b></td><td>★ 최고위 결론 당일 — 결과별 성명 2안 사전 작성(선호투표제 가결/부결) · 30분 내 게시 · 1시간 내 클립</td><td>0원</td></tr>
+<tr><td>7.16~17</td><td>후보등록 인증 콘텐츠("오늘 등록했습니다") · 후원회 등록신청과 연동 · 유튜브 의장연설 40개 공개 전환</td><td>0원</td></tr>
+<tr><td>7.18~20</td><td>컷오프 D-3 집중: 토론회 요구 릴레이 · 계란 챌린지 부스트 · 호남 카페·밴드 인사글</td><td>광고 시 일 3~5만</td></tr>
+<tr><td>7.21</td><td>컷오프 당일 대기 콘텐츠 2안(통과/탈락 — 탈락 시에도 '유리상자' 요구 지속 성명)</td><td>0원</td></tr>
+</table>
+</div>
+
+<h2>6. 출처·검증</h2>
+<div class="card" style="font-size:.85rem">
 <ul>
-<li>중대 입장문 발행 순서: 페이스북(전문) → X(요약) → 홈페이지(아카이브) → 카톡(알림), 30분 내 연쇄.</li>
-<li>측정: 채널별 UTM 링크로 김보미.com 유입 추적, 주간 리포트(도달·구독 증감·답글 수).</li>
+<li>실측(직접 확인 7.13): facebook.com/kimbomi1989 공개 페이지 · 김보미.com 전체 섹션</li>
+<li>V1 원본: 김보미_SNS_통합브랜딩_진단보고서 · 김보미_디지털채널_진단보고서_수정본(2026.7.7, 페이스북 421건·유튜브 184편 분석)</li>
+<li>커뮤니티 접근성: 2030_분석_보고서(7.8) 수집 로그 · 반응 데이터: 더불어캠프 보드 「SNS 채널 진단 & 운영 수칙」(7.2 실사)</li>
+<li>규범: 전준위 3차 회의 "멸칭·비방 강력 조치"(시사타파 7.7) · 정치자금법·선거법 관련 캠프 보드 법규 검토(7.2)</li>
+<li>내부 전언(미검증 표기): X 계정 kimbomi891204 · X 판세 분석 — 이왕재 소장 브리핑(7.13)</li>
 </ul>
 </div>
-
-<!-- ============ 13 ============ -->
-<h2 id="todo"><span class="num">14</span>실행 체크리스트 — 후보등록·컷오프 역산 일정</h2>
-<p>예비경선 컷오프까지 <b>D-14</b>. 검증(컷오프) 전에 검색·SNS 첫인상이 곧 심사 자료입니다. 문구 교체는 돈도 디자인도 필요 없으니 <b>오늘 중</b>, 디자인물은 <b>3일 안에</b> 끝냅니다.</p>
-<div class="card">
-<h4 style="margin-top:0">🚨 오늘 바로 (비용 0원 — 문구 교체만, 반나절 작업)</h4>
-<ul class="chk">
-<li>페이스북 직장 정보 "의원-현재" → 임기 표기 수정 (경력 시비 리스크 — 최우선)</li>
-<li>페이스북 소개 101자 교체 (4장 문구 복사)</li>
-<li>인스타 이름란 "김보미 聖徒" → "김보미 | 민주당 당대표 후보" + 바이오 교체</li>
-<li>유튜브 채널명 "김보미TV" 변경 + 설명·키워드 교체 + 링크 1순위 김보미.com</li>
-<li>유튜브·인스타 프로필 사진 → 공통 캠페인 사진(기존 보유 이미지) 교체</li>
-<li>블로그명·소개글 교체, 공지 1번에 출마선언문 게재</li>
-<li>디자이너 발주 발송: 2장 사이즈표 + 요약 발주 문구 (납기 3일 명시)</li>
-<li>네이버 인물정보 본인참여 수정 접수 — 직함·경력·김보미.com 추가 + <b>사진을 최근 캠페인 사진으로 교체</b> (처리 기간 있으므로 오늘 접수)</li>
-<li>다음 마이프로필 신규 등록 신청 (같은 사진·같은 경력으로)</li>
-<li>📸 사진 일괄 교체 원칙: 네이버·다음 인물정보 + 전 SNS 프로필 = <b>동일한 최근 캠페인 사진 1장</b> (검색↔SNS 첫인상 통일)</li>
-</ul>
-<h4>📅 D+1 ~ D+3 (콘텐츠·신규 채널)</h4>
-<ul class="chk">
-<li>유튜브에 당대표 출마선언 영상 업로드 (신규 촬영 불가 시 기자회견·선언문 낭독으로라도)</li>
-<li>X·틱톡 @kimbomi1989 개설 + 프로필 + 고정글 (첫 콘텐츠는 출마선언 재활용)</li>
-<li>의장 연설 40개 공개 전환 → 「증명의 기록」 재생목록</li>
-<li>인스타 새 브랜딩 게시물 3개(출사표·증명·계란)로 그리드 첫 줄 덮기</li>
-<li>카카오톡 채널 개설 + 전 채널에 안내</li>
-</ul>
-<h4>📅 D+3 ~ D+7 / 컷오프 전 (디자인물 적용 완료)</h4>
-<ul class="chk">
-<li>페이스북 커버(1640×624)·유튜브 배너(2048×1152)·블로그 타이틀(966px)·OG 이미지 일괄 등록</li>
-<li>인스타 하이라이트 6종 등록</li>
-<li>유튜브 홈 6단 섹션 + 재생목록 7종 재편, 축사 클립 정리, 커뮤니티 탭 가동</li>
-<li>김보미365.com → 김보미.com 리다이렉트</li>
-<li>주간 편성 가동: 월 브리핑 · 목 라이브 · 쇼츠 주 3회 — 컷오프 심사 기간에 '살아있는 채널' 증명</li>
-<li>댓글 운영 원칙 가동 (골든타임 1시간 · 1일 10답글)</li>
-</ul>
-<h4>📅 컷오프 후 ~ 전당대회 8. 17 (본선 체제)</h4>
-<ul class="chk">
-<li>보미레터(뉴스레터)·오픈채팅 가동, 라이브 주 2회로 증편</li>
-<li>나무위키 사실관계 수정(출처 첨부) · 위키백과 생성 요청</li>
-<li>25개 약속 카드뉴스 시리즈 완주 (수요일 정기)</li>
-<li>UTM 유입 측정 → 주간 리포트로 채널별 자원 배분 조정</li>
-</ul>
-<h4>♻️ 상시</h4>
-<ul class="chk">
-<li>모든 링크는 김보미.com 수렴 · 해시태그 5개 이내 · 공유글 주 2회 이하</li>
-<li>선거법·경선 규정 관련 문구(후원·문자·광고)는 게시 전 캠프 법률 검토</li>
-</ul>
-</div>
-
-<div class="note"><b>✅ 실사 완료:</b> 홈페이지·페이스북·인스타그램·유튜브(전 탭)·블로그·네이버 인물정보·다음 검색·나무위키·위키백과까지 전 항목 실제 화면 기준으로 확인·반영된 최종안입니다.</div>
-
-<footer>
-근거: 페이스북·인스타그램·유튜브(홈/동영상/Shorts/재생목록/커뮤니티)·블로그·네이버 인물정보 실화면 직접 확인(2026.7.7) · 김보미.com 전체 · 페이스북 게시글 421건 데이터 분석 · 다음 검색 실사 · 나무위키(2026.7.6판) · 한국어 위키백과 실사<br>
-모든 제안 문구는 초안이며 공직선거법·정당 경선 규정 법률 검토 후 사용을 권장합니다. · 2026. 7. 7 최종안 (✏️ 우측 상단 편집 모드로 자유롭게 수정·삭제 가능)
-</footer>
-
-</div>
-
-<div id="ebar" contenteditable="false">
-  <button id="btnEdit" onclick="toggleEdit()">✏️ 편집 모드</button>
-  <button id="btnSave" onclick="saveDoc()">💾 수정본 저장</button>
-  <button id="btnPrint" onclick="window.print()">🖨 인쇄/PDF</button>
-</div>
-<div id="ehint" contenteditable="false">✏️ 편집 중: 제목·본문을 클릭해 바로 고칠 수 있습니다. 블록 위에 마우스를 올리면 나타나는 <b style="color:#ff8080">✕</b>를 누르면 그 문단이 삭제됩니다. 끝나면 <b>💾 수정본 저장</b>으로 파일을 내려받으세요.</div>
-
-<script>
-(function(){
-  var SEL='h1,h2,h3,h4,p,ul,ol,table,details,li,.card,.copy,.note,.seen,.stat';
-  window.toggleEdit=function(){
-    var on=!document.body.classList.contains('editing');
-    document.body.classList.toggle('editing',on);
-    document.getElementById('btnEdit').textContent=on?'✅ 편집 종료':'✏️ 편집 모드';
-    if(on){
-      document.body.setAttribute('contenteditable','true');
-      ['ebar','ehint'].forEach(function(id){document.getElementById(id).setAttribute('contenteditable','false');});
-      document.querySelectorAll(SEL).forEach(function(el){
-        if(el.closest('#ebar,#ehint'))return;
-        if(el.querySelector(':scope > .del-btn'))return;
-        var b=document.createElement('span');
-        b.className='del-btn'; b.textContent='✕'; b.title='이 블록 삭제';
-        b.setAttribute('contenteditable','false');
-        b.addEventListener('mousedown',function(e){
-          e.preventDefault(); e.stopPropagation();
-          if(confirm('이 블록을 삭제할까요?')) el.remove();
-        });
-        el.appendChild(b);
-      });
-    }else{
-      document.body.removeAttribute('contenteditable');
-      document.querySelectorAll('.del-btn').forEach(function(b){b.remove();});
-    }
-  };
-  window.saveDoc=function(){
-    var clone=document.documentElement.cloneNode(true);
-    clone.querySelectorAll('.del-btn').forEach(function(b){b.remove();});
-    var body=clone.querySelector('body');
-    body.classList.remove('editing');
-    body.removeAttribute('contenteditable');
-    var be=clone.querySelector('#btnEdit'); if(be) be.textContent='✏️ 편집 모드';
-    var html='<!DOCTYPE html>\n'+clone.outerHTML;
-    var blob=new Blob([html],{type:'text/html;charset=utf-8'});
-    var a=document.createElement('a');
-    a.href=URL.createObjectURL(blob);
-    a.download='김보미_디지털채널_진단보고서_수정본.html';
-    document.body.appendChild(a); a.click();
-    setTimeout(function(){URL.revokeObjectURL(a.href); a.remove();},500);
-  };
-})();
-</script>
-
-
-</body></html>
+<footer>김보미 캠프 내부용 · V2 2026.7.13 · 추정치 기입 없음 — 미실사 항목은 '확인 필요'로 명기 · 차기 개정: 7.15 최고위 결론 반영</footer>
+</main>
+</body>
+</html>
