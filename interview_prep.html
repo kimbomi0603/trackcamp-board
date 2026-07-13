@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎙️ 김보미 캠프 · 인터뷰 준비 보드</title>
+<style>
+:root{
+  --blue:#152484; --blue-l:#3a4fb5; --sky:#00a0e2; --green:#00aa7b;
+  --amber:#e8a200; --red:#d6336c; --bg:#f4f6fb; --card:#fff;
+  --ink:#1d2433; --mut:#6b7486; --line:#e2e6ef;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif;
+  line-height:1.55;font-size:1rem}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 80px}
+header{background:linear-gradient(135deg,var(--blue),var(--blue-l));
+  color:#fff;border-radius:16px;padding:26px 28px;margin-bottom:18px}
+header h1{margin:0 0 6px;font-size:1.5rem}
+header p{margin:0;opacity:.9;font-size:.92rem}
+.slogan{display:inline-block;margin-top:12px;background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:4px 14px;font-size:.82rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:20px;margin-bottom:18px}
+.card h2{font-size:1.12rem;color:var(--blue);margin:0 0 4px}
+.card .sub{color:var(--mut);font-size:.85rem;margin:0 0 14px}
+
+/* weekly calendar */
+.wgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.wcol{background:#f7f9fd;border:1px solid var(--line);border-radius:10px;
+  min-height:120px;padding:6px 6px 8px;display:flex;flex-direction:column}
+.wcol .wd{font-size:.74rem;color:var(--mut);text-align:center;font-weight:600;margin-bottom:2px}
+.wcol .dn{font-size:1.05rem;font-weight:700;text-align:center;margin-bottom:6px}
+.wcol.today{background:#fff5f8;border-color:var(--red)}
+.wcol.today .dn{color:var(--red)}
+.wcol.sun .wd,.wcol.sun .dn{color:var(--red)}
+.wchip{font-size:.72rem;line-height:1.3;border-radius:7px;padding:5px 7px;margin-bottom:5px;
+  cursor:pointer;border:none;text-align:left;width:100%;font-family:inherit}
+.wchip .tt{font-weight:700;display:block}
+.wchip.clk:hover{filter:brightness(.95)}
+.k-conf{background:#dceafd;color:var(--blue)}
+.k-live{background:#fbe2ec;color:var(--red)}
+.k-exp{background:#fdf3d8;color:#9a6c00}
+.k-plain{background:#eef1fa;color:#3a4256;cursor:default}
+
+/* monthly mini calendar */
+.mtitle{font-weight:700;color:var(--blue);margin:0 0 10px;font-size:1rem}
+.mgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.mgrid .hd{font-size:.72rem;color:var(--mut);text-align:center;padding:2px 0;font-weight:600}
+.mgrid .hd.s{color:var(--red)}
+.mgrid .day{min-height:56px;background:#fff;border:1px solid var(--line);border-radius:8px;
+  padding:4px;font-size:.78rem;position:relative}
+.mgrid .day.empty{background:transparent;border:none}
+.mgrid .day.today{outline:2px solid var(--red);outline-offset:-2px}
+.mgrid .day .dd{color:var(--mut);font-weight:600}
+.mgrid .day.today .dd{color:var(--red)}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin:2px 2px 0 0}
+.dot.b{background:var(--blue)}.dot.r{background:var(--red)}.dot.a{background:var(--amber)}
+
+/* schedule list */
+.ev{display:flex;gap:14px;align-items:flex-start;border:1px solid var(--line);
+  border-radius:12px;padding:14px 16px;margin-bottom:12px;background:#fff}
+.ev .when{flex:0 0 96px;text-align:center}
+.ev .when .dm{font-weight:800;color:var(--blue);font-size:1.02rem}
+.ev .when .tm{font-size:.86rem;color:var(--mut)}
+.ev .when .wk{font-size:.72rem;color:var(--mut)}
+.ev .body{flex:1;min-width:0}
+.ev .body .ch{font-weight:800;font-size:1.04rem;margin-bottom:2px}
+.ev .body .meta{font-size:.83rem;color:var(--mut)}
+.ev .body .sm{font-size:.86rem;margin-top:6px;color:#3a4256}
+.ev .act{flex:0 0 auto;display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+.btn{background:var(--blue);color:#fff;border:none;border-radius:9px;
+  padding:9px 14px;font-size:.85rem;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap}
+.btn:hover{background:var(--blue-l)}
+.btn.ghost{background:#eef1fa;color:var(--blue)}
+.tag{font-size:.7rem;border-radius:6px;padding:2px 8px;font-weight:700;white-space:nowrap}
+.t-conf{background:#e0f3ea;color:var(--green)}
+.t-draft{background:#fdf3d8;color:#9a6c00}
+.t-note{background:#fbe2ec;color:var(--red)}
+
+/* modal */
+.ov{position:fixed;inset:0;background:rgba(20,26,45,.55);display:none;
+  z-index:50;padding:20px;overflow-y:auto}
+.ov.on{display:block}
+.modal{max-width:820px;margin:24px auto;background:#fff;border-radius:16px;
+  padding:0 0 28px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.mhead{background:linear-gradient(135deg,var(--blue),var(--blue-l));color:#fff;
+  padding:20px 26px;position:sticky;top:0}
+.mhead h3{margin:0 0 4px;font-size:1.25rem}
+.mhead .mh-meta{font-size:.85rem;opacity:.92}
+.mclose{position:absolute;top:16px;right:18px;background:rgba(255,255,255,.2);
+  border:none;color:#fff;width:32px;height:32px;border-radius:50%;font-size:1.1rem;cursor:pointer}
+.mbody{padding:22px 26px}
+.mbody h4{color:var(--blue);font-size:1.02rem;margin:20px 0 8px;
+  padding-bottom:5px;border-bottom:2px solid #eef1fa}
+.mbody h4:first-child{margin-top:0}
+.mbody .q{font-weight:800;color:var(--ink);margin:16px 0 6px;
+  background:#f1f4fc;border-left:4px solid var(--blue);padding:9px 12px;border-radius:0 8px 8px 0}
+.mbody .a{margin:0 0 6px;color:#2b3242}
+.mbody ul{margin:6px 0 6px;padding-left:20px}
+.mbody li{margin-bottom:4px}
+.kp{background:#faf7ff;border:1px dashed #c9a3ef;border-radius:10px;padding:10px 14px;margin:10px 0}
+.kp .kpt{font-size:.72rem;font-weight:800;color:#7b4fd0;letter-spacing:.05em;margin-bottom:4px}
+.kp span{display:inline-block;background:#fff;border:1px solid #e0d3f5;border-radius:6px;
+  padding:2px 9px;margin:3px 4px 0 0;font-size:.8rem}
+.warn{background:#fffaf0;border-left:4px solid var(--amber);padding:11px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.9rem}
+.sound{background:#f1fbf6;border-left:4px solid var(--green);padding:11px 14px;border-radius:0 8px 8px 0;margin:8px 0}
+.sound b{color:var(--green)}
+.foot{color:var(--mut);font-size:.82rem;text-align:center;margin-top:24px}
+/* today popup + fab */
+.tpop{max-width:640px}
+.fab{position:fixed;right:18px;bottom:18px;z-index:40;background:var(--red);color:#fff;
+  border:none;border-radius:999px;padding:13px 20px;font-size:.9rem;font-weight:800;
+  cursor:pointer;box-shadow:0 8px 24px rgba(214,51,108,.4);font-family:inherit}
+.tsec{margin:14px 0}
+.tsec .th{font-size:.82rem;font-weight:800;color:var(--blue);margin-bottom:8px;letter-spacing:.02em}
+.titem{border:1px solid var(--line);border-radius:11px;padding:12px 14px;margin-bottom:9px;background:#fff}
+.titem.due{border-left:4px solid var(--amber);background:#fffaf0}
+.titem.done{border-left:4px solid var(--green);background:#f1fbf6}
+.titem .ti-top{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.titem .ti-tt{font-weight:800}
+.titem .ti-mt{font-size:.8rem;color:var(--mut);margin-top:2px}
+.titem .chk{margin:8px 0 0;padding:0;list-style:none}
+.titem .chk li{font-size:.86rem;padding:3px 0 3px 22px;position:relative;color:#3a4256}
+.titem .chk li:before{content:'☐';position:absolute;left:0;color:var(--blue)}
+.linkbtn{background:#eef1fa;color:var(--blue);border:none;border-radius:8px;padding:6px 11px;
+  font-size:.78rem;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap}
+.linkbtn:hover{background:#e0e6f7}
+.donetag{font-size:.72rem;font-weight:800;color:var(--green);background:#e0f3ea;border-radius:6px;padding:2px 8px}
+/* correspondence */
+.doc{display:flex;gap:12px;align-items:center;border:1px solid var(--line);border-radius:11px;
+  padding:12px 14px;margin-bottom:10px;background:#fff}
+.doc .dir{flex:0 0 auto;font-size:.72rem;font-weight:800;border-radius:7px;padding:4px 9px}
+.dir.recv{background:#dceafd;color:var(--blue)}
+.dir.sent{background:#e0f3ea;color:var(--green)}
+.doc .dc{flex:1;min-width:0}
+.doc .dc .dt{font-weight:700}
+.doc .dc .dm2{font-size:.8rem;color:var(--mut)}
+.qtbl{margin:12px 0}
+.qrow{display:flex;gap:10px;border:1px solid var(--line);border-radius:8px;padding:9px 12px;margin-bottom:6px}
+.qrow .qn{flex:0 0 26px;font-weight:800;color:var(--blue)}
+@media(max-width:720px){
+  .wgrid{grid-template-columns:repeat(7,1fr);gap:3px}
+  .wcol{min-height:96px;padding:4px}
+  .wchip{font-size:.62rem;padding:3px 4px}
+  .ev{flex-wrap:wrap}
+  .ev .when{flex-basis:70px}
+  .ev .act{width:100%;flex-direction:row;justify-content:flex-end;margin-top:6px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>🎙️ 인터뷰 준비 보드</h1>
+    <p>더불어민주당 당대표 후보 <b>김보미</b> · 채널별 질문지 &amp; 준비안</p>
+    <span class="slogan">“민주당을 살려야 합니다 — 뽑고 싶은 민주당”</span>
+  </header>
+
+  <!-- WEEKLY -->
+  <div class="card">
+    <h2>📅 이번 주 일정 (7/13~7/19)</h2>
+    <p class="sub">한 주 일정을 한눈에 — 파란/분홍 칩을 누르면 해당 인터뷰 질문지가 열립니다.</p>
+    <div class="wgrid" id="wgrid"></div>
+  </div>
+
+  <!-- MONTHLY -->
+  <div class="card">
+    <p class="mtitle">🗓️ 2026년 7월</p>
+    <div class="mgrid" id="mhead"></div>
+    <div class="mgrid" id="mgrid" style="margin-top:4px"></div>
+  </div>
+
+  <!-- SCHEDULE LIST -->
+  <div class="card">
+    <h2>🎤 인터뷰 일정 &amp; 질문지</h2>
+    <p class="sub">각 일정의 <b>[질문지 보기]</b> 버튼을 누르면 채널별 준비안이 열립니다.</p>
+    <div id="evlist"></div>
+    <div class="warn" style="margin-top:4px">
+      ※ <b>외계인키친 백브리핑(14:40~)</b> 과 <b>국민일보 인터뷰(15:00)</b> 시간이 근접합니다. 동선·시간 최종 확인 필요.<br>
+      ※ <b>서울의소리 신통알</b>은 “수요일 06:30 생방” 기준으로 7/15에 임시 배치했습니다. 방송 일자 확인 후 조정하세요.
+    </div>
+  </div>
+
+  <!-- CORRESPONDENCE -->
+  <div class="card">
+    <h2>📨 수·발신 기록 (공문·질의/답변)</h2>
+    <p class="sub">김보미 후보가 주고받은 공식 문서 — 항목을 누르면 전문이 열립니다.</p>
+    <div class="doc">
+      <span class="dir recv">수신</span>
+      <div class="dc"><div class="dt">청년최고위원 도입 관련 당대표 후보 긴급 공개 질의</div>
+      <div class="dm2">발신: 전국청년위원회 위원장 모경종 의원 · 2026.7.13 · <b>답변시한 7/14 18:00</b></div></div>
+      <button class="linkbtn" onclick="openM('recv-q')">보기 ▸</button>
+    </div>
+    <div class="doc">
+      <span class="dir sent">발신</span>
+      <div class="dc"><div class="dt">청년최고위원 공개질의 답변서 — 김보미</div>
+      <div class="dm2">수신: 모경종 전국청년위원장 · 2026.7.13 · <span class="donetag">회신 완료</span></div></div>
+      <button class="linkbtn" onclick="openM('sent-ans')">보기 ▸</button>
+    </div>
+  </div>
+
+  <p class="foot">🚜 트랙터캠프 · 캠프 내부 자료 — “확정 질문지”는 확정본, “캠프 초안”은 검토·수정용 예상질문입니다.</p>
+</div>
+
+<button class="fab" onclick="openTodo()">📋 오늘 할 일</button>
+
+<!-- TODAY POPUP -->
+<div class="ov" id="todoOv" onclick="if(event.target===this)closeTodo()">
+  <div class="modal tpop">
+    <div class="mhead">
+      <button class="mclose" onclick="closeTodo()">✕</button>
+      <h3>📋 오늘의 준비 사항</h3>
+      <div class="mh-meta" id="todoDate"></div>
+    </div>
+    <div class="mbody" id="todoBody"></div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="ov" id="ov" onclick="if(event.target===this)closeM()">
+  <div class="modal">
+    <div class="mhead">
+      <button class="mclose" onclick="closeM()">✕</button>
+      <h3 id="mTitle"></h3>
+      <div class="mh-meta" id="mMeta"></div>
+    </div>
+    <div class="mbody" id="mBody"></div>
+  </div>
+</div>
+
+<script>
+/* ---------- 인터뷰 데이터 ---------- */
+const IV = [
+  {
+    id:'kym', date:'2026-07-14', wd:'화', time:'07:00', kind:'k-conf',
+    channel:'김용민TV 전화인터뷰', place:'전화 연결 (음성)', status:'draft',
+    summary:'진보 유튜브 아침 라이브 · 지지층 결집 + 후원 유도',
+    prep:`
+      <h4>방송 개요</h4>
+      <p class="a">진보 성향 유튜브 아침 생방송, <b>전화 연결(음성 전용)</b>. 시청층은 친민주·개혁 성향 지지층. 화면이 없으므로 <b>짧고 강한 소리(soundbite)</b>와 후원·응원 유도가 핵심.</p>
+      <div class="kp"><div class="kpt">전략 포인트</div>
+        <span>지지층 결집·후원 CTA</span><span>컷오프 부당함 정면 호소</span><span>계란/바위 감성 스토리</span><span>숫자·구호 반복(음성)</span><span>김보미닷컴 유도</span></div>
+
+      <h4>예상 질문 &amp; 답변 요지</h4>
+      <p class="q">Q. 어제 정견발표가 화제였다. 어떤 각오로 나서셨나?</p>
+      <p class="a">두렵지 않았다면 거짓말입니다. 그래서 청중께 박수를 요청드렸고, 그 박수에 힘입어 말했습니다. 저는 약한 계란, 상대는 단단한 바위입니다. 계란은 깨지지만 생명을 품고 있고, 끝까지 두드리면 바위에도 금이 갑니다. 누구를 미워해서가 아니라, 이대로 두면 민주당이 무너지기 때문에 잘못된 것을 지적한 겁니다.</p>
+      <p class="q">Q. 김보미가 누구냐는 반응이 폭발한다. 소개해달라.</p>
+      <p class="a">만 36세, 13년차 당원이고 그중 8년을 강진군의원으로 일했습니다. 만 32세에 전국 최연소 기초의회 의장이 됐습니다. 배지도, 계파도 없이 컷오프부터 뚫어야 하는 평당원입니다.</p>
+      <p class="q">Q. 컷오프 위기다. 지금 심경은?</p>
+      <p class="a">등록 나흘 만에 세 명만 남기고 자르겠다고 합니다. 청년에게는 선거운동 기회조차 주지 않으면서 기탁금만 내라고 합니다. 우리가 그렇게 욕하는 국민의힘도 서른여섯 이준석을 당대표로 뽑았습니다. 그런데 민주당은 서른여섯 김보미에게 도전할 기회조차 안 주겠다고 합니다. 여러분, 이 컷오프를 막아주십시오.</p>
+      <p class="q">Q. 왜 출마했나?</p>
+      <p class="a">저는 강진군수 경선에서 소명 기회도 없이 15% 감산을 당한 당사자입니다. 청년이 민주당을 떠난 게 아니라, 민주당이 먼저 청년을 떠났습니다. 지금 민주당은 공정·민주·세대교체·청년·미래가 사라진 ‘5무 정당’입니다. 사랑하니까 말해야겠다고 결심했습니다.</p>
+      <p class="q">Q. 정청래 전 대표 정면비판 — 세대전쟁인가?</p>
+      <p class="a">세대전쟁이 결코 아닙니다. 386 세대의 헌신은 진심으로 존경합니다. 하지만 존경과 독점은 다릅니다. 제가 겨누는 건 사람이 아니라 낡은 ‘문법’입니다. 밀어내자는 게 아니라 사다리를 놓자는 겁니다.</p>
+      <p class="q">Q. 지지자·후원자에게 한마디.</p>
+      <p class="a">노무현·김대중·이재명 대통령도 처음엔 다 작은 계란이었습니다. 국민이 함께 두드려 바위가 깨진 겁니다. 김보미닷컴으로 오셔서 함께 두드려 주십시오.</p>
+
+      <div class="sound"><b>핵심 소리</b><br>
+      “청년이 민주당을 떠난 게 아니라, 민주당이 먼저 청년을 떠났습니다.”<br>
+      “국힘도 서른여섯 이준석을 뽑았습니다. 민주당이 왜 못 합니까.”<br>
+      “이 컷오프를 막아주십시오. 그것이 민주당의 미래를 지키는 길입니다.”</div>
+
+      <div class="warn"><b>주의</b> — 음성 매체이므로 숫자(36세·13년·8년·32세·15%)와 구호를 또박또박 반복. 아침 방송, 에너지 있게. 마무리엔 반드시 <b>김보미닷컴 후원·응원 CTA</b>.</div>
+    `
+  },
+  {
+    id:'jtbc', date:'2026-07-14', wd:'화', time:'12:40', kind:'k-live',
+    channel:'JTBC 유튜브 〈장르만 여의도〉', place:'서울 상암동 JTBC (마포구 상암산로 38)',
+    host:'진행 정영진 (채윤경·신혜원 기자 보조)', live:true, status:'conf',
+    summary:'라이브 12:40~13:10 · 출마 이유 / 8.17 전당대회 전망 (확정 질문지)',
+    prep:`
+      <h4>방송 개요</h4>
+      <p class="a"><b>라이브 12:40~13:10</b> · 진행 정영진(방송인) + JTBC 기자 보조. 코너 〈장르만 인터뷰〉. 시사·풍자 톤, 일반·중도 시청자 다수. 주제: <b>민주당 당대표 출마 이유 / 8.17 전당대회 전망</b>. TV 라이브이므로 답변은 간결한 소리 + “이 사람 누구냐”에 답하는 스토리텔링.</p>
+      <div class="kp"><div class="kpt">전략 포인트</div>
+        <span>일반 대중에 인물 각인</span><span>정영진식 도발에 침착·유머</span><span>TV용 짧은 소리</span><span>계파 없음 = 개혁 카드</span><span>8.15 호남 순회경선 목표</span></div>
+
+      <p class="a" style="color:#9a6c00;font-size:.85rem"><b>[확정 질문지 — 캠프 확정본]</b></p>
+
+      <h4>① “AI시대, 짱돌 들고 싸우던 분들이 주축?”</h4>
+      <p class="q">Q1. 어떻게 정치를 시작했고, 최연소 강진군의장이 됐나?</p>
+      <p class="a">유명인사라기보다 “쟤가 누군데 감히 나왔어?” 하는 궁금증이겠지요.(웃음) 그 궁금증이 바로 제가 출마한 이유입니다. 만 36세 지방의원 출신 평당원이 당대표 선거에 나온 것 자체가 뉴스가 되는 정당, 그게 지금 민주당의 현주소니까요. 저는 배지도 계파도 없이 컷오프부터 뚫어야 하는 사람입니다.</p>
+      <p class="a">전남 강진에서 태어나 지금까지 강진을 지킨 사람입니다. 선거 때만 내려오는 정치인이 아니라 여기 살았고 앞으로도 살 사람입니다. 당원 13년, 그중 8년을 군의원으로 일했습니다. 당에서 정한 의장 후보를 안 찍었다는 이유로 소명 기회조차 없이 제명 징계를 받고도, 만 32세에 전국 최연소 기초의회 의장이 됐습니다. 저는 정치를 책이 아니라 기득권의 벽에 부딪히며 몸으로 배웠습니다.</p>
+      <div class="kp"><div class="kpt">KEY POINTS</div><span>만 36세·13년차 당원</span><span>의정 8년</span><span>만 32세 최연소 기초의회 의장</span><span>배지도 계파도 없음</span></div>
+
+      <p class="q">Q1-1. 미대 출신인데 정치에 뛰어들었다?</p>
+      <p class="a">부모님이 강진에서 도예공방을 하시는 작가십니다. 고려청자의 고장에서 흙 만지는 집에 자랐으니 전공도 미술로 갔습니다. 저는 그야말로 흙을 빚는 ‘흙수저’입니다.(웃음) 초·중·고 내내 장작 패고 톱질해 화목보일러 불 때는 게 제 역할이었습니다. 버튼 하나로 집이 따뜻해지는 일상 뒤에서 누군가 장작을 패는 일, 저는 정치가 바로 그런 거라고 생각합니다. 부모님이 편찮으시며 사업을 맡아 지역 동종업계 1위 여성기업인이 됐고, 청년이 떠나고 소상공인이 무너지는 구조를 보며 문제의식이 생겨 협회를 창립하고 결국 출마까지 했습니다. 정치, 예술로 한번 해보겠습니다.(웃음)</p>
+
+      <p class="q">Q2. 김보미.com의 ‘나라살림돋보기’는 무엇이고 왜 만들었나?</p>
+      <p class="a">나라 예산을 국민 손바닥 위에 올려놓는 돋보기입니다. 세금이 언제·어디에·얼마나 쓰이는지 누구나 스마트폰으로 볼 수 있게 만든 도구를, 외주가 아니라 제가 AI로 직접 만들었습니다. 시작은 강진이었습니다. ‘강진365’로 세금 쓰임새를 공개했더니 4년간 수의계약 1,689건·약 376억 원의 흐름이 보였고, 방치된 공유재산은 감사와 부당이득 환수까지 이끌어냈습니다. 그 경험을 전국으로 넓힌 것이 재정주권시민행동입니다. 나라살림을 유리상자에 넣었으니 이제 민주당의 공천과 당 예산도 유리상자에 넣자는 겁니다. 세금도 들여다보는 국민이 왜 자기 당의 경선 득표수는 못 봅니까.</p>
+      <div class="kp"><div class="kpt">KEY POINTS</div><span>나라살림돋보기(AI 직접 제작)</span><span>강진365→전국 확장</span><span>수의계약 376억 전수분석</span><span>유리상자 철학=당 개혁</span></div>
+
+      <h4>② “36세 평당원, 거물 정청래를 들이받다”</h4>
+      <p class="q">Q3. 당대표 출마를 결심한 이유는?</p>
+      <p class="a">6·3 지방선거에서 청년의 이탈을 두 눈으로 봤습니다. 청년이 민주당을 떠난 게 아니라, 민주당이 먼저 청년을 떠났습니다. 지금 민주당은 공정·민주·세대교체·청년·미래가 사라진 ‘5무 정당’입니다. 저는 민주당을 목숨보다 사랑하기에 말하기로 했습니다. 계란으로 바위 치기인 걸 압니다. 그래도 던지기로 했습니다. 약한 계란이 강한 바위를 두드려 결국 금을 냅니다.</p>
+      <p class="q">Q3-1. 무엇이 가장 큰 문제인가?</p>
+      <p class="a">공정입니다. 당내 징계자인 저에게는 소명도 없이 15% 감산이 적용됐고, 168억 대출사기 포함 전과 5범 후보에게는 감산 완화 조항이 겹겹이 있었습니다. 공천심사 기록은 비공개, 열람은 지도부로 제한. 저는 경선에서 제가 몇 표를 얻었는지 아직도 모릅니다. 득표율조차 안 알려주는 ‘블랙박스 경선’은 당원주권을 빙자한 사기입니다. 그래서 1호 공약이 ‘유리상자 경선’, 가짜 1인 1표를 진짜 1인 1표로 바꾸는 겁니다.</p>
+      <div class="kp"><div class="kpt">KEY POINTS</div><span>15% 감산 vs 전과5범 완화</span><span>공천기록 비공개</span><span>득표수 비공개 경험</span><span>유리상자 경선·진짜 1인 1표</span></div>
+      <p class="q">Q3-2. 86세대는 전부 물러나야 하나?</p>
+      <p class="a">민주화운동은 존중받아야 하고 그 헌신을 진심으로 존경합니다. 하지만 그 헌신이 40~50년 정치를 독점할 권리가 될 수는 없습니다. 제가 겨누는 건 사람이 아니라 문법입니다. AI 3대 강국으로 가야 할 나라에서 화염병과 짱돌의 문법이 아직도 주축이어야 합니까. 김민석 후보님도 32살에 정치를 시작하셨습니다. 그때 민주당은 30대에게 미래를 맡길 줄 알았는데, 왜 지금 30대에겐 그 기회가 없습니까. 전부 물러나라는 게 아니라 결정권을 나누자는 겁니다. 경험은 남기고, 결정은 미래를 살아갈 세대와 함께.</p>
+      <p class="q">Q3-3. 당대표가 되면 인적쇄신은 어떻게?</p>
+      <p class="a">지금 최고위는 계파싸움에 청년최고위원 하나로 몽니를 부립니다. 개혁은 계파 없는 김보미밖에 못 합니다. 갚을 빚이 없으니 눈치 볼 곳이 없습니다. 인적쇄신은 누구를 쳐내는 게 아니라 사람을 고르는 기준을 바꾸는 겁니다. ‘줄’이 아니라 ‘실력’이 기준이 되게. 방법은 ‘뽑고 싶은 민주당을 위한 25개 약속’에 담아 김보미.com에 공개했습니다.</p>
+      <div class="kp"><div class="kpt">KEY POINTS</div><span>계파싸움 깨는 유일 카드</span><span>줄이 아니라 실력</span><span>총선 개혁</span><span>5대 분야 25개 약속</span></div>
+
+      <h4>③ 민주당, 청년은 소모품에 그쳤다?</h4>
+      <p class="q">Q4. 민주당에서 청년은 어떤 대상인가?</p>
+      <p class="a">지금까지는 소모품이었습니다. 선거 때만 영입해 사진 찍고 끝나면 토사구팽. 6년 전 소명 없이 저를 제명해놓고 이번엔 그 징계를 10년짜리 ‘당론 위배’로 둔갑시켜 감산했습니다. 청년은 소모품이 아니라 동업자여야 합니다. 김대중의 민주당은 30대를 키웠고 그렇게 자란 분들이 오늘의 주류가 됐습니다. 그 사다리를 다시 놓으러 나왔습니다.</p>
+      <p class="q">Q5. 전당대회 룰(선호투표제·청년최고위원) 갈등을 어떻게 보나?</p>
+      <p class="a">부끄러운 장면입니다. 전준위가 의결한 청년최고위원제가 최고위 문턱을 못 넘었습니다. 저는 모경종 청년위원장 공개질의 여섯 문항에 전부 ‘동의한다’ 답했고, 무산되면 취임 30일 안에 개정 1호로 처리하겠다고 시한까지 못 박았습니다. 선호투표제는 사표 없는 당원주권 방식이니 순위별 득표까지 전면 공개해야 합니다. 룰 갈등의 본질은 하나, 당원이 결정하는 정당이 두려운가 아닌가. 저는 하나도 두렵지 않습니다.</p>
+      <div class="kp"><div class="kpt">KEY POINTS</div><span>청년 자리 계파 볼모화 비판</span><span>모경종 공개질의 전항 동의·시한</span><span>선호투표제=사표 없는 당원주권</span></div>
+
+      <h4>④ “국힘도 서른여섯 이준석을 뽑았는데!”</h4>
+      <p class="q">Q6. 현실적인 목표는?</p>
+      <p class="a">제 목표는 당선입니다. 5년 전 국민의힘은 서른여섯 이준석을 당대표로 뽑았습니다. ‘민주’를 이름에 단 우리가 왜 못 합니까. 지금 무당층이 절반에 가깝습니다. 미워서가 아니라 뽑고 싶은 이유를 못 찾아 떠난 겁니다. 저는 그 이유를 만들려고 나왔습니다. 이 선거에서 반드시 전당대회의 질문을 바꾸겠습니다. 누가 적통이냐가 아니라, 미래로 갈 것이냐 과거에 머물 것이냐. 8월 15일 호남 순회경선에서 첫 대답을 듣겠습니다.</p>
+      <p class="q">Q7. 왜 다른 누구도 아닌 김보미인가?</p>
+      <p class="a">민주당의 위기는 메시지가 아니라 메신저의 위기입니다. 청년의 삶을 말할 자격은 청년의 삶을 사는 사람에게 있습니다. 저는 지방 소멸 한복판의 만 36세 당사자이고, 밀실 공천 불공정을 몸으로 겪었으며, 8년 의정으로 예산·조례·감사·환수까지 성과로 증명한 일꾼입니다. 신세 진 사람도, 갚을 빚도, 모실 계파도 없어 누구 눈치도 보지 않습니다.</p>
+      <div class="sound"><b>클로징 소리</b><br>“뽑고 싶은 민주당, 뽑고 싶은 김보미. 약한 계란이 강한 바위를 두드려, 결국 금을 냅니다. 8월 17일, 민주당의 미래에 투표해 주십시오.”</div>
+      <div class="warn"><b>주의</b> — 정영진 진행의 도발·농담엔 유머로 받되 메시지는 흔들리지 않게. 라이브 30분이므로 한 답변 = 한 소리로 짧게. 출처는 “김보미.com에 전부 공개” 반복.</div>
+    `
+  },
+  {
+    id:'brief', date:'2026-07-14', wd:'화', time:'14:40', kind:'k-conf',
+    channel:'기자회견 후 백브리핑 · 국회 외계인키친', place:'국회 외계인키친 (약 30분)', status:'draft',
+    summary:'기자회견 직후 기자단 백브리핑 · 메시지 일관성/실언 방지',
+    prep:`
+      <h4>개요</h4>
+      <p class="a">기자회견을 마치는 대로 국회 <b>외계인키친</b>에서 기자단과 <b>약 30분 백브리핑·문답</b>. 여러 매체 기자 대상, 온·오프더레코드 혼재 가능. 라이브가 아니라 <b>기사화</b>되므로 정제된 인용 문장과 근거 수치가 관건.</p>
+      <div class="kp"><div class="kpt">전략 포인트</div>
+        <span>메시지 3개로 압축</span><span>‘공격’ 아닌 ‘지적’ 프레임</span><span>수치·근거 정확히</span><span>온/오프 명확 구분</span><span>인용 가능한 문장 준비</span></div>
+
+      <h4>회견 핵심 3메시지 (반복)</h4>
+      <ul>
+        <li><b>컷오프 저지</b> — 등록 나흘 만에 청년을 잘라내는 컷오프는 부당하다. 재고·공개 요청.</li>
+        <li><b>유리상자 경선</b> — 15% 감산 vs 전과5범 완화, 득표수 비공개. 공천을 유리상자에.</li>
+        <li><b>미래 vs 과거</b> — 이번 전대의 질문은 적통이 아니라 미래냐 과거냐.</li>
+      </ul>
+
+      <h4>예상 질문 &amp; 대응</h4>
+      <p class="q">Q. 컷오프에 법적 대응 등 계획은?</p>
+      <p class="a">감정적 대응은 하지 않겠습니다. 당원과 국민께 호소하고, 지도부에 공개·재고를 정식 요청하겠습니다. (※ 법적 대응 언급은 신중 — 확정 전 단정 금지)</p>
+      <p class="q">Q. 특정 후보(정청래·김민석 등)를 겨냥한 것인가?</p>
+      <p class="a">특정인을 겨냥한 게 아니라, 소수 계파가 결정을 독점하는 구조를 지적하는 겁니다.</p>
+      <p class="q">Q. 가치를 같이하는 다른 후보와 단일화·연대는?</p>
+      <p class="a">가치의 연대에는 열려 있습니다. 다만 지금 최우선은 컷오프 저지입니다. (※ 구체 합의·회동 여부는 확인된 사실만)</p>
+      <p class="q">Q. 15% 감산·전과5범 등 근거 자료가 있나?</p>
+      <p class="a">출마선언문 전문과 5대 분야 25개 약속, 관련 근거를 김보미.com에 공개해 두었습니다. 검증해 주십시오.</p>
+      <p class="q">Q. 8.17 전당대회 목표·전망은?</p>
+      <p class="a">목표는 당선이고, 첫 관문은 8월 15일 호남 순회경선입니다. 민주당의 심장 호남에서 첫 대답을 듣겠습니다.</p>
+
+      <div class="warn"><b>주의</b> — ① 오프더레코드는 “여기서부터는 오프”라고 <b>명확히 구분</b>. ② 확인 안 된 수치·인신공격성 표현 금지(전과·금액은 검증된 것만). ③ 짧고 정확하게, 같은 문장이 그대로 기사에 나갈 수 있음을 전제로.</div>
+    `
+  },
+  {
+    id:'kmi', date:'2026-07-14', wd:'화', time:'15:00', kind:'k-conf',
+    channel:'국민일보 인터뷰', place:'서면/대면 심층 인터뷰', status:'draft',
+    summary:'종합일간지 심층 인터뷰 · 정책·비전 깊이 + 중도 확장',
+    prep:`
+      <h4>개요</h4>
+      <p class="a">종합일간지 <b>심층 인터뷰</b>(지면·온라인 인용). 중도·보수 독자층도 상당. 감성 구호보다 <b>근거·실적·정책 깊이</b>로 설득. 인용될 대표 문장을 미리 다듬어 둘 것. 이념색보다 ‘공정·미래·세대교체’ 프레임.</p>
+      <div class="kp"><div class="kpt">전략 포인트</div>
+        <span>정책·비전 깊이</span><span>실적·수치로 신뢰</span><span>무당층·중도 확장</span><span>인용 대표문장 준비</span><span>자극적 이슈 지양</span></div>
+
+      <h4>예상 질문 &amp; 답변 요지</h4>
+      <p class="q">Q. 출마 이유와 현실적 목표는?</p>
+      <p class="a">목표는 당선입니다. 이번 전당대회의 질문 자체를 바꾸겠습니다. ‘누가 적통이냐’가 아니라 ‘민주당이 미래로 갈 것이냐, 과거에 머물 것이냐’로. 무당층 절반은 민주당이 미워서가 아니라 뽑고 싶은 이유를 못 찾아 떠나 있습니다. 그 이유를 만들겠습니다.</p>
+      <p class="q">Q. 핵심 공약은?</p>
+      <p class="a">‘뽑고 싶은 민주당을 위한 5대 분야 25개 약속’입니다. ①유리상자 경선(공천 기준·심사·득표 전 과정 공개, 전과자 구제·현역 프리미엄 조항 삭제) ②진짜 1인 1표(당원 한 표가 계파 지시보다 위) ③청년 결정권(청년최고위원 즉시 도입) ④미래 설계 정당(늘어난 세수를 미래세대에 투자) ⑤성장사다리 정당(당이 청년 정치인을 키우는 제도).</p>
+      <p class="q">Q. 세대교체가 86세대 퇴진을 뜻하나?</p>
+      <p class="a">밀어내기가 아니라 결정권을 나누자는 겁니다. 민주화 헌신은 존경하지만 그것이 40~50년 정치 독점의 근거가 될 수는 없습니다. 청소년·기초·광역의원을 거쳐 국회까지, 다음 세대가 자연스럽게 자라 올라오는 사다리를 놓자는 겁니다.</p>
+      <p class="q">Q. 이재명 정부와의 관계·미래 비전은?</p>
+      <p class="a">대통령은 미래를 이야기하는데 민주당은 과거만 이야기합니다. 당이 정부의 3대 메가프로젝트를 뒷받침하고, 반도체 호황으로 늘어난 세수를 미래세대에 투자하는 계획을 당이 먼저 내놓겠습니다. 일자리·기본AI·검찰개혁 완수가 축입니다.</p>
+      <p class="q">Q. 재정주권·나라살림돋보기는?</p>
+      <p class="a">강진에서 ‘강진365’로 세금 쓰임새를 공개해 수의계약 1,689건·약 376억 원 흐름과 특혜구조를 드러냈고, 이를 전국으로 넓힌 것이 재정주권시민행동과 나라살림돋보기입니다. 나라 예산을 유리상자에 넣었으니 당 예산과 공천도 유리상자에 넣자는 것이 제 개혁 철학입니다.</p>
+      <p class="q">Q. 중도·무당층 확장 전략은?</p>
+      <p class="a">공정은 도덕이 아니라 전략입니다. 공정해야 청년이 돌아오고, 청년이 돌아와야 총선을 이깁니다. ‘뽑고 싶은 이유’를 만드는 것이 확장의 길입니다.</p>
+
+      <div class="sound"><b>인용용 대표 문장</b><br>
+      “공정은 도덕이 아니라 전략입니다.”<br>
+      “나라살림을 유리상자에 넣었으니, 이제 당의 공천과 예산도 유리상자에 넣겠습니다.”<br>
+      “경험은 남기고, 결정은 미래를 살아갈 세대와 함께.”</div>
+      <div class="warn"><b>주의</b> — 지면 인용 대비 수치(376억·15%·1,689건·36세)와 표현 정확히. 종교·사회 갈등 이슈는 자극하지 말고, 답변은 라디오보다 <b>길고 논리적으로</b>.</div>
+    `
+  },
+  {
+    id:'stal', date:'2026-07-15', wd:'수', time:'06:30', kind:'k-live',
+    channel:'서울의소리 〈신통알〉', place:'생방송 (수요일 06:30)', live:true, status:'conf',
+    summary:'확정 질문지 (7문항) · 방송 일자 확인 필요',
+    prep:`
+      <p class="a" style="color:#9a6c00;font-size:.85rem"><b>[확정 질문지 — 신통알 제공 · 방송 일자(수요일 06:30) 확인 필요]</b></p>
+      <h4>진행 정보</h4>
+      <p class="a">서울의소리 〈신통알〉, 수요일 오전 6:30 생방송. 슬로건 “민주당을 살려야 합니다 — 뽑고 싶은 민주당”, 브랜드 “계란으로 바위치기”.</p>
+
+      <p class="q">Q1. 어제 KDLC 정견발표에서 정청래 전 대표를 면전에서 비판했다. 어떤 각오였나?</p>
+      <p class="a">두렵지 않았다면 거짓말이겠죠. 그래서 쫄지 않게 박수를 요청드렸고, 그 박수에 힘입어 할 수 있었습니다. 저는 서른여섯 살 평당원, 힘도 조직도 없습니다. 그런데 여기서 내가 입을 다물면 밖에서 절망하는 청년들의 입도 함께 다물어진다고 생각했습니다. 저는 약한 계란, 상대는 단단한 바위입니다. 그런데 계란은 생명을 품고 있어, 끝까지 두드리면 바위에도 금이 갑니다. 누구를 미워해서가 아니라 이대로 두면 민주당이 무너지기 때문에, 사람이 아니라 잘못된 것을 지적한 겁니다.</p>
+      <p class="q">Q2. 스물여덟에 군의원, 서른둘에 전국 최연소 여성 의장 — 어떤 길이었나?</p>
+      <p class="a">제 별명이 ‘쌈닭’과 ‘불도저’입니다. 좋은 뜻이 아니라 “나이도 어린 것이, 어디 여자가, 농촌에서 왜 나서느냐”는 시선 속에 붙은 별명입니다. 제가 제일 많이 들은 말은 “가만히 있어라, 순번을 기다려라”였습니다. 그런데 저는 같은 당 군수라도 잘못하면 지적했고, 예산이 낭비되면 삭감했고, 의회 업무추진비를 전부 공개했습니다. 저는 그 별명이 부끄럽지 않습니다. 오히려 훈장이라고 생각합니다.</p>
+      <p class="q">Q3. “민주당에 공정이 없다” — 강진군수 경선에서 무슨 일이 있었나?</p>
+      <p class="a">이건 제 이야기입니다. 증거도, 소명 기회도 없이 당에서 찍으라는 후보를 안 찍었다는 이유로 징계가 만들어졌고, 규정까지 바꿔 제 점수를 15%나 깎았습니다. 반대로 전과 5범 상대 후보에게는 감점을 안 줄 수 있게 규정을 새로 만들어줬습니다. 그렇게 공천받은 후보는 무소속에게 참패했습니다. 그런데 저는 지금도 그 경선에서 몇 표를 받았는지 모릅니다. 후보도 당원도 몇 표인지 모르는 선거, 전 세계에 민주당 말고 또 있을까요?</p>
+      <p class="q">Q4. 후보 등록 나흘 만에 컷오프 — 지금 심경과 국민께 드리는 말은?</p>
+      <p class="a">다음주면 김보미를 볼 수 없을지도 모릅니다. 등록 나흘 만에 세 명만 남기고 자르겠다, 저와 고민정 후보를 컷오프하겠다는 이야기가 들립니다. 청년에겐 선거운동 기회조차 안 주면서 기탁금은 내라고 합니다. 국민의힘도 서른여섯 이준석을 당대표로 뽑았는데, 민주당은 서른여섯 김보미에게 도전할 기회조차 안 주겠다고 합니다. 국민 여러분, 이 컷오프를 막아주십시오. 그것이 민주당의 미래를 지키는 길입니다.</p>
+      <p class="q">Q5. “586을 지나 786, 886까지 갈 거냐” — 세대 전쟁인가?</p>
+      <p class="a">결코 아닙니다. 386 세대를 진심으로 존경합니다. 하지만 존경과 독점은 다릅니다. 민주화 헌신이 정치를 40년·50년 독점할 권리가 될 수는 없습니다. AI 3대 강국을 다투는 시대에 화염병과 짱돌의 세대가 아직도 주축이라면 한번 고민해봐야 하지 않겠습니까. 저는 밀어내자는 게 아니라 사다리를 놓자는 겁니다. 세 분께 부탁드립니다. 이번에 당대표가 되시더라도 다음 세대에게 넘겨줄 아름다운 퇴장을 준비하겠다는 약속만은 해주십시오.</p>
+      <p class="q">Q6. 후보님이 그리는 “미래를 준비하는 민주당”은?</p>
+      <p class="a">세 가지입니다. 첫째 일자리 — 반도체 호황 세금을 청년 착취 구조를 끝내는 데 쓰고 제조업을 되살리겠습니다. 둘째 AI — 전 국민이 쓰는 ‘기본 AI’를 시행하고 외국 기술에 종속되지 않는 국가 AI를 개발하겠습니다. 셋째 개혁의 완수 — 24년째 못 끝낸 검찰개혁을 시한을 정해 마무리하고, 정치검찰도 경찰 독주도 허용하지 않겠습니다.</p>
+      <p class="q">Q7. 김보미를 왜 밀어야 하는지 마지막으로.</p>
+      <p class="a">노무현·김대중·이재명 대통령도 처음엔 다 작은 계란이었습니다. 국민이 함께 두드려 바위가 깨진 겁니다. 저는 ‘이기는 민주당’에 100% 동의합니다. 무엇이 우리를 이기게 합니까, 저는 공정이라 믿습니다. 공정은 도덕이 아니라 전략입니다. 김보미닷컴으로 오셔서 여러분이 생각하는 민주당을 함께 그려주십시오. 제 도전이 3일 천하로 끝나더라도 저는 끝까지 민주당의 미래를 위해 싸우겠습니다. 민주당을 살려야 합니다. 저 김보미가 시작하겠습니다.</p>
+    `
+  },
+  {
+    id:'mbc', date:'2026-07-17', wd:'금', time:'18:00', kind:'k-conf',
+    channel:'MBC 라디오 〈뉴스하이킥〉', place:'저녁 시사 라디오 (18:00)', status:'draft',
+    summary:'드라이브타임 시사 라디오 · 컷오프 결과 시나리오별 대비',
+    prep:`
+      <h4>개요</h4>
+      <p class="a">저녁 시사 라디오, <b>음성 전용</b>, 진행자와 빠른 문답. 폭넓은 청취층. <b>7/17이면 컷오프 결과가 나왔을 가능성</b>이 커서 통과/탈락 시나리오별로 준비. 라디오는 귀로 듣는 소리 — 짧고 선명한 한 문장, 비유(계란·바위·화목보일러·유리상자) 활용.</p>
+      <div class="kp"><div class="kpt">전략 포인트</div>
+        <span>시나리오별 메시지</span><span>한 문장 한 메시지</span><span>비유로 각인</span><span>당일 아침 상황 반영</span><span>진행자 반박에 침착</span></div>
+
+      <h4>시나리오 A — 컷오프 통과(본선 진출)</h4>
+      <p class="q">Q. 본선에 올랐다. 소감과 전략은?</p>
+      <p class="a">이제 시작입니다. 계란이 바위에 첫 금을 낸 겁니다. 8월 15일 호남 순회경선, 민주당의 심장에서 첫 대답을 듣겠습니다. 저는 계파가 없어 눈치 볼 곳이 없는 유일한 후보입니다.</p>
+
+      <h4>시나리오 B — 컷오프(탈락)</h4>
+      <p class="q">Q. 컷오프됐다. 향후 계획은?</p>
+      <p class="a">제 도전이 3일 천하로 끝나더라도, 저는 끝까지 민주당의 미래를 위해 싸우겠습니다. 청년의 입을 틀어막은 이 결정이 옳았는지는 다음 총선과 대선이 답할 겁니다. 저는 멈추지 않습니다.</p>
+
+      <h4>공통 예상 질문</h4>
+      <p class="q">Q. 며칠 새 화제가 됐다. 비결은?</p>
+      <p class="a">제 비결이 아니라, 청년들이 목마르던 말을 제가 대신 했을 뿐입니다.</p>
+      <p class="q">Q. 세대교체 논란, 세대 전쟁 아닌가?</p>
+      <p class="a">사람의 교체가 아니라 문법의 교체입니다. 밀어내기가 아니라 사다리를 놓자는 겁니다.</p>
+      <p class="q">Q. 정책을 한두 개만 압축한다면?</p>
+      <p class="a">첫째 유리상자 경선 — 공천과 득표를 다 공개합니다. 둘째 기본 AI와 국가 AI — 돈 있는 사람만 AI 쓰는 격차를 막겠습니다. 여기에 청년이 다시 꿈꾸는 일자리입니다.</p>
+      <p class="q">Q. 지지층에게 한마디.</p>
+      <p class="a">여러분의 응원 하나하나가 계란을 두드리는 손입니다. 김보미닷컴에서 함께 두드려 주십시오.</p>
+
+      <div class="warn"><b>주의</b> — 라디오는 시각자료가 없으니 숫자·구호를 반복하고 한 문장에 한 메시지만. <b>방송 당일(7/17) 아침 컷오프·전대 상황을 반드시 업데이트</b>해 최신 사실로 답할 것.</div>
+    `
+  }
+];
+
+/* ---------- 이벤트별 준비 체크리스트 ---------- */
+const TODOS = {
+  kym:['질문지 최종 검토','후원·응원 멘트(김보미닷컴) 준비','핵심 소리 3개 암기'],
+  jtbc:['확정 질문지 리허설','TV용 짧은 소리 정리','정영진 진행 도발 대응 준비'],
+  brief:['기자회견문 준비','핵심 3메시지 정리(컷오프·유리상자·미래vs과거)','오프더레코드 라인 확인'],
+  kmi:['정책 심층 답변 정리(25개 약속)','인용용 대표문장 다듬기','수치 재확인(376억·15%)'],
+  stal:['확정 질문지 리허설(수 06:30)'],
+  mbc:['컷오프 결과 시나리오별 멘트','당일 아침 상황 업데이트']
+};
+/* 인터뷰 외 마감/할 일 */
+const TASKS = [
+  {date:'2026-07-13', title:'청년최고위원 공개질의 답변서 회신', due:'7/14(화) 18:00 시한',
+   status:'done', docId:'sent-ans', note:'전국청년위원회(모경종) 공개질의 6문항 답변'}
+];
+
+/* ---------- 수·발신 공문 ---------- */
+const DOCS = {
+  'recv-q':{
+    channel:'청년최고위원 도입 관련 당대표 후보 긴급 공개 질의 [수신]',
+    metaText:'수신 · 발신: 전국청년위원장 모경종 의원 · 2026.7.13 · 답변시한 7/14 18:00',
+    prep:`
+      <p class="a" style="color:var(--blue);font-weight:700">— 청년의 자리, 이제 후보자 여러분께 묻습니다 —</p>
+      <p class="a">안녕하십니까? 전국청년위원장 국회의원 모경종입니다. 8·17 전당대회에 나서는 당대표 후보자 여러분께 공개 질의를 드립니다.</p>
+      <p class="a">지난 9일 전당대회준비위원회는 청년최고위원제 도입 방안을 의결했습니다. 선출직 최고위원 다섯 자리 가운데 한 자리를 청년 몫으로 별도 선출하겠다는 결정으로, 6·3 지방선거에서 확인한 청년 이탈에 대한 최소한의 응답이었습니다. 그러나 그 결정은 최고위 문턱을 넘지 못했고, 청년의 자리는 다른 안건을 둘러싼 갈등에 묶여 뒤로 밀렸습니다.</p>
+      <p class="a">청년최고위원 한 자리가 생긴다고 등 돌린 청년이 곧바로 돌아오지는 않습니다. 그러나 청년의 목소리를 당의 중심에 들여보내는 최소한의 장치조차 못 만든다면, 청년에게 무슨 말을 더 하겠습니까. 만에 하나 이번에 매듭짓지 못하면 그 책임은 다음 지도부, 곧 이 서한을 받는 후보자 한 분에게 넘어갑니다. 그래서 여섯 가지를 여쭙고, 답변은 있는 그대로 공개하겠습니다.</p>
+      <h4>❏ 질의 6문항</h4>
+      <div class="qtbl">
+        <div class="qrow"><span class="qn">1</span><span>이번 8·17 전당대회에서 청년최고위원 도입이 필요하다고 생각하십니까?</span></div>
+        <div class="qrow"><span class="qn">2</span><span>도입이 무산될 경우, 새 지도부 출범 이후 개정 1호 안건으로 처리하실 의향이 있으십니까?</span></div>
+        <div class="qrow"><span class="qn">3</span><span>2번에 동의하신다면, 개정 완료 시한을 언제로 약속하시겠습니까?</span></div>
+        <div class="qrow"><span class="qn">4</span><span>청년최고위원을 당대표가 임명하는 지명직으로 두시겠습니까, 선출직으로 두시겠습니까?</span></div>
+        <div class="qrow"><span class="qn">5</span><span>제도 시행 전까지, 청년의 목소리가 지도부 논의에 닿을 장치를 어떻게 마련하시겠습니까?</span></div>
+        <div class="qrow"><span class="qn">6</span><span>청년최고위원제 도입과 관련된 추가 의견이 있으십니까?</span></div>
+      </div>
+      <div class="warn"><b>※ 답변 시한: 7/14(화) 18:00까지 회신</b> — 발신: 더불어민주당 전국청년위원회</div>
+    `
+  },
+  'sent-ans':{
+    channel:'청년최고위원 공개질의 답변서 [발신 · 김보미]',
+    metaText:'수신: 모경종 전국청년위원장 · 발신: 김보미 · 시행 2026.7.13 · 회신 완료',
+    prep:`
+      <div class="qa-tt" style="background:#f1f4fc;border-radius:10px;padding:12px 14px;margin:0 0 12px">
+        <div style="font-size:.78rem;color:var(--mut)"><b>수신</b> 전국청년위원회 위원장 모경종 의원 &nbsp;·&nbsp; <b>발신</b> 당대표 후보 김보미 (8·17 전당대회) &nbsp;·&nbsp; <b>시행일자</b> 2026.7.13</div>
+      </div>
+      <p class="a">전국청년위원회의 발전과 모경종 위원장님의 노고에 깊이 감사드립니다. 저 김보미는 이미 출마선언문에서 민주당의 세대교체를 반드시 이루겠다고 약속했습니다. <b>청년최고위원제 도입에 전적으로 동의하며 즉시 시행을 요구합니다.</b> 나아가 지명직 최고위원 전원 청년 임명, 당직·예산에 대한 청년의 실질적 결정권 보장까지 나아가겠습니다.</p>
+
+      <p class="q">질의 1. 이번 8·17 전당대회에서 청년최고위원 도입이 필요한가?</p>
+      <p class="a">예. 반드시 필요하며 이번 전당대회에서 즉시 시행되어야 합니다. 6·3 지방선거의 청년 이탈은 마지막 경고였습니다. 전준위가 의결한 ‘선출직 5석 중 1석 청년 별도 선출’은 최소한의 응답이며, 이마저 미루는 것은 청년에게 다시 등을 돌리라는 말과 같습니다. 지도부에 즉시 의결·시행을 공개 촉구합니다.</p>
+      <p class="q">질의 2. 무산 시 개정 1호 안건으로 처리할 의향이 있는가?</p>
+      <p class="a">예. 당선되면 <b>취임 당일 청년최고위원제 도입을 위한 당헌·당규 개정을 ‘1호 안건’으로 발의</b>하겠습니다. 청년의 자리를 다른 안건의 갈등에 묶어 미루는 일은 김보미 지도부에서는 없습니다.</p>
+      <p class="q">질의 3. 개정 완료 시한은?</p>
+      <p class="a"><b>취임 후 30일 이내(2026년 9월 안)</b>에 당무위·중앙위 의결까지 모든 개정 절차를 완료하겠습니다. 완료 즉시 전국청년위원회와 전체 청년 당원에게 공개 보고하고, 시한을 못 지키면 그 사유와 책임도 그대로 공개하겠습니다.</p>
+      <p class="q">질의 4. 지명직인가, 선출직인가?</p>
+      <p class="a"><b>선출직입니다.</b> 청년의 대표는 당대표 낙점이 아니라 당원 투표로 세워야 합니다. 여기에 더해 <b>당대표 몫 지명직 최고위원은 전원 청년으로 임명</b>하겠습니다. 선출직 1인 + 지명직 전원 청년으로, 최고위에서 청년의 목소리가 ‘구색’이 아니라 ‘상수’가 되게 하겠습니다.</p>
+      <p class="q">질의 5. 시행 전까지 청년 목소리가 닿을 장치는?</p>
+      <p class="a">첫째, 전국청년위원장의 최고위 상시 배석·발언권을 취임 즉시 보장. 둘째, 주요 당무·예산 안건은 의결 전 ‘청년 사전협의’ 절차를 두고 처리 결과 회신. 셋째, 당대표가 직접 참여하는 청년 당원 정례 공개 간담회를 매월 운영.</p>
+      <p class="q">질의 6. 추가 의견은?</p>
+      <p class="a">청년최고위원 한 자리는 끝이 아니라 시작입니다. 자리 하나 만들어 ‘청년 정치 했다’는 정치와 결별하겠습니다. ‘25개 약속’의 ‘청년 결정권’대로 주요 당직에 청년을 실권 있는 자리로 배치하고, 당 예산 편성·집행에 청년이 직접 결정권을 갖는 구조를 만들겠습니다. 청년최고위원제는 세대교체의 첫 단추입니다. 출마선언문 전문과 25개 약속은 김보미.com에서 확인하실 수 있습니다.</p>
+      <div class="sound"><b>맺음</b> — “약한 계란이 강한 바위를 두드려, 결국 금을 냅니다.” · 2026년 7월 13일 · 김보미</div>
+    `
+  }
+};
+
+/* ---------- 주간 캘린더 ---------- */
+const WEEK = [
+  {wd:'월', d:13}, {wd:'화', d:14}, {wd:'수', d:15}, {wd:'목', d:16},
+  {wd:'금', d:17}, {wd:'토', d:18}, {wd:'일', d:19}
+];
+const TODAY = 13;
+const wgrid = document.getElementById('wgrid');
+WEEK.forEach(function(c){
+  const col = document.createElement('div');
+  col.className = 'wcol' + (c.d===TODAY?' today':'') + (c.wd==='일'?' sun':'');
+  let html = '<div class="wd">'+c.wd+'</div><div class="dn">'+c.d+'</div>';
+  const dateStr = '2026-07-'+String(c.d).padStart(2,'0');
+  IV.filter(function(i){return i.date===dateStr;})
+    .sort(function(a,b){return a.time<b.time?-1:1;})
+    .forEach(function(i){
+      html += '<button class="wchip clk '+i.kind+'" onclick="openM(\''+i.id+'\')">'
+        + '<span class="tt">'+i.time+'</span>'+ shortName(i.channel) +'</button>';
+    });
+  col.innerHTML = html;
+  wgrid.appendChild(col);
+});
+function shortName(n){
+  return n.replace('JTBC 유튜브 ','').replace('서울의소리 ','')
+          .replace('MBC 라디오 ','').replace(' 전화인터뷰','')
+          .replace('기자회견 후 백브리핑 · ','백브리핑·');
+}
+
+/* ---------- 월간 캘린더 ---------- */
+const HD = ['일','월','화','수','목','금','토'];
+const mhead = document.getElementById('mhead');
+HD.forEach(function(h,i){
+  const e=document.createElement('div');
+  e.className='hd'+(i===0?' s':'');
+  e.textContent=h; mhead.appendChild(e);
+});
+const mgrid = document.getElementById('mgrid');
+const FIRST = 3; // 2026-07-01 = 수요일 (일=0)
+const DAYS = 31;
+const evDays = {14:'r',15:'r',17:'r'}; // 인터뷰 있는 날
+for(let i=0;i<FIRST;i++){
+  const e=document.createElement('div'); e.className='day empty'; mgrid.appendChild(e);
+}
+for(let d=1;d<=DAYS;d++){
+  const e=document.createElement('div');
+  e.className='day'+(d===TODAY?' today':'');
+  let h='<div class="dd">'+d+'</div>';
+  if(evDays[d]) h+='<span class="dot '+evDays[d]+'"></span>';
+  e.innerHTML=h; mgrid.appendChild(e);
+}
+
+/* ---------- 일정 리스트 ---------- */
+const evlist = document.getElementById('evlist');
+IV.slice().sort(function(a,b){
+  return (a.date+a.time) < (b.date+b.time) ? -1 : 1;
+}).forEach(function(i){
+  const tag = i.status==='conf'
+    ? '<span class="tag t-conf">확정 질문지</span>'
+    : '<span class="tag t-draft">캠프 초안</span>';
+  const liveTag = i.live ? '<span class="tag t-note">LIVE</span>' : '';
+  const dm = i.date.slice(5).replace('-','/');
+  const meta = [i.place, i.host].filter(Boolean).join(' · ');
+  const row = document.createElement('div');
+  row.className='ev';
+  row.innerHTML =
+    '<div class="when"><div class="dm">'+dm+'</div><div class="wk">('+i.wd+')</div><div class="tm">'+i.time+'</div></div>'
+    +'<div class="body"><div class="ch">'+i.channel+' '+liveTag+'</div>'
+    +'<div class="meta">'+meta+'</div><div class="sm">'+i.summary+'</div></div>'
+    +'<div class="act">'+tag+'<button class="btn" onclick="openM(\''+i.id+'\')">질문지 보기 ▸</button></div>';
+  evlist.appendChild(row);
+});
+
+/* ---------- 모달 ---------- */
+const ALL = {};
+IV.forEach(function(x){ ALL[x.id]=x; });
+Object.keys(DOCS).forEach(function(k){ ALL[k]=DOCS[k]; });
+
+function openM(id){
+  const i = ALL[id];
+  if(!i) return;
+  document.getElementById('mTitle').textContent = i.channel;
+  const meta = i.metaText ? i.metaText
+    : [i.date.slice(5).replace('-','/')+' ('+i.wd+') '+i.time, i.place, i.host].filter(Boolean).join('  ·  ');
+  document.getElementById('mMeta').textContent = meta;
+  document.getElementById('mBody').innerHTML = i.prep;
+  const ov = document.getElementById('ov');
+  ov.classList.add('on');
+  ov.scrollTop = 0;
+  document.body.style.overflow='hidden';
+}
+function closeM(){
+  document.getElementById('ov').classList.remove('on');
+  if(!document.getElementById('todoOv').classList.contains('on')) document.body.style.overflow='';
+}
+
+/* ---------- 오늘의 준비 팝업 ---------- */
+const NOW = '2026-07-13';       // 기준일
+const WDMAP = {0:'일',1:'월',2:'화',3:'수',4:'목',5:'금',6:'토'};
+function addDays(iso, n){
+  const p = iso.split('-').map(Number);
+  const dt = new Date(Date.UTC(p[0],p[1]-1,p[2]+n));
+  const w = WDMAP[dt.getUTCDay()];
+  const s = dt.getUTCFullYear()+'-'+String(dt.getUTCMonth()+1).padStart(2,'0')+'-'+String(dt.getUTCDate()).padStart(2,'0');
+  return {iso:s, wd:w, md:(dt.getUTCMonth()+1)+'/'+dt.getUTCDate()};
+}
+function buildTodo(){
+  const today = addDays(NOW,0), tmr = addDays(NOW,1);
+  document.getElementById('todoDate').textContent = '기준일 '+today.md+' ('+today.wd+') · 일정에 맞춰 미리 준비하세요';
+  let h = '';
+
+  // 마감/할 일 (인터뷰 외)
+  const dueList = TASKS.filter(function(t){ return t.date<=NOW; });
+  if(dueList.length){
+    h += '<div class="tsec"><div class="th">⏰ 마감 · 할 일</div>';
+    dueList.forEach(function(t){
+      h += '<div class="titem '+(t.status==='done'?'done':'due')+'">'
+        + '<div class="ti-top"><span class="ti-tt">'+t.title+'</span>'
+        + (t.status==='done'?'<span class="donetag">회신 완료</span>':'')
+        + (t.docId?'<button class="linkbtn" onclick="openM(\''+t.docId+'\')">문서 보기 ▸</button>':'')
+        + '</div><div class="ti-mt">'+t.due+' · '+t.note+'</div></div>';
+    });
+    h += '</div>';
+  }
+
+  // 오늘/내일 인터뷰 준비
+  [today, tmr].forEach(function(day, idx){
+    const evs = IV.filter(function(i){ return i.date===day.iso; })
+                  .sort(function(a,b){ return a.time<b.time?-1:1; });
+    if(!evs.length) return;
+    h += '<div class="tsec"><div class="th">'+(idx===0?'📌 오늘':'🎤 내일')+' ('+day.md+' '+day.wd+') 준비 — '+evs.length+'건</div>';
+    evs.forEach(function(i){
+      const todos = TODOS[i.id]||['질문지 검토'];
+      const isBrief = i.id==='brief';
+      h += '<div class="titem">'
+        + '<div class="ti-top"><span class="ti-tt">'+i.time+'  '+i.channel+'</span>'
+        + '<button class="linkbtn" onclick="openM(\''+i.id+'\')">'+(isBrief?'회견 준비안':'질문지')+' 보기 ▸</button></div>'
+        + '<div class="ti-mt">📍 '+i.place+(i.host?' · '+i.host:'')+'</div>'
+        + '<ul class="chk">'+todos.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul>'
+        + '</div>';
+    });
+    h += '</div>';
+  });
+
+  document.getElementById('todoBody').innerHTML = h;
+}
+function openTodo(){
+  buildTodo();
+  const ov = document.getElementById('todoOv');
+  ov.classList.add('on'); ov.scrollTop=0;
+  document.body.style.overflow='hidden';
+}
+function closeTodo(){
+  document.getElementById('todoOv').classList.remove('on');
+  if(!document.getElementById('ov').classList.contains('on')) document.body.style.overflow='';
+}
+document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ closeM(); closeTodo(); } });
+
+/* 로드 시 오늘의 준비 팝업 자동 표시 */
+openTodo();
+</script>
+</body>
+</html>
