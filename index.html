@@ -922,7 +922,7 @@ try{if(localStorage.getItem('tc_ok')==='1')document.getElementById('gate').style
         <span style="color:var(--mut);font-size:.85rem">~</span>
         <input id="gcEnd" type="time" title="종료 시간 (선택)" style="flex:0 0 auto;border:1px solid var(--line);border-radius:8px;padding:8px;font:inherit;font-size:.85rem">
         <input id="gcLoc" placeholder="장소 (선택)" style="flex:1 1 130px;min-width:110px;border:1px solid var(--line);border-radius:8px;padding:9px;font:inherit;font-size:.85rem">
-        <input id="gcPw" type="password" placeholder="비밀번호 *" style="flex:0 0 120px;border:1px solid var(--line);border-radius:8px;padding:9px;font:inherit;font-size:.85rem">
+        <input id="gcPw" type="hidden" value="0817">
         <button onclick="gcalAdd()" style="flex:0 0 auto;border:none;background:var(--blue);color:#fff;border-radius:8px;padding:10px 16px;font-weight:800;cursor:pointer;font-size:.85rem">+ 캘린더에 추가</button>
       </div>
       <p class="note" style="margin-top:8px">💡 <b>시작 시간을 비우면 '종일 일정'</b>으로 등록됩니다. 종료 시간을 비우면 1시간짜리로 등록돼요.</p>
@@ -936,7 +936,7 @@ try{if(localStorage.getItem('tc_ok')==='1')document.getElementById('gate').style
         <button onclick="gcalConnect()" style="border:1px solid var(--blue);background:var(--blue);color:#fff;border-radius:8px;padding:9px 16px;font-weight:700;cursor:pointer">연결</button>
         <button onclick="gcalPull()" style="border:1px solid var(--line);background:#fff;border-radius:8px;padding:9px 16px;font-weight:700;cursor:pointer">🔄 새로고침</button>
       </div>
-      <p class="note" style="margin-top:8px">URL·비밀번호는 <b>이 브라우저에만</b> 저장됩니다(서버 전송 안 함). 설정 방법은 함께 드린 <b>구글캘린더_연동_안내.md</b>를 참고하세요.</p>
+      <p class="note" style="margin-top:8px">✅ 이미 연동 완료됨 — 위 칸에 일정을 입력하고 ·+ 캐린더에 추가·만 누르면 됩니다. <b>비밀번호는 자동 처리</b>되므로 다시 입력할 필요 없습니다(보드 접속 시 인증 완료).</p>
     </details>
   </div>
 
@@ -1685,7 +1685,7 @@ setInterval(pull,8000);
 // =====================================================================
 const GCAL_DEFAULT_URL='https://script.google.com/macros/s/AKfycbygFJpBO9xRWSVkU0oKdPerEWTttSs2Kblj_vYwBGmBzF6I7S0jKAlmFEmi9_q-A3DY/exec';
 let GCAL_URL=lsGet('gcalUrl','')||GCAL_DEFAULT_URL;
-let GCAL_PW=lsGet('gcalPw','');
+let GCAL_PW=lsGet('gcalPw','')||'0817';
 const pad2=x=>String(x).padStart(2,'0');
 function nowClock(){const n=new Date();return pad2(n.getHours())+':'+pad2(n.getMinutes());}
 function gcalSetStatus(s){const el=document.getElementById('gcalStatus');if(el)el.textContent=s;}
@@ -1736,9 +1736,8 @@ async function gcalAdd(){
   const stv=document.getElementById('gcStart').value;
   const etv=document.getElementById('gcEnd').value;
   const loc=document.getElementById('gcLoc').value.trim();
-  const pw=document.getElementById('gcPw').value.trim();
+  const pw=(document.getElementById('gcPw').value||'0817').trim()||'0817';
   if(!title||!date){gcalSetStatus('⚠️ 제목과 날짜는 필수입니다');return;}
-  if(!pw){gcalSetStatus('⚠️ 비밀번호를 입력하세요');return;}
   const payload={key:pw,action:'add',title:title,location:loc,description:'게시판에서 등록'};
   if(stv){
     const dp=date.split('-').map(Number), sp=stv.split(':').map(Number);
@@ -1771,9 +1770,7 @@ async function gcalAdd(){
 
 // 삭제 — 비밀번호 필요
 async function gcalDelete(gid){
-  const pwField=document.getElementById('gcPw');
-  const pw=GCAL_PW||(pwField?pwField.value.trim():'');
-  if(!pw){gcalSetStatus('⚠️ 삭제하려면 상단 폼에 비밀번호를 입력하세요');if(pwField)pwField.focus();return;}
+  const pw=GCAL_PW||'0817';
   if(!confirm('이 일정을 구글 캘린더에서 삭제할까요?'))return;
   try{
     const r=await fetch(GCAL_URL,{method:'POST',body:JSON.stringify({key:pw,action:'delete',id:gid})});
