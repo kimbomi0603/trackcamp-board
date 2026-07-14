@@ -168,7 +168,7 @@ try{if(localStorage.getItem('tc_ok')==='1')document.getElementById('gate').style
 <div style="max-width:980px;margin:14px auto;padding:14px 18px;background:#fff7e6;border:1px solid #f0c66b;border-radius:12px;font-size:.92rem;line-height:1.75">
   <b>📌 확정 핵심일정 <span style="color:#888;font-weight:600">· 기준 <span id="boxToday"></span> · 지난 일정은 자동으로 아래 접힘</span></b><br>
   <div id="keyList"></div>
-  · <b>경선 룰(확정)</b> — 선거인단 대의원·권리당원 70%(사상 첫 <b>1인 1표제</b>) + 국민여론조사 30% · 당대표 당선인 결정 방식은 <b>선호투표제</b>(7.7 전준위 의결) — 단, <b style="color:#d6336c">최고위 의결 계류 중</b>: 7.10 심야·7.12 최고위 연속 결론 불발(당규 66조 개정안 상정), 7.15(수) 최고위 재논의 예정 <small>(7.13 기준 · 확정 아님)</small><br>
+  · <b>경선 룰(확정)</b> — 선거인단 대의원·권리당원 70%(사상 첫 <b>1인 1표제</b>) + 국민여론조사 30% · 당대표 당선인 결정은 <b>선호투표제</b>(7.7 전준위 확정)<br>
   · <b>후원모금 개시(최단)</b> — 7.16 후보등록 즉시 후원회 등록신청 → 선관위 등록 완료 직후 모금 개시(빠르면 7.16~17)<br>
   <div id="keyDone"></div>
   <span style="color:#a15;font-size:.85rem">※ 후원회는 후보자 지위 취득 후 14일 내 선관위 등록, 등록 후 모금 가능(정치자금법). 정확한 개시 시점은 관할 선관위에 '당대표경선후보자 지위 인정 시점' 확인 권장.</span>
@@ -859,28 +859,12 @@ try{if(localStorage.getItem('tc_ok')==='1')document.getElementById('gate').style
 <section id="report">
   <div class="card">
     <h2>📚 캠프 자료실 <span style="font-size:.78rem;color:var(--mut);font-weight:600">내부 문서 아카이브 · 새 문서는 저장소에 파일 추가 후 이 목록에 연결</span></h2>
-    <div class="up" style="cursor:pointer" onclick="document.getElementById('doc0a').scrollIntoView({behavior:'smooth'})"><span class="kbadge" style="background:#fbe2ec;color:#d6336c">NEW 7.13</span><span style="flex:1"><b>🎤 유튜브 인터뷰 통합상황판</b> — 전준위 최신상황·이슈별 입장발언·후보 5인 비교·예상 Q&A·출처 교차검증 ▾</span></div>
-    <div class="up" style="cursor:pointer" onclick="document.getElementById('doc0b').scrollIntoView({behavior:'smooth'})"><span class="kbadge" style="background:#fbe2ec;color:#d6336c">NEW 7.13</span><span style="flex:1"><b>📺 방송·인터뷰 기록 대장</b> — 김성수TV·뉴탐사·서울의소리 등 출연/발언 기록 ▾</span></div>
-    <div class="up" style="cursor:pointer" onclick="document.getElementById('doc1').scrollIntoView({behavior:'smooth'})"><span class="kbadge" style="background:#dceafd;color:#152484">보고서</span><span style="flex:1"><b>김보미 디지털 총망라 개선보고서 V2</b> (SNS+커뮤니티 통합 · 7.13 개정) — 아래에서 바로 보기 ▾</span></div>
+    <div class="up" style="cursor:pointer" onclick="document.getElementById('doc1').scrollIntoView({behavior:'smooth'})"><span class="kbadge" style="background:#dceafd;color:#152484">보고서</span><span style="flex:1"><b>김보미 SNS 채널 진단·개선 보고서</b> — 아래에서 바로 보기 ▾</span></div>
     <div class="up" style="cursor:pointer" onclick="document.getElementById('doc2').scrollIntoView({behavior:'smooth'})"><span class="kbadge" style="background:#e0f3ea;color:#00714f">설명자료</span><span style="flex:1"><b>3대 메가프로젝트 쉬운 설명 (증보완성판)</b> — 아래에서 바로 보기 ▾</span></div>
     <div class="up" style="cursor:pointer" onclick="document.getElementById('doc3').scrollIntoView({behavior:'smooth'})"><span class="kbadge" style="background:#fbe2ec;color:#d6336c">분석</span><span style="flex:1"><b>2030 분석 보고서</b> — 아래에서 바로 보기 ▾</span></div>
   </div>
-  <div class="card" id="doc0a">
-    <h2>🎤 유튜브 인터뷰 통합상황판 (2026.7.13) <span style="font-size:.78rem;color:var(--mut);font-weight:600">캠프 내부 자료 · 외부 공유 금지 · 배포 전 7.15 최고위 결과 반영 필수</span></h2>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
-      <a href="./interview_board.html" target="_blank" style="display:inline-block;background:var(--blue);color:#fff;text-decoration:none;border-radius:8px;padding:9px 18px;font-weight:800;font-size:.9rem">🔎 새 창에서 크게 보기 ↗</a>
-    </div>
-    <iframe src="./interview_board.html" style="width:100%;height:75vh;border:1px solid var(--line);border-radius:10px;background:#fff" title="유튜브 인터뷰 통합상황판" loading="lazy"></iframe>
-  </div>
-  <div class="card" id="doc0b">
-    <h2>📺 방송·인터뷰 기록 대장 (2026.7.13) <span style="font-size:.78rem;color:var(--mut);font-weight:600">출연·발언 기록 · 미확인 항목 공란 유지</span></h2>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
-      <a href="./broadcast_log.html" target="_blank" style="display:inline-block;background:var(--blue);color:#fff;text-decoration:none;border-radius:8px;padding:9px 18px;font-weight:800;font-size:.9rem">🔎 새 창에서 크게 보기 ↗</a>
-    </div>
-    <iframe src="./broadcast_log.html" style="width:100%;height:75vh;border:1px solid var(--line);border-radius:10px;background:#fff" title="방송·인터뷰 기록 대장" loading="lazy"></iframe>
-  </div>
   <div class="card" id="doc1">
-    <h2>📱 김보미 디지털 총망라 개선보고서 V2 — SNS·커뮤니티 통합 (7.13 개정) <span style="font-size:.78rem;color:var(--mut);font-weight:600">캠프 내부 자료 · 외부 공유 금지</span></h2>
+    <h2>📱 김보미 SNS 채널 진단·개선 보고서 <span style="font-size:.78rem;color:var(--mut);font-weight:600">캠프 내부 자료 · 외부 공유 금지</span></h2>
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
       <a href="./digital_report.html" target="_blank" style="display:inline-block;background:var(--blue);color:#fff;text-decoration:none;border-radius:8px;padding:9px 18px;font-weight:800;font-size:.9rem">🔎 새 창에서 크게 보기 ↗</a>
     </div>
@@ -899,45 +883,31 @@ try{if(localStorage.getItem('tc_ok')==='1')document.getElementById('gate').style
       <a href="./report_2030.html" target="_blank" style="display:inline-block;background:var(--blue);color:#fff;text-decoration:none;border-radius:8px;padding:9px 18px;font-weight:800;font-size:.9rem">🔎 새 창에서 크게 보기 ↗</a>
     </div>
     <iframe src="./report_2030.html" style="width:100%;height:75vh;border:1px solid var(--line);border-radius:10px;background:#fff" title="2030 분석 보고서" loading="lazy"></iframe>
-    <p class="note">※ 문서가 갱신되면 저장소의 <b>interview_board.html / broadcast_log.html / digital_report.html / mega_project.html / report_2030.html</b> 파일만 교체하면 자동 반영됩니다.</p>
+    <p class="note">※ 문서가 갱신되면 저장소의 <b>digital_report.html / mega_project.html / report_2030.html</b> 파일만 교체하면 자동 반영됩니다.</p>
   </div>
 </section>
 <!-- ===== 월간·주간 캘린더 ===== -->
 <section id="month">
 
-  <!-- ===== 구글 캘린더 양방향 동기화 ===== -->
+  <!-- ===== 캠프 일정 직접 입력 (이 기기에 저장 · 입력한 시간 그대로) ===== -->
   <div class="card" id="gcalCard" style="border:2px solid #9cc2f5;background:#f7fbff">
-    <h2 style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">📆 캠프 일정 · 구글 캘린더 동기화
-      <span id="gcalStatus" style="font-size:.76rem;font-weight:700;color:var(--mut);background:#fff;border:1px solid var(--line);border-radius:99px;padding:2px 10px">⚪ 미연결</span>
+    <h2 style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">📆 캠프 일정 직접 입력
+      <span style="font-size:.72rem;font-weight:700;color:#1a56c4;background:#fff;border:1px solid #9cc2f5;border-radius:99px;padding:2px 10px">입력한 시간 그대로 표시</span>
     </h2>
-    <p class="note" style="margin:-2px 0 12px">여기에 일정을 입력하면 <b>캠프 전용 구글 캘린더에 저장·동기화</b>되고 <b>팀 전원 화면에 자동 표시</b>됩니다. 캠프 전용 캘린더만 쓰므로 <b>개인 일정은 섞이지 않아요</b>. (약 20초마다 자동 새로고침 · 구글 캘린더 앱에서도 같은 일정 확인 가능)</p>
+    <p class="note" style="margin:-2px 0 12px">아래에 일정을 입력하면 <b>입력한 날짜·시간이 그대로</b> 달력에 표시됩니다. <b>시간대 변환이 전혀 없어요.</b> (이 기기에 저장 · 구글 캘린더와 연동하지 않음)</p>
 
     <!-- 일정 추가 폼 -->
     <div style="background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px">
-      <div style="font-size:.86rem;font-weight:800;color:var(--blue);margin-bottom:8px">➕ 새 일정 추가 <span style="font-weight:600;color:var(--mut)">— 입력하면 전용 구글 캘린더에 저장되고 팀 전원에게 공유됩니다</span></div>
+      <div style="font-size:.86rem;font-weight:800;color:var(--blue);margin-bottom:8px">➕ 새 일정 추가 <span id="localStatus" style="font-weight:700;color:var(--green);margin-left:6px"></span></div>
       <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
         <input id="gcTitle" placeholder="일정 제목 *" style="flex:2 1 200px;min-width:160px;border:1px solid var(--line);border-radius:8px;padding:9px;font:inherit;font-size:.85rem">
         <input id="gcDate" type="date" style="flex:0 0 auto;border:1px solid var(--line);border-radius:8px;padding:8px;font:inherit;font-size:.85rem">
-        <input id="gcStart" type="time" title="시작 시간 (비우면 종일 일정)" style="flex:0 0 auto;border:1px solid var(--line);border-radius:8px;padding:8px;font:inherit;font-size:.85rem">
-        <span style="color:var(--mut);font-size:.85rem">~</span>
-        <input id="gcEnd" type="time" title="종료 시간 (선택)" style="flex:0 0 auto;border:1px solid var(--line);border-radius:8px;padding:8px;font:inherit;font-size:.85rem">
+        <input id="gcStart" type="time" title="시간 (비우면 시간 없이 표시)" style="flex:0 0 auto;border:1px solid var(--line);border-radius:8px;padding:8px;font:inherit;font-size:.85rem">
         <input id="gcLoc" placeholder="장소 (선택)" style="flex:1 1 130px;min-width:110px;border:1px solid var(--line);border-radius:8px;padding:9px;font:inherit;font-size:.85rem">
-        <input id="gcPw" type="hidden" value="0817">
-        <button onclick="gcalAdd()" style="flex:0 0 auto;border:none;background:var(--blue);color:#fff;border-radius:8px;padding:10px 16px;font-weight:800;cursor:pointer;font-size:.85rem">+ 캘린더에 추가</button>
+        <button onclick="localAdd()" style="flex:0 0 auto;border:none;background:var(--blue);color:#fff;border-radius:8px;padding:10px 16px;font-weight:800;cursor:pointer;font-size:.85rem">+ 일정 추가</button>
       </div>
-      <p class="note" style="margin-top:8px">💡 <b>시작 시간을 비우면 '종일 일정'</b>으로 등록됩니다. 종료 시간을 비우면 1시간짜리로 등록돼요.</p>
+      <p class="note" style="margin-top:8px">💡 시간을 넣으면 <b>입력한 그대로(예: 06:30)</b> 표시되고, 비우면 제목만 표시됩니다. 삭제는 달력에서 일정을 클릭하세요.</p>
     </div>
-
-    <!-- 최초 1회 연결 설정 -->
-    <details id="gcalSetup" style="margin-top:10px">
-      <summary style="cursor:pointer;font-weight:700;font-size:.84rem;color:var(--blue)">⚙️ 연결 설정 (최초 1회 · 배포 안내 참고)</summary>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
-        <input id="gcalUrl" placeholder="구글 앱스스크립트 웹앱 URL (…/exec 로 끝나는 주소)" style="flex:1 1 300px;min-width:240px;border:1px solid var(--line);border-radius:8px;padding:9px;font:inherit;font-size:.82rem">
-        <button onclick="gcalConnect()" style="border:1px solid var(--blue);background:var(--blue);color:#fff;border-radius:8px;padding:9px 16px;font-weight:700;cursor:pointer">연결</button>
-        <button onclick="gcalPull()" style="border:1px solid var(--line);background:#fff;border-radius:8px;padding:9px 16px;font-weight:700;cursor:pointer">🔄 새로고침</button>
-      </div>
-      <p class="note" style="margin-top:8px">✅ 이미 연동 완료됨 — 위 칸에 일정을 입력하고 ·+ 캐린더에 추가·만 누르면 됩니다. <b>비밀번호는 자동 처리</b>되므로 다시 입력할 필요 없습니다(보드 접속 시 인증 완료).</p>
-    </details>
   </div>
 
   <div class="card">
@@ -960,7 +930,7 @@ try{if(localStorage.getItem('tc_ok')==='1')document.getElementById('gate').style
       <span><i style="background:#e0f3ea"></i>알메달렌 참관단</span>
       <span><i style="background:#fbe2ec;border:1px solid #f0a8c4"></i>핵심 이벤트 (선언·촬영·본대회)</span>
       <span><i style="background:#ece4fb;border:1px solid #c9a3ef"></i>페이스북 메시지 발행</span>
-      <span><i style="background:#e3f0ff;border:1px solid #9cc2f5"></i>캠프 일정 (구글 동기화)</span>
+      <span><i style="background:#e3f0ff;border:1px solid #9cc2f5"></i>직접 입력 일정</span>
       <span><i style="background:#fff;outline:2px solid var(--red)"></i>오늘</span>
     </div>
     <div class="cal-head">
@@ -1067,10 +1037,6 @@ const EVENTS=[
  {d:'2026-07-09', t:'서미화 최고위원 출마 선언 예정', k:'exp'},
  {d:'2026-07-09', t:'[플랜] 하루 1공약 게시 시작 (30여 개·명분전 국면)', k:'exp'},
  {d:'2026-07-14', t:'[플랜] 등록 서류·기탁금 최종 점검 · 후원회 서류 패키지 완비', k:'exp'},
- {d:'2026-07-15', t:'🎤 유튜브 인터뷰 — 서울의소리 06:30', k:'conf'},
- {d:'2026-07-15', t:'🎤 유튜브 인터뷰 — 오마이TV 박정호의 핫스팟 11:00', k:'conf'},
- {d:'2026-07-16', t:'🎤 유튜브 인터뷰 — 김성수TV 12:00 (예정)', k:'exp'},
- {d:'2026-07-16', t:'🎤 유튜브 인터뷰 — 경향TV 구교형의 정치비상구 16:00 · 정동 경향신문 본사 3층', k:'conf'},
  {d:'2026-07-16', t:'★ 후보 등록 시작 (전준위 확정) + 기탁금 납부 + 후원회 등록신청', k:'conf'},
  {d:'2026-07-17', t:'후보 등록 마감 (전준위 확정)', k:'conf'},
  {d:'2026-07-21', t:'★ 예비경선(컷오프) 확정 — 등록 마감 후 단 4일 (2022년은 10일)', k:'conf'},
@@ -1085,20 +1051,20 @@ const EVENTS=[
 ];
 // FB 메시지를 캘린더 일정으로 자동 반영 (차수·키워드 포함)
 FB.forEach(f=>EVENTS.push({d:f.d,t:f.t,k:'fb',fb:f.n,kw:f.kw}));
-let GEVENTS=[];              // 구글 캘린더에서 실시간으로 불러온 일정
+let GEVENTS=[];              // 직접 입력한 일정 (로컬 저장 · 입력 시간 그대로)
 const allEv=()=>EVENTS.concat(GEVENTS);
 const evOf=ds=>allEv().filter(e=>e.d===ds);
 // 일정 표기 헬퍼 — FB는 f아이콘 + n차 + 제목, 구글은 G아이콘 + 시간
 function evHtml(e,full){
   let h='';
   if(e.k==='fb')h+='<span class="fbi">f</span><b>'+e.fb+'차</b> · ';
-  if(e.k==='gcal'){h+='<span class="gci">G</span>';if(e.time)h+='<b>'+e.time+'</b> ';}
+  if(e.k==='gcal'){if(e.time)h+='<b>'+e.time+'</b> ';}
   h+=esc(e.t);
   if(full&&e.kw)h+='<span class="evkw">'+esc(e.kw)+'</span>';
   if(full&&e.k==='gcal'&&e.loc)h+='<span class="evkw">📍 '+esc(e.loc)+'</span>';
   return h;
 }
-const KIND={conf:['확정','#dceafd','#152484'],exp:['예정','#fdf3d8','#9a6c00'],done:['완료','#e6e9f5','#4a5170'],alme:['알메달렌','#e0f3ea','#00714f'],star:['핵심','#fbe2ec','#d6336c'],fb:['FB메시지','#ece4fb','#6b21a8'],gcal:['구글','#e3f0ff','#1a56c4']};
+const KIND={conf:['확정','#dceafd','#152484'],exp:['예정','#fdf3d8','#9a6c00'],done:['완료','#e6e9f5','#4a5170'],alme:['알메달렌','#e0f3ea','#00714f'],star:['핵심','#fbe2ec','#d6336c'],fb:['FB메시지','#ece4fb','#6b21a8'],gcal:['입력','#e3f0ff','#1a56c4']};
 const DOT={conf:'#152484',exp:'#e8a200',done:'#8a93b8',alme:'#00aa7b',star:'#d6336c',fb:'#8b3fd6',gcal:'#1a73e8'};
 
 // ===== 전준위·언론 브리핑 데이터 (한 줄씩 추가하면 화면에 자동 반영·최신순 정렬) =====
@@ -1157,37 +1123,21 @@ const NEWS=[
  {d:'2026-06-21',src:'파이낸셜뉴스',title:'鄭 24일께 출마·金 이달 말 복귀…與, 당권 대결 모드 본격화',url:'https://www.fnnews.com/news/202606211602303032',tag:'당대표'}
 ];
 const BOMI=[
- {d:"2026-07-12",src:"파이낸셜뉴스(뉴시스 전재)",rep:"송창헌 기자 (goodchang@newsis.com)",title:"\"호남 품어야\" 與 당권 경쟁 후끈…호남 연고자 출마 러시",url:"https://www.fnnews.com/news/202607120702204086",note:"호남 구도 종합기사 — 김보미 당대표 도전 명시 언급, 광주·전남 권리당원 32만(22~25%) 데이터"},
- {d:"2026-07-10",src:"KMS 한국인터넷신문방송사",rep:"홍준용 전문기자 (owner@kmstv.co.kr)",title:"호남 청년 김보미, 민주당 당대표 출마 선언…\"경선 데이터 100% 공개하겠다\"",url:"http://www.kmsnews.co.kr/news/articleView.html?idxno=29267",note:"7.9 회견 리포트 — 김보미.com·AI 챗봇 더불이·나라살림 돋보기 시연 소개"},
- {d:"2026-07-09",src:"SR타임스",rep:"서민수 기자 (fact2643@naver.com)",title:"김보미, 민주당 당대표 출마…경선 투명성·당원명부 개혁 전면에",url:"http://www.srtimes.kr/news/articleView.html?idxno=207183",note:"7.9 당원존 기자회견 본기사 — 행안부 대조 당원검증 공약"},
- {d:"2026-07-09",src:"현장뉴스(field News)",rep:"이재선 기자 (wotjs222@naver.com)",title:"김보미, 민주당 당대표 출마 선언···\"경선 전면 공개\"",url:"https://www.fieldnews.co.kr/news/articleView.html?idxno=228712",note:"경선 데이터 100% 공개·청년 결정권·AI 선거캠프"},
- {d:"2026-07-09",src:"M이코노미뉴스",rep:"최동환 기자 (photo7298@m-eonomynews.com ※원문 표기)",title:"평당원 김보미, 민주당 당대표 출마 \"'가짜 1인 1표' 청산\"",url:"https://www.m-economynews.com/news/article.html?no=68605",note:"당원존 회견 — 유리상자 경선·686 기득권 세대교체"},
- {d:"2026-07-08",src:"SR타임스",rep:"서민수 기자 (fact2643@naver.com)",title:"김보미, 민주당 중앙당사서 당대표 출마 선언… 공정경선·세대교체 전면에",url:"http://www.srtimes.kr/news/articleView.html?idxno=207078",note:"7.9 회견 예고 — 5대 분야 25개 공약·AI 에이전트 캠프"},
- {d:"2026-07-06",src:"프레시안",rep:"위정성 기자 (wrw1100@naver.com)",title:"\"계란으로 기득권 바위 깬다\"…김보미 전 강진군의장, 민주당 당대표 출마 선언",url:"https://www.pressian.com/pages/articles/2026070616471774591",note:"계란 시그니처 헤드라인 — 브랜딩 핵심 기사"},
- {d:"2026-07-05",src:"시민언론 뉴탐사",rep:"강진구 선임기자 (jk4free@newtamsa.org)·박대용 기자 (biguse@newtamsa.org)",title:"36세 평당원 김보미, 민주당 당대표 첫 출마 선언 \"가짜 1인1표 심판하겠다\"",url:"https://newtamsa.org/news/AKbToj",note:"7.4 뉴탐사 출연 인터뷰 기반 — 우호 매체"},
- {d:"2026-07-05",src:"SR타임스",rep:"서민수 기자 (fact2643@naver.com)",title:"김보미, 민주당 당대표 출마 선언… \"공정 잃은 민주당, 청년도 미래도 없다\"",url:"http://www.srtimes.kr/news/articleView.html?idxno=206748",note:"7.3 SNS 출마선언문 보도 — 4대 위기·가산점 개편"},
- {d:"2026-07-05",src:"전주일보",rep:"고주영 기자 (kojuy1010@naver.com)",title:"'36살 민주당 평당원' 김보미, 민주당 대표 출마 선언",url:"http://www.jjilbo.co.kr/news/articleView.html?idxno=334906",note:"\"어른들 회초리 빼앗아 든 청년\" — 전북권 노출"},
- {d:"2026-07-04",src:"뉴스핌",rep:"조은정 기자 (ej7648@newspim.com)",title:"'36살 민주당 평당원' 김보미, 당대표 도전 선언…청년 돌풍 변수 부상",url:"https://www.newspim.com/news/view/20260704000036",note:"첫 전국 통신사 보도 — 예비경선 통과가 판세 변수 평가"},
- {d:"2026-07-09",src:"한겨레",rep:"확인 필요 (hani.co.kr 크롤러 차단)",title:"'36살 평당원' 김보미, 민주 당대표 도전…\"청년 돌아오게 하겠다\"",url:"https://search.naver.com/search.naver?where=news&query=%ED%95%9C%EA%B2%A8%EB%A0%88%20%EA%B9%80%EB%B3%B4%EB%AF%B8%20%ED%8F%89%EB%8B%B9%EC%9B%90",note:"전국지 노출 — 김보미.com 기사모음에 존재 확인, 원문 URL·기자명 수동 확인 요망"},
- {d:"2026-07-10",src:"쿠키뉴스",rep:"확인 필요",title:"'경선 개혁' 김보미, 민주당 대표 출마 선언",url:"https://search.naver.com/search.naver?where=news&query=%EC%BF%A0%ED%82%A4%EB%89%B4%EC%8A%A4%20%EA%B9%80%EB%B3%B4%EB%AF%B8%20%EA%B2%BD%EC%84%A0%20%EA%B0%9C%ED%98%81",note:"검색엔진 미색인 — 원문 URL 수동 확인 요망"},
- {d:"2026-07-04",src:"폴리뉴스",rep:"확인 필요",title:"김보미 \"민주당을 살려야 합니다\"…유일한 30대 평당원 당대표 도전",url:"https://search.naver.com/search.naver?where=news&query=%ED%8F%B4%EB%A6%AC%EB%89%B4%EC%8A%A4%20%EA%B9%80%EB%B3%B4%EB%AF%B8",note:"(추정일) 사이트 검색 미동작 — 원문 URL 수동 확인 요망"},
- {d:"2026-07-05",src:"폴리뉴스",rep:"확인 필요",title:"\"억울한 감점\" 주장했던 김보미…왜 민주당 당대표에 도전했나?",url:"https://search.naver.com/search.naver?where=news&query=%ED%8F%B4%EB%A6%AC%EB%89%B4%EC%8A%A4%20%EA%B9%80%EB%B3%B4%EB%AF%B8%20%EA%B0%90%EC%A0%90",note:"(추정일) 심층 기사 — 원문 URL 수동 확인 요망"},
- {d:"2026-07-05",src:"더파워뉴스",rep:"확인 필요",title:"36세 청년 김보미, 민주당 60대 현역 기득권 '족보 전쟁'에 도전장",url:"https://search.naver.com/search.naver?where=news&query=%EB%8D%94%ED%8C%8C%EC%9B%8C%EB%89%B4%EC%8A%A4%20%EA%B9%80%EB%B3%B4%EB%AF%B8",note:"(추정일) 원문 URL 수동 확인 요망"},
- {d:"2026-07-05",src:"더리포트",rep:"확인 필요",title:"김보미, 민주당 대표 출마 선언···공정 경선·청년 정치 제시",url:"https://search.naver.com/search.naver?where=news&query=%EB%8D%94%EB%A6%AC%ED%8F%AC%ED%8A%B8%20%EA%B9%80%EB%B3%B4%EB%AF%B8%20%EC%B6%9C%EB%A7%88",note:"(추정일) 원문 URL 수동 확인 요망"},
- {d:"2026-07-05",src:"이뉴스투데이",rep:"확인 필요",title:"김보미, 민주당 당대표 출마 선언···\"계파정치 끝내고 미래 경쟁\"",url:"https://search.naver.com/search.naver?where=news&query=%EC%9D%B4%EB%89%B4%EC%8A%A4%ED%88%AC%EB%8D%B0%EC%9D%B4%20%EA%B9%80%EB%B3%B4%EB%AF%B8",note:"(추정일) 원문 URL 수동 확인 요망"},
- {d:"2026-06-05",src:"뉴스1",rep:"박영래 기자",title:"\"민주당 작대기만 꽂아도 당선된다더니\"…강진 거센 후폭풍",url:"https://www.news1.kr/local/gwangju-jeonnam/6188034",note:"강진군수 무소속 강진원 당선 — \"불공정 공천은 텃밭도 잃는다\" 실증 근거"},
- {d:"2026-03-21",src:"경향신문(주간경향)",rep:"박송이 기자 (psy@kyunghyang.com)",title:"징계엔 엄격, 범죄엔 관대?…민주당 공천지침 '이중잣대' 논란",url:"https://www.khan.co.kr/article/202603210800001",note:"감산 이중잣대 — 공정 프레임 핵심 근거"},
- {d:"2026-02-26",src:"쿠키뉴스",rep:"신영삼 기자",title:"민주당 재심사 전남 단체장 3명 '전원생환'",url:"https://www.kukinews.com/article/view/kuk202602260170",note:"김보미 예비후보 자격 적격 판정 기록"},
- {d:"2026-02-19",src:"더리포트",rep:"이병석 기자",title:"강진 공천판 뒤흔든 '168억 전과'···민주당 이중잣대 논란",url:"https://www.thereport.co.kr/news/articleView.html?idxno=84352",note:"168억 전과 후보 무감산 vs 김보미 15% 감산 — 이중잣대 최초 보도"},
- {d:"2025-11-04",src:"아시아투데이",rep:"이명남 기자",title:"김보미 강진군의원, \"군민이 주인\"…강진군수 선거 출마 시사",url:"https://www.asiatoday.co.kr/kn/view.php?key=20251104010001868",note:"군수 출마 고심 공식 표명"},
- {d:"2025-10-30",src:"브릿지경제",rep:"확인 필요 (JS 렌더링 접근불가)",title:"김보미 강진군의원, 지방선거 승리 위한 혁신의 출발선에 서다",url:"https://www.viva100.com/article/20251030501596",note:"참좋은지방정부위 상임위원 — 유사 보도: CNB뉴스 cnbnews.com/news/article.html?no=778985"},
- {d:"2024-12-24",src:"쿠키뉴스",rep:"신영삼 기자",title:"김보미 더민주전국혁신회의 청년 상임대표 선임",url:"https://www.kukinews.com/article/view/kuk202412240101",note:"혁신회의 첫 청년 상임대표 — 전국 조직 리더십 근거"},
- {d:"2024-11-29",src:"에너지경제",rep:"문남석 기자",title:"허위보도 소송 승소한 김보미 강진군의회 전 의장 \"저의 고통을 쥐어짠 작은 승리\"",url:"https://m.ekn.kr/view.php?key=20241129027529049",note:"허위보도 손배 승소(500만원 배상·기사삭제) — 검증 방어 자료"},
- {d:"2024-05-27",src:"주간경향",rep:"이효상 기자",title:"34세 최연소 의장은 왜 표적이 됐나",url:"https://weekly.khan.co.kr/article/202405270600071",note:"표적 감사·불신임·관용차 수색 심층 르포 — 수난 서사 핵심"},
- {d:"2024-05-01",src:"한겨레",rep:"확인 필요 (hani.co.kr 접근 차단)",title:"당적 박탈·불신임·수사…34살 최연소 여성의장 청년정치 수난기",url:"https://www.hani.co.kr/arti/area/area_general/1141526.html",note:"(게재일 추정) 전국지 수난 서사 — 원문 수동 확인 요망"},
- {d:"2024-01-16",src:"쿠키뉴스",rep:"신영삼 기자",title:"강진군의회 김보미 의장 불신임안 철회",url:"https://www.kukinews.com/article/view/kuk202401160282",note:"불신임안 7대1 철회 — 하루 1,000명 지지 서명 국면"},
- {d:"2022-07-10",src:"서울신문",rep:"최종필 기자",title:"만 32세 김보미 강진군의장···전국 최연소 기초단체 의회 의장 영예",url:"https://www.seoul.co.kr/news/localnews/2022/07/10/20220710500041",note:"만장일치 선출 — 1995년 지방의회 개원 이후 최연소 여성 기초의회 의장"},
- {d:"2022-06-05",src:"뉴스워커",rep:"조준성 기자",title:"김보미 당선인, 강진군의원 최다득표… '재선 성공'",url:"https://www.newsworker.co.kr/news/articleView.html?idxno=160661",note:"나선거구 최다득표율 38.84% — 프로필 근거"},
+ {d:'2026-07-04',src:'뉴스핌',rep:'조은정 기자 (ej7648@newspim.com)',title:"'36살 민주당 평당원' 김보미, 당대표 도전 선언…청년 돌풍 변수 부상",url:'https://www.newspim.com/news/view/20260704000036',note:'무안·광주·강진발 · 출사표 요지, 4대 위기·경선개혁 공약 상세 보도 · 본인 제공 사진 게재 · 예비경선 통과가 판세 변수라고 평가'},
+ {d:'2026-07-03',src:'SR타임스',rep:'확인 필요 (기사 바이라인 확인)',title:'김보미, 민주당 당대표 출마 선언…"공정 잃은 민주당, 청년도 미래도 없다"',url:'http://www.srtimes.kr/news/articleView.html?idxno=206748',note:'호남 지자체면 · 출마선언 인용 중심'},
+ {d:'2026-03-21',src:'경향신문',rep:'확인 필요',title:'징계엔 엄격, 범죄엔 관대?…민주당 공천지침 이중잣대 논란',url:'https://www.khan.co.kr/article/202603210800001',note:'감산 이중잣대 — 공정 프레임 핵심 근거 기사'},
+ {d:'2024-11-29',src:'에너지경제',rep:'확인 필요',title:'허위보도 손해배상 소송 승소 — 김보미 전 의장 가짜뉴스에 맞선 작은 승리',url:'https://m.ekn.kr/view.php?key=20241129027529049',note:'약 100건 허위보도 법적 승리 — 검증 대응 자료'},
+ {d:'2026-06-05',src:'뉴스1',rep:'확인 필요',title:'"민주당 작대기만 꽂아도 당선된다더니" — 강진 군수 본선 참패 보도',url:'https://search.naver.com/search.naver?where=news&query=%EA%B0%95%EC%A7%84%EA%B5%B0%EC%88%98%20%EB%AF%BC%EC%A3%BC%EB%8B%B9%20%EC%B0%B8%ED%8C%A8',note:'불공정 공천의 결과 실증 — 공정 프레임 근거 · 원문 URL 확인 필요'},
+ {d:'2026-02-19',src:'더리포트',rep:'확인 필요',title:'168억 전과 후보 무감산 vs 제명 이력 15% 감산 — 경선 감산 이중잣대',url:'https://search.naver.com/search.naver?where=news&query=%EA%B9%80%EB%B3%B4%EB%AF%B8%20%EA%B0%90%EC%82%B0%20%EB%8D%94%EB%A6%AC%ED%8F%AC%ED%8A%B8',note:'감산 이중잣대 최초 보도 · 원문 URL 확인 필요'},
+ {d:'2025-11-04',src:'아시아투데이',rep:'확인 필요',title:'김보미 강진군의원, 군민이 주인…강진군수 선거 출마 시사',url:'https://www.asiatoday.co.kr/kn/view.php?key=20251104010001868',note:'과거 보도 — 군수 출마 검토 시기'},
+ {d:'2025-10-30',src:'브릿지경제',rep:'확인 필요',title:'김보미 강진군의원, 지방선거 승리 위한 혁신의 출발선에 서다',url:'https://www.viva100.com/article/20251030501596',note:"과거 보도 — '참좋은지방정부위원회' 상임위원"},
+ {d:'2026-02-26',src:'쿠키뉴스',rep:'확인 필요',title:"민주당 재심사 전남 단체장 3명 '전원생환' — 김보미 후보 적격 판정 언급",url:'https://www.kukinews.com/article/view/kuk202602260170',note:'군수 경선 국면 — 자격 재심사 통과 기록'},
+ {d:'2024-12-24',src:'쿠키뉴스',rep:'확인 필요',title:'김보미 더민주전국혁신회의 청년 상임대표 선임',url:'https://m.kukinews.com/article/view/kuk202412240101',note:'전국 조직 리더십 근거 — 원문 확보 ✓'},
+ {d:'2024-01-16',src:'쿠키뉴스',rep:'확인 필요',title:'강진군의회 김보미 의장 불신임안 철회',url:'https://m.kukinews.com/article/view/kuk202401160282',note:'표적 견제 국면 — 불신임 철회(하루 1,000명 지지 서명) 기록'},
+ {d:'2024-05-27',src:'주간경향',rep:'확인 필요',title:'34세 최연소 의장은 왜 표적이 됐나',url:'https://search.naver.com/search.naver?where=news&query=%EC%A3%BC%EA%B0%84%EA%B2%BD%ED%96%A5%20%EA%B9%80%EB%B3%B4%EB%AF%B8%20%ED%91%9C%EC%A0%81',note:'표적 견제 심층 기획 — 수난 서사 핵심 · 원문 URL 확인 필요'},
+ {d:'2024-05-01',src:'한겨레',rep:'확인 필요',title:'당적 박탈·불신임·수사…34살 최연소 여성의장 청년정치 수난기',url:'https://www.hani.co.kr/arti/area/area_general/1141526.html',note:'전국지 수난 서사 — 게재일 원문 확인'},
+ {d:'2022-06-02',src:'뉴스워커',rep:'확인 필요',title:'김보미 당선인, 강진군의원 최다득표…재선 성공',url:'https://www.newsworker.co.kr/news/articleView.html?idxno=160661',note:'재선·통합 최다득표 — 프로필 근거 · 게재일 원문 확인'},
+ {d:'2022-07-10',src:'서울신문',rep:'확인 필요',title:'만 32세 김보미 강진군의장…전국 최연소 기초의회 의장 영예',url:'https://www.seoul.co.kr/news/newsView.php?id=20220710500041',note:'최연소 의장 — 프로필 근거 기사'}
 ];
 
 
@@ -1489,13 +1439,13 @@ function openDay(ds){
     if(e.k==='gcal'){
       let inner='<span class="kbadge" style="background:rgba(255,255,255,.6);color:'+k[2]+';margin-right:6px">'+k[0]+'</span>'+evHtml(e,true);
       if(e.desc)inner+='<div style="font-size:.8rem;color:#555;margin-top:5px;white-space:pre-line;font-weight:500">'+esc(e.desc)+'</div>';
-      inner+='<div style="margin-top:7px"><button data-gdel="'+esc(e.gid)+'" style="border:1px solid #f0a8c4;background:#fff;color:var(--red);border-radius:6px;padding:3px 10px;font-size:.75rem;font-weight:700;cursor:pointer">🗑️ 구글 캘린더에서 삭제</button></div>';
+      inner+='<div style="margin-top:7px"><button data-gdel="'+esc(e.id)+'" style="border:1px solid #f0a8c4;background:#fff;color:var(--red);border-radius:6px;padding:3px 10px;font-size:.75rem;font-weight:700;cursor:pointer">🗑️ 삭제</button></div>';
       return '<div class="ev gcal'+(ds<TODAY_S?' past':'')+'">'+inner+'</div>';
     }
     return '<div class="ev '+e.k+(ds<TODAY_S?' past':'')+'"'+(e.k==='fb'?' style="cursor:pointer" onclick="openFb('+e.fb+')"':'')+'><span class="kbadge" style="background:rgba(255,255,255,.6);color:'+k[2]+';margin-right:6px">'+k[0]+'</span>'+evHtml(e,true)+(e.k==='fb'?' <small style="opacity:.7">▸ 상세</small>':'')+'</div>';
   }).join(''):'<p class="note">등록된 일정이 없습니다.</p>';
   document.getElementById('mdBody').innerHTML=h;
-  document.querySelectorAll('#mdBody [data-gdel]').forEach(b=>{b.onclick=()=>gcalDelete(b.getAttribute('data-gdel'));});
+  document.querySelectorAll('#mdBody [data-gdel]').forEach(b=>{b.onclick=()=>localDelete(b.getAttribute('data-gdel'));});
   document.getElementById('mbg').classList.add('show');
 }
 function closeDay(){document.getElementById('mbg').classList.remove('show')}
@@ -1681,121 +1631,40 @@ renderAll();
 if(DB){setStatus('⏳ 연결 중…');pull();}
 setInterval(pull,8000);
 // =====================================================================
-// ===== 구글 캘린더 양방향 동기화 =====================================
+// ===== 캠프 일정 직접 입력 (이 기기에 저장 · 입력한 시간 그대로 — 시간대 변환 없음) =====
 // =====================================================================
-const GCAL_DEFAULT_URL='https://script.google.com/macros/s/AKfycbygFJpBO9xRWSVkU0oKdPerEWTttSs2Kblj_vYwBGmBzF6I7S0jKAlmFEmi9_q-A3DY/exec';
-let GCAL_URL=lsGet('gcalUrl','')||GCAL_DEFAULT_URL;
-let GCAL_PW=lsGet('gcalPw','')||'0817';
-const pad2=x=>String(x).padStart(2,'0');
-function nowClock(){const n=new Date();return pad2(n.getHours())+':'+pad2(n.getMinutes());}
-function gcalSetStatus(s){const el=document.getElementById('gcalStatus');if(el)el.textContent=s;}
+GEVENTS=lsGet('localEvents',[]);            // 직접 입력한 일정: {d:'YYYY-MM-DD', time:'HH:MM'|'', t:제목, loc, k:'gcal', id}
+if(!Array.isArray(GEVENTS))GEVENTS=[];
 function redrawCalendars(){drawMonth();drawWeek();drawUpcoming();}
+function saveLocalEvents(){lsSet('localEvents',GEVENTS);redrawCalendars();}
+function localMsg(s){const el=document.getElementById('localStatus');if(!el)return;el.textContent=s;setTimeout(()=>{if(el.textContent===s)el.textContent='';},4000);}
 
-// 구글 원본 일정 → 게시판 일정 형태로 변환 (여러 날 종일 일정은 날짜별로 펼침)
-function gcalExpand(raw){
-  const out=[];
-  const s=new Date(raw.start), e=new Date(raw.end);
-  if(raw.allDay){
-    let d=new Date(s.getFullYear(),s.getMonth(),s.getDate());
-    const endD=new Date(e.getFullYear(),e.getMonth(),e.getDate());
-    if(endD<=d){out.push({d:fmt(d),t:raw.title,k:'gcal',gid:raw.id,allDay:true,loc:raw.location,desc:raw.description});}
-    else{let g=0;while(d<endD&&g<120){out.push({d:fmt(d),t:raw.title,k:'gcal',gid:raw.id,allDay:true,loc:raw.location,desc:raw.description});d.setDate(d.getDate()+1);g++;}}
-  }else{
-    out.push({d:fmt(s),t:raw.title,k:'gcal',gid:raw.id,time:pad2(s.getHours())+':'+pad2(s.getMinutes()),start:raw.start,end:raw.end,loc:raw.location,desc:raw.description});
-  }
-  return out;
-}
-
-// 읽기 — JSONP 방식 (브라우저 CORS 제약 없이 안정적으로 불러옴)
-let _gcalBusy=false;
-async function gcalPull(){
-  if(!GCAL_URL){gcalSetStatus('⚪ 미연결 — 아래 ⚙️ 연결 설정에서 URL을 입력하세요');return;}
-  if(_gcalBusy)return; _gcalBusy=true;
-  const st=new Date(TODAY.getFullYear(),TODAY.getMonth()-6,1);
-  const en=new Date(TODAY.getFullYear()+1,TODAY.getMonth()+6,1);
-  const sep=GCAL_URL.indexOf('?')<0?'?':'&';
-  const url=GCAL_URL+sep+'start='+fmt(st)+'&end='+fmt(en)+'&t='+Date.now();
-  try{
-    const r=await fetch(url);   // 기본 credentials(same-origin) → 교차출처 쿠키 미전송 → 익명 접근(다중 계정 로그인과 무관하게 동작)
-    const v=await r.json();
-    _gcalBusy=false;
-    if(v&&v.ok&&Array.isArray(v.events)){
-      GEVENTS=[];v.events.forEach(raw=>{gcalExpand(raw).forEach(x=>GEVENTS.push(x));});
-      redrawCalendars();
-      gcalSetStatus('🟢 연동중 · 일정 '+v.events.length+'건 · '+nowClock()+' 기준');
-    }else{gcalSetStatus('🔴 응답 오류 — 배포 상태 확인'+((v&&v.error)?' ('+v.error+')':''));}
-  }catch(e){ _gcalBusy=false; gcalSetStatus('🔴 연결 실패 — URL/배포/권한 확인'); }
-}
-
-// 추가 — POST(text/plain)라 CORS 사전요청 없이 전송됨
-async function gcalAdd(){
-  const setup=document.getElementById('gcalSetup');
-  if(!GCAL_URL){gcalSetStatus('⚠️ 먼저 연결 설정에서 URL을 연결하세요');if(setup)setup.open=true;return;}
+// 추가 — 입력한 날짜·시간 문자열을 '그대로' 저장 (Date 변환 전혀 없음 → 입력=표시)
+function localAdd(){
   const title=document.getElementById('gcTitle').value.trim();
   const date=document.getElementById('gcDate').value;
-  const stv=document.getElementById('gcStart').value;
-  const etv=document.getElementById('gcEnd').value;
+  const time=document.getElementById('gcStart').value;   // 'HH:MM' 문자열 그대로 사용 (시간대 변환 없음)
   const loc=document.getElementById('gcLoc').value.trim();
-  const pw=(document.getElementById('gcPw').value||'0817').trim()||'0817';
-  if(!title||!date){gcalSetStatus('⚠️ 제목과 날짜는 필수입니다');return;}
-  const payload={key:pw,action:'add',title:title,location:loc,description:'게시판에서 등록'};
-  if(stv){
-    const dp=date.split('-').map(Number), sp=stv.split(':').map(Number);
-    const start=new Date(dp[0],dp[1]-1,dp[2],sp[0],sp[1]);
-    let end;
-    if(etv){const ep=etv.split(':').map(Number);end=new Date(dp[0],dp[1]-1,dp[2],ep[0],ep[1]);}
-    else end=new Date(start.getTime()+3600000);
-    if(end<=start)end=new Date(start.getTime()+3600000);
-    payload.allDay=false;payload.start=start.toISOString();payload.end=end.toISOString();
-  }else{payload.allDay=true;payload.date=date;}
-  gcalSetStatus('⏳ 추가 중…');
-  try{
-    const r=await fetch(GCAL_URL,{method:'POST',body:JSON.stringify(payload)});
-    const v=await r.json();
-    if(v&&v.ok){
-      GCAL_PW=pw;lsSet('gcalPw',pw);
-      document.getElementById('gcTitle').value='';document.getElementById('gcLoc').value='';
-      document.getElementById('gcStart').value='';document.getElementById('gcEnd').value='';
-      gcalSetStatus('✅ 추가 완료 — 구글 캘린더에 반영됨');
-      setTimeout(gcalPull,700);
-    }else if(v&&v.error==='BAD_KEY'){gcalSetStatus('🔴 비밀번호가 틀렸습니다');}
-    else{gcalSetStatus('🔴 추가 실패: '+((v&&v.error)||'알 수 없음'));}
-  }catch(err){
-    // 응답을 못 읽어도 서버엔 등록됐을 수 있으니 다시 불러와 확인
-    GCAL_PW=pw;lsSet('gcalPw',pw);
-    gcalSetStatus('⏳ 전송함 · 반영 확인 중…');
-    setTimeout(gcalPull,1300);
-  }
+  if(!title||!date){localMsg('⚠️ 제목과 날짜는 필수입니다');return;}
+  const id='le'+Date.now()+'_'+Math.floor(Math.random()*100000);
+  GEVENTS.push({d:date,time:time||'',t:title,loc:loc,k:'gcal',id:id});
+  document.getElementById('gcTitle').value='';
+  document.getElementById('gcStart').value='';
+  document.getElementById('gcLoc').value='';
+  saveLocalEvents();
+  localMsg('✅ 추가됨 — '+mdLabel(date)+(time?(' '+time):'')+' '+title);
 }
 
-// 삭제 — 비밀번호 필요
-async function gcalDelete(gid){
-  const pw=GCAL_PW||'0817';
-  if(!confirm('이 일정을 구글 캘린더에서 삭제할까요?'))return;
-  try{
-    const r=await fetch(GCAL_URL,{method:'POST',body:JSON.stringify({key:pw,action:'delete',id:gid})});
-    const v=await r.json();
-    if(v&&v.ok){GCAL_PW=pw;lsSet('gcalPw',pw);closeDay();gcalSetStatus('🗑️ 삭제됨 — 구글 캘린더에 반영됨');setTimeout(gcalPull,700);}
-    else if(v&&v.error==='BAD_KEY'){gcalSetStatus('🔴 비밀번호가 틀렸습니다');}
-    else{gcalSetStatus('🔴 삭제 실패: '+((v&&v.error)||'알 수 없음'));}
-  }catch(err){GCAL_PW=pw;lsSet('gcalPw',pw);closeDay();gcalSetStatus('⏳ 전송함 · 반영 확인 중…');setTimeout(gcalPull,1300);}
+// 삭제 (비밀번호 불필요 · 이 기기 저장)
+function localDelete(id){
+  if(!confirm('이 일정을 삭제할까요?'))return;
+  GEVENTS=GEVENTS.filter(e=>e.id!==id);
+  saveLocalEvents();
+  closeDay();
 }
 
-function gcalConnect(){
-  GCAL_URL=document.getElementById('gcalUrl').value.trim();lsSet('gcalUrl',GCAL_URL);
-  if(GCAL_URL){gcalSetStatus('⏳ 연결 중…');gcalPull();}
-  else gcalSetStatus('⚪ 미연결');
-}
-
-// 초기화 + 20초마다 자동 새로고침 (구글 캘린더 변경 → 게시판 자동 반영)
-(function(){
-  const u=document.getElementById('gcalUrl'); if(u)u.value=GCAL_URL;
-  if(GCAL_URL){gcalSetStatus('⏳ 연결 중…');gcalPull();}
-  else gcalSetStatus('⚪ 미연결 — 아래 ⚙️ 연결 설정에서 시작하세요');
-  setInterval(gcalPull,20000);
-})();
-
-// build v5 2026-07-09 — 구글 캘린더 양방향 동기화 추가
+redrawCalendars();
+// build v6 2026-07-13 — 구글 연동 제거 · 직접 입력(입력 시간 그대로) 방식으로 전환
 </script>
 </body>
 </html>
